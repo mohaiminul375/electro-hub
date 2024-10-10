@@ -11,9 +11,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#003366",  // Deep Blue
-        secondary: "#C0C0C0", // Silver
-        accent: "#00AFFF",    // Electric Blue
+        primary: "#081621",  // Deep Blue
+        secondary: "#FFFFF", // Silver
+        accent: "#EF4A23",    // Electric Blue
         background: "#F7F7F7", // Light Gray
       },
     },

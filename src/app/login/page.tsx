@@ -5,6 +5,7 @@ import { Divider, Input } from '@nextui-org/react';
 import React, { useState } from 'react';
 import { FaFacebook, FaGoogle, FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import Link from 'next/link';
+import Image from 'next/image';
 // import { EyeFilledIcon, EyeSlashFilledIcon } from './EyeSlashFilledIcon';
 
 export default function Page() {
@@ -30,11 +31,11 @@ export default function Page() {
             {/* Login form */}
             <div>
                 <div className='w-3/4 mx-auto border py-10 px-10 rounded-md shadow-lg'>
-                    <h2 className='text-center text-2xl'>Login</h2>
+                    <h2 className='text-center text-2xl font-bold text-accent'>Login</h2>
                     <form>
                         {/* Email input */}
                         <div>
-                            <label className="block mb-2">Enter Your Email</label>
+                            <label className="block mb-2 text-accent">Enter Your Email</label>
                             <Input
                                 type="email"
                                 label="Email"
@@ -45,7 +46,7 @@ export default function Page() {
 
                         {/* Password input */}
                         <div className="mt-8">
-                            <label className="block mb-2">Enter Your Password</label>
+                            <label className="block mb-2 text-accent">Enter Your Password</label>
                             <Input
                                 fullWidth
                                 label="Password"
@@ -73,18 +74,29 @@ export default function Page() {
                         </div>
                         <div className='mt-5 '>
                             <button className='w-full
-                              py-2 bg-blue-400'>Login</button>
+                              py-2 bg-primary text-white rounded-md '>Login</button>
                         </div>
                     </form>
                     <div className=''>
                         <Divider className="my-4" />
-                        <div>
-                            <FaGoogle />
-                            <FaFacebook />
+                        <div className="flex justify-between flex-col gap-3 md:flex-row md:gap-0">
+                            <button
+                                className="flex items-center justify-center gap-2 border border-gray-800 rounded-md bg-white font-semibold px-2 py-2"
+                            >
+                                <Image src="/assets/google.png" alt="google" width={30} height={30} />
+                                <span>Sign in with Google</span>
+                            </button>
+                            <button
+
+                                className="flex items-center justify-center gap-2 border border-gray-800 rounded-md bg-white font-semibold px-2 py-2"
+                            >
+                                <Image src="/assets/facebook.png" alt="facebook" width={30} height={30} />
+                                <span>Sign in with Facebook</span>
+                            </button>
                         </div>
-                        <div>
+                        <div className='mt-5'>
                             <p className='text-center
-                            text-xl'>New Here? <Link href='#' >Register</Link></p>
+                            text-base'>New Here? <Link className='text-accent hover:underline' href='#' >Register</Link></p>
                         </div>
                     </div>
                 </div>
