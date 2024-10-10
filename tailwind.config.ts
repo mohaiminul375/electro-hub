@@ -1,4 +1,4 @@
-import {nextui} from '@nextui-org/react';
+import { nextui } from '@nextui-org/react';
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -11,12 +11,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: "#003366",  // Deep Blue
+        secondary: "#C0C0C0", // Silver
+        accent: "#00AFFF",    // Electric Blue
+        background: "#F7F7F7", // Light Gray
       },
     },
   },
   darkMode: "class",
   plugins: [nextui()],
 };
+
 export default config;
