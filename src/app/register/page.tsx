@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { createUser } from "./api/route";
 type Inputs = {
     user_name: string,
     email: string,
@@ -23,8 +24,14 @@ export default function Page() {
 
     // react_hook_form
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = user_info => {
-        console.log(user_info);
+    const onSubmit: SubmitHandler<Inputs> = async (user_info) => {
+        try {
+            const res = await createUser(user_info);
+            console.log("User created:", res);
+        } catch (error) {
+            console.error("Error during user creation:", error);
+        }
+
     }
 
     return (
