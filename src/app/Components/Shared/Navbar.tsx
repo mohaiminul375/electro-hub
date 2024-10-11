@@ -1,7 +1,7 @@
 "use client"
 import { NavbarBrand, NavbarContent, NavbarItem, Link, Navbar, NavbarMenuToggle, NavbarMenuItem, NavbarMenu } from "@nextui-org/react";
 import Image from "next/image";
-import { Kalam } from '@next/font/google';
+import { Kalam } from "next/font/google";
 import React from "react";
 import { RxAvatar } from "react-icons/rx";
 // import path from "path";
@@ -63,7 +63,7 @@ export default function Nav() {
                 <NavbarItem className="flex items-center">
                 <RxAvatar className="text-accent text-2xl mr-1"></RxAvatar>
                    <div>
-                   <Link className="text-white" href="/login">Login</Link>
+                   <Link className="text-white hover:text-accent" href="/login">Login</Link>
                    <span className="mx-1">or</span>
                    <Link className="text-white" href="/register">Register</Link>
                    </div>
