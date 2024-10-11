@@ -7,9 +7,11 @@ import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import Link from 'next/link';
 import { useForm, SubmitHandler } from "react-hook-form";
 import SocialLogin from '../Components/Shared/SocialLogin';
+import { signIn } from 'next-auth/react';
 type Inputs = {
     email: string,
     password: string,
+    redirects: boolean
 }
 
 export default function Page() {
@@ -20,8 +22,14 @@ export default function Page() {
     };
     // react_hook_form
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = user_info => {
+    const onSubmit: SubmitHandler<Inputs> = async (user_info) => {
         console.log(user_info);
+        const email = user_info.email;
+        const password = user_info.password;
+        const res = await signIn('credentials', {
+            email, password, redirect: false
+        })
+        console.log(res)
     }
 
     return (
