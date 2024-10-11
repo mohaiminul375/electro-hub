@@ -22,17 +22,10 @@ export default function Page() {
     };
 
     // react_hook_form
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = user_info => console.log(user_info);
-
-
-
-    console.log(errors)
-
-
-
-
-
+    const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
+    const onSubmit: SubmitHandler<Inputs> = user_info => {
+        console.log(user_info);
+    }
 
     return (
         <section className='grid md:grid-cols-2 gap-5 mt-5'>
