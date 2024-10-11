@@ -1,20 +1,18 @@
-"use client";
-import { Player, Controls } from '@lottiefiles/react-lottie-player';
-import auth_animation from "../../../public/auth.json";
+"use client"
+import { Controls, Player } from "@lottiefiles/react-lottie-player";
+// import { Input } from "postcss";
 import { Divider, Input } from '@nextui-org/react';
-import React, { useState } from 'react';
-import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
-import Link from 'next/link';
-import SocialLogin from '../Components/Shared/SocialLogin';
-// import { EyeFilledIcon, EyeSlashFilledIcon } from './EyeSlashFilledIcon';
-
+import auth_animation from "../../../public/auth.json";
+import SocialLogin from "../Components/Shared/SocialLogin";
+import Link from "next/link";
+import { useState } from "react";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 export default function Page() {
     const [isVisible, setIsVisible] = useState(false);
 
     const toggleVisibility = () => {
         setIsVisible(prev => !prev);
     };
-
     return (
         <section className='grid md:grid-cols-2 gap-5 mt-5'>
             {/* Lottie animation */}
@@ -32,9 +30,19 @@ export default function Page() {
             {/* Login form */}
             <div>
                 <div className='lg:w-[90%] mx-auto border-2 py-10 px-2 md:px-10 rounded-md shadow-2xl border-primary'>
-                    <h2 className='text-center text-3xl font-bold text-accent'>Login</h2>
+                    <h2 className='text-center text-3xl font-bold text-accent'>Register</h2>
                     <form>
                         {/* Email input */}
+                        <div>
+                            <label className="block mb-1 text-accent text-base">Enter Your Name</label>
+                            <Input
+                                type="text"
+                                variant='flat'
+                                label="Name"
+                                color='primary'
+                                className='text-accent'
+                            />
+                        </div>
                         <div>
                             <label className="block mb-1 text-accent text-base">Enter Your Email</label>
                             <Input
@@ -92,5 +100,6 @@ export default function Page() {
                 </div>
             </div>
         </section>
-    );
+    )
 }
+
