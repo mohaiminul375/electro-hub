@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Kalam } from "next/font/google";
 import React from "react";
 import { RxAvatar } from "react-icons/rx";
+import { signOut, useSession } from "next-auth/react";
 // import path from "path";
 
 interface NavItems {
@@ -29,6 +30,9 @@ const navItems: NavItems[] = [
 
 ]
 export default function Nav() {
+    // get user
+    const session = useSession();
+    console.log(session)
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     return (
         <Navbar
@@ -60,14 +64,22 @@ export default function Nav() {
                 }
             </NavbarContent>
             <NavbarContent justify="end">
-                <NavbarItem className="flex items-center">
-                <RxAvatar className="text-accent text-2xl mr-1"></RxAvatar>
-                   <div>
-                   <Link className="text-white hover:text-accent" href="/login">Login</Link>
-                   <span className="mx-1">or</span>
-                   <Link className="text-white" href="/register">Register</Link>
-                   </div>
-                </NavbarItem>
+                {
+                    session.data ? <>
+                        <NavbarItem className="">
+                            <button
+                                onClick={() => signOut()}
+                                className="bg-accent rounded-xl p-2">Log Out</button>
+                        </NavbarItem>
+                    </> : <NavbarItem className="flex items-center">
+                        <RxAvatar className="text-accent text-2xl mr-1"></RxAvatar>
+                        <div>
+                            <Link className="text-white hover:text-accent" href="/login">Login</Link>
+                            <span className="mx-1">or</span>
+                            <Link className="text-white" href="/register">Register</Link>
+                        </div>
+                    </NavbarItem>
+                }
             </NavbarContent>
             {/* menu for sm device */}
             <NavbarMenu>
