@@ -1,5 +1,5 @@
 "use client"
-import { NavbarBrand, NavbarContent, NavbarItem, Link, Navbar, NavbarMenuToggle, NavbarMenuItem, NavbarMenu } from "@nextui-org/react";
+import { NavbarBrand, NavbarContent, NavbarItem, Link, Navbar, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, Dropdown, DropdownTrigger, Avatar, DropdownItem, DropdownMenu } from "@nextui-org/react";
 import Image from "next/image";
 import { Kalam } from "next/font/google";
 import React from "react";
@@ -63,14 +63,34 @@ export default function Nav() {
                     ))
                 }
             </NavbarContent>
-            <NavbarContent justify="end">
+            <NavbarContent as="div" justify="end">
                 {
                     session.data ? <>
-                        <NavbarItem className="">
-                            <button
-                                onClick={() => signOut()}
-                                className="bg-accent rounded-xl p-2">Log Out</button>
-                        </NavbarItem>
+
+                        <Dropdown placement="bottom-end">
+                            <DropdownTrigger>
+                                <Avatar
+                                    isBordered
+                                    as="button"
+                                    className="transition-transform border-accent border-2"
+                                    color="secondary"
+                                    name="Jason Hughes"
+                                    size="md"
+                                    src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                                />
+                            </DropdownTrigger>
+                            <DropdownMenu aria-label="Profile Actions" variant="flat">
+                                <DropdownItem key="profile" className="h-14 gap-2">
+                                    <p className="font-semibold">Signed in as</p>
+                                    <p className="font-semibold">zoey@example.com</p>
+                                </DropdownItem>
+                                <DropdownItem
+                                    onClick={() => signOut()}
+                                    key="logout" color="danger">
+                                    Log Out
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
                     </> : <NavbarItem className="flex items-center">
                         <RxAvatar className="text-accent text-2xl mr-1"></RxAvatar>
                         <div>

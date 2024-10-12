@@ -13,3 +13,13 @@ export const handleLogin = async ({ email, password }: userType) => {
     }
 
 }
+
+export const handleSocialAccount = async (user: object) => {
+    try {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/social-login`, user);
+        return response.data;
+    } catch (error) {
+        console.error("Error during social login:", error);
+        throw error;
+    }
+}

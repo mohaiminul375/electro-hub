@@ -1,7 +1,8 @@
-import { handleLogin } from "@/app/login/api/route";
+import { handleLogin, handleSocialAccount } from "@/app/login/api/route";
 import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+
 // Define the type for credentials
 interface Credentials {
     email: string;
@@ -43,12 +44,18 @@ const authOptions: AuthOptions = {
             }
         }),
         GoogleProvider({
-            clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
-            clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET
+            clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '',
+            clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET || ''
         })
     ],
     callbacks: {
-        // Optional: Add callbacks if necessary
+        async signIn({ user, account }) {
+            if (account?.provider === 'google' || account?.provider === 'facebook') {
+                await handleSocialAccount(user);
+                return true;
+            }
+            return true;
+        },
     },
     pages: {
         signIn: '/login',

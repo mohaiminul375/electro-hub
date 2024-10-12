@@ -1,11 +1,22 @@
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation';
 import React from 'react'
+import toast from 'react-hot-toast';
 
 export default function SocialLogin() {
+    const { status } = useSession();
+    console.log('satus from', status)
+    const router = useRouter()
     const handleSocialLogin = async (provider: string) => {
-        const res = await signIn(provider);
+        const res = await signIn(provider, { redirect: false });
         console.log('social login', res)
+        setTimeout(() => {
+            if (status === 'authenticated') {
+                router.push('/');
+                return toast.success('Login successfully');
+            }
+        }, 100);
 
     }
     return (
