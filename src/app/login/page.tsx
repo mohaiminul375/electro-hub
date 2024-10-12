@@ -8,6 +8,8 @@ import Link from 'next/link';
 import { useForm, SubmitHandler } from "react-hook-form";
 import SocialLogin from '../Components/Shared/SocialLogin';
 import { signIn } from 'next-auth/react';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 type Inputs = {
     email: string,
     password: string,
@@ -20,17 +22,40 @@ export default function Page() {
     const toggleVisibility = () => {
         setIsVisible(prev => !prev);
     };
+
+    const router = useRouter();
     // react_hook_form
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (user_info) => {
-        console.log(user_info);
-        const email = user_info.email;
-        const password = user_info.password;
-        const res = await signIn('credentials', {
-            email, password, redirect: false
-        })
-        console.log(res)
-    }
+        try {
+            const email = user_info.email;
+            const password = user_info.password;
+
+            const res = await signIn('credentials', {
+                email,
+                password,
+                redirect: false,
+            });
+
+            console.log(res);
+
+            if (res?.status === 200) {
+                router.push('/');
+                return toast.success('Login successfully');
+            } else {
+                return toast.error('Invalid email or password');
+            }
+        } catch (error: unknown) {
+            console.error("Error during login:", error);
+
+            // Optional: Handle specific error types if needed
+            if (error instanceof Error) {
+                toast.error(error.message || 'An unexpected error occurred');
+            } else {
+                toast.error('Something went wrong, please try again later');
+            }
+        }
+    };
 
     return (
         <section className='grid md:grid-cols-2 gap-5 mt-5'>
