@@ -4,3 +4,5 @@
 4.Lotifiles
 5. react hook form 
 6. axios
+7. sweet alert2
+8. react-hot-toast

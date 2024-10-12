@@ -8,12 +8,21 @@ import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { createUser } from "./api/route";
-type Inputs = {
+import toast from 'react-hot-toast'
+import { useRouter } from "next/navigation";
+// import { AxiosError } from "axios";
+interface Inputs {
     user_name: string,
     email: string,
     password: string,
 }
-
+interface CustomError extends Error {
+    response?: {
+        data?: {
+            message?: string;
+        };
+    };
+}
 
 
 export default function Page() {
@@ -21,15 +30,32 @@ export default function Page() {
     const toggleVisibility = () => {
         setIsVisible(prev => !prev);
     };
+    // route
+    const router = useRouter();
+
 
     // react_hook_form
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (user_info) => {
         try {
             const res = await createUser(user_info);
-            console.log("User created:", res);
+            if (res.insertedId) {
+                setTimeout(() => {
+                    router.push('/login')
+                }, 1000);
+                return toast.success('Register successfully please login');
+            }
+
         } catch (error) {
-            console.error("Error during user creation:", error);
+            // console.error("Error during user creation:", error);
+            const customError = error as CustomError; // Type assertion
+
+            const errorMessage = customError?.response?.data?.message || customError.message;
+            if (errorMessage) {
+                return toast.error(errorMessage)
+            } else {
+                toast.error('something went wrong please contact to support')
+            }
         }
 
     }
