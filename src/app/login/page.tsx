@@ -9,7 +9,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import SocialLogin from '../Components/Shared/SocialLogin';
 import { signIn } from 'next-auth/react';
 import toast from 'react-hot-toast';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 type Inputs = {
     email: string,
     password: string,
@@ -22,8 +22,11 @@ export default function Page() {
     const toggleVisibility = () => {
         setIsVisible(prev => !prev);
     };
-
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const path = searchParams.get("redirect")
+
+
     // react_hook_form
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (user_info) => {
@@ -34,7 +37,8 @@ export default function Page() {
             const res = await signIn('credentials', {
                 email,
                 password,
-                redirect: false,
+                redirect: true,
+                callbackUrl: path ? path : '/',
             });
 
             console.log(res);
