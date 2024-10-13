@@ -14,7 +14,7 @@ const config: Config = {
         primary: "#081621",  // Deep Blue
         secondary: "#FFFFF", // Silver
         accent: "#EF4A23",    // Electric Blue
-        background: "#F7F7F7", // Light Gray
+        background: "#F5F5F5", // Light Gray
       },
     },
   },

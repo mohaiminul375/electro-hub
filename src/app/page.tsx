@@ -4,7 +4,7 @@ import ForYou from "./Components/Home/ForYou";
 
 export default function Home() {
   return (
-    <section className="">
+    <section className="pt-10">
       <Banner />
       <ForYou />
       <Categories />
