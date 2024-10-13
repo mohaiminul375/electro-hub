@@ -1,7 +1,16 @@
 import { FaTrash } from "react-icons/fa";
+import { getUsers } from "./api/route";
+import UserTable from "@/app/Components/Dashboard/UserTable/UserTable";
+interface User {
+    _id: string;
+    name: string;
+    email: string;
+    role: string;
+}
 
-
-export default function page() {
+export default async function page() {
+    const users: User[] = await getUsers();
+    console.log(users)
     return (
         <section>
             <div className="my-10 text-center">
@@ -21,20 +30,17 @@ export default function page() {
                         </tr>
                     </thead>
                     <tbody>
+                        {
+                            users?.map((user, idx) => (
+                                <UserTable
+                                    idx={idx}
+                                    key={idx}
+                                    user={user}
+                                />
+                            ))
+                        }
 
 
-                        <tr className="bg-white border-b hover:bg-gray-50">
-                            <td className="px-4 py-2">2</td>
-                            <td className="px-4 py-2">Jane Smith</td>
-                            <td className="px-4 py-2">jane.smith@example.com</td>
-                            <td className="px-4 py-2">User</td>
-                            <td className="px-4 py-2">
-
-                                <button className="ml-2 text-red-600 hover:text-red-900">
-                                    <FaTrash title="delete user" className="text-white bg-red-700 rounded-full text-3xl p-2 " />
-                                </button>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
