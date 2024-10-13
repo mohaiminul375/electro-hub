@@ -1,6 +1,8 @@
 'use client'
+import { FaArrowLeft } from "react-icons/fa";
 import { getUsers } from "./api/route";
 import UserTable from "@/app/Components/Dashboard/UserTable/UserTable";
+import Link from "next/link";
 interface User {
     _id: string;
     name: string;
@@ -13,7 +15,15 @@ export default async function page() {
     // console.log(users)
     return (
         <section>
-            <div className="my-10 text-center">
+            <div className="mt-3 inline-block">
+                <Link
+                href='/admin-dashboard'
+                className="flex items-center gap-2 rounded-lg bg-white border text-xl p-2">
+                    <FaArrowLeft />
+                    Back to Dashboard
+                </Link>
+            </div>
+            <div className="mb-10 text-center">
                 <h3 className="text-2xl font-semibold">Registered Users</h3>
                 <h4 className="text-lg text-gray-600">List of all registered users on the platform</h4>
             </div>
