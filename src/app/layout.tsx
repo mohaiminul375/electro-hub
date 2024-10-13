@@ -5,6 +5,7 @@ import { NextUIProvider } from "@nextui-org/react";
 import Nav from "./Components/Shared/Navbar";
 import AuthProvider from "@/services/AuthProvider";
 import { Toaster } from "react-hot-toast";
+import Footer from "./Components/Shared/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,7 +36,10 @@ export default function RootLayout({
         <NextUIProvider>
           <AuthProvider>
             <Nav />
-            {children}
+            <div className="min-h-[calc(100vh-180px)]">
+              {children}
+            </div>
+            <Footer />
           </AuthProvider>
           <Toaster position="top-center" />
         </NextUIProvider>

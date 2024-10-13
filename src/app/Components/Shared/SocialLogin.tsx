@@ -6,11 +6,11 @@ import toast from 'react-hot-toast';
 
 export default function SocialLogin() {
     const { status } = useSession();
-    console.log('satus from', status)
+    // console.log('satus from', status);
     const router = useRouter()
     const handleSocialLogin = async (provider: string) => {
         const res = await signIn(provider, { redirect: false });
-        console.log('social login', res)
+        // console.log('social login', res)
         setTimeout(() => {
             if (status === 'authenticated') {
                 router.push('/');
