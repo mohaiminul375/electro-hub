@@ -1,4 +1,4 @@
-import { FaTrash } from "react-icons/fa";
+'use client'
 import { getUsers } from "./api/route";
 import UserTable from "@/app/Components/Dashboard/UserTable/UserTable";
 interface User {
@@ -10,7 +10,7 @@ interface User {
 
 export default async function page() {
     const users: User[] = await getUsers();
-    console.log(users)
+    // console.log(users)
     return (
         <section>
             <div className="my-10 text-center">
