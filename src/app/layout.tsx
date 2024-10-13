@@ -31,12 +31,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background`}
       >
         <NextUIProvider>
           <AuthProvider>
             <Nav />
-            <main className=" bg-background ">
+            <main className=" bg-background">
               <div className="min-h-[calc(100vh-145px)] md:max-w-7xl mx-auto">
                 {children}
               </div>
