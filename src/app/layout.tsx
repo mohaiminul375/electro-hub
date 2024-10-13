@@ -36,9 +36,11 @@ export default function RootLayout({
         <NextUIProvider>
           <AuthProvider>
             <Nav />
-            <div className="min-h-[calc(100vh-145px)] bg-background">
-              {children}
-            </div>
+            <main className=" bg-background ">
+              <div className="min-h-[calc(100vh-145px)] md:max-w-7xl mx-auto">
+                {children}
+              </div>
+            </main>
             <Footer />
           </AuthProvider>
           <Toaster position="top-center" />
