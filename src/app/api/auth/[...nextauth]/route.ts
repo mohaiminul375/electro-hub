@@ -1,5 +1,6 @@
 import { handleLogin, handleSocialAccount } from "@/app/login/api/route";
-import NextAuth, { AuthOptions } from "next-auth";
+import NextAuth, { Account, AuthOptions, DefaultSession, DefaultUser, Session, User } from "next-auth";
+import { DefaultJWT, JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 
@@ -7,6 +8,26 @@ import GoogleProvider from "next-auth/providers/google";
 interface Credentials {
     email: string;
     password: string;
+}
+
+declare module "next-auth" {
+    // Extend the default User type
+    interface User extends DefaultUser {
+        role?: string ;
+        image?: string ;
+    }
+
+    // Extend the default Session type
+    interface Session {
+        user: {
+            role?: string ;
+            image?: string;
+        } & DefaultSession["user"];
+    }
+    interface JWT extends DefaultJWT {
+        role?: string ; 
+        image?: string;
+    }
 }
 
 const authOptions: AuthOptions = {
@@ -56,6 +77,20 @@ const authOptions: AuthOptions = {
             }
             return true;
         },
+        async jwt({ token, user, account }: { token: JWT, user?: User, account?: Account | null }) {
+            if (account && user) {
+                token.role = user.role;
+                token.image = user.image;
+
+            }
+            return token;
+        },
+        async session({ session, token }: { session: Session, token: JWT }) {
+            session.user.role = token.role as string | undefined; 
+            session.user.image = token.image as string | undefined; 
+            return session
+        },
+
     },
     pages: {
         signIn: '/login',
