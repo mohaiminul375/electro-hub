@@ -24,7 +24,7 @@ export default function Categories() {
                         <div>
                             <h2 className='text-xl group-hover:text-accent duration-300'>Smart Phone</h2>
                         </div>
-                    </div>
+                    </div>  
                 </Link>
                 {/* smart Watch */}
                 <Link href='/category/smart-watch'>
