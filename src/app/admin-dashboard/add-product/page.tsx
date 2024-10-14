@@ -12,6 +12,15 @@ const AddProduct = () => {
         setSelectedCategory(key);
         setSelectedBrand("select a Brand")
     };
+    // handle color
+    const [selectedColor, setSelectedColor] = useState('Select a color');
+
+    const handleColorChange = (key: string) => {
+        setSelectedColor(key);
+    };
+
+
+
     // handle dynamic form
     // brand management
     const [selectedBrand, setSelectedBrand] = useState('select a Brand')
@@ -22,6 +31,22 @@ const AddProduct = () => {
         "smart-watch": ["Samsung", "Garmin", "Fitbit", "Amazfit"],
         "smart-tv": ["Sony", "LG", "Samsung", "Vizio", "TCL"]
     };
+
+
+    // react hook form
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return (
         <section>
@@ -43,11 +68,11 @@ const AddProduct = () => {
                     {/* row-1 */}
                     <div className='grid md:grid-cols-2 gap-5'>
                         <div>
-                            <label>Product Name</label>
+                            <label>Product Name<span className='text-red-600 font-bold'>*</span></label>
                             <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter product name' required />
                         </div>
                         <div className='flex flex-col'>
-                            <label>Product Category</label>
+                            <label>Product Category<span className='text-red-600 font-bold'>*</span></label>
                             <Dropdown
                                 aria-required
                                 className='w-full'>
@@ -87,14 +112,14 @@ const AddProduct = () => {
                         selectedCategory !== 'Select a category' &&
                         <div className='grid md:grid-cols-2 gap-5'>
                             <div>
-                                <label>Product Price</label>
+                                <label>Product Price<span className='text-red-600 font-bold'>*</span></label>
                                 <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter product price'
                                     required
                                 />
                             </div>
                             {/* brand manage */}
                             <div className='flex flex-col'>
-                                <label>Select Brand</label>
+                                <label>Select Brand<span className='text-red-600 font-bold'>*</span></label>
                                 <Dropdown className='w-full'>
                                     <DropdownTrigger>
                                         <Button variant="bordered">
@@ -125,11 +150,11 @@ const AddProduct = () => {
                             selectedCategory === 'laptop' && (<div className='space-y-3'>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
-                                        <label>Processor</label>
+                                        <label>Processor<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter processor configuration' />
                                     </div>
                                     <div>
-                                        <label>RAM</label>
+                                        <label>RAM<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage'
                                             required
                                         />
@@ -138,11 +163,11 @@ const AddProduct = () => {
                                 {/* row-2 laptop */}
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
-                                        <label>Storage</label>
+                                        <label>Storage<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter storage' />
                                     </div>
                                     <div>
-                                        <label>Display</label>
+                                        <label>Display<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter display info'
                                             required
                                         />
@@ -151,24 +176,53 @@ const AddProduct = () => {
                                 {/* row-3 laptop */}
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
-                                        <label>Battery</label>
+                                        <label>Battery<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter battery info' />
                                     </div>
                                     <div className=''>
-                                        <label>Ports</label>
+                                        <label>Ports<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter port availability' />
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
-                                        <label>image</label>
+                                        <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info' />
+                                    </div>
+                                    <div className='flex flex-col'>
+                                        <label>color<span className='text-red-600 font-bold'>*</span></label>
+                                        <Dropdown
+                                            aria-required
+                                            className='w-full'>
+                                            <DropdownTrigger>
+                                                <Button variant="bordered">
+                                                    {selectedColor}
+                                                </Button>
+                                            </DropdownTrigger>
+                                            <DropdownMenu
+                                                aria-label="Single selection example"
+                                                variant="flat"
+                                                disallowEmptySelection
+                                                selectionMode="single" onSelectionChange={(keys) => {
+                                                    const key = Array.from(keys)[0] as string;
+                                                    if (key) {
+                                                        handleColorChange(key);
+                                                    }
+                                                }}
+                                            >
+                                                <DropdownItem key="black">Black</DropdownItem>
+                                                <DropdownItem
+                                                    key="white">White</DropdownItem>
+                                                <DropdownItem key="gray">Gray</DropdownItem>
+                                                <DropdownItem key="blue">Blue</DropdownItem>
+                                            </DropdownMenu>
+                                        </Dropdown>
                                     </div>
 
                                 </div>
                                 <div className='w-full'>
                                     <div>
-                                        <label>Description</label>
+                                        <label>Description<span className='text-red-600 font-bold'>*</span></label>
                                         <Textarea
                                             placeholder="Enter laptop description"
                                         />
@@ -185,35 +239,59 @@ const AddProduct = () => {
                             selectedCategory === 'monitor' && <div className='space-y-3'>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
-                                        <label>Screen Size</label>
+                                        <label>Screen Size<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen size' />
                                     </div>
                                     <div className=''>
                                         <label>Screen Resolution
-                                        </label>
+                                            <span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution' />
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
-                                        <label>Ports</label>
+                                        <label>Ports<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ports info' />
                                     </div>
-                                    <div className=''>
-                                        <label>color</label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution' />
+                                    <div className='flex flex-col'>
+                                        <label>color<span className='text-red-600 font-bold'>*</span></label>
+                                        <Dropdown
+                                            aria-required
+                                            className='w-full'>
+                                            <DropdownTrigger>
+                                                <Button variant="bordered">
+                                                    {selectedColor}
+                                                </Button>
+                                            </DropdownTrigger>
+                                            <DropdownMenu
+                                                aria-label="Single selection example"
+                                                variant="flat"
+                                                disallowEmptySelection
+                                                selectionMode="single" onSelectionChange={(keys) => {
+                                                    const key = Array.from(keys)[0] as string;
+                                                    if (key) {
+                                                        handleColorChange(key);
+                                                    }
+                                                }}
+                                            >
+                                                <DropdownItem key="black">Black</DropdownItem>
+                                                <DropdownItem
+                                                    key="white">White</DropdownItem>
+                                                <DropdownItem key="gray">Gray</DropdownItem>
+                                            </DropdownMenu>
+                                        </Dropdown>
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
-                                        <label>image</label>
+                                        <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info' />
                                     </div>
 
                                 </div>
                                 <div className='w-full'>
                                     <div>
-                                        <label>Description</label>
+                                        <label>Description<span className='text-red-600 font-bold'>*</span></label>
                                         <Textarea
                                             placeholder="Enter laptop description"
                                         />
@@ -228,34 +306,58 @@ const AddProduct = () => {
                             selectedCategory === 'smart-phone' && <div className='space-y-3'>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
-                                        <label>Model</label>
+                                        <label>Model<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone model' />
                                     </div>
                                     <div className=''>
                                         <label>Storage
-                                        </label>
+                                            <span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone Storage' />
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
-                                        <label>Ram</label>
+                                        <label>Ram<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage' />
                                     </div>
-                                    <div className=''>
-                                        <label>color</label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution' />
+                                    <div className='flex flex-col'>
+                                        <label>color<span className='text-red-600 font-bold'>*</span></label>
+                                        <Dropdown
+                                            aria-required
+                                            className='w-full'>
+                                            <DropdownTrigger>
+                                                <Button variant="bordered">
+                                                    {selectedColor}
+                                                </Button>
+                                            </DropdownTrigger>
+                                            <DropdownMenu
+                                                aria-label="Single selection example"
+                                                variant="flat"
+                                                disallowEmptySelection
+                                                selectionMode="single" onSelectionChange={(keys) => {
+                                                    const key = Array.from(keys)[0] as string;
+                                                    if (key) {
+                                                        handleColorChange(key);
+                                                    }
+                                                }}
+                                            >
+                                                <DropdownItem key="black">Black</DropdownItem>
+                                                <DropdownItem
+                                                    key="white">White</DropdownItem>
+                                                <DropdownItem key="gray">Gray</DropdownItem>
+                                                <DropdownItem key="blue">Blue</DropdownItem>
+                                            </DropdownMenu>
+                                        </Dropdown>
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div className=''>
-                                        <label>Camera</label>
+                                        <label>Camera<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter camera info' />
                                     </div>
                                     <div>
-
                                         <div className=''>
-                                            <label>Battery</label>
+                                            <label>Battery<span className='text-red-600 font-bold'>*</span></label>
                                             <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter battery info' />
                                         </div>
                                     </div>
@@ -263,14 +365,14 @@ const AddProduct = () => {
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
-                                        <label>image</label>
+                                        <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info' />
                                     </div>
 
                                 </div>
                                 <div className='w-full'>
                                     <div>
-                                        <label>Description</label>
+                                        <label>Description<span className='text-red-600 font-bold'>*</span></label>
                                         <Textarea
                                             placeholder="Enter laptop description"
                                         />
@@ -285,34 +387,58 @@ const AddProduct = () => {
                             selectedCategory === 'smart-watch' && <div className='space-y-3'>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
-                                        <label>Model</label>
+                                        <label>Model<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter watch model' />
                                     </div>
                                     <div className=''>
                                         <label>Battery
-                                        </label>
+                                            <span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone Storage' />
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
-                                        <label>image</label>
+                                        <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info' />
                                     </div>
-                                    <div className=''>
-                                        <label>color</label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution' />
+                                    <div className='flex flex-col'>
+                                        <label>color<span className='text-red-600 font-bold'>*</span></label>
+                                        <Dropdown
+                                            aria-required
+                                            className='w-full'>
+                                            <DropdownTrigger>
+                                                <Button variant="bordered">
+                                                    {selectedColor}
+                                                </Button>
+                                            </DropdownTrigger>
+                                            <DropdownMenu
+                                                aria-label="Single selection example"
+                                                variant="flat"
+                                                disallowEmptySelection
+                                                selectionMode="single" onSelectionChange={(keys) => {
+                                                    const key = Array.from(keys)[0] as string;
+                                                    if (key) {
+                                                        handleColorChange(key);
+                                                    }
+                                                }}
+                                            >
+                                                <DropdownItem key="black">Black</DropdownItem>
+                                                <DropdownItem
+                                                    key="white">White</DropdownItem>
+                                                <DropdownItem key="gray">Gray</DropdownItem>
+                                            </DropdownMenu>
+                                        </Dropdown>
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div className=''>
-                                        <label>Features</label>
+                                        <label>Features<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter Features' />
                                     </div>
                                     <div>
 
                                         <div className=''>
-                                            <label>Battery</label>
+                                            <label>Battery<span className='text-red-600 font-bold'>*</span></label>
                                             <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter battery info' />
                                         </div>
                                     </div>
@@ -320,7 +446,7 @@ const AddProduct = () => {
                                 </div>
                                 <div className='w-full'>
                                     <div>
-                                        <label>Description</label>
+                                        <label>Description<span className='text-red-600 font-bold'>*</span></label>
                                         <Textarea
                                             placeholder="Enter laptop description"
                                         />
@@ -335,33 +461,33 @@ const AddProduct = () => {
                             selectedCategory === 'smart-tv' && <div className='space-y-3'>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
-                                        <label>Screen Size</label>
+                                        <label>Screen Size<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen size' />
                                     </div>
                                     <div className=''>
                                         <label>Resolution
-                                        </label>
+                                            <span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution' />
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
-                                        <label>image</label>
+                                        <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info' />
                                     </div>
                                     <div className=''>
-                                        <label>Ram</label>
+                                        <label>Ram<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram srorage' />
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div className=''>
-                                        <label>Features</label>
+                                        <label>Features<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter Features' />
                                     </div>
                                     <div>
                                         <div className=''>
-                                            <label>Ports</label>
+                                            <label>Ports<span className='text-red-600 font-bold'>*</span></label>
                                             <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ports info' />
                                         </div>
                                     </div>
@@ -369,7 +495,7 @@ const AddProduct = () => {
                                 </div>
                                 <div className='w-full'>
                                     <div>
-                                        <label>Description</label>
+                                        <label>Description<span className='text-red-600 font-bold'>*</span></label>
                                         <Textarea
                                             placeholder="Enter laptop description"
                                         />
