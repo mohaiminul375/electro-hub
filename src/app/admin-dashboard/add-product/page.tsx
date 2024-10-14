@@ -4,6 +4,8 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useForm, SubmitHandler } from "react-hook-form";
+import toast from 'react-hot-toast';
+import axios from 'axios';
 type Inputs = {
     product_name: string;
     product_price: string;
@@ -19,7 +21,7 @@ type Inputs = {
     monitor_screen: string;
     monitor_resolution: string;
     monitor_ports: string;
-    monitor_img: string;
+    img: string;
     monitor_description: string;
     // ----------
     "smart-phone_model": string;
@@ -27,33 +29,37 @@ type Inputs = {
     "smart-phone_ram": string;
     "smart-phone-camera": string;
     "smart-phone_battery": string;
-    "smart-phone_img": string;
+    // "smart-phone_img": string;
     "smart-phone_description": string;
 
     // -----------
     "smart-watch_model": string;
     "smart-watch_battery": string;
-    "smart-watch_img": string;
+    // "smart-watch_img": string;
     "smart-watch_features": string;
     "smart-watch_description": string;
     // ---------------
     "smart-tv_ram": string;
     "smart-tv_screen": string;
     "smart-tv_resolution": string;
-    "smart-tv_img": string;
+    // "smart-tv_img": string;
     "smart-tv_features": string;
     "smart-tv_description": string;
     "smart-tv_ports": string;
 
-
 };
+interface ProductData {
+    img: File[];
+    posted_date?: string;
+    image?: string;
+}
 const AddProduct = () => {
     // handle category
     const [selectedCategory, setSelectedCategory] = useState<keyof typeof brandOptions | "Select a category">("Select a category");
 
     const handleSelectionChange = (key: keyof typeof brandOptions) => {
         setSelectedCategory(key);
-        setSelectedBrand("select a Brand")
+        setSelectedBrand("Select a brand")
     };
     // handle color
     const [selectedColor, setSelectedColor] = useState('Select a color');
@@ -64,7 +70,7 @@ const AddProduct = () => {
 
     // handle dynamic form
     // brand management
-    const [selectedBrand, setSelectedBrand] = useState('select a Brand')
+    const [selectedBrand, setSelectedBrand] = useState('Select a brand')
     const brandOptions = {
         laptop: ["Dell", "HP", "Asus", "Lenovo", "walton"],
         monitor: ["Samsung", "LG", "Acer", "Dell", "BenQ"],
@@ -73,12 +79,47 @@ const AddProduct = () => {
         "smart-tv": ["Sony", "LG", "Samsung", "Vizio", "TCL"]
     };
 
-
     // react hook form
 
-
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = async (product: object) => {
+    const onSubmit: SubmitHandler<Inputs> = async (product: ProductData) => {
+        // error handling for drop down menue
+        if (selectedCategory == 'Select a category') {
+            return toast.error('please input a category')
+        }
+        // else if (selectedColor === "Select a color") {
+        //     return toast.error('please input a color')
+
+        // }
+        else if (selectedBrand === "Select a brand") {
+            return toast.error('please select a brand')
+
+        }
+
+        //    get img
+        const img = { image: product.img[0] }
+        console.log(product)
+        console.log(img)
+
+
+        // check img
+        if (!product.img || product.img.length === 0) {
+            return toast.error('No image found please try again');
+        }
+
+
+        // generate img
+        const { data: res } = await axios.post(`https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMG_API}`, img, {
+            headers: { "content-type": "multipart/form-data" },
+        });
+        // get url form image bb
+        const img_url = res.data.display_url;
+        if (!img_url) {
+            return toast.error('error form image server please try again or contact developer')
+        }
+        console.log(img_url);
+        product.posted_date = new Date().toLocaleString();
+        product.image = img_url;
         console.log(product);
     };
 
@@ -251,7 +292,7 @@ const AddProduct = () => {
                                     <div>
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
-                                            {...register('laptop_img')}
+                                            {...register('img')}
                                             required
                                         />
                                     </div>
@@ -363,7 +404,7 @@ const AddProduct = () => {
                                     <div>
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder=''
-                                            {...register('monitor_img')}
+                                            {...register('img')}
                                             required
                                         />
                                     </div>
@@ -464,7 +505,7 @@ const AddProduct = () => {
                                     <div>
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
-                                            {...register('smart-phone_img')}
+                                            {...register('img')}
                                             required
                                         />
                                     </div>
@@ -508,7 +549,7 @@ const AddProduct = () => {
                                     <div>
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
-                                            {...register('smart-watch_img')}
+                                            {...register('img')}
                                             required
                                         />
                                     </div>
@@ -588,7 +629,7 @@ const AddProduct = () => {
                                     <div>
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
-                                            {...register('smart-tv_img')}
+                                            {...register('img')}
                                             required
                                         />
                                     </div>
