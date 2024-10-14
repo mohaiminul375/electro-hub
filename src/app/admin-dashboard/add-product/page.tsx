@@ -44,7 +44,7 @@ const AddProduct = () => {
                     <div className='grid md:grid-cols-2 gap-5'>
                         <div>
                             <label>Product Name</label>
-                            <Input className='h-10' variant='bordered' type="text" label="" placeholder='input product name' required />
+                            <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter product name' required />
                         </div>
                         <div className='flex flex-col'>
                             <label>Product Category</label>
@@ -88,7 +88,7 @@ const AddProduct = () => {
                         <div className='grid md:grid-cols-2 gap-5'>
                             <div>
                                 <label>Product Price</label>
-                                <Input className='h-10' variant='bordered' type="text" label="" placeholder='input product price'
+                                <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter product price'
                                     required
                                 />
                             </div>
@@ -126,11 +126,11 @@ const AddProduct = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Processor</label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='input processor configuration' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter processor configuration' />
                                     </div>
                                     <div>
                                         <label>RAM</label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='input ram storage'
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage'
                                             required
                                         />
                                     </div>
@@ -139,11 +139,11 @@ const AddProduct = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Storage</label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='input storage' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter storage' />
                                     </div>
                                     <div>
                                         <label>Display</label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='input display info'
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter display info'
                                             required
                                         />
                                     </div>
@@ -152,17 +152,17 @@ const AddProduct = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Battery</label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='input battery info' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter battery info' />
                                     </div>
                                     <div className=''>
                                         <label>Ports</label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='input port availability' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter port availability' />
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>image</label>
-                                        <Input className='h-10' variant='bordered' type="file" label="" placeholder='input battery info' />
+                                        <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info' />
                                     </div>
 
                                 </div>
@@ -170,7 +170,7 @@ const AddProduct = () => {
                                     <div>
                                         <label>Description</label>
                                         <Textarea
-                                            placeholder="input laptop description"
+                                            placeholder="Enter laptop description"
                                         />
                                     </div>
                                 </div>
@@ -179,35 +179,84 @@ const AddProduct = () => {
                             )
                         }
                     </section>
-                    {/* input field for monitor monitor */}
+                    {/* Enter field for monitor monitor */}
                     <section>
                         {
                             selectedCategory === 'monitor' && <div className='space-y-3'>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Screen Size</label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='input screen size' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen size' />
                                     </div>
                                     <div className=''>
                                         <label>Screen Resolution
                                         </label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='input screen resolution' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution' />
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Ports</label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='input ports info' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ports info' />
                                     </div>
                                     <div className=''>
                                         <label>color</label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='input screen resolution' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution' />
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>image</label>
-                                        <Input className='h-10' variant='bordered' type="file" label="" placeholder='input battery info' />
+                                        <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info' />
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                    </section>
+                    {/* Enter field for smart phone */}
+                    <section>
+                        {
+                            selectedCategory === 'smart-phone' && <div className='space-y-3'>
+                                <div className='grid md:grid-cols-2 gap-5'>
+                                    <div>
+                                        <label>Model</label>
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone model' />
+                                    </div>
+                                    <div className=''>
+                                        <label>Storage
+                                        </label>
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone Storage' />
+                                    </div>
+                                </div>
+                                <div className='grid md:grid-cols-2 gap-5'>
+                                    <div>
+                                        <label>Ram</label>
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage' />
+                                    </div>
+                                    <div className=''>
+                                        <label>color</label>
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution' />
+                                    </div>
+                                </div>
+                                <div className='grid md:grid-cols-2 gap-5'>
+                                    <div className=''>
+                                        <label>Camera</label>
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter camera info' />
+                                    </div>
+                                    <div>
+
+                                        <div className=''>
+                                            <label>Battery</label>
+                                            <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter battery info' />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div className='grid md:grid-cols-2 gap-5'>
+                                    <div>
+                                        <label>image</label>
+                                        <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info' />
                                     </div>
 
                                 </div>
