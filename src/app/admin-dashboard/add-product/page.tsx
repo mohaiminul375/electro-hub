@@ -179,8 +179,40 @@ const AddProduct = () => {
                             )
                         }
                     </section>
+                    {/* input field for monitor monitor */}
                     <section>
-                          
+                        {
+                            selectedCategory === 'monitor' && <div className='space-y-3'>
+                                <div className='grid md:grid-cols-2 gap-5'>
+                                    <div>
+                                        <label>Screen Size</label>
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='input screen size' />
+                                    </div>
+                                    <div className=''>
+                                        <label>Screen Resolution
+                                        </label>
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='input screen resolution' />
+                                    </div>
+                                </div>
+                                <div className='grid md:grid-cols-2 gap-5'>
+                                    <div>
+                                        <label>Ports</label>
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='input ports info' />
+                                    </div>
+                                    <div className=''>
+                                        <label>color</label>
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='input screen resolution' />
+                                    </div>
+                                </div>
+                                <div className='grid md:grid-cols-2 gap-5'>
+                                    <div>
+                                        <label>image</label>
+                                        <Input className='h-10' variant='bordered' type="file" label="" placeholder='input battery info' />
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
                     </section>
                     <div
                         className='mt-5'>
