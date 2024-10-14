@@ -3,7 +3,50 @@ import { Button, Checkbox, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
+import { useForm, SubmitHandler } from "react-hook-form";
+type Inputs = {
+    product_name: string;
+    product_price: string;
+    laptop_processor: string;
+    laptop_ram: string;
+    laptop_storage: string;
+    laptop_display: string;
+    laptop_ports: string;
+    laptop_battery: string;
+    laptop_description: string;
+    laptop_img: string;
+    // -------------
+    monitor_screen: string;
+    monitor_resolution: string;
+    monitor_ports: string;
+    monitor_img: string;
+    monitor_description: string;
+    // ----------
+    "smart-phone_model": string;
+    "smart-phone_storage": string;
+    "smart-phone_ram": string;
+    "smart-phone-camera": string;
+    "smart-phone_battery": string;
+    "smart-phone_img": string;
+    "smart-phone_description": string;
 
+    // -----------
+    "smart-watch_model": string;
+    "smart-watch_battery": string;
+    "smart-watch_img": string;
+    "smart-watch_features": string;
+    "smart-watch_description": string;
+    // ---------------
+    "smart-tv_ram": string;
+    "smart-tv_screen": string;
+    "smart-tv_resolution": string;
+    "smart-tv_img": string;
+    "smart-tv_features": string;
+    "smart-tv_description": string;
+    "smart-tv_ports": string;
+
+
+};
 const AddProduct = () => {
     // handle category
     const [selectedCategory, setSelectedCategory] = useState<keyof typeof brandOptions | "Select a category">("Select a category");
@@ -18,8 +61,6 @@ const AddProduct = () => {
     const handleColorChange = (key: string) => {
         setSelectedColor(key);
     };
-
-
 
     // handle dynamic form
     // brand management
@@ -36,7 +77,10 @@ const AddProduct = () => {
     // react hook form
 
 
-
+    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
+    const onSubmit: SubmitHandler<Inputs> = async (product: object) => {
+        console.log(product);
+    };
 
 
 
@@ -64,12 +108,16 @@ const AddProduct = () => {
             </div>
             {/* form */}
             <div className='bg-white p-8 rounded-md shadow-2xl'>
-                <form className='space-y-3'>
+                <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className='space-y-3'>
                     {/* row-1 */}
                     <div className='grid md:grid-cols-2 gap-5'>
                         <div>
                             <label>Product Name<span className='text-red-600 font-bold'>*</span></label>
-                            <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter product name' required />
+                            <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter product name' required
+                                {...register('product_name')}
+                            />
                         </div>
                         <div className='flex flex-col'>
                             <label>Product Category<span className='text-red-600 font-bold'>*</span></label>
@@ -114,6 +162,7 @@ const AddProduct = () => {
                             <div>
                                 <label>Product Price<span className='text-red-600 font-bold'>*</span></label>
                                 <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter product price'
+                                    {...register('product_price')}
                                     required
                                 />
                             </div>
@@ -151,11 +200,14 @@ const AddProduct = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Processor<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter processor configuration' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter processor configuration'
+                                            {...register('laptop_processor')}
+                                        />
                                     </div>
                                     <div>
                                         <label>RAM<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage'
+                                            {...register('laptop_ram')}
                                             required
                                         />
                                     </div>
@@ -164,11 +216,16 @@ const AddProduct = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Storage<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter storage' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter 
+                                        storage'
+                                            {...register('laptop_storage')}
+                                            required />
                                     </div>
                                     <div>
                                         <label>Display<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter display info'
+                                            {...register('laptop_display')}
+
                                             required
                                         />
                                     </div>
@@ -177,17 +234,26 @@ const AddProduct = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Battery<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter battery info' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter battery info'
+                                            {...register('laptop_battery')}
+                                            required
+                                        />
                                     </div>
                                     <div className=''>
                                         <label>Ports<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter port availability' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter port availability'
+                                            {...register('laptop_ports')}
+                                            required
+                                        />
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info' />
+                                        <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
+                                            {...register('laptop_img')}
+                                            required
+                                        />
                                     </div>
                                     <div className='flex flex-col'>
                                         <label>color<span className='text-red-600 font-bold'>*</span></label>
@@ -225,6 +291,8 @@ const AddProduct = () => {
                                         <label>Description<span className='text-red-600 font-bold'>*</span></label>
                                         <Textarea
                                             placeholder="Enter laptop description"
+                                            {...register('laptop_description')}
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -240,18 +308,27 @@ const AddProduct = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Screen Size<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen size' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen size'
+                                            {...register('monitor_screen')}
+                                            required
+                                        />
                                     </div>
                                     <div className=''>
                                         <label>Screen Resolution
                                             <span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution'
+                                            {...register('monitor_resolution')}
+                                            required
+                                        />
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Ports<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ports info' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ports info'
+                                            {...register('monitor_ports')}
+                                            required
+                                        />
                                     </div>
                                     <div className='flex flex-col'>
                                         <label>color<span className='text-red-600 font-bold'>*</span></label>
@@ -285,7 +362,10 @@ const AddProduct = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info' />
+                                        <Input className='h-10' variant='bordered' type="file" label="" placeholder=''
+                                            {...register('monitor_img')}
+                                            required
+                                        />
                                     </div>
 
                                 </div>
@@ -294,6 +374,8 @@ const AddProduct = () => {
                                         <label>Description<span className='text-red-600 font-bold'>*</span></label>
                                         <Textarea
                                             placeholder="Enter laptop description"
+                                            {...register('monitor_description')}
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -307,18 +389,27 @@ const AddProduct = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Model<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone model' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone model'
+                                            {...register('smart-phone_model')}
+                                            required
+                                        />
                                     </div>
                                     <div className=''>
                                         <label>Storage
                                             <span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone Storage' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone Storage'
+                                            {...register('smart-phone_storage')}
+                                            required
+                                        />
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Ram<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage'
+                                            {...register('smart-phone_ram')}
+                                            required
+                                        />
                                     </div>
                                     <div className='flex flex-col'>
                                         <label>color<span className='text-red-600 font-bold'>*</span></label>
@@ -353,12 +444,18 @@ const AddProduct = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div className=''>
                                         <label>Camera<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter camera info' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter camera info'
+                                            {...register('smart-phone-camera')}
+                                            required
+                                        />
                                     </div>
                                     <div>
                                         <div className=''>
                                             <label>Battery<span className='text-red-600 font-bold'>*</span></label>
-                                            <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter battery info' />
+                                            <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter battery info'
+                                                {...register('smart-phone_battery')}
+                                                required
+                                            />
                                         </div>
                                     </div>
 
@@ -366,7 +463,10 @@ const AddProduct = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info' />
+                                        <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
+                                            {...register('smart-phone_img')}
+                                            required
+                                        />
                                     </div>
 
                                 </div>
@@ -374,7 +474,9 @@ const AddProduct = () => {
                                     <div>
                                         <label>Description<span className='text-red-600 font-bold'>*</span></label>
                                         <Textarea
-                                            placeholder="Enter laptop description"
+                                            placeholder="Enter smart-phone description"
+                                            {...register('smart-phone_description')}
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -388,18 +490,27 @@ const AddProduct = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Model<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter watch model' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter watch model'
+                                            {...register('smart-watch_model')}
+                                            required
+                                        />
                                     </div>
                                     <div className=''>
                                         <label>Battery
                                             <span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone Storage' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone Storage'
+                                            {...register('smart-watch_battery')}
+                                            required
+                                        />
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info' />
+                                        <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
+                                            {...register('smart-watch_img')}
+                                            required
+                                        />
                                     </div>
                                     <div className='flex flex-col'>
                                         <label>color<span className='text-red-600 font-bold'>*</span></label>
@@ -433,22 +544,19 @@ const AddProduct = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div className=''>
                                         <label>Features<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter Features' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter Features'
+                                            {...register('smart-watch_features')}
+                                            required
+                                        />
                                     </div>
-                                    <div>
-
-                                        <div className=''>
-                                            <label>Battery<span className='text-red-600 font-bold'>*</span></label>
-                                            <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter battery info' />
-                                        </div>
-                                    </div>
-
                                 </div>
                                 <div className='w-full'>
                                     <div>
                                         <label>Description<span className='text-red-600 font-bold'>*</span></label>
                                         <Textarea
-                                            placeholder="Enter laptop description"
+                                            placeholder="Enter smart-watch description"
+                                            {...register('smart-watch_description')}
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -462,33 +570,51 @@ const AddProduct = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Screen Size<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen size' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen size'
+                                            {...register('smart-tv_screen')}
+                                            required
+                                        />
                                     </div>
                                     <div className=''>
                                         <label>Resolution
                                             <span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution'
+                                            {...register('smart-tv_resolution')}
+                                            required
+                                        />
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info' />
+                                        <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
+                                            {...register('smart-tv_img')}
+                                            required
+                                        />
                                     </div>
                                     <div className=''>
                                         <label>Ram<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram srorage' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram srorage'
+                                            {...register('smart-tv_ram')}
+                                            required
+                                        />
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div className=''>
                                         <label>Features<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter Features' />
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter Features'
+                                            {...register('smart-tv_features')}
+                                            required
+                                        />
                                     </div>
                                     <div>
                                         <div className=''>
                                             <label>Ports<span className='text-red-600 font-bold'>*</span></label>
-                                            <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ports info' />
+                                            <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ports info'
+                                                {...register('smart-tv_ports')}
+                                                required
+                                            />
                                         </div>
                                     </div>
 
@@ -497,7 +623,9 @@ const AddProduct = () => {
                                     <div>
                                         <label>Description<span className='text-red-600 font-bold'>*</span></label>
                                         <Textarea
-                                            placeholder="Enter laptop description"
+                                            placeholder="Enter smart-tv description"
+                                            {...register('smart-tv_description')}
+                                            required
                                         />
                                     </div>
                                 </div>
