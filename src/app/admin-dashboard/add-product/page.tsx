@@ -1,11 +1,12 @@
 "use client"
-import { Button, Checkbox, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input, Textarea } from '@nextui-org/react';
+import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input, Textarea } from '@nextui-org/react';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useForm, SubmitHandler } from "react-hook-form";
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import { addProduct } from './api/route';
 type Inputs = {
     product_name: string;
     product_price: string;
@@ -21,7 +22,6 @@ type Inputs = {
     monitor_screen: string;
     monitor_resolution: string;
     monitor_ports: string;
-    img: string;
     monitor_description: string;
     // ----------
     "smart-phone_model": string;
@@ -46,31 +46,27 @@ type Inputs = {
     "smart-tv_features": string;
     "smart-tv_description": string;
     "smart-tv_ports": string;
-
-};
-interface ProductData {
     img: File[];
     posted_date?: string;
     image?: string;
-}
+
+};
+
 const AddProduct = () => {
     // handle category
     const [selectedCategory, setSelectedCategory] = useState<keyof typeof brandOptions | "Select a category">("Select a category");
+    const [selectedColor, setSelectedColor] = useState('Select a color');
+    const [selectedBrand, setSelectedBrand] = useState('Select a brand');
 
     const handleSelectionChange = (key: keyof typeof brandOptions) => {
         setSelectedCategory(key);
-        setSelectedBrand("Select a brand")
+        setSelectedBrand("Select a brand");
     };
-    // handle color
-    const [selectedColor, setSelectedColor] = useState('Select a color');
 
     const handleColorChange = (key: string) => {
         setSelectedColor(key);
     };
 
-    // handle dynamic form
-    // brand management
-    const [selectedBrand, setSelectedBrand] = useState('Select a brand')
     const brandOptions = {
         laptop: ["Dell", "HP", "Asus", "Lenovo", "walton"],
         monitor: ["Samsung", "LG", "Acer", "Dell", "BenQ"],
@@ -82,7 +78,7 @@ const AddProduct = () => {
     // react hook form
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = async (product: ProductData) => {
+    const onSubmit: SubmitHandler<Inputs> = async (product: Inputs) => {
         // error handling for drop down menue
         if (selectedCategory == 'Select a category') {
             return toast.error('please input a category')
@@ -93,20 +89,16 @@ const AddProduct = () => {
         // }
         else if (selectedBrand === "Select a brand") {
             return toast.error('please select a brand')
-
         }
-
         //    get img
         const img = { image: product.img[0] }
         console.log(product)
         console.log(img)
 
-
         // check img
         if (!product.img || product.img.length === 0) {
             return toast.error('No image found please try again');
         }
-
 
         // generate img
         const { data: res } = await axios.post(`https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMG_API}`, img, {
@@ -121,6 +113,13 @@ const AddProduct = () => {
         product.posted_date = new Date().toLocaleString();
         product.image = img_url;
         console.log(product);
+        const response = await addProduct(product);
+        console.log('added', response)
+        if (response.insertedId) {
+            return toast.success('add product successfully')
+        } else {
+            return toast.error('operation failed try later')
+        }
     };
 
 
