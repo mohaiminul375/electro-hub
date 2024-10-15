@@ -49,6 +49,9 @@ type Inputs = {
     img: File[];
     posted_date?: string;
     image?: string;
+    category: string;
+    color: string;
+    brand: string;
 
 };
 
@@ -77,7 +80,7 @@ const AddProduct = () => {
 
     // react hook form
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
+    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (product: Inputs) => {
         // error handling for drop down menue
         if (selectedCategory == 'Select a category') {
@@ -110,12 +113,16 @@ const AddProduct = () => {
             return toast.error('error form image server please try again or contact developer')
         }
         console.log(img_url);
+        product.category = selectedCategory;
+        product.brand = selectedBrand;
+        product.color = selectedColor;
         product.posted_date = new Date().toLocaleString();
-        product.image = img_url;
+        product.img = img_url;
         console.log(product);
         const response = await addProduct(product);
         console.log('added', response)
         if (response.insertedId) {
+            reset();
             return toast.success('add product successfully')
         } else {
             return toast.error('operation failed try later')
