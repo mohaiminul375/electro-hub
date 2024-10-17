@@ -1,12 +1,13 @@
-import { getAllProduct } from "./route";
-
+import React from 'react';
+import { getProducts } from './api/route';
 
 const page = async () => {
-    const products: [] = await getAllProduct();
-    // console.log(products)
+    const products: [] = await getProducts();
     return (
         <div>
-            {products.length}
+            {
+                products.length
+            }
         </div>
     );
 };
