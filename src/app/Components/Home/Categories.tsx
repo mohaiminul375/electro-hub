@@ -45,7 +45,7 @@ export default function Categories() {
                     </div>
                 </Link>
                 {/* monitor */}
-                <Link href='/category/smart-phone'>
+                <Link href='/category/monitor'>
                     <div className='border hover:border-none w-40 flex flex-col items-center p-3 bg-white space-y-2 hover:shadow border-primary rounded-md shadow-2xl lg:transition lg:hover:scale-105 group'>
                     <LuMonitor className='text-5xl font-bold' />
                         <div>
