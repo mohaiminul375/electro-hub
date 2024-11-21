@@ -73,7 +73,7 @@ const AddProduct = () => {
     const brandOptions = {
         laptop: ["Dell", "HP", "Asus", "Lenovo", "walton"],
         monitor: ["Samsung", "LG", "Acer", "Dell", "BenQ"],
-        "smart-phone": ["Samsung", "OnePlus", "Xiaomi", "realme", "Google"],
+        "smart-phone": ["Samsung", "OnePlus", "Xiaomi", "Realme", "Google"],
         "smart-watch": ["Samsung", "Garmin", "Fitbit", "Amazfit"],
         "smart-tv": ["Sony", "LG", "Samsung", "Vizio", "TCL"]
     };
@@ -641,7 +641,7 @@ const AddProduct = () => {
                                     </div>
                                     <div className=''>
                                         <label>Ram<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram srorage'
+                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage'
                                             {...register('smart-tv_ram')}
                                             required
                                         />
