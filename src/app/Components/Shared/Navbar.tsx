@@ -45,9 +45,19 @@ export default function Nav() {
             </NavbarContent>
             {/* <NavbarContent justify="start"> */}
             <NavbarBrand>
-                <div className="flex items-center gap-3 justify-start">
-                    <Image src='/assets/logo.webp' alt="logo" height={40} width={40} />
-                    <h2 className={`md:text-3xl text-accent ${kalam.className}`}>Electro-Hub</h2>
+                <div className="flex items-center gap-3 sm:gap-0 justify-start flex-wrap">
+                    <Image
+                        src="/assets/logo.webp"
+                        alt="logo"
+                        height={40}
+                        width={40}
+                        className="h-10 w-10 sm:h-10 sm:w-8"
+                    />
+                    <h2
+                        className={`hidden md:flex text-base sm:text-lg md:text-3xl text-accent ${kalam.className}`}
+                    >
+                        Electro-Hub
+                    </h2>
                 </div>
             </NavbarBrand>
             {/* </NavbarContent> */}

@@ -16,10 +16,10 @@ export default function Categories() {
             </div>
             {/* categories */}
 
-            <div className='grid lg:grid-cols-6 mt-5 gap-16'>
+            <div className='grid lg:grid-cols-5 xl:grid-cols-6 md:grid-cols-3 mt-5 gap-14 xl:gap-16'>
                 {/* smart phone */}
                 <Link href='/category/smart-phone'>
-                    <div className='border hover:border-none w-40 flex flex-col items-center p-3 bg-white space-y-2 hover:shadow border-primary rounded-md shadow-2xl lg:transition lg:hover:scale-105 group'>
+                    <div className='border hover:border-none w-40 flex flex-col items-center justify-center p-3 bg-white space-y-2 hover:shadow border-primary rounded-md shadow-2xl lg:transition lg:hover:scale-105 group'>
                         <GiSmartphone className='text-5xl font-bold' />
                         <div>
                             <h2 className='text-xl group-hover:text-accent duration-300'>Smart Phone</h2>

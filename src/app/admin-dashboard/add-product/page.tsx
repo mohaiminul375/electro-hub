@@ -82,6 +82,7 @@ const AddProduct = () => {
 
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (product: Inputs) => {
+        // console.log(product)
         // error handling for drop down menue
         if (selectedCategory == 'Select a category') {
             return toast.error('please input a category')
