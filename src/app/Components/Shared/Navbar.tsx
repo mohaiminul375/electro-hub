@@ -79,15 +79,7 @@ export default function Nav() {
 
                         <Dropdown placement="bottom-end">
                             <DropdownTrigger>
-                                <Avatar
-                                    isBordered
-                                    as="button"
-                                    className="transition-transform border-accent border-2"
-                                    color="secondary"
-                                    name="Jason Hughes"
-                                    size="md"
-                                    src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-                                />
+                               <button className="p-2 rounded-full bg-accent">My Account</button>
                             </DropdownTrigger>
                             <DropdownMenu aria-label="Profile Actions" variant="flat">
                                 <DropdownItem key="profile" className="h-14 gap-2">

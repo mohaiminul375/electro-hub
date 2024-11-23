@@ -3,7 +3,7 @@ import React from 'react'
 import { FaTrash } from 'react-icons/fa'
 interface User {
     _id: string;   // Unique identifier for the user
-    name: string;  // Name of the user
+    user_name: string;  // Name of the user
     email: string; // Email of the user
     role: string;  // Role of the user
 }
@@ -12,7 +12,7 @@ interface UserTableProps {
     idx: number; // Index of the user in the list
 }
 export default function UserTable({ user, idx }: UserTableProps) {
-    const { _id, name, email, role } = user;
+    const { _id, user_name, email, role } = user;
     // handle delete
     const handleDelete = async (id: string) => {
         console.log('delete id', id);
@@ -22,7 +22,7 @@ export default function UserTable({ user, idx }: UserTableProps) {
     return (
         <tr className="bg-white border-b hover:bg-gray-50">
             <td className="px-4 py-2">{idx + 1}</td>
-            <td className="px-4 py-2">{name}</td>
+            <td className="px-4 py-2">{user_name}</td>
             <td className="px-4 py-2">{email}</td>
             <td className="px-4 py-2">
                 {role}

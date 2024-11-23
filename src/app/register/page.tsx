@@ -96,7 +96,7 @@ export default function Page() {
                         </div>
 
                         {/* Image input */}
-                        <div className="mt-4">
+                        {/* <div className="mt-4">
                             <label className="block mb-2 text-accent text-base">Upload Your Image</label>
                             <Input
                                 className='h-10'
@@ -104,7 +104,7 @@ export default function Page() {
                                 type="file"
                                 required
                             />
-                        </div>
+                        </div> */}
 
                         {/* Email input */}
                         <div className="mt-4">

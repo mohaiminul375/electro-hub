@@ -13,19 +13,21 @@ interface Credentials {
 declare module "next-auth" {
     // Extend the default User type
     interface User extends DefaultUser {
-        role?: string ;
-        image?: string ;
+        role?: string;
+        image?: string;
+        user_name?: string;
     }
 
     // Extend the default Session type
     interface Session {
         user: {
-            role?: string ;
+            role?: string;
             image?: string;
+            user_name?: string;
         } & DefaultSession["user"];
     }
     interface JWT extends DefaultJWT {
-        role?: string ; 
+        role?: string;
         image?: string;
     }
 }
@@ -81,13 +83,15 @@ const authOptions: AuthOptions = {
             if (account && user) {
                 token.role = user.role;
                 token.image = user.image;
+                token.user_name = user.user_name;
 
             }
             return token;
         },
         async session({ session, token }: { session: Session, token: JWT }) {
-            session.user.role = token.role as string | undefined; 
-            session.user.image = token.image as string | undefined; 
+            session.user.role = token.role as string | undefined;
+            session.user.image = token.image as string | undefined;
+            session.user.user_name = token.user_name as string | undefined;
             return session
         },
 
