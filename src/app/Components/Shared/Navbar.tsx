@@ -79,7 +79,7 @@ export default function Nav() {
 
                         <Dropdown placement="bottom-end">
                             <DropdownTrigger>
-                               <button className="p-2 rounded-full bg-accent">My Account</button>
+                                <button className="p-2 rounded-full bg-accent">My Account</button>
                             </DropdownTrigger>
                             <DropdownMenu aria-label="Profile Actions" variant="flat">
                                 <DropdownItem key="profile" className="h-14 gap-2">
@@ -122,59 +122,5 @@ export default function Nav() {
                 ))}
             </NavbarMenu>
         </Navbar>
-        // <Navbar
-        //     isBordered
-        //     maxWidth="full"
-        // isMenuOpen={isMenuOpen}
-        // onMenuOpenChange={setIsMenuOpen}
-        // >
-        //     <NavbarContent className="sm:hidden" justify="start">
-        //         <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
-        //     </NavbarContent>
-
-        //     <NavbarContent className="sm:hidden pr-3" justify="center">
-        //         <NavbarBrand>
-        //             {/* <AcmeLogo /> */}
-        //             <p className="font-bold text-inherit">ACME</p>
-        //         </NavbarBrand>
-        //     </NavbarContent>
-
-        //     <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        //         <NavbarBrand>
-        //             {/* <AcmeLogo /> */}
-        //             <p className="font-bold text-inherit">ACME</p>
-        //         </NavbarBrand>
-
-        //     </NavbarContent>
-
-        //     <NavbarContent justify="end">
-        //         <NavbarItem className="hidden lg:flex">
-        //             <Link href="#">Login</Link>
-        //         </NavbarItem>
-        //         <NavbarItem>
-        //             <Button as={Link} color="warning" href="#" variant="flat">
-        //                 Sign Up
-        //             </Button>
-        //         </NavbarItem>
-        //     </NavbarContent>
-
-        //     <NavbarMenu>
-        //         {navItems.map(({ title, path }, idx) => (
-        //             <NavbarMenuItem
-        //                 key={idx}>
-        //                 <Link
-        //                     className="w-full"
-        //                     color={
-        //                         idx === 2 ? "warning" : idx === navItems.length - 1 ? "danger" : "foreground"
-        //                     }
-        //                     href={path}
-        //                     size="lg"
-        //                 >
-        //                     {title}
-        //                 </Link>
-        //             </NavbarMenuItem>
-        //         ))}
-        //     </NavbarMenu>
-        // </Navbar>
     )
 }
