@@ -5,11 +5,38 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import Swal from "sweetalert2";
+import { deleteProduct } from "../../manage-product/api/rote";
 
 
 const page = () => {
     const [details, setDetails] = useState({});
     const params = useParams();
+    const handleDeleteProduct = async (id: string) => {
+        console.log(id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await deleteProduct(id);
+                console.log(res)
+                if (res.deletedCount == 1) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                }
+
+            }
+        });
+    }
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -225,7 +252,9 @@ const page = () => {
                     </div>
                     <div className="flex justify-evenly gap-4">
                         <Link href='' className="border-2 w-full text-center py-2 bg-primary text-white" >Edit</Link>
-                        <button className="border-2 w-full text-center bg-primary text-white py-2">Delete</button>
+                        <button
+                        onClick={()=>handleDeleteProduct(_id)}
+                        className="border-2 w-full text-center bg-primary text-white py-2">Delete</button>
 
                     </div>
                 </div>

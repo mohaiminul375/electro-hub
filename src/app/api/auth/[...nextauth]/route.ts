@@ -37,6 +37,7 @@ const authOptions: AuthOptions = {
         strategy: 'jwt',
         maxAge: 259200, // 3 days in seconds
     },
+    // providers
     providers: [
         CredentialsProvider({
             name: "Credentials",
@@ -66,6 +67,7 @@ const authOptions: AuthOptions = {
                 }
             }
         }),
+        // google auth
         GoogleProvider({
             clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '',
             clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET || ''
@@ -81,6 +83,7 @@ const authOptions: AuthOptions = {
         },
         async jwt({ token, user, account }: { token: JWT, user?: User, account?: Account | null }) {
             if (account && user) {
+                // return user info
                 token.role = user.role;
                 token.image = user.image;
                 token.user_name = user.user_name;

@@ -1,7 +1,7 @@
 import { cookies } from "next/headers"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
-export const middleware = async (req) => {
+export const middleware = async (req:NextRequest) => {
     const token = cookies(req).get('next-auth.session-token')
     // api not protected
     const pathName = req.nextUrl.pathname;
