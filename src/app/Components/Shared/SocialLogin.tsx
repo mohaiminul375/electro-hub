@@ -1,24 +1,33 @@
 import { signIn, useSession } from 'next-auth/react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react'
 import toast from 'react-hot-toast';
 
 export default function SocialLogin() {
     const { status } = useSession();
     // console.log('satus from', status);
-    const router = useRouter()
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const path = searchParams.get("redirect")
     const handleSocialLogin = async (provider: string) => {
-        const res = await signIn(provider, { redirect: false });
-        // console.log('social login', res)
-        setTimeout(() => {
-            if (status === 'authenticated') {
-                router.push('/');
-                return toast.success('Login successfully');
-            }
-        }, 100);
+        try {
+            const res = await signIn(provider, { redirect: true, callbackUrl: path || '/' });
 
-    }
+            if (res?.error) {
+                return toast.error('Login failed');
+            }
+
+            // Status check after redirect
+            if (status === 'authenticated') {
+                toast.success('Login successfully');
+            }
+        } catch (error) {
+            console.error('Error during social login:', error);
+            toast.error('Something went wrong. Please try again.');
+        }
+    };
+
     return (
         <section>
             <div className="flex justify-between gap-3 flex-col md:gap-2">

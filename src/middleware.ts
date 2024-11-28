@@ -22,7 +22,7 @@ export const middleware = async (req: NextRequest) => {
     }
     // admin route
     const isAdmin = session?.data?.user?.role === 'admin';
-    if (pathName.startsWith('/admin') && !isAdmin) {
+    if (!token && pathName.startsWith('/admin') && !isAdmin) {
         return NextResponse.redirect(new URL('/unauthorized', req.url));
     }
     return NextResponse.next();
@@ -32,7 +32,7 @@ export const middleware = async (req: NextRequest) => {
 
 export const config = {
     matcher: [
-        '/admin-dashboard'
+        '/admin-dashboard/:path*'
     ]
 }
 

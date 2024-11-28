@@ -1,4 +1,4 @@
-import { handleLogin, handleSocialAccount } from "@/app/login/api/route";
+import { handleLogin, handleSocialAccount, handleSocialLogin } from "@/app/login/api/route";
 import NextAuth, { Account, AuthOptions, DefaultSession, DefaultUser, Session, User } from "next-auth";
 import { DefaultJWT, JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -83,17 +83,22 @@ const authOptions: AuthOptions = {
         },
         async jwt({ token, user, account }: { token: JWT, user?: User, account?: Account | null }) {
             if (account && user) {
-                // return user info
-                token.role = user.role;
-                token.image = user.image;
-                token.user_name = user.user_name;
-
+                if (account.provider === 'google') {
+                    const { socialUser } = await handleSocialLogin(user.email);
+                    token.role = socialUser?.role;
+                    token.name = user.name;
+                    // token.image = socialUser?.image;
+                } else {
+                    token.role = user.role;
+                    // token.image = user.image;
+                    token.user_name = user.user_name;
+                }
             }
             return token;
         },
         async session({ session, token }: { session: Session, token: JWT }) {
             session.user.role = token.role as string | undefined;
-            session.user.image = token.image as string | undefined;
+            // session.user.image = token.image as string | undefined;
             session.user.user_name = token.user_name as string | undefined;
             return session
         },

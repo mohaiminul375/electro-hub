@@ -10,6 +10,7 @@ import { signOut, useSession } from "next-auth/react";
 interface NavItems {
     title: string,
     path: string,
+    adminOnly?: boolean
 }
 
 
@@ -26,12 +27,18 @@ const navItems: NavItems[] = [
     {
         title: "Products",
         path: "/all-products",
-    },
+    }, {
+        title: 'Admin-dashboard',
+        path: '/admin-dashboard',
+        adminOnly: true,
+    }
 
 ]
 export default function Nav() {
     // get user
     const session = useSession();
+
+    const isAdmin = session?.data?.user?.role === 'admin'
     console.log(session)
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     return (
@@ -64,18 +71,21 @@ export default function Nav() {
             <NavbarContent className="hidden md:flex gap-4" justify="center">
 
                 {
-                    navItems?.map(({ title, path }, idx) => (
-                        <NavbarItem key={idx}>
-                            <Link color="secondary" href={path}>
-                                {title}
-                            </Link>
-                        </NavbarItem>
-                    ))
+                    navItems
+                        ?.filter(({ adminOnly }) => !adminOnly || isAdmin) // Only include admin routes if isAdmin is true
+                        .map(({ title, path }, idx) => (
+                            <NavbarItem key={idx}>
+                                <Link color="secondary" href={path}>
+                                    {title}
+                                </Link>
+                            </NavbarItem>
+                        ))
                 }
+
             </NavbarContent>
             <NavbarContent as="div" justify="end">
                 {
-                    session.data ? <>
+                    session?.data ? <>
 
                         <Dropdown placement="bottom-end">
                             <DropdownTrigger>
