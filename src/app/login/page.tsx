@@ -77,7 +77,7 @@ export default function Page() {
 
             {/* Login form */}
             <div>
-                <div className='w-full max-w-[500px] mx-auto border-2 py-8 px-4 md:px-8 rounded-md shadow-2xl border-primary'>
+                <div className='w-full max-w-[500px] mx-auto border-2 py-8 px-4 md:px-8 rounded-md shadow-2xl border-primary bg-[#F5F5F5]'>
                     <h2 className='text-center text-2xl md:text-3xl font-bold text-accent'>LogIn</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         {/* Email input */}
@@ -87,8 +87,8 @@ export default function Page() {
                                 type="email"
                                 variant='flat'
                                 label="Email"
-                                color='primary'
-                                className='text-accent'
+                                color='success'
+                                className=''
                                 {...register("email", {
                                     required: "Email is required",
                                     pattern: {
@@ -108,7 +108,7 @@ export default function Page() {
                             <Input
                                 fullWidth
                                 label="Password"
-                                color='primary'
+                                color='success'
                                 variant='flat'
                                 endContent={
                                     <button
@@ -140,7 +140,7 @@ export default function Page() {
 
                         {/* Submit button */}
                         <div className='mt-5'>
-                            <button className='w-full py-2 bg-primary text-white rounded-md hover:rounded-2xl duration-700'>
+                            <button className='w-full py-2 bg-primary text-white rounded-md hover:rounded-2xl duration-700 hover:bg-hoverPrimary'>
                                 Login
                             </button>
                         </div>
@@ -153,7 +153,7 @@ export default function Page() {
                         <div className='mt-5'>
                             <p className='text-center text-base'>
                                 New here?{' '}
-                                <Link className='text-accent hover:underline' href='/register'>
+                                <Link className='text-accent hover:underline hover:text-primary duration-700' href='/register'>
                                     Register
                                 </Link>
                             </p>

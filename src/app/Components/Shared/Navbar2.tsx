@@ -108,7 +108,7 @@ export default function Nav2() {
                                 className="px-4 py-3 text-base bg-white text-gray-700 focus:outline-none focus:ring focus:ring-[#72BF44] w-full"
                             />
                             <button
-                                className="px-4 py-5 bg-primary text-white hover:bg-hoverPrimary focus:outline-none focus:ring focus:ring-[#72BF44] flex items-center justify-center"
+                                className="px-4 py-5 bg-primary text-white hover:bg-hoverPrimary duration-700 focus:outline-none focus:ring focus:ring-[#72BF44] flex items-center justify-center"
                             >
                                 <FaSearch />
                             </button>
@@ -191,7 +191,7 @@ export default function Nav2() {
                             className="px-4 py-3 text-base bg-white text-gray-700 focus:outline-none focus:ring focus:ring-[#72BF44] w-full"
                         />
                         <button
-                            className="px-4 py-5 bg-primary text-white hover:bg-hoverPrimary focus:outline-none focus:ring focus:ring-[#72BF44] flex items-center justify-center"
+                            className="px-4 py-5 bg-primary text-white hover:bg-hoverPrimary duration-700 focus:outline-none focus:ring focus:ring-[#72BF44] flex items-center justify-center"
                         >
                             <FaSearch />
                         </button>

@@ -69,14 +69,14 @@ export default function Page() {
                     loop={true}
                     src={auth_animation}
                     style={{ height: 'auto' }}
-                    className='w-full max-w-full shadow-2xl'
+                    className='w-full max-w-full'
                 />
                 <Controls visible={true} buttons={['play', 'repeat', 'frame', 'debug']} />
             </div>
 
             {/* Register form */}
             <div>
-                <div className='w-full max-w-[500px] mx-auto border-2 py-8 px-4 md:px-8 rounded-md shadow-2xl border-primary'>
+                <div className='w-full max-w-[500px] mx-auto border-2 py-8 px-4 md:px-8 rounded-md shadow-2xl border-primary bg-white'>
                     <h2 className='text-center text-2xl md:text-3xl font-bold text-accent'>Register</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         {/* Name input */}
@@ -86,7 +86,7 @@ export default function Page() {
                                 type="text"
                                 variant='flat'
                                 label="Name"
-                                color='primary'
+                                color='success'
                                 className='text-accent'
                                 {...register("user_name", { required: 'Name is required' })}
                             />
@@ -113,7 +113,7 @@ export default function Page() {
                                 type="email"
                                 variant='flat'
                                 label="Email"
-                                color='primary'
+                                color='success'
                                 className='text-accent'
                                 {...register("email", {
                                     required: "Email is required",
@@ -134,7 +134,7 @@ export default function Page() {
                             <Input
                                 fullWidth
                                 label="Password"
-                                color='primary'
+                                color='success'
                                 variant='flat'
                                 endContent={
                                     <button
@@ -166,7 +166,7 @@ export default function Page() {
 
                         {/* Submit button */}
                         <div className='mt-5'>
-                            <button className='w-full py-2 bg-primary text-white rounded-md hover:rounded-2xl duration-700'>
+                            <button className='w-full py-2 bg-primary hover:bg-hoverPrimary text-white rounded-md hover:rounded-2xl duration-700'>
                                 Register
                             </button>
                         </div>
@@ -179,7 +179,7 @@ export default function Page() {
                         <div className='mt-5'>
                             <p className='text-center text-base'>
                                 Already have an account?{' '}
-                                <Link className='text-accent hover:underline' href='/login'>
+                                <Link className='text-accent hover:underline hover:text-hoverPrimary duration-700' href='/login'>
                                     Login
                                 </Link>
                             </p>

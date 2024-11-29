@@ -17,7 +17,7 @@ const config: Config = {
         background: "#CCCCCC", // Light Gray
         lightBackground: "#F5F5F5", // Softer Gray
         border: "#E0E0E0",     // Light Gray for borders
-        hoverPrimary: "#b8e99cf1",      // Darker Lime Green for hover effects
+        hoverPrimary: "#2c4b1a",      // Darker Lime Green for hover effects
         textPrimary: "#0E0E0E", // Main text color
         textSecondary: "#555555", // Subtle text color
         success: "#4CAF50",    // Green for success messages
