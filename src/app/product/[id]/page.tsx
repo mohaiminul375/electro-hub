@@ -74,7 +74,7 @@ const page = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         <p className="text-gray-700">
-                            <span className="font-medium">Price:</span> <span className="text-green-600 font-medium">৳{product_price}</span>
+                            <span className="font-medium">Price:</span> <span className="text-primary font-medium">৳{product_price}</span>
                         </p>
                         <p className="text-gray-700">
                             <span className="font-medium">Category:</span> {category}
