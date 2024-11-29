@@ -92,6 +92,7 @@ const UpdateProfile = () => {
                             />
                         </div>
                     </div>
+                    
                     <div className='mt-5'>
                         <button className='w-full text-white py-2 rounded-md bg-primary'>Update</button>
                     </div>
