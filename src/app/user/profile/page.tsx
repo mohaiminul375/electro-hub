@@ -1,17 +1,18 @@
 'use client'
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import UpdateProfile from './UpdateProfile';
 import AddressBook from './AddressBook';
 // import 'react-tabs/style/react-tabs.css';
-const page = () => {
-    const [tabIndex, setTabIndex] = useState(1);
+
+const Page = () => {
+    const [tabIndex, setTabIndex] = useState<number>(0);
     return (
         <section className='mt-20'>
             <h2>Welocome to</h2>
             <Tabs
-            selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}
-            className="rounded-lg bg-white">
+                selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}
+                className="rounded-lg bg-white">
                 {/* Tab List */}
                 <TabList className="flex justify-center gap-8 bg-white border-b border-gray-300 pb-2 rounded-md">
                     <Tab
@@ -49,4 +50,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;

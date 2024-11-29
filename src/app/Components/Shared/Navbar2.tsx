@@ -125,7 +125,7 @@ export default function Nav2() {
                         <BiSupport className="text-2xl md:text-3xl" />
                         <FaCartPlus className="text-2xl md:text-3xl" />
                         {
-                            !session?.data ?
+                            session?.data ?
                                 <Dropdown placement="bottom-end">
                                     <DropdownTrigger>
                                         <Avatar
