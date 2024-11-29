@@ -12,12 +12,12 @@ const page = () => {
             <h2>Welocome to</h2>
             <Tabs className="rounded-lg bg-white">
                 {/* Tab List */}
-                <TabList className="flex justify-center gap-8 bg-white border-b border-gray-300 pb-2">
+                <TabList className="flex justify-center gap-8 bg-white border-b border-gray-300 pb-2 rounded-md">
                     <Tab
                         checked={selectedTab === 0}
                         onClick={() => setSelectedTab(0)}
                         className={`px-4 py-2 hover:cursor-pointer  font-medium hover:text-primary focus:outline-none border-b-2 
-  ${selectedTab === 0 ? 'text-primary border-primary' : 'text-accent border-transparent'}`}
+                        ${selectedTab === 0 ? 'text-primary border-primary' : 'text-accent border-transparent'}`}
                     >
                         Profile
                     </Tab>

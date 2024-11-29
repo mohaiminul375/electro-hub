@@ -131,15 +131,6 @@ const AddProduct = () => {
     };
 
 
-
-
-
-
-
-
-
-
-
     return (
         <section>
             <div className="mt-3 inline-block">
@@ -164,7 +155,7 @@ const AddProduct = () => {
                         <div>
                             <label>Product Name<span className='text-red-600 font-bold'>*</span></label>
                             <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter product name' required
-                                {...register('product_name')}
+                            {...register('product_name')}
                             />
                         </div>
                         <div className='flex flex-col'>
