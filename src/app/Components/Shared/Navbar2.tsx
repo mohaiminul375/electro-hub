@@ -1,7 +1,7 @@
 "use client"
 import { NavbarBrand, NavbarContent, NavbarItem, Link, Navbar, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, Dropdown, DropdownTrigger, DropdownItem, DropdownMenu } from "@nextui-org/react";
 import Image from "next/image";
-import { Kalam } from "next/font/google";
+import { Kalam, Protest_Revolution, Sevillana } from "next/font/google";
 import React, { useEffect, useState } from "react";
 import { RxAvatar } from "react-icons/rx";
 import { signOut, useSession } from "next-auth/react";
@@ -17,8 +17,8 @@ interface NavItems {
 
 
 // font
-const kalam = Kalam({
-    weight: '700',
+const sevillana = Sevillana({
+    weight: '400',
     subsets: ['latin'],
 });
 const navItems: NavItems[] = [
@@ -45,6 +45,7 @@ export default function Nav2() {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [scrolling, setScrolling] = useState(false);
+    const [isSearchBoxVisible, setIsSearchBoxVisible] = useState(false);
 
     // Handle scrolling to hide category menu
     useEffect(() => {
@@ -64,7 +65,7 @@ export default function Nav2() {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
-
+    // console.log(isSearchBoxVisible)
     return (
         <nav>
             <Navbar
@@ -76,8 +77,8 @@ export default function Nav2() {
             >
                 <NavbarContent className="" justify="start">
                     <NavbarMenuToggle
-                    className="lg:hidden"
-                    aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
+                        className="lg:hidden"
+                        aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
                     <NavbarBrand>
                         <div className="flex gap-2 justify-start items-center mr-5 md:mr-0">
                             <Image
@@ -85,10 +86,10 @@ export default function Nav2() {
                                 alt="logo"
                                 height={30}
                                 width={30}
-                                className="w-3 lg:w-8 rounded-full"
+                                className="w-5 md:w-8 rounded-full"
                             />
                             <h2
-                                className={`text-2xl lg:text-2xl text-[#72BF44] ${kalam.className}`}
+                                className={`text-lg font-bold lg:text-3xl text-[#72BF44] ${sevillana.className}`}
                             >
                                 Electro-Hub
                             </h2>
@@ -98,9 +99,9 @@ export default function Nav2() {
 
 
                 {/* search bar */}
-                <NavbarContent className="hidden md:flex gap-4 md:mr-14" justify="center">
+                <NavbarContent className="hidden md:flex gap-4" justify="center">
                     <div className="flex items-center justify-center h-10">
-                        <div className="flex items-center bg-white text-gray-400 rounded-lg overflow-hidden shadow-md w-80 lg:w-96 xl:w-[500px] h-10">
+                        <div className="flex items-center bg-white text-gray-400 rounded-lg overflow-hidden shadow-md min-w-80 md:ml-6  lg:w-[500px] h-10">
                             <input
                                 type="text"
                                 placeholder="Search..."
@@ -116,13 +117,20 @@ export default function Nav2() {
                 </NavbarContent>
 
                 <NavbarContent as="div" justify="end" className="pr-5">
+                    {/* hidden for sm device */}
                     <div className="hidden md:flex gap-5">
                         <BiSupport className="text-2xl md:text-3xl" />
                         <FaCartPlus className="text-2xl md:text-3xl" />
-                        <FaUserCircle className="text-2xl md:text-3xl" />
+                      <Link href="/login" className="text-white">
+                      <FaUserCircle className="text-2xl md:text-3xl" />
+                      </Link>
                     </div>
-                    {/* <div className="flex items-center justify-center h-10 lg:hidden">
-                        <div className="flex items-center bg-white text-gray-400 rounded-lg overflow-hidden shadow-md w-52 mr-5  lg:w-96 xl:w-[500px] h-10">
+                    {/* functionality for small device */}
+                    <div className="flex items-center justify-center h-10 lg:hidden">
+                        <FaSearch
+                            onClick={() => setIsSearchBoxVisible(!isSearchBoxVisible)}
+                        />
+                        {/* <div className="flex items-center bg-white text-gray-400 rounded-lg overflow-hidden shadow-md w-52 mr-5  lg:w-96 xl:w-[500px] h-10">
                             <input
                                 type="text"
                                 placeholder="Search..."
@@ -133,8 +141,8 @@ export default function Nav2() {
                             >
                                 <FaSearch />
                             </button>
-                        </div>
-                    </div> */}
+                        </div> */}
+                    </div>
                 </NavbarContent>
 
                 {/* Menu for small devices */}
@@ -171,7 +179,27 @@ export default function Nav2() {
                 <Link className="text-white" href="/accessories">Accessories</Link>
                 <Link className="text-white" href="/smart-tv">Smart-Tv</Link>
             </div>
+            {
+                isSearchBoxVisible && <div
+                    className={`
+       md:hidden flex justify-center mb-10 h-14 lg:text-lg font-semibold border-red-900 bg-[#0E0E0E] mt-16 text-white w-full shadow-lg`}
+                >
+                    <div className="flex items-center bg-white text-gray-400 rounded-lg overflow-hidden shadow-md w-full mx-10 mt-2 h-10">
+                        <input
+                            type="text"
+                            placeholder="Search..."
+                            className="px-4 py-3 text-base bg-white text-gray-700 focus:outline-none focus:ring focus:ring-[#72BF44] w-full"
+                        />
+                        <button
+                            className="px-4 py-5 bg-[#72BF44] text-white hover:bg-[#71bf4479] focus:outline-none focus:ring focus:ring-[#72BF44] flex items-center justify-center"
+                        >
+                            <FaSearch />
+                        </button>
+                    </div>
+                </div>
+            }
         </nav>
     );
+
 }
 

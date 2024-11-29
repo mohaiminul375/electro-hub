@@ -7,6 +7,7 @@ import AuthProvider from "@/services/AuthProvider";
 import { Toaster } from "react-hot-toast";
 import Footer from "./Components/Shared/Footer";
 import Nav2 from "./Components/Shared/Navbar2";
+import BottomNavbar from "./Components/Shared/BottomNavbar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -42,9 +43,7 @@ export default function RootLayout({
                 {children}
               </div>
             </main>
-            <div className="bg-blue-500 fixed bottom-0 z-50 h-20 w-full">
-              dddddddddddd
-            </div>
+            <BottomNavbar />
             <Footer />
           </AuthProvider>
           <Toaster position="top-center" />
