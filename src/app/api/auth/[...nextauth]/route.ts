@@ -16,6 +16,7 @@ declare module "next-auth" {
         role?: string;
         image?: string;
         user_name?: string;
+        // email?: string;
     }
 
     // Extend the default Session type
@@ -84,7 +85,7 @@ const authOptions: AuthOptions = {
         async jwt({ token, user, account }: { token: JWT, user?: User, account?: Account | null }) {
             if (account && user) {
                 if (account.provider === 'google') {
-                    const { socialUser } = await handleSocialLogin(user.email);
+                    const { socialUser } = await handleSocialLogin(user.email as string);
                     token.role = socialUser?.role;
                     token.name = user.name;
                     // token.image = socialUser?.image;

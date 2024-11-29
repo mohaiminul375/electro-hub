@@ -1,38 +1,51 @@
 import { getToken } from "next-auth/jwt";
-import withAuth from "next-auth/middleware";
-import { useSession } from "next-auth/react";
 import { cookies } from "next/headers"
 import { NextRequest, NextResponse } from "next/server";
 // import jwt from "jsonwebtoken";
 // TODO: admin rote fixing 
-export const middleware = async (req: NextRequest) => {
-    const session = await getToken({ req });
-
-    // console.log('inside middle ware',session)
-    const token = cookies(req).get('next-auth.session-token')
-    // api not protected
-    const pathName = req.nextUrl.pathname;
-    // api not protected
-    if (pathName.includes('api')) {
-        return NextResponse.next()
-    }
-    // if user not found   
-    if (!token) {
-        return NextResponse.redirect(new URL(`/login?redirect=${pathName}`, req.url))
-    }
-    // admin route
-    const isAdmin = session?.data?.user?.role === 'admin';
-    if (!token && pathName.startsWith('/admin') && !isAdmin) {
-        return NextResponse.redirect(new URL('/unauthorized', req.url));
-    }
-    return NextResponse.next();
-
-
+interface Session {
+    user?: {
+        role?: string;
+    };
 }
+export const middleware = async (req: NextRequest) => {
+    try {
+        // Get the session from the request using next-auth
+        const session = await getToken({ req }) as Session | null;
+
+        // Extract the token from cookies
+        const token = cookies(req).get('next-auth.session-token');
+
+        // Get the pathname from the request URL
+        const pathName = req.nextUrl.pathname;
+
+        // Allow API routes to bypass authentication
+        if (pathName.includes('api')) {
+            return NextResponse.next();
+        }
+
+        // Redirect unauthenticated users to the login page with a redirect query parameter
+        if (!token) {
+            return NextResponse.redirect(new URL(`/login?redirect=${pathName}`, req.url));
+        }
+
+        // Check if the route is an admin route and validate if the user is an admin
+        const isAdmin = session?.user?.role === 'admin';
+        if (pathName.startsWith('/admin') && (!token || !isAdmin)) {
+            return NextResponse.redirect(new URL('/unauthorized', req.url));
+        }
+        // Proceed to the requested route
+        return NextResponse.next();
+    } catch (error) {
+        console.error('Middleware error:', error);
+        // Redirect to an error page or handle the error gracefully
+        return NextResponse.redirect(new URL('/error', req.url));
+    }
+};
 
 export const config = {
     matcher: [
-        '/admin-dashboard/:path*'
+        '/admin-dashboard/:path*' // only for admin
     ]
 }
 

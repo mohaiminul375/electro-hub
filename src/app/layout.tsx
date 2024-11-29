@@ -6,6 +6,7 @@ import Nav from "./Components/Shared/Navbar";
 import AuthProvider from "@/services/AuthProvider";
 import { Toaster } from "react-hot-toast";
 import Footer from "./Components/Shared/Footer";
+import Nav2 from "./Components/Shared/Navbar2";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,12 +36,15 @@ export default function RootLayout({
       >
         <NextUIProvider>
           <AuthProvider>
-            <Nav />
+            <Nav2 />
             <main className=" bg-background">
               <div className="min-h-[calc(100vh-145px)] md:max-w-7xl mx-auto">
                 {children}
               </div>
             </main>
+            <div className="bg-blue-500 fixed bottom-0 z-50 h-20 w-full">
+              dddddddddddd
+            </div>
             <Footer />
           </AuthProvider>
           <Toaster position="top-center" />

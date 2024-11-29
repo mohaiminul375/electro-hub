@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 export default function SocialLogin() {
     const { status } = useSession();
     // console.log('satus from', status);
-    const router = useRouter();
+    // const router = useRouter();
     const searchParams = useSearchParams();
     const path = searchParams.get("redirect")
     const handleSocialLogin = async (provider: string) => {

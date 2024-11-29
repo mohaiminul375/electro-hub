@@ -1,5 +1,5 @@
 1. next.js
-2. next ui
+2. next ui-- shadcn
 3.Tailwind css
 4.Lotifiles
 5. react hook form 
