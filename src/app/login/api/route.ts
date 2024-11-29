@@ -14,7 +14,7 @@ export const handleLogin = async ({ email, password }: userType) => {
 
 }
 
-export const handleSocialAccount = async (user: object) => {
+export const createSocialAccount = async (user: object) => {
     try {
         const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/social-account`, user);
         return response.data;
@@ -25,7 +25,7 @@ export const handleSocialAccount = async (user: object) => {
 }
 
 // handle social login
-export const handleSocialLogin = async (email: string) => {
+export const handleSocialAccount = async (email: string) => {
     try {
         const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/social-login`, { email });
         return response.data;

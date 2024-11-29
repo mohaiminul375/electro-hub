@@ -1,8 +1,9 @@
-import { handleLogin, handleSocialAccount, handleSocialLogin } from "@/app/login/api/route";
+import { createSocialAccount, handleLogin, handleSocialAccount, handleSocialLogin } from "@/app/login/api/route";
 import NextAuth, { Account, AuthOptions, DefaultSession, DefaultUser, Session, User } from "next-auth";
 import { DefaultJWT, JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";  // Added FacebookProvider
 
 // Define the type for credentials
 interface Credentials {
@@ -11,15 +12,12 @@ interface Credentials {
 }
 
 declare module "next-auth" {
-    // Extend the default User type
     interface User extends DefaultUser {
         role?: string;
         image?: string;
         user_name?: string;
-        // email?: string;
     }
 
-    // Extend the default Session type
     interface Session {
         user: {
             role?: string;
@@ -38,7 +36,6 @@ const authOptions: AuthOptions = {
         strategy: 'jwt',
         maxAge: 259200, // 3 days in seconds
     },
-    // providers
     providers: [
         CredentialsProvider({
             name: "Credentials",
@@ -68,30 +65,33 @@ const authOptions: AuthOptions = {
                 }
             }
         }),
-        // google auth
+        // Google authentication
         GoogleProvider({
             clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '',
             clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET || '',
+        }),
+        // Facebook authentication
+        FacebookProvider({
+            clientId: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID || '',
+            clientSecret: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_SECRET || '',
         })
     ],
     callbacks: {
         async signIn({ user, account }) {
             if (account?.provider === 'google' || account?.provider === 'facebook') {
-                await handleSocialAccount(user);
+                await createSocialAccount(user);
                 return true;
             }
             return true;
         },
         async jwt({ token, user, account }: { token: JWT, user?: User, account?: Account | null }) {
             if (account && user) {
-                if (account.provider === 'google') {
-                    const { socialUser } = await handleSocialLogin(user.email as string);
+                if (account.provider === 'google' || account.provider === 'facebook') {
+                    const { socialUser } = await handleSocialAccount(user.email as string);
                     token.role = socialUser?.role;
                     token.name = user.name;
-                    // token.image = socialUser?.image;
                 } else {
                     token.role = user.role;
-                    // token.image = user.image;
                     token.user_name = user.user_name;
                 }
             }
@@ -99,11 +99,9 @@ const authOptions: AuthOptions = {
         },
         async session({ session, token }: { session: Session, token: JWT }) {
             session.user.role = token.role as string | undefined;
-            // session.user.image = token.image as string | undefined;
             session.user.user_name = token.user_name as string | undefined;
-            return session
+            return session;
         },
-
     },
     pages: {
         signIn: '/login',
