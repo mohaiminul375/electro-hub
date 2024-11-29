@@ -73,7 +73,7 @@ export default function Nav2() {
                 onMenuOpenChange={setIsMenuOpen}
                 isBordered
                 maxWidth="full"
-                className="lg:px-10 bg-[#0E0E0E] text-white md:h-20 fixed top-0 w-full z-10"
+                className="lg:px-10 bg-accent text-white md:h-20 fixed top-0 w-full z-10"
             >
                 <NavbarContent className="" justify="start">
                     <NavbarMenuToggle
@@ -89,7 +89,7 @@ export default function Nav2() {
                                 className="w-5 md:w-8 rounded-full"
                             />
                             <h2
-                                className={`text-lg font-bold lg:text-3xl text-[#72BF44] ${sevillana.className}`}
+                                className={`text-lg font-bold lg:text-3xl text-primary ${sevillana.className}`}
                             >
                                 Electro-Hub
                             </h2>
@@ -101,14 +101,14 @@ export default function Nav2() {
                 {/* search bar */}
                 <NavbarContent className="hidden md:flex gap-4" justify="center">
                     <div className="flex items-center justify-center h-10">
-                        <div className="flex items-center bg-white text-gray-400 rounded-lg overflow-hidden shadow-md min-w-80 md:ml-6  lg:w-[500px] h-10">
+                        <div className="flex items-center bg-white text-gray-400 rounded-lg overflow-hidden shadow-md min-w-80 md:ml-6 lg:w-[500px] h-10">
                             <input
                                 type="text"
                                 placeholder="Search..."
                                 className="px-4 py-3 text-base bg-white text-gray-700 focus:outline-none focus:ring focus:ring-[#72BF44] w-full"
                             />
                             <button
-                                className="px-4 py-5 bg-[#72BF44] text-white hover:bg-[#71bf4479] focus:outline-none focus:ring focus:ring-[#72BF44] flex items-center justify-center"
+                                className="px-4 py-5 bg-primary text-white hover:bg-hoverPrimary focus:outline-none focus:ring focus:ring-[#72BF44] flex items-center justify-center"
                             >
                                 <FaSearch />
                             </button>
@@ -121,9 +121,9 @@ export default function Nav2() {
                     <div className="hidden md:flex gap-5">
                         <BiSupport className="text-2xl md:text-3xl" />
                         <FaCartPlus className="text-2xl md:text-3xl" />
-                      <Link href="/login" className="text-white">
-                      <FaUserCircle className="text-2xl md:text-3xl" />
-                      </Link>
+                        <Link href="/login" className="text-white">
+                            <FaUserCircle className="text-2xl md:text-3xl" />
+                        </Link>
                     </div>
                     {/* functionality for small device */}
                     <div className="flex items-center justify-center h-10 lg:hidden">
@@ -167,7 +167,7 @@ export default function Nav2() {
             {/* Category section */}
             <div
                 className={`${scrolling ? 'hidden' : 'flex'
-                    } hidden lg:flex justify-evenly items-center gap-8 mb-10 h-10 lg:text-lg font-semibold border-red-900 bg-[#0E0E0E] mt-20 text-white w-full shadow-lg`}
+                    } hidden lg:flex justify-evenly items-center gap-8 mb-10 h-10 lg:text-lg font-semibold border-red-900 bg-accent mt-20 text-white w-full shadow-lg`}
             >
                 <Link className="text-white" href="/"><FaHome /></Link>
                 <Link className="text-white" href="/all-products">All-products</Link>
@@ -191,7 +191,7 @@ export default function Nav2() {
                             className="px-4 py-3 text-base bg-white text-gray-700 focus:outline-none focus:ring focus:ring-[#72BF44] w-full"
                         />
                         <button
-                            className="px-4 py-5 bg-[#72BF44] text-white hover:bg-[#71bf4479] focus:outline-none focus:ring focus:ring-[#72BF44] flex items-center justify-center"
+                            className="px-4 py-5 bg-primary text-white hover:bg-hoverPrimary focus:outline-none focus:ring focus:ring-[#72BF44] flex items-center justify-center"
                         >
                             <FaSearch />
                         </button>

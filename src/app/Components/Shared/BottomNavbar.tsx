@@ -5,7 +5,7 @@ import { FaCartPlus, FaUserCircle } from 'react-icons/fa';
 
 const BottomNavbar = () => {
     return (
-        <nav className="md:hidden bg-[#0E0E0E] fixed bottom-0 z-50 h-10 w-full">
+        <nav className="md:hidden bg-accent fixed bottom-0 z-50 h-10 w-full">
             <div className="flex justify-between items-center text-white gap-5 px-10 h-full">
                 <BiSupport className="text-2xl md:text-3xl" />
                 <FaCartPlus className="text-2xl md:text-3xl" />
