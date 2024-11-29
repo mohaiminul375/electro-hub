@@ -2,6 +2,7 @@ import { Input, Select, SelectItem } from '@nextui-org/react';
 import { useSession } from 'next-auth/react';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { updateUserInfo } from './api/route';
 type Inputs = {
     name: string | undefined;
     email: string | undefined;
@@ -29,13 +30,15 @@ const UpdateProfile = () => {
     const onSubmit: SubmitHandler<Inputs> = async (user_info: Inputs) => {
 
         console.log(user_info)
+        const res = await updateUserInfo(user_info)
+        console.log('response', res)
     }
     const { data, status } = useSession();
 
     // Handle loading state
     console.log(status);
     // TODO: Loading
-    if(status==='loading'){
+    if (status === 'loading') {
         return <p>loading.......</p>
     }
 
