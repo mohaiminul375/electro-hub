@@ -7,7 +7,7 @@ import { RxAvatar } from "react-icons/rx";
 import { signOut, useSession } from "next-auth/react";
 import { FaCartPlus, FaHome, FaSearch, FaUserCircle } from "react-icons/fa";
 import { BiSupport } from "react-icons/bi";
-import { MdArrowDropDownCircle } from "react-icons/md";
+import { MdAdminPanelSettings, MdArrowDropDownCircle } from "react-icons/md";
 // import path from "path";
 
 interface NavItems {
@@ -123,6 +123,9 @@ export default function Nav2() {
 
                     {/* hidden for sm device */}
                     <div className="hidden md:flex gap-5">
+                        <Link href="/admin-dashboard">
+                            <MdAdminPanelSettings className="text-2xl md:text-3xl" />
+                        </Link>
                         <BiSupport className="text-2xl md:text-3xl" />
                         <FaCartPlus className="text-2xl md:text-3xl" />
                         {

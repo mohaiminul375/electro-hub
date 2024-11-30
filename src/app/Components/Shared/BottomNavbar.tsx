@@ -5,7 +5,7 @@ import Link from 'next/link';
 import React from 'react';
 import { BiSupport } from 'react-icons/bi';
 import { FaCartPlus, FaUserCircle } from 'react-icons/fa';
-import { MdArrowDropDownCircle } from 'react-icons/md';
+import { MdAdminPanelSettings, MdArrowDropDownCircle } from 'react-icons/md';
 
 const BottomNavbar = () => {
     const session = useSession();
@@ -14,6 +14,10 @@ const BottomNavbar = () => {
             <div className="flex justify-between items-center text-white gap-5 px-10 h-full">
                 <BiSupport className="text-2xl md:text-3xl" />
                 <FaCartPlus className="text-2xl md:text-3xl" />
+                <Link href="/admin-dashboard">
+                    <MdAdminPanelSettings className="text-2xl md:text-3xl" />
+                </Link>
+
                 {
                     !session?.data ?
                         <Dropdown placement="bottom-end">
@@ -38,7 +42,7 @@ const BottomNavbar = () => {
                                 </DropdownItem>
                                 <DropdownItem key="my-account">
                                     <Link href='/user/profile'>
-                                    My Account
+                                        My Account
                                     </Link>
                                 </DropdownItem>
                                 <DropdownItem key="my-orders">My Orders</DropdownItem>
