@@ -1,10 +1,13 @@
 'use client';
+
 import { Input, Select, SelectItem, Textarea } from '@nextui-org/react';
 import React, { useState } from 'react';
 import { districts } from './api/districts';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useSession } from 'next-auth/react';
 
 type Inputs = {
+    email: string;
     division: string;
     district: string;
     full_address: string;
@@ -18,10 +21,28 @@ type Divisions = {
 type District = {
     key: string;
     label: string;
-    division: string; // Indicates which division the district belongs to
+    division: string;
 };
 
+// interface Address {
+//   email?: string | null;
+//   address?: object;
+//   division?: string;
+//   full_address?: string;
+//   district?: string;
+// }
+
 const AddressBook = () => {
+    // React Hook Form
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<Inputs>({
+        mode: 'onBlur', // Trigger validation on blur
+    });
+
+    // Division options
     const divisions: Divisions[] = [
         { key: 'Dhaka', label: 'Dhaka' },
         { key: 'Chattogram', label: 'Chattogram' },
@@ -34,22 +55,26 @@ const AddressBook = () => {
     ];
 
     const [selectedDivision, setSelectedDivision] = useState<string>('');
-    const filteredDistricts = districts.filter(
-        (district) => district.division === selectedDivision
+
+    const filteredDistricts: District[] = districts.filter(
+        (district: District) => district.division === selectedDivision
     );
 
-    // react hook form
-    const {
-        register,
-        handleSubmit,
-        watch,
-        reset,
-        formState: { errors },
-    } = useForm<Inputs>({
-        mode: 'onBlur', // Trigger validation on blur
-    });
 
+
+
+
+    const { data, status } = useSession();
+
+    // Loading state
+    const address_info = data?.user?.address;
+    const { email, division, district, full_address } = address_info || {};
+    // On form submission
+    if (status === 'loading') {
+        return <p>Loading.......</p>;
+    }
     const onSubmit: SubmitHandler<Inputs> = async (address_info: Inputs) => {
+        address_info.email = email || '';
         address_info.division = selectedDivision;
         console.log(address_info);
     };
@@ -92,7 +117,7 @@ const AddressBook = () => {
                             <Select
                                 label="Select your District"
                                 required
-                                disabled={!selectedDivision}
+                                isDisabled={!selectedDivision}
                                 {...register('district', { required: 'District is required' })}
                             >
                                 {filteredDistricts.map((district) => (
@@ -120,7 +145,9 @@ const AddressBook = () => {
                         )}
                     </div>
                     <div className="my-10">
-                        <button className="w-full text-white py-2 rounded-md bg-primary">Update</button>
+                        <button type="submit" className="w-full text-white py-2 rounded-md bg-primary">
+                            Update
+                        </button>
                     </div>
                 </form>
             </div>

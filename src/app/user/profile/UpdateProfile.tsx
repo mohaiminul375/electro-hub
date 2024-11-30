@@ -26,7 +26,12 @@ type Gender = {
 }
 const UpdateProfile = () => {
     // react hook form
-    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm<Inputs>();
+    const {
+        register,
+        handleSubmit,
+        watch, reset,
+        formState: { errors }
+     } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (user_info: Inputs) => {
 
         console.log(user_info)
@@ -34,14 +39,12 @@ const UpdateProfile = () => {
         console.log('response', res)
     }
     const { data, status } = useSession();
-
     // Handle loading state
     console.log(status);
     // TODO: Loading
     if (status === 'loading') {
         return <p>loading.......</p>
     }
-
     const user = data?.user as User;
     const { user_name, email, phone_number, gender, DOB } = user || {};
 
