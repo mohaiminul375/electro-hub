@@ -31,7 +31,7 @@ const UpdateProfile = () => {
         handleSubmit,
         watch, reset,
         formState: { errors }
-     } = useForm<Inputs>();
+    } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (user_info: Inputs) => {
 
         console.log(user_info)
@@ -77,11 +77,12 @@ const UpdateProfile = () => {
                     <div>
                         <label>Your Email<span className='text-red-600 font-bold'>*</span></label>
                         <Input
+                            disabled={!!email}
                             className='h-10'
                             variant='bordered'
                             type="email" label=""
                             placeholder='input your email'
-                            defaultValue={email || 'df'}
+                            defaultValue={email || ''}
                             {...register('email')}
                             required
                         />

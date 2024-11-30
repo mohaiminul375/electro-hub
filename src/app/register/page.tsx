@@ -12,7 +12,7 @@ import toast from 'react-hot-toast'
 import { useRouter } from "next/navigation";
 // import { AxiosError } from "axios";
 interface Inputs {
-    user_name: string,
+    name: string,
     email: string,
     password: string,
 }
@@ -88,10 +88,10 @@ export default function Page() {
                                 label="Name"
                                 color='success'
                                 className='text-accent'
-                                {...register("user_name", { required: 'Name is required' })}
+                                {...register("name", { required: 'Name is required' })}
                             />
-                            {errors.user_name && (
-                                <span className="text-red-500 text-sm">*{errors.user_name.message}</span>
+                            {errors.name && (
+                                <span className="text-red-500 text-sm">*{errors.name.message}</span>
                             )}
                         </div>
 

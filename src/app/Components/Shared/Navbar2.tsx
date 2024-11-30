@@ -42,6 +42,7 @@ const navItems: NavItems[] = [
 export default function Nav2() {
     // Get user session
     const session = useSession();
+    console.log(session)
     const isAdmin = session?.data?.user?.role === 'admin';
     const user_email = session?.data?.user?.email;
 

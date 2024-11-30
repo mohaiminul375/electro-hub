@@ -1,10 +1,10 @@
 'use client';
-
 import { Input, Select, SelectItem, Textarea } from '@nextui-org/react';
 import React, { useState } from 'react';
 import { districts } from './api/districts';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSession } from 'next-auth/react';
+import { updateAddressInfo } from './api/route';
 
 type Inputs = {
     email: string;
@@ -68,7 +68,9 @@ const AddressBook = () => {
 
     // Loading state
     const address_info = data?.user?.address;
-    const { email, division, district, full_address } = address_info || {};
+    const email = data?.user?.email;
+    console.log(email, 'email in address')
+    const { division, district, full_address } = address_info || {};
     // On form submission
     if (status === 'loading') {
         return <p>Loading.......</p>;
@@ -77,6 +79,8 @@ const AddressBook = () => {
         address_info.email = email || '';
         address_info.division = selectedDivision;
         console.log(address_info);
+        const res = await updateAddressInfo(address_info);
+        console.log('address res', res);
     };
 
     return (
@@ -96,6 +100,7 @@ const AddressBook = () => {
                                 <span className="text-red-600 font-bold">*</span>
                             </label>
                             <Select
+                                value={division}
                                 label="Select your Division"
                                 onChange={(e) => setSelectedDivision(e.target.value)}
                                 required
@@ -115,6 +120,7 @@ const AddressBook = () => {
                                 <span className="text-red-600 font-bold">*</span>
                             </label>
                             <Select
+                                value={district}
                                 label="Select your District"
                                 required
                                 isDisabled={!selectedDivision}
@@ -137,6 +143,7 @@ const AddressBook = () => {
                             <span className="text-red-600 font-bold">*</span>
                         </label>
                         <Textarea
+                            defaultValue={full_address}
                             placeholder="Enter full address"
                             {...register('full_address', { required: 'Full address is required' })}
                         />

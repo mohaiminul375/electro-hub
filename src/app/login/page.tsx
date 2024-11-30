@@ -41,7 +41,7 @@ export default function Page() {
                 callbackUrl: path ? path : '/',
             });
 
-            console.log(res);
+            console.log('res from login page',res);
 
             if (res?.status === 200) {
                 router.push('/');

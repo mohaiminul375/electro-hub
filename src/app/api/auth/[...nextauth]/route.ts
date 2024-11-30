@@ -16,6 +16,7 @@ declare module "next-auth" {
         role?: string;
         image?: string;
         user_name?: string;
+        address?: object;
     }
 
     interface Session {
@@ -23,11 +24,13 @@ declare module "next-auth" {
             role?: string;
             image?: string;
             user_name?: string;
+            address?: object;
         } & DefaultSession["user"];
     }
     interface JWT extends DefaultJWT {
         role?: string;
         image?: string;
+        address?: object;
     }
 }
 
@@ -90,16 +93,19 @@ const authOptions: AuthOptions = {
                     const { socialUser } = await handleSocialAccount(user.email as string);
                     token.role = socialUser?.role;
                     token.name = user.name;
+                    token.address = user?.address;
                 } else {
                     token.role = user.role;
-                    token.user_name = user.user_name;
+                    token.name = user.name;
+                    token.address = user?.address;
                 }
             }
             return token;
         },
         async session({ session, token }: { session: Session, token: JWT }) {
             session.user.role = token.role as string | undefined;
-            session.user.user_name = token.user_name as string | undefined;
+            session.user.name = token.name as string | undefined;
+            session.user.address = token.address as object | undefined;
             return session;
         },
     },
