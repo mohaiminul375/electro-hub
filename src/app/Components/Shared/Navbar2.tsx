@@ -213,13 +213,12 @@ export default function Nav2() {
             >
                 <Link className="text-white" href="/"><FaHome /></Link>
                 <Link className="text-white" href="/all-products">All-products</Link>
-                <Link className="text-white" href="/smart-phone">Smart-Phone</Link>
-                <Link className="text-white" href="/smart-phone">Smart-Phone</Link>
-                <Link className="text-white" href="/smart-watch">Smart-Watch</Link>
-                <Link className="text-white" href="/laptop">Laptop</Link>
-                <Link className="text-white" href="/monitor">Monitor</Link>
-                <Link className="text-white" href="/accessories">Accessories</Link>
-                <Link className="text-white" href="/smart-tv">Smart-Tv</Link>
+                <Link className="text-white" href="/products/smart-phone">Smart-Phone</Link>
+                <Link className="text-white" href="/products/smart-watch">Smart-Watch</Link>
+                <Link className="text-white" href="/products/laptop">Laptop</Link>
+                <Link className="text-white" href="/products/monitor">Monitor</Link>
+                <Link className="text-white" href="/products/accessories">Accessories</Link>
+                <Link className="text-white" href="/products/smart-tv">Smart-Tv</Link>
             </div>
             {
                 isSearchBoxVisible && <div

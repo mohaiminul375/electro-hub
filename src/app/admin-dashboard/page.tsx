@@ -6,8 +6,7 @@ import UserNReview from '../Components/Dashboard/UserNReview'
 
 export default function page() {
     return (
-        <section className='pt-10'>
-           
+        <section className='mt-12'>
             <div>
                 <h2 className='text-2xl font-bold'>Admin Dashboard</h2>
                 <h2 className='text-2xl font-bold'>Welcome, Mohaiminul Islam</h2>
