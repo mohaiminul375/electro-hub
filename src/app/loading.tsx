@@ -3,7 +3,7 @@ import { Controls, Player } from '@lottiefiles/react-lottie-player';
 import React from 'react';
 import spinner from '../../Public/loading.json';
 
-export default function loading() {
+export default function Loading() {
     return (
         <section className='flex items-center justify-center'>
             <Player

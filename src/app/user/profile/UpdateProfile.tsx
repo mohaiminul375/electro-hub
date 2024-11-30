@@ -3,6 +3,7 @@ import { useSession } from 'next-auth/react';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { updateUserInfo } from './api/route';
+import Loading from '@/app/loading';
 type Inputs = {
     name: string | undefined;
     email: string | undefined;
@@ -43,7 +44,7 @@ const UpdateProfile = () => {
     console.log(status);
     // TODO: Loading
     if (status === 'loading') {
-        return <p>loading.......</p>
+        return <Loading></Loading>
     }
     const user = data?.user as User;
     const { user_name, email, phone_number, gender, DOB } = user || {};

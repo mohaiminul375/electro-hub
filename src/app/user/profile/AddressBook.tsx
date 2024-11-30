@@ -5,10 +5,11 @@ import { districts } from './api/districts';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSession } from 'next-auth/react';
 import { updateAddressInfo } from './api/route';
+import Loading from '@/app/loading';
 
 type Inputs = {
     email: string;
-    division: string;
+    division: string | [];
     district: string;
     full_address: string;
 };
@@ -24,15 +25,27 @@ type District = {
     division: string;
 };
 
-// interface Address {
-//   email?: string | null;
-//   address?: object;
-//   division?: string;
-//   full_address?: string;
-//   district?: string;
-// }
-
+interface Address {
+    email?: string | null;
+    address?: object;
+    division?: string;
+    full_address?: string;
+    district?: string;
+}
+// Division options
+const divisions: Divisions[] = [
+    { key: 'Dhaka', label: 'Dhaka' },
+    { key: 'Chattogram', label: 'Chattogram' },
+    { key: 'Khulna', label: 'Khulna' },
+    { key: 'Rajshahi', label: 'Rajshahi' },
+    { key: 'Barishal', label: 'Barishal' },
+    { key: 'Sylhet', label: 'Sylhet' },
+    { key: 'Rangpur', label: 'Rangpur' },
+    { key: 'Mymensingh', label: 'Mymensingh' },
+];
 const AddressBook = () => {
+    const { data, status } = useSession();
+    const [selectedDivision, setSelectedDivision] = useState<string>();
     // React Hook Form
     const {
         register,
@@ -42,42 +55,27 @@ const AddressBook = () => {
         mode: 'onBlur', // Trigger validation on blur
     });
 
-    // Division options
-    const divisions: Divisions[] = [
-        { key: 'Dhaka', label: 'Dhaka' },
-        { key: 'Chattogram', label: 'Chattogram' },
-        { key: 'Khulna', label: 'Khulna' },
-        { key: 'Rajshahi', label: 'Rajshahi' },
-        { key: 'Barishal', label: 'Barishal' },
-        { key: 'Sylhet', label: 'Sylhet' },
-        { key: 'Rangpur', label: 'Rangpur' },
-        { key: 'Mymensingh', label: 'Mymensingh' },
-    ];
-
-    const [selectedDivision, setSelectedDivision] = useState<string>('');
-
-    const filteredDistricts: District[] = districts.filter(
-        (district: District) => district.division === selectedDivision
-    );
-
-
-
-
-
-    const { data, status } = useSession();
+    if (status === 'loading') {
+        return <Loading></Loading>;
+    }
 
     // Loading state
     const address_info = data?.user?.address;
     const email = data?.user?.email;
     console.log(email, 'email in address')
-    const { division, district, full_address } = address_info || {};
-    // On form submission
-    if (status === 'loading') {
-        return <p>Loading.......</p>;
-    }
+    console.log(address_info, 'address info')
+    const { division, district, full_address } = address_info as Address || {};
+    console.log(division, district, full_address)
+
+
+    const filteredDistricts: District[] = districts.filter(
+        (district: District) =>
+            district.division === selectedDivision ||
+            (!selectedDivision && district.division === division)
+    );
     const onSubmit: SubmitHandler<Inputs> = async (address_info: Inputs) => {
         address_info.email = email || '';
-        address_info.division = selectedDivision;
+        address_info.division = selectedDivision || '';
         console.log(address_info);
         const res = await updateAddressInfo(address_info);
         console.log('address res', res);
@@ -100,9 +98,12 @@ const AddressBook = () => {
                                 <span className="text-red-600 font-bold">*</span>
                             </label>
                             <Select
-                                value={division}
+                                defaultSelectedKeys={division ? [division] : []}
+
+                                // selectedKeys='Dhak??>/'
                                 label="Select your Division"
                                 onChange={(e) => setSelectedDivision(e.target.value)}
+                                // defaultValue="Dhaka"
                                 required
                             >
                                 {divisions.map((division) => (
@@ -120,10 +121,11 @@ const AddressBook = () => {
                                 <span className="text-red-600 font-bold">*</span>
                             </label>
                             <Select
-                                value={district}
+                                // defaultSelectedKeys={district}
+                                defaultSelectedKeys={district ? [district] : []}
                                 label="Select your District"
                                 required
-                                isDisabled={!selectedDivision}
+                                isDisabled={!selectedDivision && !division}
                                 {...register('district', { required: 'District is required' })}
                             >
                                 {filteredDistricts.map((district) => (
