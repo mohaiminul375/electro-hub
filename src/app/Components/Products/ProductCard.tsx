@@ -33,7 +33,7 @@ export default function ProductCard({ item }: Item) {
 
             {/* Call-to-Action Button */}
             <button className='w-full bg-primary hover:bg-primary-dark mt-3 py-2 text-white font-medium rounded-md transition'>
-                <Link className='text-center w-full' href={`product/${_id}`}>
+                <Link className='text-center w-full' href={`/product/${_id}`}>
                     View Details
                 </Link>
             </button>
