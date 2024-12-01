@@ -1,13 +1,25 @@
 'use client'
-import { deleteProduct } from '@/app/admin-dashboard/manage-product/api/rote';
-// import { useDisclosure } from '@nextui-org/react';
+import { DeleteProduct } from '@/app/admin-dashboard/manage-product/api/rote';
+import { useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
 import { FaEye, FaTrash } from 'react-icons/fa';
-// import { FaPencil } from 'react-icons/fa6';
 import Swal from 'sweetalert2';
 
-const ProductTable = ({ product, idx }) => {
-    const { _id, product_name, category, brand } = product;
+interface TableItem {
+    _id: string,
+    product_name: string;
+    category: string;
+    brand: string;
+}
+
+interface ProductTableProps {
+    product: TableItem;
+    idx: number
+}
+const ProductTable = ({ product, idx }: ProductTableProps) => {
+    const queryClient = useQueryClient()
+    const deleteProduct = DeleteProduct();
+    const { _id, product_name, category, brand }: TableItem = product;
 
     // delete product
     const handleDeleteProduct = async (id: string) => {
@@ -22,9 +34,10 @@ const ProductTable = ({ product, idx }) => {
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const res = await deleteProduct(id);
+                const res = await deleteProduct.mutateAsync(id);
                 console.log(res)
                 if (res.deletedCount == 1) {
+                    queryClient.invalidateQueries({ queryKey: ['all-products', 'admin-products'] })
                     Swal.fire({
                         title: "Deleted!",
                         text: "Your file has been deleted.",

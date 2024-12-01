@@ -1,24 +1,24 @@
 'use client'
 import { FaArrowLeft } from "react-icons/fa";
-import { getUsers } from "./api/route";
+import { GetUsers } from "./api/route";
 import UserTable from "@/app/Components/Dashboard/UserTable/UserTable";
 import Link from "next/link";
-interface User {
-    _id: string;
-    name: string;
-    email: string;
-    role: string;
-}
+import Loading from "@/app/loading";
 
 export default async function page() {
-    const users: User[] = await getUsers();
+    // const users: User[] = await getUsers();
+    const { data: users, isLoading, isError, error } = GetUsers();
+    // Handle loading state
+    if (isLoading) return <Loading />;
+    // Handle error state
+    if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
     // console.log(users)
     return (
         <section>
             <div className="mt-3 inline-block">
                 <Link
-                href='/admin-dashboard'
-                className="flex items-center gap-2 rounded-lg bg-white border text-xl p-2">
+                    href='/admin-dashboard'
+                    className="flex items-center gap-2 rounded-lg bg-white border text-xl p-2">
                     <FaArrowLeft />
                     Back to Dashboard
                 </Link>

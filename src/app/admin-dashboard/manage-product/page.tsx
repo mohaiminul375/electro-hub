@@ -1,9 +1,15 @@
-import React from 'react';
-import { getAdminProducts } from './api/rote';
+'use client'
+import Loading from '@/app/loading';
+import { GetAdminProducts} from './api/rote';
 import ProductTable from '@/app/Components/Dashboard/ProductTable/ProductTable';
 
-const page = async () => {
-    const products = await getAdminProducts();
+const Page = () => {
+    // const products = await getAdminProducts();
+    const { data: products, isLoading, isError, error } = GetAdminProducts();
+    // Handle loading state
+    if (isLoading) return <Loading />;
+    // Handle error state
+    if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
     // console.log(products)
     return (
         <section className='mt-10'>
@@ -49,4 +55,4 @@ const page = async () => {
     );
 };
 
-export default page;
+export default Page;

@@ -1,24 +1,49 @@
-import { deleteUser } from '@/app/admin-dashboard/all-users/api/route';
+import { useDeleteUser } from '@/app/admin-dashboard/all-users/api/route';
+import { useQueryClient } from '@tanstack/react-query';
 import React from 'react'
 import { FaTrash } from 'react-icons/fa'
 import { FaPencil } from 'react-icons/fa6';
+import Swal from 'sweetalert2';
 interface User {
-    _id: string;   
-    name: string;  
-    email: string; 
-    role: string;  
+    _id: string;
+    name: string;
+    email: string;
+    role: string;
 }
 interface UserTableProps {
-    user: User; 
-    idx: number; 
+    user: User;
+    idx: number;
 }
 export default function UserTable({ user, idx }: UserTableProps) {
+    const queryClient = useQueryClient();
+    const deleteUser = useDeleteUser();
     const { _id, name, email, role } = user;
     // handle delete
     const handleDelete = async (id: string) => {
-        console.log('delete id', id);
-        const res = await deleteUser(id);
-        console.log(res);
+        console.log(id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await deleteUser.mutateAsync(id);
+                console.log(res)
+                if (res.deletedCount == 1) {
+                    queryClient.invalidateQueries({ queryKey: ['all-users'] })
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                }
+
+            }
+        });
     }
     return (
         <tr className="bg-white border-b hover:bg-gray-50">

@@ -1,15 +1,34 @@
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import toast from "react-hot-toast";
+interface Products {
+    _id: string;
+    product_name: string;
+    category: string;
+    brand: string;
+}
 // get products for admin
-export const getAdminProducts = async () => {
-    try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-products-admin`)
-        return response.data;
-    }
+// export const getAdminProducts = async () => {
+//     try {
+//         const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-products-admin`)
+//         return response.data;
+//     }
 
-    catch (error) {
-        throw error;
-    }
+//     catch (error) {
+//         throw error;
+//     }
 
+// }
+//get admin products
+export const GetAdminProducts = () => {
+    const { data, isLoading, isError, error } = useQuery<Products[]>({
+        queryFn: async () => {
+            const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-products-admin`)
+            return data
+        },
+        queryKey: ['admin-products']
+    })
+    return { data, isLoading, isError, error }
 }
 
 // delete a product
@@ -22,4 +41,24 @@ export const deleteProduct = async (id: string) => {
     catch (error) {
         throw error;
     }
+}
+export const DeleteProduct = () => {
+
+    return useMutation({
+        mutationFn: async (id: string) => {
+            const { data } = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-products-admin/${id}`)
+            return data;
+        },
+        mutationKey: ['delete-product'],
+        onSuccess: (data) => {
+            if (data.insertedId) {
+                toast.success('Product deleted successfully');
+
+            }
+        },
+        onError: (error) => {
+            console.log(error);
+            toast.error('Failed to delete product. Try again later.');
+        }
+    })
 }
