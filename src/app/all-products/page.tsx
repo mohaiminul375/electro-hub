@@ -8,7 +8,6 @@ import Loading from '../loading';
 const Page = () => {
     // Use destructuring from GetProducts and provide type annotations
     const { data: products = [], isLoading, isError, error } = GetProducts();
-
     // Handle loading state
     if (isLoading) return <Loading />;
     // Handle error state

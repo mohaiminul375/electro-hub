@@ -6,7 +6,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { useForm, SubmitHandler } from "react-hook-form";
 import toast from 'react-hot-toast';
 import axios from 'axios';
-import {useAddProduct } from './api/route';
+import { useAddProduct } from './api/route';
 type Inputs = {
     product_name: string;
     product_price: string;
@@ -81,9 +81,9 @@ const AddProduct = () => {
 
     // react hook form
 
-    const { register, 
+    const { register,
         handleSubmit,
-         reset, formState: { errors } } = useForm<Inputs>();
+        reset, formState: { errors } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (product: Inputs) => {
         // console.log(product)
         // error handling for drop down menue

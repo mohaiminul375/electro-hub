@@ -1,4 +1,3 @@
-'use client'
 import { DeleteProduct } from '@/app/admin-dashboard/manage-product/api/rote';
 import { useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';

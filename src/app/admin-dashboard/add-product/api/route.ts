@@ -22,7 +22,7 @@ export const useAddProduct = () => {
         onSuccess: (data) => {
             if (data.insertedId) {
                 toast.success('Product added successfully');
-                queryClient.invalidateQueries({ queryKey: ['all-products'] })
+                queryClient.invalidateQueries({ queryKey: ['all-products', 'admin-products'] })
             }
         },
         onError: (error) => {
