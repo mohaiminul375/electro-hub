@@ -48,7 +48,7 @@ export const useDeleteUser = () => {
         },
         mutationKey: ['delete-user'],
         onSuccess: (data) => {
-            if (data.deletedCount > 1) {    
+            if (data.deletedCount > 0) {
                 queryClient.invalidateQueries({ queryKey: ['all-users'] })
             }
         }

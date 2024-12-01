@@ -54,7 +54,8 @@ export const DeleteProduct = () => {
         mutationKey: ['delete-product'],
         onSuccess: (data) => {
             if (data.deletedCount > 0) {
-                queryClient.invalidateQueries({ queryKey: ['all-products', 'admin-products'] })
+                queryClient.invalidateQueries({ queryKey: ['admin-products'] })
+                queryClient.invalidateQueries({ queryKey: ['all-products'] })
             }
         }
     })
