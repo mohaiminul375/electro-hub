@@ -5,7 +5,7 @@ import UserTable from "@/app/Components/Dashboard/UserTable/UserTable";
 import Link from "next/link";
 import Loading from "@/app/loading";
 
-export default async function page() {
+export default function page() {
     // const users: User[] = await getUsers();
     const { data: users = [], isLoading, isError, error } = GetUsers();
     // Handle loading state
