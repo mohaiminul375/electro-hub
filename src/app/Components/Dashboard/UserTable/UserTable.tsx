@@ -33,8 +33,8 @@ export default function UserTable({ user, idx }: UserTableProps) {
             if (result.isConfirmed) {
                 const res = await deleteUser.mutateAsync(id);
                 console.log(res)
-                if (res.deletedCount == 1) {
-                    queryClient.invalidateQueries({ queryKey: ['all-users'] })
+                if (res.deletedCount > 0) {
+                    // queryClient.invalidateQueries({ queryKey: ['all-users'] })
                     Swal.fire({
                         title: "Deleted!",
                         text: "Your file has been deleted.",

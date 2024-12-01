@@ -35,8 +35,7 @@ const ProductTable = ({ product, idx }: ProductTableProps) => {
             if (result.isConfirmed) {
                 const res = await deleteProduct.mutateAsync(id);
                 console.log(res)
-                if (res.deletedCount == 1) {
-                    queryClient.invalidateQueries({ queryKey: ['all-products', 'admin-products'] })
+                if (res.deletedCount > 0) {
                     Swal.fire({
                         title: "Deleted!",
                         text: "Your file has been deleted.",

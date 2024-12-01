@@ -7,7 +7,7 @@ import Loading from "@/app/loading";
 
 export default async function page() {
     // const users: User[] = await getUsers();
-    const { data: users=[], isLoading, isError, error } = GetUsers();
+    const { data: users = [], isLoading, isError, error } = GetUsers();
     // Handle loading state
     if (isLoading) return <Loading />;
     // Handle error state

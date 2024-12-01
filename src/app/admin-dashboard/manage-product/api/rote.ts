@@ -1,5 +1,6 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+
 // import toast from "react-hot-toast";
 interface Products {
     _id: string;
@@ -19,6 +20,7 @@ interface Products {
 //     }
 
 // }
+
 //get admin products
 export const GetAdminProducts = () => {
     const { data, isLoading, isError, error } = useQuery<Products[]>({
@@ -43,13 +45,17 @@ export const GetAdminProducts = () => {
 //     }
 // }
 export const DeleteProduct = () => {
-
+    const queryClient = useQueryClient();
     return useMutation({
         mutationFn: async (id: string) => {
             const { data } = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-products-admin/${id}`)
             return data;
         },
         mutationKey: ['delete-product'],
-       
+        onSuccess: (data) => {
+            if (data.deletedCount > 0) {
+                queryClient.invalidateQueries({ queryKey: ['all-products', 'admin-products'] })
+            }
+        }
     })
 }

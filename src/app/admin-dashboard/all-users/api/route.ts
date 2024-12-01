@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios"
 interface User {
     _id: string;
@@ -40,11 +40,17 @@ export const GetUsers = () => {
 // };
 
 export const useDeleteUser = () => {
+    const queryClient = useQueryClient();
     return useMutation({
         mutationFn: async (id: string) => {
             const { data } = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-users/${id}`);
             return data;
         },
-        mutationKey: ['delete-user']
+        mutationKey: ['delete-user'],
+        onSuccess: (data) => {
+            if (data.deletedCount > 1) {    
+                queryClient.invalidateQueries({ queryKey: ['all-users'] })
+            }
+        }
     })
 }
