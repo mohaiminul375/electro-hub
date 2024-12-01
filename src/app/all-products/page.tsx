@@ -1,7 +1,8 @@
 import React from 'react';
 import { getProducts } from './api/route';
 import ProductCard from '../Components/Products/ProductCard';
-import Link from 'next/link';
+import { Select, SelectItem } from '@nextui-org/react';
+import ProductFilter from '../Components/Filter/ProductFilter';
 
 const page = async () => {
     const products: [] = await getProducts();
@@ -13,8 +14,8 @@ const page = async () => {
                 <p className="text-lg">Find all products in one convenient location</p>
             </div>
             {/*  filter*/}
-            <div>
-
+            <div className="mb-6">
+                <ProductFilter />
             </div>
             {/* products */}
             <div className='grid md:grid-cols-3 lg:grid-cols-4 gap-8'>

@@ -1,4 +1,5 @@
 'use client'
+import ProductFilter from "@/app/Components/Filter/ProductFilter";
 import ProductCard from "@/app/Components/Products/ProductCard";
 import Loading from "@/app/loading";
 import axios from "axios";
@@ -44,22 +45,15 @@ const Page = () => {
     if (loading) {
         return <Loading></Loading>
     }
-
-
-
     console.log(products);
-
-
-
-
-
-
-
     return (
-        <div>
+        <section>
             <div className="text-center bg-gradient-to-br from-primary to-accent text-white py-8 px-4 rounded-md shadow-md mb-8">
                 <h2 className="text-3xl font-bold mb-2">{displayCategory}</h2>
                 <p className="text-lg">Explore the best {category} we offer</p>
+            </div>
+            <div className="mb-6">
+                <ProductFilter />
             </div>
             <div className='grid md:grid-cols-3 lg:grid-cols-4 gap-8'>
                 {
@@ -70,7 +64,7 @@ const Page = () => {
                     </ProductCard>)
                 }
             </div>
-        </div>
+        </section>
     );
 };
 
