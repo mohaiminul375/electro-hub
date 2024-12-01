@@ -49,8 +49,6 @@ export default async function page() {
                                 />
                             ))
                         }
-
-
                     </tbody>
                 </table>
             </div>

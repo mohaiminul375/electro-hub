@@ -6,7 +6,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { useForm, SubmitHandler } from "react-hook-form";
 import toast from 'react-hot-toast';
 import axios from 'axios';
-import { addProduct } from './api/route';
+import {useAddProduct } from './api/route';
 type Inputs = {
     product_name: string;
     product_price: string;
@@ -56,6 +56,7 @@ type Inputs = {
 };
 
 const AddProduct = () => {
+    const addProduct = useAddProduct();
     // handle category
     const [selectedCategory, setSelectedCategory] = useState<keyof typeof brandOptions | "Select a category">("Select a category");
     const [selectedColor, setSelectedColor] = useState('Select a color');
@@ -80,7 +81,9 @@ const AddProduct = () => {
 
     // react hook form
 
-    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm<Inputs>();
+    const { register, 
+        handleSubmit,
+         reset, formState: { errors } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (product: Inputs) => {
         // console.log(product)
         // error handling for drop down menue
@@ -120,13 +123,25 @@ const AddProduct = () => {
         product.posted_date = new Date().toLocaleString();
         product.img = img_url;
         console.log(product);
-        const response = await addProduct(product);
-        console.log('added', response)
-        if (response.insertedId) {
-            reset();
-            return toast.success('add product successfully')
-        } else {
-            return toast.error('operation failed try later')
+        // const response = await addProduct(product);
+        // console.log('added', response)
+        // if (response.insertedId) {
+        //     reset();
+        //     return toast.success('add product successfully')
+        // } else {
+        //     return toast.error('operation failed try later')
+        // }
+        try {
+            const response = await addProduct.mutateAsync(product);
+            console.log('Added:', response);
+            if (response.insertedId) {
+                reset();
+                toast.success('Product added successfully');
+            } else {
+                toast.error('Operation failed. Try later.');
+            }
+        } catch (error) {
+            toast.error('An error occurred while adding the product');
         }
     };
 
@@ -155,7 +170,7 @@ const AddProduct = () => {
                         <div>
                             <label>Product Name<span className='text-red-600 font-bold'>*</span></label>
                             <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter product name' required
-                            {...register('product_name')}
+                                {...register('product_name')}
                             />
                         </div>
                         <div className='flex flex-col'>

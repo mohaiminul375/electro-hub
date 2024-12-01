@@ -1,29 +1,72 @@
 'use client'
 import { useParams } from "next/navigation";
-import { getProductDetails } from "../api/route";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { GetProductDetails } from "./api/rote";
+import Loading from "@/app/loading";
+// Define the Details type
+interface Details {
+    _id: string;
+    product_name: string;
+    img: string;
+    laptop_description: string;
+    monitor_description: string;
+    product_price: string | number;
+    category: string;
+    brand: string;
+    color: string;
+    monitor_screen: string;
+    monitor_resolution: string;
+    monitor_ports: string;
+    posted_date: string;
+    laptop_processor: string;
+    laptop_storage: string;
+    laptop_ram: string;
+    laptop_battery: string;
+    laptop_ports: string;
+    laptop_display: string;
+    "smart-phone_description": string;
+    "smart-phone_storage": string;
+    "smart-phone_ram": string;
+    "smart-phone_battery": string;
+    "smart-phone-camera": string;
+    "smart-phone_model": string;
+    "smart-watch_description": string;
+    "smart-watch_model": string;
+    "smart-watch_battery": string;
+    "smart-watch_features": string;
+    "smart-tv_resolution": string;
+    'smart-tv_screen': string;
+    'smart-tv_ram': string;
+    "smart-tv_description": string;
+    "smart-tv_features": string;
+    "smart-tv_ports": string;
+}
+
+const Page = () => {
+    // const [details, setDetails] = useState({});
+    const { id } = useParams();
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-products/${params.id}`);
+    //             setDetails(data);
+    //         } catch (error) {
+    //             console.error("Error fetching product details:", error);
+    //         }
+    //     };
+
+    //     fetchData();
+    // }, [params.id]);
+    const { data: details, isLoading,isError,error } = GetProductDetails(id);
+    // Handle loading state
+    if (isLoading) return <Loading />;
+    // Handle error state
+    if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
 
 
-const page = () => {
-    const [details, setDetails] = useState({});
-    const params = useParams();
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-products/${params.id}`);
-                setDetails(data);
-            } catch (error) {
-                console.error("Error fetching product details:", error);
-            }
-        };
-
-        fetchData();
-    }, [params.id]);
-
-    const { _id,
+    const {
+        // _id,
         product_name,
         img,
         laptop_description,
@@ -58,7 +101,7 @@ const page = () => {
         "smart-tv_description": smart_tv_description,
         "smart-tv_features": smart_tv_features,
         "smart-tv_ports": smart_tv_ports
-    } = details;
+    }: Details = details as Details;
     return (
         <section className="mt-10">
             {/* TODO: Heading */}
@@ -235,4 +278,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;

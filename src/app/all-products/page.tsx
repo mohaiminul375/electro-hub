@@ -1,16 +1,13 @@
 "use client";
-import React from 'react';
 import ProductCard from '../Components/Products/ProductCard';
 import ProductFilter from '../Components/Filter/ProductFilter';
 import { GetProducts } from './api/route';
 import Loading from '../loading';
 
-// Define the Product interface
-
 
 const Page = () => {
     // Use destructuring from GetProducts and provide type annotations
-    const { data = [], isLoading, isError, error } = GetProducts();
+    const { data: products = [], isLoading, isError, error } = GetProducts();
 
     // Handle loading state
     if (isLoading) return <Loading />;
@@ -30,7 +27,7 @@ const Page = () => {
             </div>
             {/* Products */}
             <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
-                {data.map((item) => (
+                {products.map((item) => (
                     <ProductCard key={item._id} item={item} />
                 ))}
             </div>

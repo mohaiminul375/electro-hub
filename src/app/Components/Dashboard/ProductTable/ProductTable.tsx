@@ -1,9 +1,9 @@
 'use client'
 import { deleteProduct } from '@/app/admin-dashboard/manage-product/api/rote';
-import { useDisclosure } from '@nextui-org/react';
+// import { useDisclosure } from '@nextui-org/react';
 import Link from 'next/link';
 import { FaEye, FaTrash } from 'react-icons/fa';
-import { FaPencil } from 'react-icons/fa6';
+// import { FaPencil } from 'react-icons/fa6';
 import Swal from 'sweetalert2';
 
 const ProductTable = ({ product, idx }) => {

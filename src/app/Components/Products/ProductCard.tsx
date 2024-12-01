@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react'
+import React from 'react';
+// Define the Product type
 interface Product {
     _id: string;
     product_name: string;
@@ -9,6 +10,7 @@ interface Product {
     category: string;
     item?: object;
 }
+// Define the Product Card type
 interface ProductCardProps {
     item: Product;
 }
@@ -40,11 +42,11 @@ export default function ProductCard({ item }: ProductCardProps) {
             </div>
 
             {/* Call-to-Action Button */}
-            <button className='w-full bg-primary hover:bg-primary-dark mt-3 py-2 text-white font-medium rounded-md transition'>
-                <Link className='text-center w-full' href={`/product/${_id}`}>
+            <Link className='text-center w-full' href={`/product/${_id}`}>
+                <button className='w-full bg-primary hover:bg-primary-dark mt-3 py-2 text-white font-medium rounded-md transition'>
                     View Details
-                </Link>
-            </button>
+                </button>
+            </Link>
         </div>
 
 

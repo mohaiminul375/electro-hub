@@ -3,14 +3,14 @@ import React from 'react'
 import { FaTrash } from 'react-icons/fa'
 import { FaPencil } from 'react-icons/fa6';
 interface User {
-    _id: string;   // Unique identifier for the user
-    name: string;  // Name of the user
-    email: string; // Email of the user
-    role: string;  // Role of the user
+    _id: string;   
+    name: string;  
+    email: string; 
+    role: string;  
 }
 interface UserTableProps {
-    user: User; // User object that conforms to the User interface
-    idx: number; // Index of the user in the list
+    user: User; 
+    idx: number; 
 }
 export default function UserTable({ user, idx }: UserTableProps) {
     const { _id, name, email, role } = user;
