@@ -1,8 +1,11 @@
 1. next.js
-2. next ui-- shadcn
+2. next ui
 3.Tailwind css
 4.Lotifiles
 5. react hook form 
 6. axios
 7. sweet alert2
 8. react-hot-toast
+9. react-icon
+10. Next Auth
+11.TanStack Query

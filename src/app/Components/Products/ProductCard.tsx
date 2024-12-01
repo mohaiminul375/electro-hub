@@ -1,12 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
-interface Item {
+interface Product {
     _id: string;
+    product_name: string;
+    img: string;
+    product_price: number;
+    category: string;
+    item?: object;
 }
-export default function ProductCard({ item }: Item) {
+interface ProductCardProps {
+    item: Product;
+}
+export default function ProductCard({ item }: ProductCardProps) {
     // console.log(item)
-    const { _id, product_name, img, product_price, category } = item;
+    const { _id, product_name, img, product_price, category }: Product = item;
     return (
 
         <div className='group border border-gray-300 rounded-lg shadow-lg p-4 max-w-sm bg-white transition'>
