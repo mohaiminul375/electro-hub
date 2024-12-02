@@ -12,7 +12,7 @@ const config: Config = {
     extend: {
       colors: {
         primary: "#72BF44",    // Lime Green
-        secondary: "#FFFFFF",  // White
+        secondary: "#f9f9f9",  // White updateable
         accent: "#0E0E0E",     // Jet Black
         background: "#CCCCCC", // Light Gray
         lightBackground: "#F5F5F5", // Softer Gray

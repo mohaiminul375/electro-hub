@@ -1,7 +1,9 @@
 'use client'
 import Loading from '@/app/loading';
-import { GetAdminProducts} from './api/rote';
+import { GetAdminProducts } from './api/rote';
 import ProductTable from '@/app/Components/Dashboard/ProductTable/ProductTable';
+import Link from 'next/link';
+import { FaArrowLeft } from 'react-icons/fa';
 
 const Page = () => {
     // const products = await getAdminProducts();
@@ -18,10 +20,25 @@ const Page = () => {
 
             </div>
             {/*Heading  */}
-            <div className="mb-5 text-center">
-                <h3 className="text-2xl font-semibold">Manage Products</h3>
-                <h4 className="text-lg text-gray-600">Manage your Products</h4>
+            <div className="mt-6">
+                {/* Back Button */}
+                <div className="inline-block">
+                    <Link
+                        href="/admin-dashboard"
+                        className="flex items-center gap-3 rounded-lg bg-gray-100 border border-gray-300 text-lg px-4 py-2 text-accent hover:bg-gray-200 hover:border-gray-400 transition duration-200"
+                    >
+                        <FaArrowLeft className="text-accent" />
+                        <span>Back to Dashboard</span>
+                    </Link>
+                </div>
+
+                {/* Manage Product Header */}
+                <div className="mb-8 mt-4 text-center">
+                    <h3 className="text-3xl font-bold text-accent">Manage Products</h3>
+                    <h4 className="text-md text-gray-700 mt-2">Easily manage, edit, delete your products.</h4>
+                </div>
             </div>
+
             {/* products listing */}
             <div>
                 <div className="overflow-x-auto">

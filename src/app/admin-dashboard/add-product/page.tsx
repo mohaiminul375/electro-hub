@@ -123,7 +123,7 @@ const AddProduct = () => {
         product.posted_date = new Date().toLocaleString();
         product.img = img_url;
         // console.log(product);
-        
+
         try {
             const response = await addProduct.mutateAsync(product);
             console.log('Added:', response);
@@ -141,18 +141,25 @@ const AddProduct = () => {
 
     return (
         <section>
-            <div className="mt-3 inline-block">
-                <Link
-                    href='/admin-dashboard'
-                    className="flex items-center gap-2 rounded-lg bg-white border text-xl p-2">
-                    <FaArrowLeft />
-                    Back to Dashboard
-                </Link>
+            <div className="mt-6">
+                {/* Back Button */}
+                <div className="inline-block">
+                    <Link
+                        href="/admin-dashboard"
+                        className="flex items-center gap-3 rounded-lg bg-gray-100 border border-gray-300 text-lg px-4 py-2 text-accent hover:bg-gray-200 hover:border-gray-400 transition duration-200"
+                    >
+                        <FaArrowLeft className="text-accent" />
+                        <span>Back to Dashboard</span>
+                    </Link>
+                </div>
+
+                {/* Add Product Header */}
+                <div className="mb-8 mt-4 text-center">
+                    <h3 className="text-3xl font-bold text-accent">Add Product</h3>
+                    <h4 className="text-md text-accent mt-2">Easily add a new product to your store.</h4>
+                </div>
             </div>
-            <div className="mb-5 text-center">
-                <h3 className="text-2xl font-semibold">Add Product</h3>
-                <h4 className="text-lg text-gray-600">Add a New Product in Your store</h4>
-            </div>
+
             {/* form */}
             <div className='bg-white p-8 rounded-md shadow-2xl'>
                 <form
