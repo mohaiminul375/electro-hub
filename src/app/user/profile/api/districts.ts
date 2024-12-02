@@ -1,7 +1,7 @@
 type District = {
     key: string;
     label: string;
-    division: string; // Indicates which division the district belongs to
+    division: string;
 };
 export const districts: District[] = [
     // Dhaka Division 13

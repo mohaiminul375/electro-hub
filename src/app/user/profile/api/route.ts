@@ -1,3 +1,4 @@
+// import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 export const updateUserInfo = async (user_info: object) => {
@@ -9,6 +10,7 @@ export const updateUserInfo = async (user_info: object) => {
         throw error;
     }
 }
+
 export const updateAddressInfo = async (address_info: object) => {
     try {
         const response = await axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/update-address`, address_info)

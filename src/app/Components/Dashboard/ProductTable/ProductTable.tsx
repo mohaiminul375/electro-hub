@@ -1,4 +1,4 @@
-import { DeleteProduct } from '@/app/admin-dashboard/manage-product/api/rote';
+import { useDeleteProduct } from '@/app/admin-dashboard/manage-product/api/rote';
 import Link from 'next/link';
 import { FaEye, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
@@ -15,7 +15,7 @@ interface ProductTableProps {
     idx: number
 }
 const ProductTable = ({ product, idx }: ProductTableProps) => {
-    const deleteProduct = DeleteProduct();
+    const deleteProduct = useDeleteProduct();
     const { _id, product_name, category, brand }: TableItem = product;
 
     // delete product

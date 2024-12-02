@@ -1,17 +1,20 @@
 'use client'
 import { useParams } from "next/navigation";
-import { getProductDetails } from "../api/route";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import {useGetProductDetails } from "../api/route";
 import Image from "next/image";
 import Link from "next/link";
 import Swal from "sweetalert2";
-import { deleteProduct } from "../../manage-product/api/rote";
+// import { deleteProduct } from "../../manage-product/api/rote";
+import Loading from "@/app/loading";
 
 
-const page = () => {
-    const [details, setDetails] = useState({});
-    const params = useParams();
+const Page = () => {
+    const { id } = useParams()
+    const { data: details, isLoading, isError, error } = useGetProductDetails(id);
+    if (isLoading) return <Loading />;
+    // Handle error state
+    if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
+// TODO: delete func
     const handleDeleteProduct = async (id: string) => {
         console.log(id);
         Swal.fire({
@@ -24,31 +27,20 @@ const page = () => {
             confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const res = await deleteProduct(id);
-                console.log(res)
-                if (res.deletedCount == 1) {
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                    });
-                }
+                // const res = await deleteProduct(id);
+                // console.log(res)
+                // if (res.deletedCount == 1) {
+                //     Swal.fire({
+                //         title: "Deleted!",
+                //         text: "Your file has been deleted.",
+                //         icon: "success"
+                //     });
+                // // }
 
             }
         });
     }
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-products/${params.id}`);
-                setDetails(data);
-            } catch (error) {
-                console.error("Error fetching product details:", error);
-            }
-        };
 
-        fetchData();
-    }, [params.id]);
 
     const { _id,
         product_name,
@@ -253,8 +245,8 @@ const page = () => {
                     <div className="flex justify-evenly gap-4">
                         <Link href='' className="border-2 w-full text-center py-2 bg-primary text-white" >Edit</Link>
                         <button
-                        onClick={()=>handleDeleteProduct(_id)}
-                        className="border-2 w-full text-center bg-primary text-white py-2">Delete</button>
+                            onClick={() => handleDeleteProduct(_id)}
+                            className="border-2 w-full text-center bg-primary text-white py-2">Delete</button>
 
                     </div>
                 </div>
@@ -265,4 +257,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;

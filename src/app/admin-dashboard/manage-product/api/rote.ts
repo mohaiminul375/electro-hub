@@ -21,7 +21,7 @@ export const GetAdminProducts = () => {
     return { data, isLoading, isError, error }
 }
 
-export const DeleteProduct = () => {
+export const useDeleteProduct = () => {
     const queryClient = useQueryClient();
     return useMutation({
         mutationFn: async (id: string) => {
