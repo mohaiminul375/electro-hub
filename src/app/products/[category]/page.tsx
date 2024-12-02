@@ -1,19 +1,20 @@
 'use client'
-import ProductFilter from "@/app/Components/Filter/ProductFilter";
 import ProductCard from "@/app/Components/Products/ProductCard";
 import Loading from "@/app/loading";
-import axios from "axios";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useGetDetailsCategory } from "./api/route";
+import CategoryFilter from "@/app/Components/Filter/CategoryFilter";
 
 type CategoryParams = {
     category: string;
 };
 const Page = () => {
     const { category } = useParams<CategoryParams>();
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    // Define a type-safe mapping for categories
+    const [brand, setBrand] = useState<string>('');
+    const [color, setColor] = useState<string>('');
+    const [priceSort, setPriceSort] = useState<string>('');
+
     const categoryMap: Record<string, string> = {
         "smart-phone": "Smart Phone",
         "laptop": "Laptop",
@@ -26,26 +27,14 @@ const Page = () => {
     // Fallback to category itself if not mapped
     const displayCategory = categoryMap[category] || category;
     // get products by category
-    useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                setLoading(true)
-                const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/products/${category}`)
-                setProducts(res.data);
-            }
-            catch (error) {
-                console.log(error);
-            } finally {
-                setLoading(false);
-            }
-        }
-        fetchProduct()
-    }, [category])
-
-    if (loading) {
-        return <Loading></Loading>
+    const { data: products = [], isLoading, isError, error } = useGetDetailsCategory({ category, brand, color, priceSort })
+    if (isLoading) {
+        return <Loading />
     }
-    console.log(products);
+    // Handle loading state
+    if (isLoading) return <Loading />;
+    // Handle error state
+    if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
     return (
         <section>
             <div className="text-center bg-gradient-to-br from-primary to-accent text-white py-8 px-4 rounded-md shadow-md mb-8">
@@ -53,11 +42,17 @@ const Page = () => {
                 <p className="text-lg">Explore the best {category} we offer</p>
             </div>
             <div className="mb-6">
-                <ProductFilter />
+                {/* <ProductFilter /> */}
+                <CategoryFilter
+                    setBrand={setBrand}
+                    setColor={setColor}
+                    setPriceSort={setPriceSort}
+                    category={category}
+                />
             </div>
             <div className='grid md:grid-cols-3 lg:grid-cols-4 gap-8'>
                 {
-                    products.map(item => <ProductCard
+                    products.map((item) => <ProductCard
                         key={item._id}
                         item={item}
                     >
