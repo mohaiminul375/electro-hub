@@ -3,11 +3,16 @@ import ProductCard from '../Components/Products/ProductCard';
 import ProductFilter from '../Components/Filter/ProductFilter';
 import { useGetProducts } from './api/route';
 import Loading from '../loading';
+import { useState } from 'react';
 
 
 const Page = () => {
+    const [brand, setBrand] = useState<string>('')
+    const [color, setColor] = useState('')
+    const [priceSort, setPriceSort] = useState<string>('');
+    console.log(brand, color, priceSort)
     // Use destructuring from GetProducts and provide type annotations
-    const { data: products = [], isLoading, isError, error } = useGetProducts({});
+    const { data: products = [], isLoading, isError, error } = useGetProducts({color,brand,priceSort});
     // Handle loading state
     if (isLoading) return <Loading />;
     console.log('all product')
@@ -26,6 +31,9 @@ const Page = () => {
             {/* Filter */}
             <div className="mb-6">
                 <ProductFilter
+                    setBrand={setBrand}
+                    setColor={setColor}
+                    setPriceSort={setPriceSort}
                 ></ProductFilter>
             </div>
             {/* Products */}

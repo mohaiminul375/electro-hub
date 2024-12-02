@@ -13,14 +13,14 @@ interface Product {
 }
 
 // Function to fetch all products
-export const useGetProducts = ({ brand, color, price }) => {
+export const useGetProducts = ({ brand, color, priceSort }) => {
     const { data, isLoading, isError, error, refetch } = useQuery<Product[]>({
         queryFn: async () => {
             // Construct query parameters conditionally
             const params = new URLSearchParams();
             if (brand) params.append('brand', brand);
             if (color) params.append('color', color);
-            if (price) params.append('price', price.toString());
+            if (priceSort) params.append('price', priceSort.toString());
 
             const url = `${process.env.NEXT_PUBLIC_SERVER_LOCAL}/all-products?${params.toString()}`;
             console.log('Request URL:', url);  // Debug the final URL
@@ -34,7 +34,7 @@ export const useGetProducts = ({ brand, color, price }) => {
                 throw err;  // This will trigger isError to be true
             }
         },
-        queryKey: ['all-products', { brand, color, price }],
+        queryKey: ['all-products', { brand, color, priceSort }],
         // staleTime: 0, 
     });
 

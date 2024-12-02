@@ -39,26 +39,14 @@ const colors = [
     { key: 'blue', label: "Blue" },
 
 ]
-const ProductFilter = () => {
-    const [brand, setBrand] = useState('')
-    const [color, setColor] = useState('')
-    const [price, setPrice] = useState('')
-    const queryClient = useQueryClient()
-    console.log(brand, color, price)
-    useGetProducts({ brand, color, price })
-    // console.log(res, 'from filter')
-    // console.log(data)
-    // if (isLoading) return <Loading />;
-    if (brand || color || price) {
-        console.log('reface trigger')
-        // refetch()
-        queryClient.invalidateQueries({ queryKey: ['all-products'] })
+// type
+interface FilterProp {
+    setBrand: (value: string) => void;
+    setColor: (value: string) => void;
+    setPriceSort: (value: string) => void;
+}
+const ProductFilter = ({ setBrand, setColor, setPriceSort }: FilterProp) => {
 
-    }
-
-    // useEffect(() => {
-    //     refetch();
-    // }, [brand, color, price, refetch]);
     // filter
     return (
         <section className="py-6 px-4 bg-gray-50 rounded-md shadow-md">
@@ -67,7 +55,7 @@ const ProductFilter = () => {
                 <div className="flex flex-col sm:w-1/3">
                     <label className="text-lg font-semibold sm:mr-4">Sort by Price</label>
                     <Select
-                        onChange={(e) => setPrice(e.target.value)}
+                        onChange={(e) => setPriceSort(e.target.value)}
                         label="Price Sorting" className="max-w-xs mt-2 sm:mt-0">
                         {prices.map((price) => (
                             <SelectItem key={price.key}>{price.label}</SelectItem>
