@@ -8,11 +8,11 @@ import { useState } from 'react';
 
 const Page = () => {
     const [brand, setBrand] = useState<string>('')
-    const [color, setColor] = useState('')
+    const [color, setColor] = useState<string>('')
     const [priceSort, setPriceSort] = useState<string>('');
     console.log(brand, color, priceSort)
     // Use destructuring from GetProducts and provide type annotations
-    const { data: products = [], isLoading, isError, error } = useGetProducts({color,brand,priceSort});
+    const { data: products = [], isLoading, isError, error } = useGetProducts({ color, brand, priceSort });
     // Handle loading state
     if (isLoading) return <Loading />;
     console.log('all product')

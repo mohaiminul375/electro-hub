@@ -1,9 +1,6 @@
 'use client'
-import { useGetProducts } from "@/app/all-products/api/route";
-import Loading from "@/app/loading";
 import { Select, SelectItem } from "@nextui-org/react";
-import { useQueryClient } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+
 
 const prices = [
     { key: '', label: "Default" },
