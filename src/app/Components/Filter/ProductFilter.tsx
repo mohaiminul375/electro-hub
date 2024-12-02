@@ -1,6 +1,9 @@
 'use client'
+import { useGetProducts } from "@/app/all-products/api/route";
+import Loading from "@/app/loading";
 import { Select, SelectItem } from "@nextui-org/react";
-import { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
 const prices = [
     { key: '', label: "Default" },
@@ -10,7 +13,7 @@ const prices = [
 const brands = [
     { key: '', label: "Default" },
     { key: 'Dell', label: "Dell" },
-    { key: 'Hp', label: "Hp" },
+    { key: 'HP', label: "HP" },
     { key: 'Asus', label: "Asus" },
     { key: 'Lenovo', label: "Lenovo" },
     { key: 'Walton', label: "Walton" },
@@ -40,7 +43,22 @@ const ProductFilter = () => {
     const [brand, setBrand] = useState('')
     const [color, setColor] = useState('')
     const [price, setPrice] = useState('')
+    const queryClient = useQueryClient()
     console.log(brand, color, price)
+    useGetProducts({ brand, color, price })
+    // console.log(res, 'from filter')
+    // console.log(data)
+    // if (isLoading) return <Loading />;
+    if (brand || color || price) {
+        console.log('reface trigger')
+        // refetch()
+        queryClient.invalidateQueries({ queryKey: ['all-products'] })
+
+    }
+
+    // useEffect(() => {
+    //     refetch();
+    // }, [brand, color, price, refetch]);
     // filter
     return (
         <section className="py-6 px-4 bg-gray-50 rounded-md shadow-md">

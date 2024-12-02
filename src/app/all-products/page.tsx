@@ -1,15 +1,18 @@
 "use client";
 import ProductCard from '../Components/Products/ProductCard';
 import ProductFilter from '../Components/Filter/ProductFilter';
-import { GetProducts } from './api/route';
+import { useGetProducts } from './api/route';
 import Loading from '../loading';
 
 
 const Page = () => {
     // Use destructuring from GetProducts and provide type annotations
-    const { data: products = [], isLoading, isError, error } = GetProducts();
+    const { data: products = [], isLoading, isError, error } = useGetProducts({});
     // Handle loading state
     if (isLoading) return <Loading />;
+    console.log('all product')
+    console.log(products)
+    // refetch()
     // Handle error state
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
 
@@ -22,7 +25,8 @@ const Page = () => {
             </div>
             {/* Filter */}
             <div className="mb-6">
-                <ProductFilter />
+                <ProductFilter
+                ></ProductFilter>
             </div>
             {/* Products */}
             <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
