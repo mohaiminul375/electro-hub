@@ -1,30 +1,56 @@
 'use client'
 import { Select, SelectItem } from "@nextui-org/react";
+import { useState } from "react";
 
 const prices = [
-    { key: 'high-to-low', label: "hight-to-low" },
-    { key: 'low-to-high', label: "low-to-high" },
+    { key: '', label: "Default" },
+    { key: 'high-to-low', label: "Price hight to low" },
+    { key: 'low-to-high', label: "Price low to high" },
 ];
 const brands = [
-    { key: 'hp', label: "hp" },
-    { key: 'walton', label: "walton" },
-    { key: 'lenovo', label: "lenovo" },
-    { key: 'asus', label: "asus" },
-    { key: 'dell', label: "dell" },
+    { key: '', label: "Default" },
+    { key: 'Dell', label: "Dell" },
+    { key: 'Hp', label: "Hp" },
+    { key: 'Asus', label: "Asus" },
+    { key: 'Lenovo', label: "Lenovo" },
+    { key: 'Walton', label: "Walton" },
+    { key: 'Samsung', label: "Samsung" },
+    { key: 'LG', label: "LG" },
+    { key: 'Acer', label: "Acer" },
+    { key: 'OnePlus', label: "OnePlus" },
+    { key: 'Xiaomi', label: "Xiaomi" },
+    { key: 'Realme', label: "Realme" },
+    { key: 'Google', label: "Google" },
+    { key: 'Garmin', label: "Garmin" },
+    { key: 'Fitbit', label: "Fitbit" },
+    { key: 'Amazfit', label: "Amazfit" },
+    { key: 'Sony', label: "Sony" },
+    { key: 'Vizio', label: "Vizio" },
+    { key: 'TCL', label: "TCL" },
 ]
 const colors = [
-    { key: 'black', label: "black" },
-    { key: 'white', label: "white" },
+    { key: '', label: "Default" },
+    { key: 'black', label: "Black" },
+    { key: 'white', label: "White" },
+    { key: 'gray', label: "Gray" },
+    { key: 'blue', label: "Blue" },
 
 ]
 const ProductFilter = () => {
+    const [brand, setBrand] = useState('')
+    const [color, setColor] = useState('')
+    const [price, setPrice] = useState('')
+    console.log(brand, color, price)
+    // filter
     return (
         <section className="py-6 px-4 bg-gray-50 rounded-md shadow-md">
             <div className="space-y-6 sm:space-y-0 sm:flex sm:space-x-6 sm:justify-between">
                 {/* Sort by Price */}
                 <div className="flex flex-col sm:w-1/3">
                     <label className="text-lg font-semibold sm:mr-4">Sort by Price</label>
-                    <Select label="Price Sorting" className="max-w-xs mt-2 sm:mt-0">
+                    <Select
+                        onChange={(e) => setPrice(e.target.value)}
+                        label="Price Sorting" className="max-w-xs mt-2 sm:mt-0">
                         {prices.map((price) => (
                             <SelectItem key={price.key}>{price.label}</SelectItem>
                         ))}
@@ -34,7 +60,9 @@ const ProductFilter = () => {
                 {/* Sort by Brand */}
                 <div className="flex flex-col sm:w-1/3">
                     <label className="text-lg font-semibold sm:mr-4">Sort by Brand</label>
-                    <Select label="Select your brand" className="max-w-xs mt-2 sm:mt-0">
+                    <Select
+                        onChange={(e) => setBrand(e.target.value)}
+                        label="Select your brand" className="max-w-xs mt-2 sm:mt-0">
                         {brands.map((brand) => (
                             <SelectItem key={brand.key}>{brand.label}</SelectItem>
                         ))}
@@ -43,8 +71,11 @@ const ProductFilter = () => {
 
                 {/* Sort by Color */}
                 <div className="flex flex-col sm:w-1/3">
-                    <label className="text-lg font-semibold sm:mr-4">Sort by Color</label>
-                    <Select label="Select your color" className="max-w-xs mt-2 sm:mt-0">
+                    <label
+                        className="text-lg font-semibold sm:mr-4">Sort by Color</label>
+                    <Select
+                        onChange={(e) => setColor(e.target.value)}
+                        label="Select your color" className="max-w-xs mt-2 sm:mt-0">
                         {colors.map((color) => (
                             <SelectItem key={color.key}>{color.label}</SelectItem>
                         ))}
