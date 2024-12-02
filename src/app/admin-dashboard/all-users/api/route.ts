@@ -7,18 +7,7 @@ interface User {
     role: string;
 }
 
-// get all user
-// export const getUsers = async () => {
-//     try {
-//         const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-users`)
-//         return response.data;
-//     }
-
-//     catch (error) {
-//         throw error;
-//     }
-
-// }
+//Get All user (only admin)
 export const GetUsers = () => {
     const { data, isLoading, isError, error } = useQuery<User[]>({
         queryFn: async () => {
@@ -29,16 +18,8 @@ export const GetUsers = () => {
     })
     return { data, isLoading, isError, error }
 }
-// delete user
-// export const deleteUser = async (id: string) => {
-//     try {
-//         const response = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-users/${id}`);
-//         return response.data;
-//     } catch (error) {
-//         throw error;
-//     }
-// };
 
+// Delete User(only admin)
 export const useDeleteUser = () => {
     const queryClient = useQueryClient();
     return useMutation({

@@ -6,13 +6,12 @@ import Link from "next/link";
 import Loading from "@/app/loading";
 
 export default function page() {
-    // const users: User[] = await getUsers();
     const { data: users = [], isLoading, isError, error } = GetUsers();
     // Handle loading state
     if (isLoading) return <Loading />;
     // Handle error state
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
-    // console.log(users)
+  
     return (
         <section>
             <div className="mt-3 inline-block">

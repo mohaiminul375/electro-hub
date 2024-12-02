@@ -122,15 +122,8 @@ const AddProduct = () => {
         product.color = selectedColor;
         product.posted_date = new Date().toLocaleString();
         product.img = img_url;
-        console.log(product);
-        // const response = await addProduct(product);
-        // console.log('added', response)
-        // if (response.insertedId) {
-        //     reset();
-        //     return toast.success('add product successfully')
-        // } else {
-        //     return toast.error('operation failed try later')
-        // }
+        // console.log(product);
+        
         try {
             const response = await addProduct.mutateAsync(product);
             console.log('Added:', response);

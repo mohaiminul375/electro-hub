@@ -3,6 +3,7 @@ type userType = {
     email: string,
     password: string
 }
+// TODO: tanstack needed
 export const handleLogin = async ({ email, password }: userType) => {
     try {
         const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/login`, { email, password });

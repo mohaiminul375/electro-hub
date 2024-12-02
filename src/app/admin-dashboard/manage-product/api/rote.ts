@@ -8,18 +8,6 @@ interface Products {
     category: string;
     brand: string;
 }
-// get products for admin
-// export const getAdminProducts = async () => {
-//     try {
-//         const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-products-admin`)
-//         return response.data;
-//     }
-
-//     catch (error) {
-//         throw error;
-//     }
-
-// }
 
 //get admin products
 export const GetAdminProducts = () => {
@@ -33,17 +21,6 @@ export const GetAdminProducts = () => {
     return { data, isLoading, isError, error }
 }
 
-// delete a product
-// export const deleteProduct = async (id: string) => {
-//     try {
-//         const response = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-products-admin/${id}`)
-//         return response.data;
-//     }
-
-//     catch (error) {
-//         throw error;
-//     }
-// }
 export const DeleteProduct = () => {
     const queryClient = useQueryClient();
     return useMutation({

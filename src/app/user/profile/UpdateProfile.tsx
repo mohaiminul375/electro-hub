@@ -102,7 +102,7 @@ const UpdateProfile = () => {
                                 {...register('phone_number', {
                                     required: 'Phone number is required',
                                     validate: (value) =>
-                                        value.length === 11 || 'Phone number must be exactly 11 characters long',
+                                        value?.length === 11 || 'Phone number must be exactly 11 characters long',
                                 })}
                             />
                             {errors.phone_number && (

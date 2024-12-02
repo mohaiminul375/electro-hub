@@ -1,5 +1,4 @@
 import { DeleteProduct } from '@/app/admin-dashboard/manage-product/api/rote';
-import { useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
 import { FaEye, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
@@ -16,7 +15,6 @@ interface ProductTableProps {
     idx: number
 }
 const ProductTable = ({ product, idx }: ProductTableProps) => {
-    const queryClient = useQueryClient()
     const deleteProduct = DeleteProduct();
     const { _id, product_name, category, brand }: TableItem = product;
 

@@ -1,5 +1,4 @@
 import { useDeleteUser } from '@/app/admin-dashboard/all-users/api/route';
-import { useQueryClient } from '@tanstack/react-query';
 import React from 'react'
 import { FaTrash } from 'react-icons/fa'
 import { FaPencil } from 'react-icons/fa6';
@@ -14,8 +13,8 @@ interface UserTableProps {
     user: User;
     idx: number;
 }
+
 export default function UserTable({ user, idx }: UserTableProps) {
-    const queryClient = useQueryClient();
     const deleteUser = useDeleteUser();
     const { _id, name, email, role } = user;
     // handle delete
@@ -34,7 +33,6 @@ export default function UserTable({ user, idx }: UserTableProps) {
                 const res = await deleteUser.mutateAsync(id);
                 console.log(res)
                 if (res.deletedCount > 0) {
-                    // queryClient.invalidateQueries({ queryKey: ['all-users'] })
                     Swal.fire({
                         title: "Deleted!",
                         text: "Your file has been deleted.",
