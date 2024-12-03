@@ -15,9 +15,6 @@ const Page = () => {
     const { data: products = [], isLoading, isError, error } = useGetProducts({ color, brand, priceSort });
     // Handle loading state
     if (isLoading) return <Loading />;
-    console.log('all product')
-    console.log(products)
-    // refetch()
     // Handle error state
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
 
