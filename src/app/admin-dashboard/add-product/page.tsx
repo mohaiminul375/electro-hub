@@ -9,7 +9,7 @@ import axios from 'axios';
 import { useAddProduct } from './api/route';
 type Inputs = {
     product_name: string;
-    product_price: number;
+    product_price: number | string;
     laptop_processor: string;
     laptop_ram: string;
     laptop_storage: string;
@@ -57,33 +57,33 @@ type Inputs = {
 type BrandOptions = {
     laptop: string[];
     monitor: string[];
-    "smart-phone": string[];
-    "smart-watch": string[];
-    "smart-tv": string[];
+    smart_phone: string[];
+    smart_watch: string[];
+    smart_tv: string[];
 };
 const categories = [
     { key: 'laptop', label: 'Laptop' },
     { key: 'monitor', label: 'Monitor' },
     { key: 'smart_phone', label: 'Smart-Phone' },
-    { key: 'smart_watch', label: 'Watch-Watch' },
-    { key: 'monitor', label: 'Monitor' },
+    { key: 'smart_watch', label: 'Smart_Watch' },
+    { key: 'smart_tv', label: 'Smart_TV' },
     // { key: 'Smart-Phone', label: 'Smart-Phone' },
 ]
 const brandOptions: BrandOptions = {
-    laptop: ["Dell", "HP", "Asus", "Lenovo", "Walton"],
+    laptop: ["Dell", "HP", "Asus", "Lenovo", "Walton", "not specified"],
     monitor: ["Samsung", "LG", "Acer", "Dell", "BenQ"],
-    "smart-phone": ["Samsung", "OnePlus", "Xiaomi", "Realme", "Google"],
-    "smart-watch": ["Samsung", "Garmin", "Fitbit", "Amazfit"],
-    "smart-tv": ["Sony", "LG", "Samsung", "Vizio", "TCL"],
+    smart_phone: ["Samsung", "OnePlus", "Xiaomi", "Realme", "Google", "not specified"],
+    smart_watch: ["Samsung", "Garmin", "Fitbit", "Amazfit", "not specified"],
+    smart_tv: ["Sony", "LG", "Samsung", "Vizio", "TCL", "not specified"],
 };
 const AddProduct = () => {
     const addProduct = useAddProduct();
     // handle category
     const [category, setCategory] = useState("");
-    const [selectedColor, setColor] = useState('Select a color');
+    const [color, setColor] = useState('Select a color');
     const [brand, setBrand] = useState('');
 
-  
+
     // react hook form
     const { register,
         handleSubmit,
@@ -121,12 +121,13 @@ const AddProduct = () => {
             return toast.error('error form image server please try again or contact developer')
         }
         console.log(img_url);
+        product.product_price = parseFloat(product.product_price as string)
         product.category = category;
         product.brand = brand;
-        product.color = selectedColor;
+        product.color = color;
         product.posted_date = new Date().toLocaleString();
         product.img = img_url;
-        // console.log(product);
+        console.log(product);
 
         try {
             const response = await addProduct.mutateAsync(product);
@@ -168,7 +169,7 @@ const AddProduct = () => {
             <div className='bg-white p-8 rounded-md shadow-2xl'>
                 <form
                     onSubmit={handleSubmit(onSubmit)}
-                    className='space-y-3'>
+                    className='space-y-6'>
                     {/* row-1 */}
                     <div className='grid md:grid-cols-2 gap-5'>
                         <div>
@@ -180,9 +181,10 @@ const AddProduct = () => {
                         <div className='flex flex-col'>
                             <label>Product Category<span className='text-red-600 font-bold'>*</span></label>
                             <Select
+                                isRequired
                                 onChange={(e) => setCategory(e.target.value)}
                                 // {...register()}
-                                label="Select a category" className="max-w-xs mt-2 sm:mt-0">
+                                label="Select a category" className="w-full h-10 mt-0">
                                 {categories.map((category) => (
                                     <SelectItem key={category.key}>{category.label}</SelectItem>
                                 ))}
@@ -207,7 +209,7 @@ const AddProduct = () => {
                                 <Select
                                     isRequired
                                     onChange={(e) => setBrand(e.target.value)}
-                                    label="Select a Brand" className="max-w-xs mt-2 sm:mt-0">
+                                    label="Select a Brand" className="w-full mt-2 sm:mt-0">
                                     {brandOptions[category as keyof BrandOptions]?.map((brand) => (
                                         <SelectItem key={brand} value={brand}>
                                             {brand}
@@ -284,8 +286,9 @@ const AddProduct = () => {
                                     <div className='flex flex-col'>
                                         <label>color<span className='text-red-600 font-bold'>*</span></label>
                                         <Select
+                                            isRequired
                                             onChange={(e) => setColor(e.target.value)}
-                                            label="Select a color" className="max-w-xs mt-2 sm:mt-0">
+                                            label="Select a color" className="w-full mt-2 sm:mt-0">
                                             <SelectItem key='Black' value='Black' >
                                                 Black
                                             </SelectItem>
@@ -350,8 +353,9 @@ const AddProduct = () => {
                                     <div className='flex flex-col'>
                                         <label>color<span className='text-red-600 font-bold'>*</span></label>
                                         <Select
+                                            isRequired
                                             onChange={(e) => setColor(e.target.value)}
-                                            label="Select a color" className="max-w-xs mt-2 sm:mt-0">
+                                            label="Select a color" className="w-full mt-2 sm:mt-0">
                                             <SelectItem key='Black' value='Black' >
                                                 Black
                                             </SelectItem>
@@ -390,7 +394,7 @@ const AddProduct = () => {
                     {/* Enter field for smart phone */}
                     <section>
                         {
-                            category === 'smart-phone' && <div className='space-y-3'>
+                            category === 'smart_phone' && <div className='space-y-3'>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Model<span className='text-red-600 font-bold'>*</span></label>
@@ -421,7 +425,7 @@ const AddProduct = () => {
                                         <Select
                                             isRequired
                                             onChange={(e) => setColor(e.target.value)}
-                                            label="Select a color" className="max-w-xs mt-2 sm:mt-0">
+                                            label="Select a color" className="w-full mt-2 sm:mt-0">
                                             <SelectItem key='Black' value='Black' >
                                                 Black
                                             </SelectItem>
@@ -482,7 +486,7 @@ const AddProduct = () => {
                     {/* Enter field for smart Watch */}
                     <section>
                         {
-                            category === 'smart-watch' && <div className='space-y-3'>
+                            category === 'smart_watch' && <div className='space-y-3'>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Model<span className='text-red-600 font-bold'>*</span></label>
@@ -513,7 +517,7 @@ const AddProduct = () => {
                                         <Select
                                             isRequired
                                             onChange={(e) => setColor(e.target.value)}
-                                            label="Select a color" className="max-w-xs mt-2 sm:mt-0">
+                                            label="Select a color" className="w-full mt-2 sm:mt-0">
                                             <SelectItem key='Black' value='Black' >
                                                 Black
                                             </SelectItem>
@@ -555,7 +559,7 @@ const AddProduct = () => {
                     {/* Enter field for smart Tv */}
                     <section>
                         {
-                            category === 'smart-tv' && <div className='space-y-3'>
+                            category === 'smart_tv' && <div className='space-y-3'>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Screen Size<span className='text-red-600 font-bold'>*</span></label>
@@ -624,7 +628,7 @@ const AddProduct = () => {
                     <div
                         className='mt-5'>
                         <button
-                            disabled={category === 'Select a category'}
+                            disabled={!category}
                             className='w-full text-center bg-primary py-2 text-white rounded-md disabled:cursor-not-allowed'>Add Product</button>
                     </div>
                 </form >
