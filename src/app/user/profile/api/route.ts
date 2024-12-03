@@ -1,4 +1,3 @@
-// import { useQuery } from "@tanstack/react-query";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -35,12 +34,26 @@ export const useUpdateUserInfo = () => {
         }
     })
 }
-export const updateAddressInfo = async (address_info: object) => {
-    try {
-        const response = await axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/update-address`, address_info)
-        return response.data;
-    }
-    catch (error) {
-        throw error;
-    }
+export const useAddressInfo = () => {
+    return useMutation({
+        mutationFn: async (address_info: object) => {
+            const { data } = await axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/update-address`, address_info)
+            return data;
+        },
+        mutationKey: ['update_address_info'],
+        onSuccess: (data) => {
+            console.log(data);
+            if (data.result.acknowledged) {
+                toast.success('update address successfully')
+            } else {
+
+            }
+        },
+        onError: (error: CustomError) => {
+            // console.log(error?.response?.data?.message)
+            const errorMessage = error.response?.data?.message || error.message || "An unknown error occurred";
+            toast.error(errorMessage);
+
+        }
+    })
 }

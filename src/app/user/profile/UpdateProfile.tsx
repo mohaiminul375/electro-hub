@@ -41,14 +41,14 @@ const UpdateProfile = () => {
     } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (user_info: Inputs) => {
 
-        console.log(user_info)
+        // console.log(user_info)
         user_info.uuid = uuid;
         const res = await updateInfo.mutateAsync(user_info)
-        console.log('response', res)
+        // console.log('response', res)
     }
 
     // Handle loading state
-    console.log(status);
+    // console.log(status);
     // TODO: Loading
     if (status === 'loading') {
         return <Loading></Loading>
@@ -118,6 +118,7 @@ const UpdateProfile = () => {
                         <div className=''>
                             <label>Your Gender<span className='text-red-600 font-bold'>*</span></label>
                             <Select
+                                defaultSelectedKeys={gender ? [gender] : []}
                                 label="Select your Gender"
                                 className=""
                                 value={gender}

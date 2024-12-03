@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { districts } from './api/districts';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSession } from 'next-auth/react';
-import { updateAddressInfo } from './api/route';
+import { updateAddressInfo, useAddressInfo } from './api/route';
 import Loading from '@/app/loading';
 
 type Inputs = {
@@ -12,6 +12,7 @@ type Inputs = {
     division: string | [];
     district: string;
     full_address: string;
+    uuid: string | undefined;
 };
 
 type Divisions = {
@@ -31,6 +32,7 @@ interface Address {
     division?: string;
     full_address?: string;
     district?: string;
+    uuid: string;
 }
 // Division options
 const divisions: Divisions[] = [
@@ -44,9 +46,15 @@ const divisions: Divisions[] = [
     { key: 'Mymensingh', label: 'Mymensingh' },
 ];
 const AddressBook = () => {
+    const addressUpdate = useAddressInfo();
     const { data, status } = useSession();
     const [selectedDivision, setSelectedDivision] = useState<string>();
     // React Hook Form
+    const address_info = data?.user?.address;
+    const uuid = data?.user?.uuid;
+    // console.log('email in address')
+    // console.log(address_info, 'address info')
+    const { division, district, full_address } = address_info as Address || {};
     const {
         register,
         handleSubmit,
@@ -60,12 +68,8 @@ const AddressBook = () => {
     }
 
     // Loading state
-    const address_info = data?.user?.address;
-    const email = data?.user?.email;
-    console.log(email, 'email in address')
-    console.log(address_info, 'address info')
-    const { division, district, full_address } = address_info as Address || {};
-    console.log(division, district, full_address)
+
+    // console.log(division, district, full_address)
 
 
     const filteredDistricts: District[] = districts.filter(
@@ -74,10 +78,10 @@ const AddressBook = () => {
             (!selectedDivision && district.division === division)
     );
     const onSubmit: SubmitHandler<Inputs> = async (address_info: Inputs) => {
-        address_info.email = email || '';
+        address_info.uuid = uuid;
         address_info.division = selectedDivision || '';
-        console.log(address_info);
-        const res = await updateAddressInfo(address_info);
+        console.log(address_info,'before server');
+        const res = await addressUpdate.mutateAsync(address_info);
         console.log('address res', res);
     };
 

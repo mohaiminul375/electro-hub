@@ -17,7 +17,10 @@ declare module "next-auth" {
         image?: string;
         user_name?: string;
         address?: object;
-        uuid: string;
+        uuid?: string;
+        DOB?: string;
+        gender?: string;
+        phone_number?: string;
     }
 
     interface Session {
@@ -26,7 +29,10 @@ declare module "next-auth" {
             image?: string;
             user_name?: string;
             address?: object;
-            uuid: string;
+            uuid?: string;
+            DOB?: string;
+            gender?: string;
+            phone_number?: string;
         } & DefaultSession["user"];
     }
     interface JWT extends DefaultJWT {
@@ -34,13 +40,19 @@ declare module "next-auth" {
         image?: string;
         address?: object;
         uuid: string;
+        DOB?: string;
+        gender?: string;
+        phone_number?: string;
     }
 }
 
 const authOptions: AuthOptions = {
     session: {
-        strategy: 'jwt',
-        maxAge: 259200, // 3 days in seconds
+        strategy: "jwt", // Or "database" if you're using a database
+        maxAge: 3 * 24 * 60 * 60, // 3 days in seconds
+    },
+    jwt: {
+        maxAge: 3 * 24 * 60 * 60, // 3 days in seconds
     },
     providers: [
         CredentialsProvider({
@@ -94,13 +106,19 @@ const authOptions: AuthOptions = {
             if (account && user) {
                 if (account.provider === 'google' || account.provider === 'facebook') {
                     const { socialUser } = await handleSocialAccount(user.email as string);
-                    token.role = socialUser?.role;
                     token.name = user.name;
+                    token.gender = user.gender;
+                    token.DOB = user.DOB;
+                    token.phone_number = user.phone_number;
+                    token.role = socialUser?.role;
                     token.address = user?.address;
                     token.uuid = user.uuid;
                 } else {
-                    token.role = user.role;
                     token.name = user.name;
+                    token.gender = user.gender;
+                    token.DOB = user.DOB;
+                    token.phone_number = user.phone_number;
+                    token.role = user.role;
                     token.address = user?.address;
                     token.uuid = user.uuid;
                 }
@@ -111,7 +129,10 @@ const authOptions: AuthOptions = {
             session.user.role = token.role as string | undefined;
             session.user.name = token.name as string | undefined;
             session.user.address = token.address as object | undefined;
-            session.user.uuid = token.uuid as string ;
+            session.user.uuid = token.uuid as string;
+            session.user.DOB = token.DOB as string;
+            session.user.phone_number = token.phone_number as string;
+            session.user.gender = token.gender as string;
             return session;
         },
     },
