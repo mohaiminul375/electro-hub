@@ -1,5 +1,5 @@
 "use client"
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input, Textarea } from '@nextui-org/react';
+import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input, Select, SelectItem, Textarea } from '@nextui-org/react';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
@@ -9,7 +9,7 @@ import axios from 'axios';
 import { useAddProduct } from './api/route';
 type Inputs = {
     product_name: string;
-    product_price: string;
+    product_price: number;
     laptop_processor: string;
     laptop_ram: string;
     laptop_storage: string;
@@ -24,28 +24,28 @@ type Inputs = {
     monitor_ports: string;
     monitor_description: string;
     // ----------
-    "smart-phone_model": string;
-    "smart-phone_storage": string;
-    "smart-phone_ram": string;
-    "smart-phone-camera": string;
-    "smart-phone_battery": string;
+    smart_phone_model: string;
+    smart_phone_storage: string;
+    smart_phone_ram: string;
+    smart_phone_camera: string;
+    smart_phone_battery: string;
     // "smart-phone_img": string;
-    "smart-phone_description": string;
+    smart_phone_description: string;
 
     // -----------
-    "smart-watch_model": string;
-    "smart-watch_battery": string;
+    smart_watch_model: string;
+    smart_watch_battery: string;
     // "smart-watch_img": string;
-    "smart-watch_features": string;
-    "smart-watch_description": string;
+    smart_watch_features: string;
+    smart_watch_description: string;
     // ---------------
-    "smart-tv_ram": string;
-    "smart-tv_screen": string;
-    "smart-tv_resolution": string;
+    smart_tv_ram: string;
+    smart_tv_screen: string;
+    smart_tv_resolution: string;
     // "smart-tv_img": string;
-    "smart-tv_features": string;
-    "smart-tv_description": string;
-    "smart-tv_ports": string;
+    smart_tv_features: string;
+    smart_tv_description: string;
+    smart_tv_ports: string;
     img: File[];
     posted_date?: string;
     image?: string;
@@ -54,47 +54,51 @@ type Inputs = {
     brand: string;
 
 };
-
+type BrandOptions = {
+    laptop: string[];
+    monitor: string[];
+    "smart-phone": string[];
+    "smart-watch": string[];
+    "smart-tv": string[];
+};
+const categories = [
+    { key: 'laptop', label: 'Laptop' },
+    { key: 'monitor', label: 'Monitor' },
+    { key: 'smart_phone', label: 'Smart-Phone' },
+    { key: 'smart_watch', label: 'Watch-Watch' },
+    { key: 'monitor', label: 'Monitor' },
+    // { key: 'Smart-Phone', label: 'Smart-Phone' },
+]
+const brandOptions: BrandOptions = {
+    laptop: ["Dell", "HP", "Asus", "Lenovo", "Walton"],
+    monitor: ["Samsung", "LG", "Acer", "Dell", "BenQ"],
+    "smart-phone": ["Samsung", "OnePlus", "Xiaomi", "Realme", "Google"],
+    "smart-watch": ["Samsung", "Garmin", "Fitbit", "Amazfit"],
+    "smart-tv": ["Sony", "LG", "Samsung", "Vizio", "TCL"],
+};
 const AddProduct = () => {
     const addProduct = useAddProduct();
     // handle category
-    const [selectedCategory, setSelectedCategory] = useState<keyof typeof brandOptions | "Select a category">("Select a category");
-    const [selectedColor, setSelectedColor] = useState('Select a color');
-    const [selectedBrand, setSelectedBrand] = useState('Select a brand');
+    const [category, setCategory] = useState("");
+    const [selectedColor, setColor] = useState('Select a color');
+    const [brand, setBrand] = useState('');
 
-    const handleSelectionChange = (key: keyof typeof brandOptions) => {
-        setSelectedCategory(key);
-        setSelectedBrand("Select a brand");
-    };
-
-    const handleColorChange = (key: string) => {
-        setSelectedColor(key);
-    };
-
-    const brandOptions = {
-        laptop: ["Dell", "HP", "Asus", "Lenovo", "walton"],
-        monitor: ["Samsung", "LG", "Acer", "Dell", "BenQ"],
-        "smart-phone": ["Samsung", "OnePlus", "Xiaomi", "Realme", "Google"],
-        "smart-watch": ["Samsung", "Garmin", "Fitbit", "Amazfit"],
-        "smart-tv": ["Sony", "LG", "Samsung", "Vizio", "TCL"]
-    };
-
+  
     // react hook form
-
     const { register,
         handleSubmit,
         reset, formState: { errors } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (product: Inputs) => {
         // console.log(product)
         // error handling for drop down menue
-        if (selectedCategory == 'Select a category') {
+        if (!category) {
             return toast.error('please input a category')
         }
         // else if (selectedColor === "Select a color") {
         //     return toast.error('please input a color')
 
         // }
-        else if (selectedBrand === "Select a brand") {
+        else if (brand === "Select a brand") {
             return toast.error('please select a brand')
         }
         //    get img
@@ -117,8 +121,8 @@ const AddProduct = () => {
             return toast.error('error form image server please try again or contact developer')
         }
         console.log(img_url);
-        product.category = selectedCategory;
-        product.brand = selectedBrand;
+        product.category = category;
+        product.brand = brand;
         product.color = selectedColor;
         product.posted_date = new Date().toLocaleString();
         product.img = img_url;
@@ -175,47 +179,24 @@ const AddProduct = () => {
                         </div>
                         <div className='flex flex-col'>
                             <label>Product Category<span className='text-red-600 font-bold'>*</span></label>
-                            <Dropdown
-                                aria-required
-                                className='w-full'>
-                                <DropdownTrigger>
-                                    <Button variant="bordered">
-                                        {selectedCategory}
-                                    </Button>
-                                </DropdownTrigger>
-                                <DropdownMenu
-
-                                    aria-label="Single selection example"
-                                    variant="flat"
-                                    disallowEmptySelection
-                                    selectionMode="single"
-                                    // selectedKeys={selectedKeys}
-                                    onSelectionChange={(keys) => {
-                                        const key = Array.from(keys)[0] as keyof typeof brandOptions;
-                                        if (key) {
-                                            handleSelectionChange(key);
-                                        }
-                                    }}
-                                >
-                                    <DropdownItem key="laptop">Laptop</DropdownItem>
-                                    <DropdownItem
-                                        key="monitor">Monitor</DropdownItem>
-                                    <DropdownItem key="smart-phone">Smart Phone</DropdownItem>
-                                    <DropdownItem key="smart-watch">Smart Watch</DropdownItem>
-                                    <DropdownItem key="smart-tv">Smart TV</DropdownItem>
-                                    {/* <DropdownItem  key="accessories">Smart TV</DropdownItem> */}
-                                </DropdownMenu>
-                            </Dropdown>
+                            <Select
+                                onChange={(e) => setCategory(e.target.value)}
+                                // {...register()}
+                                label="Select a category" className="max-w-xs mt-2 sm:mt-0">
+                                {categories.map((category) => (
+                                    <SelectItem key={category.key}>{category.label}</SelectItem>
+                                ))}
+                            </Select>
                         </div>
 
                     </div>
                     {/* row-2 & dynamic start */}
                     {
-                        selectedCategory !== 'Select a category' &&
+                        category &&
                         <div className='grid md:grid-cols-2 gap-5'>
                             <div>
                                 <label>Product Price<span className='text-red-600 font-bold'>*</span></label>
-                                <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter product price'
+                                <Input className='h-10' variant='bordered' type="number" label="" placeholder='Enter product price'
                                     {...register('product_price')}
                                     required
                                 />
@@ -223,25 +204,16 @@ const AddProduct = () => {
                             {/* brand manage */}
                             <div className='flex flex-col'>
                                 <label>Select Brand<span className='text-red-600 font-bold'>*</span></label>
-                                <Dropdown className='w-full'>
-                                    <DropdownTrigger>
-                                        <Button variant="bordered">
-                                            {selectedBrand}
-                                        </Button>
-                                    </DropdownTrigger>
-                                    <DropdownMenu
-                                        aria-label="Single selection example"
-                                        variant="flat"
-                                        disallowEmptySelection
-                                        selectionMode="single"
-                                        // selectedKeys={selectedKeys}
-                                        onSelectionChange={(keys) => setSelectedBrand(Array.from(keys)[0] as string)}
-                                    >
-                                        {brandOptions[selectedCategory]?.map((brand) => (
-                                            <DropdownItem key={brand}>{brand}</DropdownItem>
-                                        ))}
-                                    </DropdownMenu>
-                                </Dropdown>
+                                <Select
+                                    isRequired
+                                    onChange={(e) => setBrand(e.target.value)}
+                                    label="Select a Brand" className="max-w-xs mt-2 sm:mt-0">
+                                    {brandOptions[category as keyof BrandOptions]?.map((brand) => (
+                                        <SelectItem key={brand} value={brand}>
+                                            {brand}
+                                        </SelectItem>
+                                    ))}
+                                </Select>
                             </div>
 
                         </div>
@@ -250,7 +222,7 @@ const AddProduct = () => {
                     {/* laptop */}
                     <section>
                         {
-                            selectedCategory === 'laptop' && (<div className='space-y-3'>
+                            category === 'laptop' && (<div className='space-y-3'>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Processor<span className='text-red-600 font-bold'>*</span></label>
@@ -311,32 +283,23 @@ const AddProduct = () => {
                                     </div>
                                     <div className='flex flex-col'>
                                         <label>color<span className='text-red-600 font-bold'>*</span></label>
-                                        <Dropdown
-                                            aria-required
-                                            className='w-full'>
-                                            <DropdownTrigger>
-                                                <Button variant="bordered">
-                                                    {selectedColor}
-                                                </Button>
-                                            </DropdownTrigger>
-                                            <DropdownMenu
-                                                aria-label="Single selection example"
-                                                variant="flat"
-                                                disallowEmptySelection
-                                                selectionMode="single" onSelectionChange={(keys) => {
-                                                    const key = Array.from(keys)[0] as string;
-                                                    if (key) {
-                                                        handleColorChange(key);
-                                                    }
-                                                }}
-                                            >
-                                                <DropdownItem key="black">Black</DropdownItem>
-                                                <DropdownItem
-                                                    key="white">White</DropdownItem>
-                                                <DropdownItem key="gray">Gray</DropdownItem>
-                                                <DropdownItem key="blue">Blue</DropdownItem>
-                                            </DropdownMenu>
-                                        </Dropdown>
+                                        <Select
+                                            onChange={(e) => setColor(e.target.value)}
+                                            label="Select a color" className="max-w-xs mt-2 sm:mt-0">
+                                            <SelectItem key='Black' value='Black' >
+                                                Black
+                                            </SelectItem>
+                                            <SelectItem key='white' value='White' >
+                                                White
+                                            </SelectItem>
+                                            <SelectItem key='gray' value='Gray' >
+                                                Gray
+                                            </SelectItem>
+                                            <SelectItem key='blue' value='Blue' >
+                                                Blue
+                                            </SelectItem>
+
+                                        </Select>
                                     </div>
 
                                 </div>
@@ -358,7 +321,7 @@ const AddProduct = () => {
                     {/* Enter field for monitor monitor */}
                     <section>
                         {
-                            selectedCategory === 'monitor' && <div className='space-y-3'>
+                            category === 'monitor' && <div className='space-y-3'>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Screen Size<span className='text-red-600 font-bold'>*</span></label>
@@ -386,31 +349,19 @@ const AddProduct = () => {
                                     </div>
                                     <div className='flex flex-col'>
                                         <label>color<span className='text-red-600 font-bold'>*</span></label>
-                                        <Dropdown
-                                            aria-required
-                                            className='w-full'>
-                                            <DropdownTrigger>
-                                                <Button variant="bordered">
-                                                    {selectedColor}
-                                                </Button>
-                                            </DropdownTrigger>
-                                            <DropdownMenu
-                                                aria-label="Single selection example"
-                                                variant="flat"
-                                                disallowEmptySelection
-                                                selectionMode="single" onSelectionChange={(keys) => {
-                                                    const key = Array.from(keys)[0] as string;
-                                                    if (key) {
-                                                        handleColorChange(key);
-                                                    }
-                                                }}
-                                            >
-                                                <DropdownItem key="black">Black</DropdownItem>
-                                                <DropdownItem
-                                                    key="white">White</DropdownItem>
-                                                <DropdownItem key="gray">Gray</DropdownItem>
-                                            </DropdownMenu>
-                                        </Dropdown>
+                                        <Select
+                                            onChange={(e) => setColor(e.target.value)}
+                                            label="Select a color" className="max-w-xs mt-2 sm:mt-0">
+                                            <SelectItem key='Black' value='Black' >
+                                                Black
+                                            </SelectItem>
+                                            <SelectItem key='white' value='White' >
+                                                White
+                                            </SelectItem>
+                                            <SelectItem key='gray' value='Gray' >
+                                                Gray
+                                            </SelectItem>
+                                        </Select>
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
@@ -439,12 +390,12 @@ const AddProduct = () => {
                     {/* Enter field for smart phone */}
                     <section>
                         {
-                            selectedCategory === 'smart-phone' && <div className='space-y-3'>
+                            category === 'smart-phone' && <div className='space-y-3'>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Model<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone model'
-                                            {...register('smart-phone_model')}
+                                            {...register('smart_phone_model')}
                                             required
                                         />
                                     </div>
@@ -452,7 +403,7 @@ const AddProduct = () => {
                                         <label>Storage
                                             <span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone Storage'
-                                            {...register('smart-phone_storage')}
+                                            {...register('smart_phone_storage')}
                                             required
                                         />
                                     </div>
@@ -461,45 +412,37 @@ const AddProduct = () => {
                                     <div>
                                         <label>Ram<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage'
-                                            {...register('smart-phone_ram')}
+                                            {...register('smart_phone_ram')}
                                             required
                                         />
                                     </div>
                                     <div className='flex flex-col'>
                                         <label>color<span className='text-red-600 font-bold'>*</span></label>
-                                        <Dropdown
-                                            aria-required
-                                            className='w-full'>
-                                            <DropdownTrigger>
-                                                <Button variant="bordered">
-                                                    {selectedColor}
-                                                </Button>
-                                            </DropdownTrigger>
-                                            <DropdownMenu
-                                                aria-label="Single selection example"
-                                                variant="flat"
-                                                disallowEmptySelection
-                                                selectionMode="single" onSelectionChange={(keys) => {
-                                                    const key = Array.from(keys)[0] as string;
-                                                    if (key) {
-                                                        handleColorChange(key);
-                                                    }
-                                                }}
-                                            >
-                                                <DropdownItem key="black">Black</DropdownItem>
-                                                <DropdownItem
-                                                    key="white">White</DropdownItem>
-                                                <DropdownItem key="gray">Gray</DropdownItem>
-                                                <DropdownItem key="blue">Blue</DropdownItem>
-                                            </DropdownMenu>
-                                        </Dropdown>
+                                        <Select
+                                            isRequired
+                                            onChange={(e) => setColor(e.target.value)}
+                                            label="Select a color" className="max-w-xs mt-2 sm:mt-0">
+                                            <SelectItem key='Black' value='Black' >
+                                                Black
+                                            </SelectItem>
+                                            <SelectItem key='white' value='White' >
+                                                White
+                                            </SelectItem>
+                                            <SelectItem key='gray' value='Gray' >
+                                                Gray
+                                            </SelectItem>
+                                            <SelectItem key='blue' value='Blue' >
+                                                Blue
+                                            </SelectItem>
+
+                                        </Select>
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div className=''>
                                         <label>Camera<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter camera info'
-                                            {...register('smart-phone-camera')}
+                                            {...register('smart_phone_camera')}
                                             required
                                         />
                                     </div>
@@ -507,12 +450,11 @@ const AddProduct = () => {
                                         <div className=''>
                                             <label>Battery<span className='text-red-600 font-bold'>*</span></label>
                                             <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter battery info'
-                                                {...register('smart-phone_battery')}
+                                                {...register('smart_phone_battery')}
                                                 required
                                             />
                                         </div>
                                     </div>
-
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
@@ -529,7 +471,7 @@ const AddProduct = () => {
                                         <label>Description<span className='text-red-600 font-bold'>*</span></label>
                                         <Textarea
                                             placeholder="Enter smart-phone description"
-                                            {...register('smart-phone_description')}
+                                            {...register('smart_phone_description')}
                                             required
                                         />
                                     </div>
@@ -540,12 +482,12 @@ const AddProduct = () => {
                     {/* Enter field for smart Watch */}
                     <section>
                         {
-                            selectedCategory === 'smart-watch' && <div className='space-y-3'>
+                            category === 'smart-watch' && <div className='space-y-3'>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Model<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter watch model'
-                                            {...register('smart-watch_model')}
+                                            {...register('smart_watch_model')}
                                             required
                                         />
                                     </div>
@@ -553,7 +495,7 @@ const AddProduct = () => {
                                         <label>Battery
                                             <span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone Storage'
-                                            {...register('smart-watch_battery')}
+                                            {...register('smart_watch_battery')}
                                             required
                                         />
                                     </div>
@@ -568,38 +510,31 @@ const AddProduct = () => {
                                     </div>
                                     <div className='flex flex-col'>
                                         <label>color<span className='text-red-600 font-bold'>*</span></label>
-                                        <Dropdown
-                                            aria-required
-                                            className='w-full'>
-                                            <DropdownTrigger>
-                                                <Button variant="bordered">
-                                                    {selectedColor}
-                                                </Button>
-                                            </DropdownTrigger>
-                                            <DropdownMenu
-                                                aria-label="Single selection example"
-                                                variant="flat"
-                                                disallowEmptySelection
-                                                selectionMode="single" onSelectionChange={(keys) => {
-                                                    const key = Array.from(keys)[0] as string;
-                                                    if (key) {
-                                                        handleColorChange(key);
-                                                    }
-                                                }}
-                                            >
-                                                <DropdownItem key="black">Black</DropdownItem>
-                                                <DropdownItem
-                                                    key="white">White</DropdownItem>
-                                                <DropdownItem key="gray">Gray</DropdownItem>
-                                            </DropdownMenu>
-                                        </Dropdown>
+                                        <Select
+                                            isRequired
+                                            onChange={(e) => setColor(e.target.value)}
+                                            label="Select a color" className="max-w-xs mt-2 sm:mt-0">
+                                            <SelectItem key='Black' value='Black' >
+                                                Black
+                                            </SelectItem>
+                                            <SelectItem key='white' value='White' >
+                                                White
+                                            </SelectItem>
+                                            <SelectItem key='gray' value='Gray' >
+                                                Gray
+                                            </SelectItem>
+                                            <SelectItem key='blue' value='Blue' >
+                                                Blue
+                                            </SelectItem>
+
+                                        </Select>
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div className=''>
                                         <label>Features<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter Features'
-                                            {...register('smart-watch_features')}
+                                            {...register('smart_watch_features')}
                                             required
                                         />
                                     </div>
@@ -609,7 +544,7 @@ const AddProduct = () => {
                                         <label>Description<span className='text-red-600 font-bold'>*</span></label>
                                         <Textarea
                                             placeholder="Enter smart-watch description"
-                                            {...register('smart-watch_description')}
+                                            {...register('smart_watch_description')}
                                             required
                                         />
                                     </div>
@@ -620,12 +555,12 @@ const AddProduct = () => {
                     {/* Enter field for smart Tv */}
                     <section>
                         {
-                            selectedCategory === 'smart-tv' && <div className='space-y-3'>
+                            category === 'smart-tv' && <div className='space-y-3'>
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Screen Size<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen size'
-                                            {...register('smart-tv_screen')}
+                                            {...register('smart_tv_screen')}
                                             required
                                         />
                                     </div>
@@ -633,7 +568,7 @@ const AddProduct = () => {
                                         <label>Resolution
                                             <span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution'
-                                            {...register('smart-tv_resolution')}
+                                            {...register('smart_tv_resolution')}
                                             required
                                         />
                                     </div>
@@ -649,7 +584,7 @@ const AddProduct = () => {
                                     <div className=''>
                                         <label>Ram<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage'
-                                            {...register('smart-tv_ram')}
+                                            {...register('smart_tv_ram')}
                                             required
                                         />
                                     </div>
@@ -658,7 +593,7 @@ const AddProduct = () => {
                                     <div className=''>
                                         <label>Features<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter Features'
-                                            {...register('smart-tv_features')}
+                                            {...register('smart_tv_features')}
                                             required
                                         />
                                     </div>
@@ -666,7 +601,7 @@ const AddProduct = () => {
                                         <div className=''>
                                             <label>Ports<span className='text-red-600 font-bold'>*</span></label>
                                             <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ports info'
-                                                {...register('smart-tv_ports')}
+                                                {...register('smart_tv_ports')}
                                                 required
                                             />
                                         </div>
@@ -678,7 +613,7 @@ const AddProduct = () => {
                                         <label>Description<span className='text-red-600 font-bold'>*</span></label>
                                         <Textarea
                                             placeholder="Enter smart-tv description"
-                                            {...register('smart-tv_description')}
+                                            {...register('smart_tv_description')}
                                             required
                                         />
                                     </div>
@@ -689,13 +624,13 @@ const AddProduct = () => {
                     <div
                         className='mt-5'>
                         <button
-                            disabled={selectedCategory === 'Select a category'}
+                            disabled={category === 'Select a category'}
                             className='w-full text-center bg-primary py-2 text-white rounded-md disabled:cursor-not-allowed'>Add Product</button>
                     </div>
-                </form>
+                </form >
 
-            </div>
-        </section>
+            </div >
+        </section >
     );
 };
 

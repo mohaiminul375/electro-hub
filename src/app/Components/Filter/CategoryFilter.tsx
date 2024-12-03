@@ -31,10 +31,10 @@ interface FilterProp {
     setBrand: (value: string) => void;
     setColor: (value: string) => void;
     setPriceSort: (value: string) => void;
-    category: unknown;
+    category: string;
 }
 
-const CategoryFilter = ({ setPriceSort, setBrand, setColor, category  }: FilterProp) => {
+const CategoryFilter = ({ setPriceSort, setBrand, setColor, category }: FilterProp) => {
     return (
         <section className="py-6 px-4 bg-gray-50 rounded-md shadow-md">
             <div className="space-y-6 sm:space-y-0 sm:flex sm:space-x-6 sm:justify-between">
@@ -62,7 +62,7 @@ const CategoryFilter = ({ setPriceSort, setBrand, setColor, category  }: FilterP
                         onChange={(e) => setBrand(e.target.value)}
                         className="max-w-xs mt-2 sm:mt-0"
                     >
-                        {brandOptions[category]?.map((brand) => (
+                        {brandOptions[category as keyof BrandOptions]?.map((brand) => (
                             <SelectItem key={brand} value={brand}>
                                 {brand}
                             </SelectItem>
