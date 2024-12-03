@@ -169,7 +169,7 @@ const Page = () => {
 
                     {/* Actions */}
                     <div className="flex justify-evenly gap-4 mt-2">
-                        <Link href={`/edit/${_id}`} className="bg-primary w-full text-center py-2 text-white font-semibold rounded-md">
+                        <Link href={`/admin-dashboard/update-product/${_id}`} className="bg-primary w-full text-center py-2 text-white font-semibold rounded-md">
                             Edit
                         </Link>
                         <button
