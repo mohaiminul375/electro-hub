@@ -4,6 +4,7 @@ type userType = {
     password: string
 }
 // TODO: tanstack needed
+// login with email and password
 export const handleLogin = async ({ email, password }: userType) => {
     try {
         const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/login`, { email, password });
@@ -14,7 +15,7 @@ export const handleLogin = async ({ email, password }: userType) => {
     }
 
 }
-
+// create user with social account
 export const createSocialAccount = async (user: object) => {
     try {
         const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/social-account`, user);

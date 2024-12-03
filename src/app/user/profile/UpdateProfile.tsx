@@ -2,52 +2,58 @@ import { Input, Select, SelectItem } from '@nextui-org/react';
 import { useSession } from 'next-auth/react';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { updateUserInfo } from './api/route';
+import { useUpdateUserInfo } from './api/route';
 import Loading from '@/app/loading';
 type Inputs = {
-    name: string | undefined;
-    email: string | undefined;
+    name?: string | undefined;
+    email?: string | undefined;
     phone_number?: string | undefined;
-    DOB: string | undefined;
-    gender: string | undefined;
+    DOB?: string | undefined;
+    gender?: string | undefined;
+    user_info?: object;
+    uuid: string;
 }
 interface User {
     role?: string;
     image?: string;
-    user_name?: string;
-    name?: string | null;
+    name?: string | undefined;
     email?: string | null;
     phone_number?: string;
     gender?: string;
     DOB?: string;
+    uuid: string;
 }
 type Gender = {
     key: string,
     label: string,
 }
 const UpdateProfile = () => {
+    const updateInfo = useUpdateUserInfo();
+    const { data, status } = useSession();
+    const user = data?.user as User;
+    const { name, email, phone_number, gender, DOB, uuid } = user || {};
     // react hook form
     const {
         register,
         handleSubmit,
-        watch, reset,
+        // reset,
         formState: { errors }
     } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (user_info: Inputs) => {
 
         console.log(user_info)
-        const res = await updateUserInfo(user_info)
+        user_info.uuid = uuid;
+        const res = await updateInfo.mutateAsync(user_info)
         console.log('response', res)
     }
-    const { data, status } = useSession();
+
     // Handle loading state
     console.log(status);
     // TODO: Loading
     if (status === 'loading') {
         return <Loading></Loading>
     }
-    const user = data?.user as User;
-    const { user_name, email, phone_number, gender, DOB } = user || {};
+
 
     // genders
     const genders: Gender[] = [
@@ -69,7 +75,7 @@ const UpdateProfile = () => {
                             variant='bordered'
                             type="text"
                             label=""
-                            defaultValue={user_name}
+                            defaultValue={name}
                             placeholder='input your name'
                             {...register('name')}
                             required

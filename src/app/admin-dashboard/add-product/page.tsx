@@ -1,5 +1,5 @@
 "use client"
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input, Select, SelectItem, Textarea } from '@nextui-org/react';
+import { Input, Select, SelectItem, Textarea } from '@nextui-org/react';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';

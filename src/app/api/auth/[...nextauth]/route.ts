@@ -1,4 +1,4 @@
-import { createSocialAccount, handleLogin, handleSocialAccount, handleSocialLogin } from "@/app/login/api/route";
+import { createSocialAccount, handleLogin, handleSocialAccount, } from "@/app/login/api/route";
 import NextAuth, { Account, AuthOptions, DefaultSession, DefaultUser, Session, User } from "next-auth";
 import { DefaultJWT, JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -17,6 +17,7 @@ declare module "next-auth" {
         image?: string;
         user_name?: string;
         address?: object;
+        uuid: string;
     }
 
     interface Session {
@@ -25,12 +26,14 @@ declare module "next-auth" {
             image?: string;
             user_name?: string;
             address?: object;
+            uuid: string;
         } & DefaultSession["user"];
     }
     interface JWT extends DefaultJWT {
         role?: string;
         image?: string;
         address?: object;
+        uuid: string;
     }
 }
 
@@ -94,10 +97,12 @@ const authOptions: AuthOptions = {
                     token.role = socialUser?.role;
                     token.name = user.name;
                     token.address = user?.address;
+                    token.uuid = user.uuid;
                 } else {
                     token.role = user.role;
                     token.name = user.name;
                     token.address = user?.address;
+                    token.uuid = user.uuid;
                 }
             }
             return token;
@@ -106,6 +111,7 @@ const authOptions: AuthOptions = {
             session.user.role = token.role as string | undefined;
             session.user.name = token.name as string | undefined;
             session.user.address = token.address as object | undefined;
+            session.user.uuid = token.uuid as string ;
             return session;
         },
     },
