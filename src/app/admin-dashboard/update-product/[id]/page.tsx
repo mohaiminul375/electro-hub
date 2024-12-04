@@ -5,8 +5,12 @@ import Loading from "@/app/loading";
 import { Input, Select, SelectItem, Textarea } from "@nextui-org/react";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
+import { SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useUpdateProduct } from "./api/route";
 // import { Input } from "postcss";
-type Input = {
+type Inputs = {
     product_name: string;
     product_price: number | string;
     laptop_processor: string;
@@ -51,6 +55,7 @@ type Input = {
     category: string;
     color: string;
     brand: string;
+    update_info: object;
 
 }
 type BrandOptions = {
@@ -78,12 +83,17 @@ const brandOptions: BrandOptions = {
 const Page = () => {
     const { id } = useParams();
     const { data: details, isLoading, isError, error } = useGetProductDetails(id);
+    const update_product = useUpdateProduct(id);
+    const { register,
+        handleSubmit,
+        reset, formState: { errors } } = useForm<Inputs>();
+
     // Handle loading state
     if (isLoading) return <Loading />;
     // Handle error state
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
     const {
-        _id,
+        // _id,
         product_name,
         product_price,
         laptop_processor,
@@ -107,7 +117,6 @@ const Page = () => {
         smart_phone_battery,
         // "smart-phone_img": string;
         smart_phone_description,
-
         // -----------
         smart_watch_model,
         smart_watch_battery,
@@ -130,7 +139,29 @@ const Page = () => {
         brand,
 
     } = details;
+    const onSubmit: SubmitHandler<Inputs> = async (update_info: Inputs) => {
+        const isExistedImage = update_info.img;
+        if (isExistedImage) {
+            const image = { image: update_info.img[0] }
+            // generate img
+            const { data: res } = await axios.post(`https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMG_API}`, image, {
+                headers: { "content-type": "multipart/form-data" },
+            });
+            // get url form image bb
+            const img_url = res.data.display_url;
+            if (!img_url) {
+                return toast.error('error form image server please try again or contact developer')
+            }
+            console.log(img_url);
+            update_info.img = img_url
+        }
+        update_info.product_price = parseFloat(update_info.product_price as string);
+        console.log(update_info);
+        const res = await update_product.mutateAsync(update_info);
+        console.log(res);
 
+
+    }
     console.log(category, color)
     return (
         <section>
@@ -156,7 +187,7 @@ const Page = () => {
             {/* form */}
             <div className='bg-white p-8 rounded-md shadow-2xl'>
                 <form
-                    // onSubmit={handleSubmit(onSubmit)}
+                    onSubmit={handleSubmit(onSubmit)}
                     className='space-y-6'>
                     {/* row-1 */}
                     <div className='grid md:grid-cols-2 gap-5'>
@@ -165,7 +196,7 @@ const Page = () => {
                             <Input
                                 defaultValue={product_name}
                                 className='h-10' variant='bordered' type="text" label="" placeholder='Enter product name' required
-                            // {...register('product_name')}
+                                {...register('product_name')}
                             />
                         </div>
                         <div className='flex flex-col'>
@@ -174,7 +205,7 @@ const Page = () => {
                                 defaultSelectedKeys={category ? [category] : []}
                                 isRequired
                                 // onChange={(e) => setCategory(e.target.value)}
-                                // {...register()}
+                                {...register('category')}
                                 label="Select a category" className="w-full h-10 mt-0">
                                 {categories.map((category) => (
                                     <SelectItem key={category.key}>{category.label}</SelectItem>
@@ -192,7 +223,7 @@ const Page = () => {
                                 <Input
                                     defaultValue={product_price}
                                     className='h-10' variant='bordered' type="number" label="" placeholder='Enter product price'
-                                    // {...register('product_price')}
+                                    {...register('product_price')}
                                     required
                                 />
                             </div>
@@ -201,6 +232,7 @@ const Page = () => {
                                 <label>Select Brand<span className='text-red-600 font-bold'>*</span></label>
                                 <Select
                                     defaultSelectedKeys={brand ? [brand] : []}
+                                    {...register('brand')}
                                     isRequired
                                     // onChange={(e) => setBrand(e.target.value)}
                                     label="Select a Brand" className="w-full mt-2 sm:mt-0">
@@ -225,7 +257,7 @@ const Page = () => {
                                         <Input
                                             defaultValue={laptop_processor}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter processor configuration'
-                                        // {...register('laptop_processor')}
+                                            {...register('laptop_processor')}
                                         />
                                     </div>
                                     <div>
@@ -233,7 +265,7 @@ const Page = () => {
                                         <Input
                                             defaultValue={laptop_ram}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage'
-                                            // {...register('laptop_ram')}
+                                            {...register('laptop_ram')}
                                             required
                                         />
                                     </div>
@@ -243,10 +275,10 @@ const Page = () => {
                                     <div>
                                         <label>Storage<span className='text-red-600 font-bold'>*</span></label>
                                         <Input
-                                            defaultValue={laptop_processor}
+                                            defaultValue={laptop_storage}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter 
                                     storage'
-                                            // {...register('laptop_storage')}
+                                            {...register('laptop_storage')}
                                             required />
                                     </div>
                                     <div>
@@ -254,7 +286,7 @@ const Page = () => {
                                         <Input
                                             defaultValue={laptop_display}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter display info'
-                                            // {...register('laptop_display')}
+                                            {...register('laptop_display')}
 
                                             required
                                         />
@@ -267,7 +299,7 @@ const Page = () => {
                                         <Input
                                             defaultValue={laptop_battery}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter battery info'
-                                            // {...register('laptop_battery')}
+                                            {...register('laptop_battery')}
                                             required
                                         />
                                     </div>
@@ -276,7 +308,7 @@ const Page = () => {
                                         <Input
                                             defaultValue={laptop_ports}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter port availability'
-                                            // {...register('laptop_ports')}
+                                            {...register('laptop_ports')}
                                             required
                                         />
                                     </div>
@@ -285,13 +317,14 @@ const Page = () => {
                                     <div>
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
-                                            // {...register('img')}
+                                            {...register('img')}
                                             required
                                         />
                                     </div>
                                     <div className='flex flex-col'>
                                         <label>color<span className='text-red-600 font-bold'>*</span></label>
                                         <Select
+                                            {...register('color')}
                                             defaultSelectedKeys={color ? [color] : []}
                                             isRequired
                                             // onChange={(e) => setColor(e.target.value)}
@@ -319,7 +352,7 @@ const Page = () => {
                                         <Textarea
                                             defaultValue={laptop_description}
                                             placeholder="Enter laptop description"
-                                            // {...register('laptop_description')}
+                                            {...register('laptop_description')}
                                             required
                                         />
                                     </div>
@@ -339,7 +372,7 @@ const Page = () => {
                                         <Input
                                             defaultValue={monitor_screen}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen size'
-                                            // {...register('monitor_screen')}
+                                            {...register('monitor_screen')}
                                             required
                                         />
                                     </div>
@@ -349,7 +382,7 @@ const Page = () => {
                                         <Input
                                             defaultValue={monitor_resolution}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution'
-                                            // {...register('monitor_resolution')}
+                                            {...register('monitor_resolution')}
                                             required
                                         />
                                     </div>
@@ -360,7 +393,7 @@ const Page = () => {
                                         <Input
                                             defaultValue={monitor_ports}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter ports info'
-                                            // {...register('monitor_ports')}
+                                            {...register('monitor_ports')}
                                             required
                                         />
                                     </div>
@@ -369,6 +402,7 @@ const Page = () => {
                                         <Select
                                             defaultSelectedKeys={color ? [color] : []}
                                             isRequired
+                                            {...register('color')}
                                             // onChange={(e) => setColor(e.target.value)}
                                             label="Select a color" className="w-full mt-2 sm:mt-0">
                                             <SelectItem key='Black' value='Black' >
@@ -387,7 +421,7 @@ const Page = () => {
                                     <div>
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder=''
-                                            // {...register('img')}
+                                            {...register('img')}
                                             required
                                         />
                                     </div>
@@ -399,7 +433,7 @@ const Page = () => {
                                         <Textarea
                                             defaultValue={monitor_description}
                                             placeholder="Enter laptop description"
-                                            // {...register('monitor_description')}
+                                            {...register('monitor_description')}
                                             required
                                         />
                                     </div>
@@ -417,7 +451,7 @@ const Page = () => {
                                         <Input
                                             defaultValue={smart_phone_model}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone model'
-                                            // {...register('smart_phone_model')}
+                                            {...register('smart_phone_model')}
                                             required
                                         />
                                     </div>
@@ -427,7 +461,7 @@ const Page = () => {
                                         <Input
                                             defaultValue={smart_phone_storage}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone Storage'
-                                            // {...register('smart_phone_storage')}
+                                            {...register('smart_phone_storage')}
                                             required
                                         />
                                     </div>
@@ -438,13 +472,14 @@ const Page = () => {
                                         <Input
                                             defaultValue={smart_phone_ram}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage'
-                                            // {...register('smart_phone_ram')}
+                                            {...register('smart_phone_ram')}
                                             required
                                         />
                                     </div>
                                     <div className='flex flex-col'>
                                         <label>color<span className='text-red-600 font-bold'>*</span></label>
                                         <Select
+                                            {...register('color')}
                                             defaultSelectedKeys={color ? [color] : []}
                                             isRequired
                                             // onChange={(e) => setColor(e.target.value)}
@@ -471,7 +506,7 @@ const Page = () => {
                                         <Input
                                             defaultValue={smart_phone_camera}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter camera info'
-                                            // {...register('smart_phone_camera')}
+                                            {...register('smart_phone_camera')}
                                             required
                                         />
                                     </div>
@@ -481,7 +516,7 @@ const Page = () => {
                                             <Input
                                                 defaultValue={smart_phone_battery}
                                                 className='h-10' variant='bordered' type="text" label="" placeholder='Enter battery info'
-                                                // {...register('smart_phone_battery')}
+                                                {...register('smart_phone_battery')}
                                                 required
                                             />
                                         </div>
@@ -491,7 +526,7 @@ const Page = () => {
                                     <div>
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
-                                            // {...register('img')}
+                                            {...register('img')}
                                             required
                                         />
                                     </div>
@@ -503,7 +538,7 @@ const Page = () => {
                                         <Textarea
                                             defaultValue={smart_phone_description}
                                             placeholder="Enter smart-phone description"
-                                            // {...register('smart_phone_description')}
+                                            {...register('smart_phone_description')}
                                             required
                                         />
                                     </div>
@@ -521,7 +556,7 @@ const Page = () => {
                                         <Input
                                             defaultValue={smart_watch_model}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter watch model'
-                                            // {...register('smart_watch_model')}
+                                            {...register('smart_watch_model')}
                                             required
                                         />
                                     </div>
@@ -531,7 +566,7 @@ const Page = () => {
                                         <Input
                                             defaultValue={smart_watch_battery}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone Storage'
-                                            // {...register('smart_watch_battery')}
+                                            {...register('smart_watch_battery')}
                                             required
                                         />
                                     </div>
@@ -542,13 +577,14 @@ const Page = () => {
                                         <Input
 
                                             className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
-                                            // {...register('img')}
+                                            {...register('img')}
                                             required
                                         />
                                     </div>
                                     <div className='flex flex-col'>
                                         <label>color<span className='text-red-600 font-bold'>*</span></label>
                                         <Select
+                                            {...register('color')}
                                             defaultSelectedKeys={color ? [color] : []}
                                             isRequired
                                             // onChange={(e) => setColor(e.target.value)}
@@ -575,7 +611,7 @@ const Page = () => {
                                         <Input
                                             defaultValue={smart_watch_features}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter Features'
-                                            // {...register('smart_watch_features')}
+                                            {...register('smart_watch_features')}
                                             required
                                         />
                                     </div>
@@ -586,7 +622,7 @@ const Page = () => {
                                         <Textarea
                                             defaultValue={smart_watch_description}
                                             placeholder="Enter smart-watch description"
-                                            // {...register('smart_watch_description')}
+                                            {...register('smart_watch_description')}
                                             required
                                         />
                                     </div>
@@ -604,7 +640,7 @@ const Page = () => {
                                         <Input
                                             defaultValue={smart_tv_screen}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen size'
-                                            // {...register('smart_tv_screen')}
+                                            {...register('smart_tv_screen')}
                                             required
                                         />
                                     </div>
@@ -614,7 +650,7 @@ const Page = () => {
                                         <Input
                                             defaultValue={smart_tv_resolution}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution'
-                                            // {...register('smart_tv_resolution')}
+                                            {...register('smart_tv_resolution')}
                                             required
                                         />
                                     </div>
@@ -623,7 +659,7 @@ const Page = () => {
                                     <div>
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
-                                            // {...register('img')}
+                                            {...register('img')}
                                             required
                                         />
                                     </div>
@@ -632,7 +668,7 @@ const Page = () => {
                                         <Input
                                             defaultValue={smart_tv_ram}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage'
-                                            // {...register('smart_tv_ram')}
+                                            {...register('smart_tv_ram')}
                                             required
                                         />
                                     </div>
@@ -643,8 +679,8 @@ const Page = () => {
                                         <Input
                                             defaultValue={smart_tv_features}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter Features'
-                                        // {...register('smart_tv_features')}
-                                        // required
+                                            {...register('smart_tv_features')}
+                                            required
                                         />
                                     </div>
                                     <div>
@@ -653,7 +689,7 @@ const Page = () => {
                                             <Input
                                                 defaultValue={smart_tv_ports}
                                                 className='h-10' variant='bordered' type="text" label="" placeholder='Enter ports info'
-                                                // {...register('smart_tv_ports')}
+                                                {...register('smart_tv_ports')}
                                                 required
                                             />
                                         </div>
@@ -666,7 +702,7 @@ const Page = () => {
                                         <Textarea
                                             defaultValue={smart_tv_description}
                                             placeholder="Enter smart-tv description"
-                                            // {...register('smart_tv_description')}
+                                            {...register('smart_tv_description')}
                                             required
                                         />
                                     </div>
