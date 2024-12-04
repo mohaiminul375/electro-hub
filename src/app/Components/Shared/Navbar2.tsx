@@ -1,5 +1,5 @@
 "use client"
-import { NavbarBrand, NavbarContent, NavbarItem, Link, Navbar, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, Dropdown, DropdownTrigger, DropdownItem, DropdownMenu, Avatar } from "@nextui-org/react";
+import { NavbarBrand, NavbarContent, NavbarItem, Navbar, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, Dropdown, DropdownTrigger, DropdownItem, DropdownMenu, Avatar } from "@nextui-org/react";
 import Image from "next/image";
 import { Kalam, Protest_Revolution, Sevillana } from "next/font/google";
 import React, { useEffect, useState } from "react";
@@ -8,6 +8,7 @@ import { signOut, useSession } from "next-auth/react";
 import { FaCartPlus, FaHome, FaSearch, FaUserCircle } from "react-icons/fa";
 import { BiSupport } from "react-icons/bi";
 import { MdAdminPanelSettings, MdArrowDropDownCircle } from "react-icons/md";
+import Link from "next/link";
 // import path from "path";
 
 interface NavItems {
@@ -127,7 +128,9 @@ export default function Nav2() {
                             <MdAdminPanelSettings className="text-2xl md:text-3xl" />
                         </Link>
                         <BiSupport className="text-2xl md:text-3xl" />
-                        <FaCartPlus className="text-2xl md:text-3xl" />
+                        <Link color="foreground" href="/cart">
+                            <FaCartPlus className="text-2xl md:text-3xl" />
+                        </Link>
                         {
                             session?.data ?
                                 <Dropdown placement="bottom-end">

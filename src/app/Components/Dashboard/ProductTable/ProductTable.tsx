@@ -1,6 +1,6 @@
 import { useDeleteProduct } from '@/app/admin-dashboard/manage-product/api/rote';
 import Link from 'next/link';
-import { FaEye, FaTrash } from 'react-icons/fa';
+import { FaEye, FaPencilAlt, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 interface TableItem {
@@ -54,18 +54,33 @@ const ProductTable = ({ product, idx }: ProductTableProps) => {
             <td className="px-4 py-2">
                 {brand || "not found"}
             </td>
-            <td className="px-4 py-2">
+            <td className="px-4 py-2 flex items-center gap-4">
+                {/* Edit Icon */}
+                <Link href={`update-product/${_id}`}>
+                    <FaPencilAlt
+                        className="text-white bg-primary rounded-full text-3xl p-2 hover:bg-primary-dark transition-all"
+                        title="Edit Product"
+                    />
+                </Link>
 
-                <button
-                    // onClick={() => handleDelete(_id)}
-                    className="flex gap-3 ml-2 text-red-600 hover:text-red-900">
-                    <Link href={`product-details/${_id}`}>  <FaEye title="view details" className="text-white bg-primary rounded-full text-3xl p-2 " /></Link>
-                    <FaTrash
-                        onClick={() => handleDeleteProduct(_id)}
-                        title="delete user" className="text-white bg-red-700 rounded-full text-3xl p-2 " />
-                </button>
+
+                {/* View Details Button */}
+                <Link href={`product-details/${_id}`}>
+                    <FaEye
+                        title="View Details"
+                        className="text-white bg-primary rounded-full text-3xl p-2 hover:bg-primary-dark transition-all"
+                    />
+                </Link>
+
+                {/* Delete Button */}
+                <FaTrash
+                    onClick={() => handleDeleteProduct(_id)}
+                    title="Delete Product"
+                    className="text-white bg-red-700 rounded-full text-3xl p-2 hover:bg-red-900 transition-all cursor-pointer"
+                />
             </td>
-        </tr>
+
+        </tr >
     );
 };
 

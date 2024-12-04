@@ -30,6 +30,27 @@ const Page = () => {
         ...specs
     } = details;
 
+
+    // add To cart
+    const handleAddToCart = () => {
+        // user validation
+
+        // get Product
+        const cartItem = {
+            // uuid:
+            // email:
+            _id: _id,
+            product_name: product_name,
+            category: category,
+            brand: brand,
+            color: color,
+            price: product_price,
+        }
+        console.log(cartItem)
+
+    }
+
+
     const renderSpecifications = () => {
         switch (category) {
             case "laptop":
@@ -153,6 +174,11 @@ const Page = () => {
 
                     {/* Actions */}
                     <div className="flex justify-evenly gap-4 mt-2">
+                        <button
+                            onClick={() => handleAddToCart()}
+                            className="w-full bg-primary text-center text-white py-2 rounded-md">
+                            Add To Cart
+                        </button>
                         {/* <Link href={`/edit/${_id}`} className="bg-primary w-full text-center py-2 text-white font-semibold rounded-md">
                             Edit
                         </Link>

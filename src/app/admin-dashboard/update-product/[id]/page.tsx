@@ -133,7 +133,7 @@ const Page = () => {
         smart_tv_features,
         smart_tv_description,
         smart_tv_ports,
-        // img,
+        img,
         // posted_date,
         // image,
         category,
@@ -143,7 +143,7 @@ const Page = () => {
     } = details;
     const onSubmit: SubmitHandler<Inputs> = async (update_info: Inputs) => {
         const isExistedImage = update_info.img;
-        if (isExistedImage) {
+        if (!isExistedImage) {
             const image = { image: update_info.img[0] }
             // generate img
             const { data: res } = await axios.post(`https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMG_API}`, image, {
@@ -157,7 +157,8 @@ const Page = () => {
             console.log(img_url);
             update_info.img = img_url
         }
-        update_info.product_price = parseFloat(update_info.product_price as string);
+        update_info.img =img;
+            update_info.product_price = parseFloat(update_info.product_price as string);
         console.log(update_info);
         const res = await update_product.mutateAsync(update_info);
         console.log(res);
@@ -320,7 +321,7 @@ const Page = () => {
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
                                             {...register('img')}
-                                            required
+
                                         />
                                     </div>
                                     <div className='flex flex-col'>
@@ -424,7 +425,7 @@ const Page = () => {
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder=''
                                             {...register('img')}
-                                            required
+
                                         />
                                     </div>
 
@@ -529,7 +530,7 @@ const Page = () => {
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
                                             {...register('img')}
-                                            required
+
                                         />
                                     </div>
 
@@ -580,7 +581,7 @@ const Page = () => {
 
                                             className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
                                             {...register('img')}
-                                            required
+
                                         />
                                     </div>
                                     <div className='flex flex-col'>
@@ -661,7 +662,7 @@ const Page = () => {
                                     <div>
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
-                                            {...register('img')}
+
                                             required
                                         />
                                     </div>
