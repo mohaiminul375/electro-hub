@@ -131,7 +131,7 @@ const Page = () => {
 
     } = details;
 
-    console.log(category, brand)
+    console.log(category, color)
     return (
         <section>
             <div className="mt-6">
@@ -162,7 +162,9 @@ const Page = () => {
                     <div className='grid md:grid-cols-2 gap-5'>
                         <div>
                             <label>Product Name<span className='text-red-600 font-bold'>*</span></label>
-                            <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter product name' required
+                            <Input
+                                defaultValue={product_name}
+                                className='h-10' variant='bordered' type="text" label="" placeholder='Enter product name' required
                             // {...register('product_name')}
                             />
                         </div>
@@ -187,7 +189,9 @@ const Page = () => {
                         <div className='grid md:grid-cols-2 gap-5'>
                             <div>
                                 <label>Product Price<span className='text-red-600 font-bold'>*</span></label>
-                                <Input className='h-10' variant='bordered' type="number" label="" placeholder='Enter product price'
+                                <Input
+                                    defaultValue={product_price}
+                                    className='h-10' variant='bordered' type="number" label="" placeholder='Enter product price'
                                     // {...register('product_price')}
                                     required
                                 />
@@ -218,13 +222,17 @@ const Page = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Processor<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter processor configuration'
+                                        <Input
+                                            defaultValue={laptop_processor}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter processor configuration'
                                         // {...register('laptop_processor')}
                                         />
                                     </div>
                                     <div>
                                         <label>RAM<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage'
+                                        <Input
+                                            defaultValue={laptop_ram}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage'
                                             // {...register('laptop_ram')}
                                             required
                                         />
@@ -234,14 +242,18 @@ const Page = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Storage<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter 
+                                        <Input
+                                            defaultValue={laptop_processor}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter 
                                     storage'
                                             // {...register('laptop_storage')}
                                             required />
                                     </div>
                                     <div>
                                         <label>Display<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter display info'
+                                        <Input
+                                            defaultValue={laptop_display}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter display info'
                                             // {...register('laptop_display')}
 
                                             required
@@ -252,14 +264,18 @@ const Page = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Battery<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter battery info'
+                                        <Input
+                                            defaultValue={laptop_battery}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter battery info'
                                             // {...register('laptop_battery')}
                                             required
                                         />
                                     </div>
                                     <div className=''>
                                         <label>Ports<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter port availability'
+                                        <Input
+                                            defaultValue={laptop_ports}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter port availability'
                                             // {...register('laptop_ports')}
                                             required
                                         />
@@ -283,13 +299,13 @@ const Page = () => {
                                             <SelectItem key='Black' value='Black' >
                                                 Black
                                             </SelectItem>
-                                            <SelectItem key='white' value='White' >
+                                            <SelectItem key='White' value='White' >
                                                 White
                                             </SelectItem>
-                                            <SelectItem key='gray' value='Gray' >
+                                            <SelectItem key='Gray' value='Gray' >
                                                 Gray
                                             </SelectItem>
-                                            <SelectItem key='blue' value='Blue' >
+                                            <SelectItem key='Blue' value='Blue' >
                                                 Blue
                                             </SelectItem>
 
@@ -301,6 +317,7 @@ const Page = () => {
                                     <div>
                                         <label>Description<span className='text-red-600 font-bold'>*</span></label>
                                         <Textarea
+                                            defaultValue={laptop_description}
                                             placeholder="Enter laptop description"
                                             // {...register('laptop_description')}
                                             required
@@ -319,7 +336,9 @@ const Page = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Screen Size<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen size'
+                                        <Input
+                                            defaultValue={monitor_screen}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen size'
                                             // {...register('monitor_screen')}
                                             required
                                         />
@@ -327,7 +346,9 @@ const Page = () => {
                                     <div className=''>
                                         <label>Screen Resolution
                                             <span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution'
+                                        <Input
+                                            defaultValue={monitor_resolution}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution'
                                             // {...register('monitor_resolution')}
                                             required
                                         />
@@ -336,7 +357,9 @@ const Page = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Ports<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ports info'
+                                        <Input
+                                            defaultValue={monitor_ports}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter ports info'
                                             // {...register('monitor_ports')}
                                             required
                                         />
@@ -374,6 +397,7 @@ const Page = () => {
                                     <div>
                                         <label>Description<span className='text-red-600 font-bold'>*</span></label>
                                         <Textarea
+                                            defaultValue={monitor_description}
                                             placeholder="Enter laptop description"
                                             // {...register('monitor_description')}
                                             required
@@ -390,7 +414,9 @@ const Page = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Model<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone model'
+                                        <Input
+                                            defaultValue={smart_phone_model}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone model'
                                             // {...register('smart_phone_model')}
                                             required
                                         />
@@ -398,7 +424,9 @@ const Page = () => {
                                     <div className=''>
                                         <label>Storage
                                             <span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone Storage'
+                                        <Input
+                                            defaultValue={smart_phone_storage}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone Storage'
                                             // {...register('smart_phone_storage')}
                                             required
                                         />
@@ -407,7 +435,9 @@ const Page = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Ram<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage'
+                                        <Input
+                                            defaultValue={smart_phone_ram}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage'
                                             // {...register('smart_phone_ram')}
                                             required
                                         />
@@ -422,13 +452,13 @@ const Page = () => {
                                             <SelectItem key='Black' value='Black' >
                                                 Black
                                             </SelectItem>
-                                            <SelectItem key='white' value='White' >
+                                            <SelectItem key='White' value='White' >
                                                 White
                                             </SelectItem>
-                                            <SelectItem key='gray' value='Gray' >
+                                            <SelectItem key='Gray' value='Gray' >
                                                 Gray
                                             </SelectItem>
-                                            <SelectItem key='blue' value='Blue' >
+                                            <SelectItem key='Blue' value='Blue' >
                                                 Blue
                                             </SelectItem>
 
@@ -438,7 +468,9 @@ const Page = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div className=''>
                                         <label>Camera<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter camera info'
+                                        <Input
+                                            defaultValue={smart_phone_camera}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter camera info'
                                             // {...register('smart_phone_camera')}
                                             required
                                         />
@@ -446,7 +478,9 @@ const Page = () => {
                                     <div>
                                         <div className=''>
                                             <label>Battery<span className='text-red-600 font-bold'>*</span></label>
-                                            <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter battery info'
+                                            <Input
+                                                defaultValue={smart_phone_battery}
+                                                className='h-10' variant='bordered' type="text" label="" placeholder='Enter battery info'
                                                 // {...register('smart_phone_battery')}
                                                 required
                                             />
@@ -467,6 +501,7 @@ const Page = () => {
                                     <div>
                                         <label>Description<span className='text-red-600 font-bold'>*</span></label>
                                         <Textarea
+                                            defaultValue={smart_phone_description}
                                             placeholder="Enter smart-phone description"
                                             // {...register('smart_phone_description')}
                                             required
@@ -483,7 +518,9 @@ const Page = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Model<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter watch model'
+                                        <Input
+                                            defaultValue={smart_watch_model}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter watch model'
                                             // {...register('smart_watch_model')}
                                             required
                                         />
@@ -491,7 +528,9 @@ const Page = () => {
                                     <div className=''>
                                         <label>Battery
                                             <span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone Storage'
+                                        <Input
+                                            defaultValue={smart_watch_battery}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter phone Storage'
                                             // {...register('smart_watch_battery')}
                                             required
                                         />
@@ -500,7 +539,9 @@ const Page = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
+                                        <Input
+
+                                            className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
                                             // {...register('img')}
                                             required
                                         />
@@ -515,13 +556,13 @@ const Page = () => {
                                             <SelectItem key='Black' value='Black' >
                                                 Black
                                             </SelectItem>
-                                            <SelectItem key='white' value='White' >
+                                            <SelectItem key='White' value='White' >
                                                 White
                                             </SelectItem>
-                                            <SelectItem key='gray' value='Gray' >
+                                            <SelectItem key='Gray' value='Gray' >
                                                 Gray
                                             </SelectItem>
-                                            <SelectItem key='blue' value='Blue' >
+                                            <SelectItem key='Blue' value='Blue' >
                                                 Blue
                                             </SelectItem>
 
@@ -531,7 +572,9 @@ const Page = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div className=''>
                                         <label>Features<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter Features'
+                                        <Input
+                                            defaultValue={smart_watch_features}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter Features'
                                             // {...register('smart_watch_features')}
                                             required
                                         />
@@ -541,6 +584,7 @@ const Page = () => {
                                     <div>
                                         <label>Description<span className='text-red-600 font-bold'>*</span></label>
                                         <Textarea
+                                            defaultValue={smart_watch_description}
                                             placeholder="Enter smart-watch description"
                                             // {...register('smart_watch_description')}
                                             required
@@ -557,7 +601,9 @@ const Page = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div>
                                         <label>Screen Size<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen size'
+                                        <Input
+                                            defaultValue={smart_tv_screen}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen size'
                                             // {...register('smart_tv_screen')}
                                             required
                                         />
@@ -565,7 +611,9 @@ const Page = () => {
                                     <div className=''>
                                         <label>Resolution
                                             <span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution'
+                                        <Input
+                                            defaultValue={smart_tv_resolution}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter screen resolution'
                                             // {...register('smart_tv_resolution')}
                                             required
                                         />
@@ -581,7 +629,9 @@ const Page = () => {
                                     </div>
                                     <div className=''>
                                         <label>Ram<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage'
+                                        <Input
+                                            defaultValue={smart_tv_ram}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage'
                                             // {...register('smart_tv_ram')}
                                             required
                                         />
@@ -590,7 +640,9 @@ const Page = () => {
                                 <div className='grid md:grid-cols-2 gap-5'>
                                     <div className=''>
                                         <label>Features<span className='text-red-600 font-bold'>*</span></label>
-                                        <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter Features'
+                                        <Input
+                                            defaultValue={smart_tv_features}
+                                            className='h-10' variant='bordered' type="text" label="" placeholder='Enter Features'
                                         // {...register('smart_tv_features')}
                                         // required
                                         />
@@ -598,7 +650,9 @@ const Page = () => {
                                     <div>
                                         <div className=''>
                                             <label>Ports<span className='text-red-600 font-bold'>*</span></label>
-                                            <Input className='h-10' variant='bordered' type="text" label="" placeholder='Enter ports info'
+                                            <Input
+                                                defaultValue={smart_tv_ports}
+                                                className='h-10' variant='bordered' type="text" label="" placeholder='Enter ports info'
                                                 // {...register('smart_tv_ports')}
                                                 required
                                             />
@@ -610,7 +664,7 @@ const Page = () => {
                                     <div>
                                         <label>Description<span className='text-red-600 font-bold'>*</span></label>
                                         <Textarea
-
+                                            defaultValue={smart_tv_description}
                                             placeholder="Enter smart-tv description"
                                             // {...register('smart_tv_description')}
                                             required
