@@ -16,12 +16,12 @@ const Page = () => {
     const [priceSort, setPriceSort] = useState<string>('');
 
     const categoryMap: Record<string, string> = {
-        "smart-phone": "Smart Phone",
-        "laptop": "Laptop",
-        "smart-watch": "Smart Watch",
-        "monitor": 'Monitor',
-        'smart-tv': 'Smart Tv',
-        'accessories': 'Accessories'
+        smart_phone: "Smart Phone",
+        laptop: "Laptop",
+        smart_watch: "Smart Watch",
+        monitor: 'Monitor',
+        smart_tv: 'Smart Tv',
+        accessories: 'Accessories'
     };
 
     // Fallback to category itself if not mapped
@@ -49,6 +49,12 @@ const Page = () => {
                     setPriceSort={setPriceSort}
                     category={category}
                 />
+            </div>
+            <div>
+                {
+                    products.length === 0 &&
+                    < h2 className='text-center text-xl text-red-700 font-semibold'>No Product Fount</h2>
+                }
             </div>
             <div className='grid md:grid-cols-3 lg:grid-cols-4 gap-8'>
                 {

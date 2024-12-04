@@ -33,13 +33,19 @@ const Page = () => {
                     setPriceSort={setPriceSort}
                 ></ProductFilter>
             </div>
+            <div>
+                {
+                    products.length === 0 &&
+                    < h2 className='text-center text-xl text-red-700 font-semibold'>No Product Fount</h2>
+                }
+            </div>
             {/* Products */}
             <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
                 {products.map((item) => (
                     <ProductCard key={item._id} item={item} />
                 ))}
             </div>
-        </section>
+        </section >
     );
 };
 

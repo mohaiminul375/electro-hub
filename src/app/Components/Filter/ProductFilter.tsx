@@ -30,10 +30,10 @@ const brands = [
 ]
 const colors = [
     { key: '', label: "Default" },
-    { key: 'black', label: "Black" },
-    { key: 'white', label: "White" },
-    { key: 'gray', label: "Gray" },
-    { key: 'blue', label: "Blue" },
+    { key: 'Black', label: "Black" },
+    { key: 'White', label: "White" },
+    { key: 'Gray', label: "Gray" },
+    { key: 'Blue', label: "Blue" },
 
 ]
 // type

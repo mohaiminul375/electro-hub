@@ -87,7 +87,9 @@ const AddProduct = () => {
     // react hook form
     const { register,
         handleSubmit,
-        reset, formState: { errors } } = useForm<Inputs>();
+        reset,
+        //  formState: { errors } 
+        } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (product: Inputs) => {
         // console.log(product)
         // error handling for drop down menue
@@ -139,6 +141,7 @@ const AddProduct = () => {
                 toast.error('Operation failed. Try later.');
             }
         } catch (error) {
+            throw error
             toast.error('An error occurred while adding the product');
         }
     };
@@ -292,13 +295,13 @@ const AddProduct = () => {
                                             <SelectItem key='Black' value='Black' >
                                                 Black
                                             </SelectItem>
-                                            <SelectItem key='white' value='White' >
+                                            <SelectItem key='White' value='White' >
                                                 White
                                             </SelectItem>
-                                            <SelectItem key='gray' value='Gray' >
+                                            <SelectItem key='Gray' value='Gray' >
                                                 Gray
                                             </SelectItem>
-                                            <SelectItem key='blue' value='Blue' >
+                                            <SelectItem key='Blue' value='Blue' >
                                                 Blue
                                             </SelectItem>
 
@@ -359,10 +362,10 @@ const AddProduct = () => {
                                             <SelectItem key='Black' value='Black' >
                                                 Black
                                             </SelectItem>
-                                            <SelectItem key='white' value='White' >
+                                            <SelectItem key='White' value='White' >
                                                 White
                                             </SelectItem>
-                                            <SelectItem key='gray' value='Gray' >
+                                            <SelectItem key='Gray' value='Gray' >
                                                 Gray
                                             </SelectItem>
                                         </Select>
@@ -429,13 +432,13 @@ const AddProduct = () => {
                                             <SelectItem key='Black' value='Black' >
                                                 Black
                                             </SelectItem>
-                                            <SelectItem key='white' value='White' >
+                                            <SelectItem key='White' value='White' >
                                                 White
                                             </SelectItem>
-                                            <SelectItem key='gray' value='Gray' >
+                                            <SelectItem key='Gray' value='Gray' >
                                                 Gray
                                             </SelectItem>
-                                            <SelectItem key='blue' value='Blue' >
+                                            <SelectItem key='Blue' value='Blue' >
                                                 Blue
                                             </SelectItem>
 
@@ -521,13 +524,13 @@ const AddProduct = () => {
                                             <SelectItem key='Black' value='Black' >
                                                 Black
                                             </SelectItem>
-                                            <SelectItem key='white' value='White' >
+                                            <SelectItem key='White' value='White' >
                                                 White
                                             </SelectItem>
-                                            <SelectItem key='gray' value='Gray' >
+                                            <SelectItem key='Gray' value='Gray' >
                                                 Gray
                                             </SelectItem>
-                                            <SelectItem key='blue' value='Blue' >
+                                            <SelectItem key='Blue' value='Blue' >
                                                 Blue
                                             </SelectItem>
 

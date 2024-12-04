@@ -86,7 +86,9 @@ const Page = () => {
     const update_product = useUpdateProduct(id);
     const { register,
         handleSubmit,
-        reset, formState: { errors } } = useForm<Inputs>();
+        // reset, 
+        // formState: { errors }
+    } = useForm<Inputs>();
 
     // Handle loading state
     if (isLoading) return <Loading />;
@@ -103,7 +105,7 @@ const Page = () => {
         laptop_ports,
         laptop_battery,
         laptop_description,
-        laptop_img,
+        // laptop_img,
         // -------------
         monitor_screen,
         monitor_resolution,
@@ -131,9 +133,9 @@ const Page = () => {
         smart_tv_features,
         smart_tv_description,
         smart_tv_ports,
-        img,
-        posted_date,
-        image,
+        // img,
+        // posted_date,
+        // image,
         category,
         color,
         brand,
@@ -408,10 +410,10 @@ const Page = () => {
                                             <SelectItem key='Black' value='Black' >
                                                 Black
                                             </SelectItem>
-                                            <SelectItem key='white' value='White' >
+                                            <SelectItem key='White' value='White' >
                                                 White
                                             </SelectItem>
-                                            <SelectItem key='gray' value='Gray' >
+                                            <SelectItem key='Gray' value='Gray' >
                                                 Gray
                                             </SelectItem>
                                         </Select>

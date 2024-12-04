@@ -4,9 +4,9 @@ import { Select, SelectItem } from "@nextui-org/react";
 type BrandOptions = {
     laptop: string[];
     monitor: string[];
-    "smart-phone": string[];
-    "smart-watch": string[];
-    "smart-tv": string[];
+    smart_phone: string[];
+    smart_watch: string[];
+    smart_tv: string[];
 };
 
 const prices = [
@@ -15,16 +15,18 @@ const prices = [
 ];
 
 const colors = [
-    { key: 'black', label: "Black" },
+    { key: 'Black', label: "Black" },
     { key: 'white', label: "White" },
+    { key: 'Gray', label: "Gray" },
+    { key: 'Blue', label: "Blue" },
 ];
 
 const brandOptions: BrandOptions = {
     laptop: ["Dell", "HP", "Asus", "Lenovo", "Walton"],
     monitor: ["Samsung", "LG", "Acer", "Dell", "BenQ"],
-    "smart-phone": ["Samsung", "OnePlus", "Xiaomi", "Realme", "Google"],
-    "smart-watch": ["Samsung", "Garmin", "Fitbit", "Amazfit"],
-    "smart-tv": ["Sony", "LG", "Samsung", "Vizio", "TCL"],
+    smart_phone: ["Samsung", "OnePlus", "Xiaomi", "Realme", "Google"],
+    smart_watch: ["Samsung", "Garmin", "Fitbit", "Amazfit"],
+    smart_tv: ["Sony", "LG", "Samsung", "Vizio", "TCL"],
 };
 
 interface FilterProp {
