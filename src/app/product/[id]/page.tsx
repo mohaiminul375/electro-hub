@@ -3,10 +3,19 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import { GetProductDetails } from "./api/rote";
 import Loading from "@/app/loading";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import toast from "react-hot-toast";
+import { useAddToCart } from "@/app/cart/api/route";
+import { spec } from "node:test/reporters";
 // Define the Details type
 
 
 const Page = () => {
+    const addToCart = useAddToCart()
+    const { data } = useSession();
+    // const { uuid, email } = data;
+    // const router = useRouter('')
     const { id } = useParams();
     const { data: details, isLoading, isError, error } = GetProductDetails(id);
 
@@ -32,21 +41,26 @@ const Page = () => {
 
 
     // add To cart
-    const handleAddToCart = () => {
+    const handleAddToCart = async () => {
         // user validation
-
+        // if (data) {
+        //     return toast.error('please login first')
+        // }
         // get Product
         const cartItem = {
-            // uuid:
-            // email:
-            _id: _id,
+            uuid: '9er494',
+            email: 'demo@gmail.com',
+            product_id: _id,
             product_name: product_name,
             category: category,
             brand: brand,
             color: color,
             price: product_price,
+            img: img
         }
-        console.log(cartItem)
+        console.log(cartItem);
+        const res = await addToCart.mutateAsync(cartItem);
+        console.log(res)
 
     }
 
