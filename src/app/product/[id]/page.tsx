@@ -43,9 +43,9 @@ const Page = () => {
     // add To cart
     const handleAddToCart = async () => {
         // user validation
-        // if (data) {
-        //     return toast.error('please login first')
-        // }
+        if (!data) {
+            return toast.error('please login first')
+        }
         // get Product
         const cartItem = {
             uuid: '9er494',
