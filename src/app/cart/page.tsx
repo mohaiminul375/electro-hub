@@ -1,76 +1,110 @@
-'use client'
+'use client';
 import React from 'react';
 import { useGetCartProduct } from './api/route';
+import Image from 'next/image';
 
-const Page = () => {
+// Type definitions for cart data
+interface CartItem {
+    product_id: string;
+    img: string;
+    name: string;
+    color: string;
+    brand: string;
+    price: number;
+    quantity: number;
+}
+
+interface CartData {
+    items: CartItem[];
+}
+
+interface ErrorData {
+    message: string;
+}
+
+const Page: React.FC = () => {
     const uuid = '9er494';
     const { data, isLoading, isError, error } = useGetCartProduct(uuid);
+
     if (isLoading) {
-        return <p>loading....</p>
+        return <p>loading....</p>;
     }
-    console.log(data)
+
+    if (isError) {
+        const errMessage = (error as ErrorData)?.message || 'Something went wrong!';
+        return <p>{errMessage}</p>;
+    }
+
     return (
         <section className="grid grid-cols-1 md:grid-cols-12 gap-4">
             {/* Cart Items Section */}
-            <div className="md:col-span-8 bg-white border border-gray-200 rounded-md shadow-md">
-                <div className="p-4">
-                    {/* Individual Cart Item */}
-                    <div className="grid grid-cols-12 gap-4 items-center border-b border-gray-300 pb-4 mb-4">
-                        {/* Checkbox */}
-                        <div className="col-span-1 flex justify-center">
-                            <input type="checkbox" className="form-checkbox h-5 w-5 text-primary" />
-                        </div>
+            <section className='md:col-span-8'>
+                {data?.[0]?.items.map((item) => (
+                    <div
+                        key={item.product_id}
+                        className=" bg-white  border-gray-200 shadow-md"
+                    >
+                        <div className="p-4">
+                            {/* Individual Cart Item */}
+                            <div className="grid grid-cols-12 gap-4 items-center border-b border-gray-300 py-2 my-2">
+                                {/* Checkbox */}
+                                <div className="col-span-1 flex justify-center">
+                                    <input type="checkbox" className="form-checkbox h-5 w-5 text-primary" />
+                                </div>
 
-                        {/* Product Image */}
-                        <div className="col-span-2">
-                            {/* <
-                                src="https://via.placeholder.com/80"
-                                alt="Product"
-                                className="w-16 h-16 object-cover rounded-md"
-                            /> */}
-                        </div>
-
-                        {/* Product Details */}
-                        <div className="col-span-4">
-                            <h5 className="text-sm font-medium text-gray-900">Product Name</h5>
-                            <p className="text-sm text-gray-500">Color: Black</p>
-                            <p className="text-sm text-gray-500">Brand: XYZ</p>
-                        </div>
-
-                        {/* Price */}
-                        <div className="col-span-2 text-center">
-                            <p className="text-sm font-medium text-gray-900">$20.00</p>
-                        </div>
-
-                        {/* Quantity */}
-                        <div className="col-span-2 flex justify-center items-center">
-                            <button className="px-2 py-1 text-sm bg-gray-200 rounded-md">-</button>
-                            <span className="mx-2 text-sm">1</span>
-                            <button className="px-2 py-1 text-sm bg-gray-200 rounded-md">+</button>
-                        </div>
-
-                        {/* Delete Button */}
-                        <div className="col-span-1 flex justify-center">
-                            <button className="text-red-500 hover:text-red-700">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth="1.5"
-                                    stroke="currentColor"
-                                    className="w-6 h-6"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M6 18L18 6M6 6l12 12"
+                                {/* Product Image */}
+                                <div className="col-span-2">
+                                    <Image
+                                        src={item.img}
+                                        alt={item.name}
+                                        height={64} // Adjust size accordingly
+                                        width={64}  // Adjust size accordingly
                                     />
-                                </svg>
-                            </button>
+                                </div>
+
+                                {/* Product Details */}
+                                <div className="col-span-4">
+                                    <h5 className="text-base font-medium text-gray-900">{item.product_name}</h5>
+                                    <p className="text-sm text-gray-500">Color: {item.color}</p>
+                                    <p className="text-sm text-gray-500">Brand: {item.brand}</p>
+                                </div>
+
+                                {/* Price */}
+                                <div className="col-span-2 text-center">
+                                    <p className="text-sm font-medium text-gray-900">${item.price.toFixed(2)}</p>
+                                </div>
+
+                                {/* Quantity */}
+                                <div className="col-span-2 flex justify-center items-center">
+                                    <button className="px-2 py-1 text-sm bg-gray-200 rounded-md">-</button>
+                                    <span className="mx-2 text-sm">{item.quantity}</span>
+                                    <button className="px-2 py-1 text-sm bg-gray-200 rounded-md">+</button>
+                                </div>
+
+                                {/* Delete Button */}
+                                <div className="col-span-1 flex justify-center">
+                                    <button className="text-red-500 hover:text-red-700">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth="1.5"
+                                            stroke="currentColor"
+                                            className="w-6 h-6"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M6 18L18 6M6 6l12 12"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                ))}
+            </section>
 
             {/* Order Summary Section */}
             <div className="md:col-span-4 bg-white border border-primary rounded-md shadow-lg">
@@ -104,7 +138,6 @@ const Page = () => {
                 </div>
             </div>
         </section>
-
     );
 };
 
