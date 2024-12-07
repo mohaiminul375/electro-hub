@@ -2,6 +2,7 @@
 import React from 'react';
 import { useGetCartProduct } from './api/route';
 import Image from 'next/image';
+import { Input } from '@nextui-org/react';
 
 // Type definitions for cart data
 interface CartItem {
@@ -22,24 +23,31 @@ interface ErrorData {
     message: string;
 }
 
-const Page: React.FC = () => {
+const Page = () => {
     const uuid = '9er494';
     const { data, isLoading, isError, error } = useGetCartProduct(uuid);
+    // const { _id, items, totalQuantity, totalPrice } = data;
 
     if (isLoading) {
         return <p>loading....</p>;
     }
+    const { items, totalQuantity, totalPrice } = data[0];
 
+    console.log(items)
     if (isError) {
         const errMessage = (error as ErrorData)?.message || 'Something went wrong!';
         return <p>{errMessage}</p>;
     }
+    const handleIncrementDecrement = ({ action, productId }) => {
+        console.log(action, productId);
+    }
+
 
     return (
         <section className="grid grid-cols-1 md:grid-cols-12 gap-4">
             {/* Cart Items Section */}
             <section className='md:col-span-8'>
-                {data?.[0]?.items.map((item) => (
+                {data[0].items?.map((item) => (
                     <div
                         key={item.product_id}
                         className=" bg-white  border-gray-200 shadow-md"
@@ -47,10 +55,7 @@ const Page: React.FC = () => {
                         <div className="p-4">
                             {/* Individual Cart Item */}
                             <div className="grid grid-cols-12 gap-4 items-center border-b border-gray-300 py-2 my-2">
-                                {/* Checkbox */}
-                                <div className="col-span-1 flex justify-center">
-                                    <input type="checkbox" className="form-checkbox h-5 w-5 text-primary" />
-                                </div>
+
 
                                 {/* Product Image */}
                                 <div className="col-span-2">
@@ -76,9 +81,15 @@ const Page: React.FC = () => {
 
                                 {/* Quantity */}
                                 <div className="col-span-2 flex justify-center items-center">
-                                    <button className="px-2 py-1 text-sm bg-gray-200 rounded-md">-</button>
-                                    <span className="mx-2 text-sm">{item.quantity}</span>
-                                    <button className="px-2 py-1 text-sm bg-gray-200 rounded-md">+</button>
+                                    <button
+                                        onClick={() => handleIncrementDecrement({ action: 'minus', productId: item.product_id })}
+                                        className="px-2 py-1 text-sm bg-gray-200 rounded-md">-</button>
+                                    <span className="mx-2 text-sm">
+                                        <Input type="number" value={item.quantity} />
+                                    </span>
+                                    <button
+                                        onClick={() => handleIncrementDecrement({ action: 'plus', productId: item.product_id })}
+                                        className="px-2 py-1 text-sm bg-gray-200 rounded-md">+</button>
                                 </div>
 
                                 {/* Delete Button */}
@@ -116,16 +127,16 @@ const Page: React.FC = () => {
                     {/* Order Details */}
                     <div className="space-y-3">
                         <p className="flex justify-between text-sm text-gray-700">
-                            <span>Subtotal (1 item):</span>
-                            <span>$20.00</span>
+                            <span>Subtotal (<span>{totalQuantity || 0}</span> item):</span>
+                            <span>${totalPrice || 0}</span>
                         </p>
                         <p className="flex justify-between text-sm text-gray-700">
                             <span>Shipping Fee:</span>
-                            <span>$5.00</span>
+                            <span>Free</span>
                         </p>
                         <p className="flex justify-between text-sm text-gray-900 font-semibold">
                             <span>Total:</span>
-                            <span>$25.00</span>
+                            <span>{totalPrice || 0}</span>
                         </p>
                     </div>
                 </div>
