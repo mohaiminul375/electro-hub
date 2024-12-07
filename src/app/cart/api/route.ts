@@ -28,3 +28,17 @@ export const useGetCartProduct = (uuid: string) => {
     })
     return { data, isLoading, isError, error };
 }
+interface updateProp {
+    uuid: string,
+    action: string,
+    productId: string;
+}
+// update quantity
+export const useUpdateQuantity = () => {
+    return useMutation({
+        mutationFn: async ({ uuid, action, productId }: updateProp) => {
+            const { } = await axios.patch(`${process.env.NEXT_PUBLIC_SERVER_PUBLIC}/update-quantity`, { uuid, action, productId })
+        },
+        mutationKey: ['update-quantity']
+    })
+}
