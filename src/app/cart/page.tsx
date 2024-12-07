@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useGetCartProduct, useUpdateQuantity } from './api/route';
 import Image from 'next/image';
 import { Input } from '@nextui-org/react';
+import Link from 'next/link';
 
 interface CartItem {
     product_id: string;
@@ -188,10 +189,14 @@ const Page = () => {
                     </div>
                 </div>
 
-                <div className="p-6 border-t border-gray-200">
-                    <button className="w-full py-3 text-white bg-primary rounded-md hover:bg-primary-dark transition-all">
-                        Checkout
-                    </button>
+                <div className="p-6 border-t border-gray-200 w-full">
+                    <Link
+                        href='/checkout'
+                        className=" py-3 text-white bg-primary rounded-md hover:bg-primary-dark transition-all">
+                        <button className='w-full'>
+                            Checkout
+                        </button>
+                    </Link>
                 </div>
             </div>
         </section>

@@ -37,7 +37,7 @@ interface updateProp {
 export const useUpdateQuantity = () => {
     return useMutation({
         mutationFn: async ({ uuid, action, productId }: updateProp) => {
-            const { } = await axios.patch(`${process.env.NEXT_PUBLIC_SERVER_PUBLIC}/update-quantity`, { uuid, action, productId })
+            const { } = await axios.patch(`${process.env.NEXT_PUBLIC_SERVER_URL}/update-quantity`, { uuid, action, productId })
         },
         mutationKey: ['update-quantity']
     })
