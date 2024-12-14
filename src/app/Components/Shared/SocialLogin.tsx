@@ -1,6 +1,6 @@
 import { signIn, useSession } from 'next-auth/react'
 import Image from 'next/image'
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import React from 'react'
 import toast from 'react-hot-toast';
 

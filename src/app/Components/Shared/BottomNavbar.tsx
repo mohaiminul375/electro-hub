@@ -5,7 +5,9 @@ import Link from 'next/link';
 import React from 'react';
 import { BiSupport } from 'react-icons/bi';
 import { FaCartPlus, FaUserCircle } from 'react-icons/fa';
-import { MdAdminPanelSettings, MdArrowDropDownCircle } from 'react-icons/md';
+import { MdAdminPanelSettings, 
+    // MdArrowDropDownCircle 
+} from 'react-icons/md';
 
 const BottomNavbar = () => {
     const session = useSession();

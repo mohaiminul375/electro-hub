@@ -1,13 +1,15 @@
 "use client"
-import { NavbarBrand, NavbarContent, NavbarItem, Navbar, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, Dropdown, DropdownTrigger, DropdownItem, DropdownMenu, Avatar } from "@nextui-org/react";
+import { NavbarBrand, NavbarContent,  Navbar, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, Dropdown, DropdownTrigger, DropdownItem, DropdownMenu, Avatar } from "@nextui-org/react";
 import Image from "next/image";
-import { Kalam, Protest_Revolution, Sevillana } from "next/font/google";
+import {
+    //  Kalam, Protest_Revolution,
+      Sevillana } from "next/font/google";
 import React, { useEffect, useState } from "react";
-import { RxAvatar } from "react-icons/rx";
+// import { RxAvatar } from "react-icons/rx";
 import { signOut, useSession } from "next-auth/react";
 import { FaCartPlus, FaHome, FaSearch, FaUserCircle } from "react-icons/fa";
 import { BiSupport } from "react-icons/bi";
-import { MdAdminPanelSettings, MdArrowDropDownCircle } from "react-icons/md";
+import { MdAdminPanelSettings } from "react-icons/md";
 import Link from "next/link";
 // import path from "path";
 
@@ -44,7 +46,7 @@ export default function Nav2() {
     // Get user session
     const session = useSession();
     console.log(session)
-    const isAdmin = session?.data?.user?.role === 'admin';
+    // const isAdmin = session?.data?.user?.role === 'admin';
     const user_email = session?.data?.user?.email;
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);

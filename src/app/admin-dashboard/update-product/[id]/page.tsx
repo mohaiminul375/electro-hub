@@ -9,7 +9,6 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useUpdateProduct } from "./api/route";
-// import { Input } from "postcss";
 type Inputs = {
     product_name: string;
     product_price: number | string;
@@ -71,7 +70,6 @@ const categories = [
     { key: 'smart_phone', label: 'Smart-Phone' },
     { key: 'smart_watch', label: 'Smart_Watch' },
     { key: 'smart_tv', label: 'Smart_TV' },
-    // { key: 'Smart-Phone', label: 'Smart-Phone' },
 ]
 const brandOptions: BrandOptions = {
     laptop: ["Dell", "HP", "Asus", "Lenovo", "Walton", "not specified"],
@@ -662,8 +660,6 @@ const Page = () => {
                                     <div>
                                         <label>image<span className='text-red-600 font-bold'>*</span></label>
                                         <Input className='h-10' variant='bordered' type="file" label="" placeholder='Enter battery info'
-
-                                            required
                                         />
                                     </div>
                                     <div className=''>
@@ -672,7 +668,6 @@ const Page = () => {
                                             defaultValue={smart_tv_ram}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter ram storage'
                                             {...register('smart_tv_ram')}
-                                            required
                                         />
                                     </div>
                                 </div>
@@ -683,7 +678,6 @@ const Page = () => {
                                             defaultValue={smart_tv_features}
                                             className='h-10' variant='bordered' type="text" label="" placeholder='Enter Features'
                                             {...register('smart_tv_features')}
-                                            required
                                         />
                                     </div>
                                     <div>
@@ -693,7 +687,6 @@ const Page = () => {
                                                 defaultValue={smart_tv_ports}
                                                 className='h-10' variant='bordered' type="text" label="" placeholder='Enter ports info'
                                                 {...register('smart_tv_ports')}
-                                                required
                                             />
                                         </div>
                                     </div>
@@ -706,7 +699,6 @@ const Page = () => {
                                             defaultValue={smart_tv_description}
                                             placeholder="Enter smart-tv description"
                                             {...register('smart_tv_description')}
-                                            required
                                         />
                                     </div>
                                 </div>

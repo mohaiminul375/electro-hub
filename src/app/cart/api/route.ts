@@ -2,6 +2,14 @@ import { useMutation, useQuery } from "@tanstack/react-query"
 import axios from "axios"
 import toast from "react-hot-toast";
 
+interface CartTypes {
+    items: Array<{ product_id: string, img: string, product_name: string, color: string, brand: string, price: number, quantity: number }>;
+    totalPrice: number;
+    totalQuantity: number;
+}
+
+
+// add to cart
 export const useAddToCart = () => {
     return useMutation({
         mutationFn: async (cartInfo: object) => {
@@ -19,7 +27,7 @@ export const useAddToCart = () => {
 }
 // get cart product for user
 export const useGetCartProduct = (uuid: string) => {
-    const { data, isLoading, isError, error } = useQuery({
+    const { data, isLoading, isError, error } = useQuery<CartTypes[]>({
         queryFn: async () => {
             const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-carts/${uuid}`)
             return data;

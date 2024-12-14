@@ -1,34 +1,12 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-// import { useGetCartProduct, useUpdateQuantity } from './api/route';
 import Image from 'next/image';
-import { Input } from '@nextui-org/react';
 import Link from 'next/link';
 import { useGetCartProduct } from '../cart/api/route';
 
-interface CartItem {
-    product_id: string;
-    img: string;
-    product_name: string;
-    color: string;
-    brand: string;
-    price: number;
-    quantity: number;
-}
-
-interface CartData {
-    items: CartItem[];
-    totalQuantity: number;
-    totalPrice: number;
-}
-
-interface ErrorData {
-    message: string;
-}
 
 const Page = () => {
     const uuid = '9er494';
-    const { data, isLoading, isError, error } = useGetCartProduct(uuid);
+    const { data = [], isLoading, isError, error } = useGetCartProduct(uuid);
     if (isLoading) {
         return <p>loading</p>
     }

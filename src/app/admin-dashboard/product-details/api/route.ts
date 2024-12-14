@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios"
 
-
+// get product details
 export const useGetProductDetails = (id: string | string[]) => {
     const { data, isLoading, isError, error } = useQuery({
         queryFn: async () => {

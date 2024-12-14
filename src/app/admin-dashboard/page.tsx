@@ -2,7 +2,7 @@ import React from 'react'
 import ProductManagement from '../Components/Dashboard/ProductManagement'
 import OrderManagement from '../Components/Dashboard/OrderManagement'
 import UserNReview from '../Components/Dashboard/UserNReview'
-// import { FaArrowLeft } from 'react-icons/fa'
+
 
 export default function page() {
     return (

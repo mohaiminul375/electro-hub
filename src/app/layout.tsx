@@ -3,7 +3,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import { NextUIProvider } from "@nextui-org/react";
-// import Nav from "./Components/Shared/Navbar";
 import AuthProvider from "@/services/AuthProvider";
 import { Toaster } from "react-hot-toast";
 import Footer from "./Components/Shared/Footer";

@@ -12,14 +12,14 @@ interface CartItem {
     color: string;
     brand: string;
     price: number;
-    quantity: number;
+    quantity?: number | string | undefined;
+}
+interface Item {
+    // product_id: number;  // Assuming product_id is a string; change it to a number if needed
+    quantity: string;    // Quantity of the product
+    price: number;       // Price of the product
 }
 
-interface CartData {
-    items: CartItem[];
-    totalQuantity: number;
-    totalPrice: number;
-}
 
 interface ErrorData {
     message: string;
@@ -64,8 +64,8 @@ const Page = () => {
                 if (item.product_id === productId) {
                     const updatedQuantity =
                         action === 'plus'
-                            ? item.quantity + 1
-                            : Math.max(item.quantity - 1, 1); // Prevent negative quantities
+                            ? item.quantity as number + 1
+                            : Math.max(item.quantity as number - 1, 1); // Prevent negative quantities
                     return { ...item, quantity: updatedQuantity };
                 }
                 return item;
@@ -75,9 +75,9 @@ const Page = () => {
             setItems(updatedItems);
 
             // Update totals locally
-            const newTotalQuantity = updatedItems.reduce((acc, curr) => acc + curr.quantity, 0);
+            const newTotalQuantity = updatedItems.reduce((acc, curr) => acc + curr?.quantity as number, 0);
             const newTotalPrice = updatedItems.reduce(
-                (acc, curr) => acc + curr.quantity * curr.price,
+                (acc, curr) => acc + curr?.quantity as number * curr.price,
                 0
             );
             setTotalQuantity(newTotalQuantity);
@@ -144,7 +144,7 @@ const Page = () => {
                                         <Input
                                             readOnly
                                             type="number"
-                                            value={item.quantity}
+                                            value={item.quantity as string}
                                         />
                                     </span>
                                     <button
