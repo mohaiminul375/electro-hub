@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios"
+import toast from "react-hot-toast";
 interface User {
     _id: string;
     name: string;
@@ -32,6 +33,8 @@ export const useDeleteUser = () => {
             if (data.deletedCount > 0) {
                 queryClient.invalidateQueries({ queryKey: ['all-users'] })
             }
+        },onError:()=>{
+            toast.error('operation failed')
         }
     })
 }

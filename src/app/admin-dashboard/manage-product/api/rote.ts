@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 // import toast from "react-hot-toast";
 interface Products {
@@ -34,6 +35,8 @@ export const useDeleteProduct = () => {
                 queryClient.invalidateQueries({ queryKey: ['admin-products'] })
                 queryClient.invalidateQueries({ queryKey: ['all-products'] })
             }
+        }, onError: () => {
+            toast.error('operation failed')
         }
     })
 }
