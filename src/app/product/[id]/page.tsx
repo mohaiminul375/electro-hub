@@ -4,10 +4,8 @@ import Image from "next/image";
 import { GetProductDetails } from "./api/rote";
 import Loading from "@/app/loading";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { useAddToCart } from "@/app/cart/api/route";
-import { spec } from "node:test/reporters";
 // Define the Details type
 
 
@@ -55,7 +53,6 @@ const Page = () => {
             category: category,
             brand: brand,
             color: color,
-            price: product_price,
             img: img
         }
         console.log(cartItem);

@@ -4,6 +4,7 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useUpdateUserInfo } from './api/route';
 import Loading from '@/app/loading';
+import useAuth from '@/app/hook/useAuth';
 type Inputs = {
     name?: string | undefined;
     email?: string | undefined;
@@ -30,7 +31,9 @@ type Gender = {
 const UpdateProfile = () => {
     const updateInfo = useUpdateUserInfo();
     const { data, status } = useSession();
-    const user = data?.user as User;
+    // const user = data?.user as User;
+    const user = useAuth();
+    console.log('user hooks', user)
     const { name, email, phone_number, gender, DOB, uuid } = user || {};
     // react hook form
     const {
