@@ -130,13 +130,14 @@ const Page = () => {
                                 {/* Quantity */}
                                 <div className="col-span-2 flex justify-center items-center">
                                     <button
+                                        disabled={item.quantity === 1}
                                         onClick={() =>
                                             handleIncrementDecrement({
                                                 action: 'minus',
                                                 productId: item.product_id,
                                             })
                                         }
-                                        className="px-2 py-1 text-sm bg-gray-200 rounded-md"
+                                        className="px-2 py-1 text-sm bg-gray-200 rounded-md disabled:cursor-not-allowed"
                                     >
                                         -
                                     </button>

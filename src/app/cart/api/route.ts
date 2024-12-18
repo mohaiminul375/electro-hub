@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 import toast from "react-hot-toast";
 
@@ -11,6 +11,7 @@ interface CartTypes {
 
 // add to cart
 export const useAddToCart = () => {
+    const queryClient = useQueryClient()
     return useMutation({
         mutationFn: async (cartInfo: object) => {
             const { data } = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/cart`, cartInfo);
@@ -19,6 +20,7 @@ export const useAddToCart = () => {
         mutationKey: ['cart'],
         onSuccess: () => {
             toast.success('Product added to cart');
+            queryClient.invalidateQueries({ queryKey: ['cart-details'] })
         },
         onError: () => {
             toast.error('Operation failed try again letter');
@@ -43,10 +45,14 @@ interface updateProp {
 }
 // update quantity
 export const useUpdateQuantity = () => {
+    const queryClient = useQueryClient()
     return useMutation({
         mutationFn: async ({ uuid, action, productId }: updateProp) => {
             const { } = await axios.patch(`${process.env.NEXT_PUBLIC_SERVER_URL}/update-quantity`, { uuid, action, productId })
         },
-        mutationKey: ['update-quantity']
+        mutationKey: ['update-quantity'],
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['cart-details'] })
+        }
     })
 }
