@@ -28,20 +28,31 @@ type Gender = {
     key: string,
     label: string,
 }
+const genders: Gender[] = [
+    { key: "Male", label: "Male" },
+    { key: "Female", label: "Female" },
+    { key: "Custom", label: "Custom" },
+]
 const UpdateProfile = () => {
-    const updateInfo = useUpdateUserInfo();
-    const { data, status } = useSession();
-    // const user = data?.user as User;
-    const user = useAuth();
-    console.log('user hooks', user)
-    const { name, email, phone_number, gender, DOB, uuid } = user || {};
-    // react hook form
     const {
         register,
         handleSubmit,
         // reset,
         formState: { errors }
     } = useForm<Inputs>();
+
+    const updateInfo = useUpdateUserInfo();
+    const user = useAuth();
+    const { data, status } = useSession();
+    if (status === 'loading') {
+        return <Loading></Loading>
+    }
+
+    const { name, email, phone_number, gender, DOB, uuid } = user || {};
+    console.log('user hooks', user)
+    console.log(name, email)
+    // react hook form
+
     const onSubmit: SubmitHandler<Inputs> = async (user_info: Inputs) => {
 
         // console.log(user_info)
@@ -53,17 +64,11 @@ const UpdateProfile = () => {
     // Handle loading state
     // console.log(status);
     // TODO: Loading
-    if (status === 'loading') {
-        return <Loading></Loading>
-    }
 
+    
 
     // genders
-    const genders: Gender[] = [
-        { key: "Male", label: "Male" },
-        { key: "Female", label: "Female" },
-        { key: "Custom", label: "Custom" },
-    ]
+
 
     return (
         <section>
@@ -78,7 +83,7 @@ const UpdateProfile = () => {
                             variant='bordered'
                             type="text"
                             label=""
-                            defaultValue={name}
+                            defaultValue={user?.name}
                             placeholder='input your name'
                             {...register('name')}
                             required
