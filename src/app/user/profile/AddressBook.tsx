@@ -1,10 +1,10 @@
 'use client';
-import { Input, Select, SelectItem, Textarea } from '@nextui-org/react';
+import { Select, SelectItem, Textarea } from '@nextui-org/react';
 import React, { useState } from 'react';
 import { districts } from './api/districts';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSession } from 'next-auth/react';
-import { updateAddressInfo, useAddressInfo } from './api/route';
+import { useAddressInfo } from './api/route';
 import Loading from '@/app/loading';
 import useAuth from '@/app/hook/useAuth';
 

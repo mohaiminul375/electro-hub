@@ -4,6 +4,9 @@ import { useGetCartProduct, useUpdateQuantity } from './api/route';
 import Image from 'next/image';
 import { Input } from '@nextui-org/react';
 import Link from 'next/link';
+import useAuth from '../hook/useAuth';
+import Loading from '../loading';
+import { useSession } from 'next-auth/react';
 
 interface CartItem {
     product_id: string;
@@ -26,7 +29,9 @@ interface ErrorData {
 }
 
 const Page = () => {
-    const uuid = '9er494';
+    // const uuid = '9er494';
+    const { data: session } = useSession();
+    const uuid = session?.user?.uuid
     const { data, isLoading, isError, error } = useGetCartProduct(uuid);
     const updateQuantity = useUpdateQuantity();
     const [items, setItems] = useState<CartItem[]>([]);

@@ -12,6 +12,7 @@ import { useAddToCart } from "@/app/cart/api/route";
 const Page = () => {
     const addToCart = useAddToCart()
     const { data } = useSession();
+    console.log(data?.user)
     // const { uuid, email } = data;
     // const router = useRouter('')
     const { id } = useParams();
@@ -46,12 +47,13 @@ const Page = () => {
         }
         // get Product
         const cartItem = {
-            uuid: '9er494',
-            email: 'demo@gmail.com',
+            uuid: data?.user?.uuid,
+            email: data?.user?.email,
             product_id: _id,
             product_name: product_name,
             category: category,
             brand: brand,
+            price: product_price,
             color: color,
             img: img
         }

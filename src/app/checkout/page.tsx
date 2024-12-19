@@ -2,23 +2,58 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useGetCartProduct } from '../cart/api/route';
-
+import { useSession } from 'next-auth/react';
+import useAuth from '../hook/useAuth';
+import Loading from '../loading';
 
 const Page = () => {
-    const uuid = '9er494';
-    const { data = [], isLoading, isError, error } = useGetCartProduct(uuid);
-    if (isLoading) {
-        return <p>loading</p>
+    const { data: session } = useSession();
+    const uuid = session?.user?.uuid;
+    const user = useAuth();
+    console.log(user, 'user before loading')
+
+    const { data: carts, isLoading, isError, error } = useGetCartProduct(uuid);
+
+    if (!session) {
+        return <p>Please log in to view your cart.</p>;
     }
-    const { items, totalPrice, totalQuantity } = data[0];
+    if (!user?.uuid || isLoading) {
+        return <Loading></Loading>
+    }
+
+    if (isError) {
+        return <p>Error: {error?.message || 'Something went wrong!'}</p>;
+    }
+
+    //destructure address
+    const { division, district, full_address } = user?.address;
+    // Filter the cart for the current user's UUID
+    const userCart = carts?.find(cart => cart.uuid === uuid);
+
+    if (!userCart || userCart.items.length === 0) {
+        return <p>Your cart is empty.</p>;
+    }
+
+    // Extract items and calculate totals
+    const { items } = userCart;
+    const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
+    const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
     return (
         <section className="grid grid-cols-1 md:grid-cols-12 gap-4">
             <div className='md:col-span-8'>
-                {/* userInfo */}
+                {/* User Info */}
                 <div className='bg-white rounded-md p-4'>
-                    <h4>Name: </h4>
-                    <h6>Shipping Address:</h6>
+                    <h4>Name: {user?.name || 'Unknown'}</h4>
+                    <h6>
+                        Shipping Address:
+                        <span className='font-semibold'> Division:</span> <span>{division}</span>,
+                        <span className='font-semibold'> District:</span> <span>{district}</span>,
+                        <span className='font-semibold'> Address:</span> <span>{full_address}</span>
+                    </h6>
                 </div>
+
+                {/* Cart Items */}
                 <div className='mt-3 bg-white rounded-md p-3'>
                     <h3 className='font-semibold'>Total Product: {totalQuantity}</h3>
                     {items.map((item) => (
@@ -56,11 +91,9 @@ const Page = () => {
 
                                     {/* Quantity */}
                                     <div className="col-span-2 flex justify-center items-center">
-
                                         <span className="mx-2 text-sm">
-                                            Quantity:{item.quantity}
+                                            Quantity: {item.quantity}
                                         </span>
-
                                     </div>
                                 </div>
                             </div>
@@ -68,9 +101,10 @@ const Page = () => {
                     ))}
                 </div>
             </div>
+
+            {/* Order Summary */}
             <div className='md:col-span-4'>
-                {/* Order Summary Section */}
-                <div className="md:col-span-4 bg-white border border-primary rounded-md shadow-lg">
+                <div className="bg-white border border-primary rounded-md shadow-lg">
                     <div className="p-6">
                         <h4 className="text-lg font-semibold text-primary mb-4">Order Summary</h4>
                         <hr className="border-t-2 border-primary mb-4" />
@@ -78,11 +112,9 @@ const Page = () => {
                         <div className="space-y-3">
                             <p className="flex justify-between text-sm text-gray-700">
                                 <span>
-                                    Subtotal (<span>
-                                        {totalQuantity || 0}
-                                    </span> items):
+                                    Subtotal (<span>{totalQuantity || 0}</span> items):
                                 </span>
-                                <span>${totalPrice || 0}</span>
+                                <span>${totalPrice.toFixed(2)}</span>
                             </p>
                             <p className="flex justify-between text-sm text-gray-700">
                                 <span>Shipping Fee:</span>
@@ -90,7 +122,7 @@ const Page = () => {
                             </p>
                             <p className="flex justify-between text-sm text-gray-900 font-semibold">
                                 <span>Total:</span>
-                                <span>${totalPrice || 0}</span>
+                                <span>${totalPrice.toFixed(2)}</span>
                             </p>
                         </div>
                     </div>
@@ -98,7 +130,7 @@ const Page = () => {
                     <div className="p-6 border-t border-gray-200 w-full">
                         <Link
                             href='/checkout'
-                            className=" py-3 text-white bg-primary rounded-md hover:bg-primary-dark transition-all">
+                            className="py-3 text-white bg-primary rounded-md hover:bg-primary-dark transition-all">
                             <button className='w-full'>
                                 PROCEED TO PAY
                             </button>
