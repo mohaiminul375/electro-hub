@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSession } from 'next-auth/react';
 import { updateAddressInfo, useAddressInfo } from './api/route';
 import Loading from '@/app/loading';
+import useAuth from '@/app/hook/useAuth';
 
 type Inputs = {
     email: string;
@@ -45,16 +46,8 @@ const divisions: Divisions[] = [
     { key: 'Rangpur', label: 'Rangpur' },
     { key: 'Mymensingh', label: 'Mymensingh' },
 ];
+// Main Function start
 const AddressBook = () => {
-    const addressUpdate = useAddressInfo();
-    const { data, status } = useSession();
-    const [selectedDivision, setSelectedDivision] = useState<string>();
-    // React Hook Form
-    const address_info = data?.user?.address;
-    const uuid = data?.user?.uuid;
-    // console.log('email in address')
-    // console.log(address_info, 'address info')
-    const { division, district, full_address } = address_info as Address || {};
     const {
         register,
         handleSubmit,
@@ -62,14 +55,23 @@ const AddressBook = () => {
     } = useForm<Inputs>({
         mode: 'onBlur', // Trigger validation on blur
     });
-
-    if (status === 'loading') {
-        return <Loading></Loading>;
+    const addressUpdate = useAddressInfo();
+    const { status } = useSession();
+    const [selectedDivision, setSelectedDivision] = useState<string>();
+    // React Hook Form
+    const user = useAuth();
+    console.log(user, 'user before loading')
+    if (!user?.uuid || status == 'loading') {
+        return <Loading></Loading>
     }
+    // console.log('email in address')
+    // console.log(address_info, 'address info')
+    const { division, district, full_address } = user?.address as Address || {};
 
-    // Loading state
 
-    // console.log(division, district, full_address)
+    // if (status === 'loading') {
+    //     return <Loading></Loading>;
+    // }
 
 
     const filteredDistricts: District[] = districts.filter(
@@ -78,9 +80,9 @@ const AddressBook = () => {
             (!selectedDivision && district.division === division)
     );
     const onSubmit: SubmitHandler<Inputs> = async (address_info: Inputs) => {
-        address_info.uuid = uuid;
+        address_info.uuid = user?.uuid;
         address_info.division = selectedDivision || '';
-        console.log(address_info,'before server');
+        console.log(address_info, 'before server');
         const res = await addressUpdate.mutateAsync(address_info);
         console.log('address res', res);
     };

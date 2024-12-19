@@ -3,23 +3,19 @@ import React from 'react';
 import { useGetUserInfo } from './api/route';
 
 const useAuth = () => {
-    const { data: session, status: sessionStatus } = useSession();
-
-    // Always define the UUID, even if session isn't ready
+    const { data: session } = useSession();
+    // get uuid from session
     const uuid = session?.user?.uuid || null;
+    // get user info by uuid
+    const { data: user, isLoading } = useGetUserInfo(uuid);
 
-    // Always call the user fetching hook, but control its behavior with the `enabled` option
-    const { data: user, isLoading } = useGetUserInfo(uuid, {
-        enabled: !!uuid,
-    });
-
-    // Handle loading states
-    if (sessionStatus === 'loading' || isLoading) {
-        return null;
+    // loading
+    if (isLoading) {
+        return <p>loaiding...</p>;
     }
 
     // Return the user or null if unauthenticated or user not found
-    return user || null;
+    return user;
 };
 
 export default useAuth;
