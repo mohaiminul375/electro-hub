@@ -2,11 +2,22 @@
 import dynamic from 'next/dynamic';
 import errorAnimation from '../../public/404-error.json'; // Path to your 404 animation file
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 // Dynamically import the Player component to avoid SSR issues
 const Player = dynamic(() => import('@lottiefiles/react-lottie-player').then(mod => mod.Player), { ssr: false });
 
 export default function NotFound() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    // Set client-side state to true only after component mounts (client-side)
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null; // Return nothing or loading state while the component is mounting on client-side
+  }
   return (
     <section className="flex flex-col items-center justify-center h-screen bg-gray-100 text-center">
       {/* Lottie animation */}
