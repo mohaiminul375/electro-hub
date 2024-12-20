@@ -1,3 +1,4 @@
+'use client'
 // File: pages/404.js or pages/_not-found.js
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
