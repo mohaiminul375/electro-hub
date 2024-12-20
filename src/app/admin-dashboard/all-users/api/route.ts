@@ -10,7 +10,7 @@ interface User {
 }
 
 //Get All user (only admin)
-export const useGetUsers = async () => {
+export const useGetUsers = () => {
     const { data, isLoading, isError, error } = useQuery<User[]>({
         queryFn: async () => {
             const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-users`)
