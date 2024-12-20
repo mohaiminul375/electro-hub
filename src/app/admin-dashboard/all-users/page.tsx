@@ -1,6 +1,6 @@
 'use client';
 import { FaArrowLeft } from "react-icons/fa";
-import { GetUsers } from "./api/route";
+import { useGetUsers } from "./api/route";
 import UserTable from "@/app/Components/Dashboard/UserTable/UserTable";
 import Link from "next/link";
 import Loading from "@/app/loading";
@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 export default function AllUsers() {
     const [isClient, setIsClient] = useState(false);
-    const { data: users = [], isLoading, isError, error } = GetUsers();
+    const { data: users = [], isLoading, isError, error } = useGetUsers();
     useEffect(() => {
         setIsClient(true);
     }, []);
