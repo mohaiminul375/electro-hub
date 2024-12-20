@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    reactStrictMode: true,
     images: {
         remotePatterns: [
             {
@@ -18,6 +19,9 @@ const nextConfig = {
     },
     typescript: {
         ignoreBuildErrors: true,  // This will ignore TypeScript errors during the build
+    },
+    experimental: {
+        modern: true,
     },
 };
 
