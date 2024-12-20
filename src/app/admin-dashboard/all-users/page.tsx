@@ -6,7 +6,7 @@ import Link from "next/link";
 import Loading from "@/app/loading";
 import { useEffect, useState } from "react";
 
-export default function Page() {
+export default function AllUsers() {
     const [isClient, setIsClient] = useState(false);
     const { data: users = [], isLoading, isError, error } = GetUsers();
 
