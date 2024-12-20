@@ -1,8 +1,8 @@
-'use client'; // Ensures client-side only code
+// File: pages/404.js or pages/_not-found.js
+import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import errorAnimation from '../../public/404-error.json'; // Path to your 404 animation file
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 
 // Dynamically import the Player component to avoid SSR issues
 const Player = dynamic(() => import('@lottiefiles/react-lottie-player').then(mod => mod.Player), { ssr: false });
@@ -11,13 +11,13 @@ export default function NotFound() {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    // Set client-side state to true only after component mounts (client-side)
-    setIsClient(true);
+    setIsClient(true); // Update state after the component mounts on the client
   }, []);
 
   if (!isClient) {
-    return null; // Return nothing or loading state while the component is mounting on client-side
+    return null; // Return nothing until the client-side component is loaded
   }
+
   return (
     <section className="flex flex-col items-center justify-center h-screen bg-gray-100 text-center">
       {/* Lottie animation */}
@@ -39,4 +39,11 @@ export default function NotFound() {
       </Link>
     </section>
   );
+}
+
+// For SSR/SSG: Ensure no SSR-related issues during build
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
 }
