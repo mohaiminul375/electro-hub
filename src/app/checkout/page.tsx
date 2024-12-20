@@ -5,10 +5,13 @@ import { useGetCartProduct } from '../cart/api/route';
 import { useSession } from 'next-auth/react';
 import useAuth from '../hook/useAuth';
 import Loading from '../loading';
-
+import { useCreatePayment } from './api/route';
+// page start
 const Page = () => {
+    const createPayment = useCreatePayment();
     const { data: session } = useSession();
     const uuid = session?.user?.uuid;
+
     const user = useAuth();
     console.log(user, 'user before loading')
 
@@ -38,6 +41,24 @@ const Page = () => {
     const { items } = userCart;
     const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
     const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+
+    // handle payment
+    const handlePayment = async () => {
+        console.log('payment')
+        const paymentInfo = {
+            name: user?.name,
+            email: user?.email,
+            phone: user?.phone_number,
+            division: division,
+            district: district,
+            full_address: full_address,
+            total_price: totalPrice,
+        }
+        console.log(paymentInfo)
+        const res = await createPayment.mutateAsync(paymentInfo);
+        console.log(res)
+    }
 
     return (
         <section className="grid grid-cols-1 md:grid-cols-12 gap-4">
@@ -131,7 +152,9 @@ const Page = () => {
                         <Link
                             href='/checkout'
                             className="py-3 text-white bg-primary rounded-md hover:bg-primary-dark transition-all">
-                            <button className='w-full'>
+                            <button
+                                onClick={handlePayment}
+                                className='w-full'>
                                 PROCEED TO PAY
                             </button>
                         </Link>
