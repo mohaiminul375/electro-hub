@@ -89,7 +89,7 @@ const AddProduct = () => {
         handleSubmit,
         reset,
         //  formState: { errors } 
-        } = useForm<Inputs>();
+    } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async (product: Inputs) => {
         // console.log(product)
         // error handling for drop down menue
@@ -642,3 +642,9 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
+// For SSR/SSG: Ensure no SSR-related issues during build
+export async function getStaticProps() {
+    return {
+        props: {},
+    };
+}

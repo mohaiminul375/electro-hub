@@ -62,3 +62,9 @@ export default function page() {
 
     )
 }
+// For SSR/SSG: Ensure no SSR-related issues during build
+export async function getStaticProps() {
+    return {
+      props: {},
+    };
+  }
