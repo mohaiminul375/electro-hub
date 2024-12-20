@@ -1,6 +1,6 @@
 "use client";
 import { Player, Controls } from '@lottiefiles/react-lottie-player';
-import auth_animation from "../../../public/auth.json";
+import authAnimation from "../../../public/auth.json";
 import { Divider, Input } from '@nextui-org/react';
 import React, { useState } from 'react';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
@@ -41,7 +41,7 @@ export default function Page() {
                 callbackUrl: path ? path : '/',
             });
 
-            console.log('res from login page',res);
+            console.log('res from login page', res);
 
             if (res?.status === 200) {
                 router.push('/');
@@ -68,7 +68,7 @@ export default function Page() {
                 <Player
                     autoplay={true}
                     loop={true}
-                    src={auth_animation}
+                    src={authAnimation}
                     style={{ height: 'auto' }}
                     className='w-full max-w-full'
                 />

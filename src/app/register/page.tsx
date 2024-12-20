@@ -1,7 +1,7 @@
 "use client"
 import { Controls, Player } from "@lottiefiles/react-lottie-player";
 import { Divider, Input } from '@nextui-org/react';
-import auth_animation from "../../../public/auth.json";
+import authAnimation from "../../../public/auth.json";
 import SocialLogin from "../Components/Shared/SocialLogin";
 import Link from "next/link";
 import { useState } from "react";
@@ -67,7 +67,7 @@ export default function Page() {
                 <Player
                     autoplay={true}
                     loop={true}
-                    src={auth_animation}
+                    src={authAnimation}
                     style={{ height: 'auto' }}
                     className='w-full max-w-full'
                 />
