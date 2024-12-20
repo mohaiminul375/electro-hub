@@ -1,3 +1,4 @@
+'use client'
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios"
 import toast from "react-hot-toast";
@@ -9,7 +10,7 @@ interface User {
 }
 
 //Get All user (only admin)
-export const useGetUsers = () => {
+export const useGetUsers = async () => {
     const { data, isLoading, isError, error } = useQuery<User[]>({
         queryFn: async () => {
             const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-users`)
@@ -33,7 +34,7 @@ export const useDeleteUser = () => {
             if (data.deletedCount > 0) {
                 queryClient.invalidateQueries({ queryKey: ['all-users'] })
             }
-        },onError:()=>{
+        }, onError: () => {
             toast.error('operation failed')
         }
     })
