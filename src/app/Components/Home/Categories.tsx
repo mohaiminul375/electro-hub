@@ -6,7 +6,6 @@ import { FaLaptop } from 'react-icons/fa'
 import { FaComputerMouse } from 'react-icons/fa6'
 import { GiSmartphone } from 'react-icons/gi'
 import { LuMonitor } from 'react-icons/lu'
-import { MdTv } from 'react-icons/md'
 
 export default function Categories() {
     return (

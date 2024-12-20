@@ -4,8 +4,6 @@ import { useGetCartProduct, useUpdateQuantity } from './api/route';
 import Image from 'next/image';
 import { Input } from '@nextui-org/react';
 import Link from 'next/link';
-import useAuth from '../hook/useAuth';
-import Loading from '../loading';
 import { useSession } from 'next-auth/react';
 
 interface CartItem {
@@ -17,11 +15,11 @@ interface CartItem {
     price: number;
     quantity?: number | string | undefined;
 }
-interface Item {
-    // product_id: number;  // Assuming product_id is a string; change it to a number if needed
-    quantity: string;    // Quantity of the product
-    price: number;       // Price of the product
-}
+// interface Item {
+//     // product_id: number;  // Assuming product_id is a string; change it to a number if needed
+//     quantity: string;    // Quantity of the product
+//     price: number;       // Price of the product
+// }
 
 
 interface ErrorData {

@@ -1,6 +1,5 @@
 'use client'
-import { Controls, Player } from "@lottiefiles/react-lottie-player";
-import error from '../../../Public/404-error.json'
+
 const page = () => {
     return (
         <section

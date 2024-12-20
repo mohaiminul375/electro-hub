@@ -14,16 +14,16 @@ type Inputs = {
     user_info?: object;
     uuid: string;
 }
-interface User {
-    role?: string;
-    image?: string;
-    name?: string | undefined;
-    email?: string | null;
-    phone_number?: string;
-    gender?: string;
-    DOB?: string;
-    uuid: string;
-}
+// interface User {
+//     role?: string;
+//     image?: string;
+//     name?: string | undefined;
+//     email?: string | null;
+//     phone_number?: string;
+//     gender?: string;
+//     DOB?: string;
+//     uuid: string;
+// }
 type Gender = {
     key: string,
     label: string,
@@ -56,7 +56,7 @@ const UpdateProfile = () => {
     // react hook form
     const onSubmit: SubmitHandler<Inputs> = async (user_info: Inputs) => {
         user_info.uuid = uuid;
-        const res = await updateInfo.mutateAsync(user_info)
+        await updateInfo.mutateAsync(user_info)
         // console.log('response', res)
     }
     return (
