@@ -4,7 +4,7 @@ import axios from "axios"
 export const useCreatePayment = () => {
     return useMutation({
         mutationFn: async (paymentInfo: object) => {
-            const { data } = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_LOCAL}/create-payment`, paymentInfo)
+            const { data } = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/create-payment`, paymentInfo)
             return data;
         }, onSuccess: (data) => {
             console.log(data);
