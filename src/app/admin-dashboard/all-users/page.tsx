@@ -4,11 +4,19 @@ import { GetUsers } from "./api/route";
 import UserTable from "@/app/Components/Dashboard/UserTable/UserTable";
 import Link from "next/link";
 import Loading from "@/app/loading";
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function Page() { 
+export default function Page() {
+    const [isClient, setIsClient] = useState(false);
     const { data: users = [], isLoading, isError, error } = GetUsers();
 
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+        return null;
+    }
 
     // Handle loading state
     if (isLoading) return <Loading />;
