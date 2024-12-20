@@ -9,6 +9,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useUpdateProduct } from "./api/route";
+import { useEffect, useState } from "react";
 type Inputs = {
     product_name: string;
     product_price: number | string;
@@ -87,6 +88,14 @@ const Page = () => {
         // reset, 
         // formState: { errors }
     } = useForm<Inputs>();
+    const [isClient, setIsClient] = useState(false);
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+        return null;
+    }
 
     // Handle loading state
     if (isLoading) return <Loading />;
@@ -155,8 +164,8 @@ const Page = () => {
             console.log(img_url);
             update_info.img = img_url
         }
-        update_info.img =img;
-            update_info.product_price = parseFloat(update_info.product_price as string);
+        update_info.img = img;
+        update_info.product_price = parseFloat(update_info.product_price as string);
         console.log(update_info);
         const res = await update_product.mutateAsync(update_info);
         console.log(res);

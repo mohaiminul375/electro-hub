@@ -5,10 +5,19 @@ import Image from "next/image";
 import Link from "next/link";
 import Swal from "sweetalert2";
 import Loading from "@/app/loading";
+import { useEffect, useState } from "react";
 
 const Page = () => {
+    const [isClient, setIsClient] = useState(false);
     const { id } = useParams();
     const { data: details, isLoading, isError, error } = useGetProductDetails(id);
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+        return null;
+    }
 
     if (isLoading) return <Loading />;
     if (isError)

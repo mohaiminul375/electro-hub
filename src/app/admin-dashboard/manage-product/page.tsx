@@ -4,10 +4,19 @@ import { GetAdminProducts } from './api/rote';
 import ProductTable from '@/app/Components/Dashboard/ProductTable/ProductTable';
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
 
 const Page = () => {
     // const products = await getAdminProducts();
     const { data: products, isLoading, isError, error } = GetAdminProducts();
+    const [isClient, setIsClient] = useState(false);
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+        return null;
+    }
     // Handle loading state
     if (isLoading) return <Loading />;
     // Handle error state
