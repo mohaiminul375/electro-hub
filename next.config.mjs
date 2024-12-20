@@ -20,9 +20,6 @@ const nextConfig = {
     typescript: {
         ignoreBuildErrors: true,  // This will ignore TypeScript errors during the build
     },
-    experimental: {
-        modern: true,
-    },
 };
 
 export default nextConfig;
