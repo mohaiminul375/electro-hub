@@ -1,7 +1,7 @@
 "use client"
 import { Input, Select, SelectItem, Textarea } from '@nextui-org/react';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useForm, SubmitHandler } from "react-hook-form";
 import toast from 'react-hot-toast';
@@ -76,12 +76,22 @@ const brandOptions: BrandOptions = {
     smart_watch: ["Samsung", "Garmin", "Fitbit", "Amazfit", "not specified"],
     smart_tv: ["Sony", "LG", "Samsung", "Vizio", "TCL", "not specified"],
 };
+// 
 const AddProduct = () => {
     const addProduct = useAddProduct();
     // handle category
     const [category, setCategory] = useState("");
     const [color, setColor] = useState('Select a color');
     const [brand, setBrand] = useState('');
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+        return null;
+    }
 
 
     // react hook form
@@ -642,3 +652,12 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
+// export async function getStaticProps() {
+//     try {
+//         const data = await fetchData();
+//         return { props: { data } };
+//     } catch (error) {
+//         console.error("Error fetching data:", error);
+//         return { props: { data: null } }; // Or handle accordingly
+//     }
+// }
