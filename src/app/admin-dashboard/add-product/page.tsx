@@ -79,6 +79,11 @@ const brandOptions: BrandOptions = {
 // 
 const AddProduct = () => {
     const addProduct = useAddProduct();
+    const { register,
+        handleSubmit,
+        reset,
+        //  formState: { errors } 
+    } = useForm<Inputs>();
     // handle category
     const [category, setCategory] = useState("");
     const [color, setColor] = useState('Select a color');
@@ -95,11 +100,7 @@ const AddProduct = () => {
 
 
     // react hook form
-    const { register,
-        handleSubmit,
-        reset,
-        //  formState: { errors } 
-    } = useForm<Inputs>();
+
     const onSubmit: SubmitHandler<Inputs> = async (product: Inputs) => {
         // console.log(product)
         // error handling for drop down menue
