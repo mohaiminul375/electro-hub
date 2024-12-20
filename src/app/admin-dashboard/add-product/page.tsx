@@ -642,4 +642,3 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
-// For SSR/SSG: Ensure no SSR-related issues during build
