@@ -56,8 +56,8 @@ const Page = () => {
             total_price: totalPrice,
         }
         console.log(paymentInfo)
-        const res = await createPayment.mutateAsync(paymentInfo);
-        console.log(res)
+        await createPayment.mutateAsync(paymentInfo);
+
     }
 
     return (

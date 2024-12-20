@@ -6,6 +6,11 @@ export const useCreatePayment = () => {
         mutationFn: async (paymentInfo: object) => {
             const { data } = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_LOCAL}/create-payment`, paymentInfo)
             return data;
+        }, onSuccess: (data) => {
+            console.log(data);
+            if (data.paymentUrl) {
+                window.location.replace(data?.paymentUrl)
+            }
         },
         mutationKey: ['create-payment']
     })
