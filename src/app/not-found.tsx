@@ -1,7 +1,11 @@
-'use client'
-import { Player } from '@lottiefiles/react-lottie-player';
+'use client';
+import dynamic from 'next/dynamic';
 import errorAnimation from '../../public/404-error.json';
 import Link from 'next/link';
+
+// Dynamically import the Player component to avoid SSR issues
+const Player = dynamic(() => import('@lottiefiles/react-lottie-player').then(mod => mod.Player), { ssr: false });
+
 export default function NotFound() {
   return (
     <section className="flex flex-col items-center justify-center h-screen bg-gray-100 text-center">
@@ -19,5 +23,5 @@ export default function NotFound() {
         Return to Homepage
       </Link>
     </section>
-  )
+  );
 }
