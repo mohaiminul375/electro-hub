@@ -6,10 +6,11 @@ import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 
-const Page = () => {
+const ManageProduct = () => {
+    const [isClient, setIsClient] = useState(false);
     // const products = await getAdminProducts();
     const { data: products, isLoading, isError, error } = GetAdminProducts();
-    const [isClient, setIsClient] = useState(false);
+
     useEffect(() => {
         setIsClient(true);
     }, []);
@@ -81,5 +82,5 @@ const Page = () => {
     );
 };
 
-export default Page;
+export default ManageProduct;
 // For SSR/SSG: Ensure no SSR-related issues during build

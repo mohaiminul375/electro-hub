@@ -1,5 +1,4 @@
 'use client';
-
 import { FaArrowLeft } from "react-icons/fa";
 import { GetUsers } from "./api/route";
 import UserTable from "@/app/Components/Dashboard/UserTable/UserTable";
