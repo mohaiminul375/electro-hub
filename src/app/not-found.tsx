@@ -1,6 +1,6 @@
 'use client'
 import { Player } from '@lottiefiles/react-lottie-player';
-import errorAnimation from '../../Public/404-error.json';
+import errorAnimation from '../../public/404-error.json';
 import Link from 'next/link';
 export default function NotFound() {
   return (

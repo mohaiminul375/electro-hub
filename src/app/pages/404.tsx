@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Player } from '@lottiefiles/react-lottie-player';
-import errorAnimation from '../../../Public/404-error.json';
+import errorAnimation from '../../../public/404-error.json';
 
 const Custom404 = () => {
     return (

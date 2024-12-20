@@ -1,7 +1,7 @@
 'use client'
 import { Controls, Player } from '@lottiefiles/react-lottie-player';
 import React from 'react';
-import spinner from '../../Public/loading.json';
+import spinner from '../../public/loading.json';
 
 export default function Loading() {
     return (
