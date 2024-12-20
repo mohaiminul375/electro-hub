@@ -1,3 +1,4 @@
+'use client'
 import { useDeleteUser } from '@/app/admin-dashboard/all-users/api/route';
 import React from 'react'
 import { FaTrash } from 'react-icons/fa'
