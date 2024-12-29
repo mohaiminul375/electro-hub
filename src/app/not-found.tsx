@@ -4,19 +4,18 @@ import { useEffect, useState } from 'react';
 export const dynamic = 'force-dynamic';
 import errorAnimation from '../../public/404-error.json'; // Path to your 404 animation file
 import Link from 'next/link';
+import { Player } from '@lottiefiles/react-lottie-player';
 
-// Dynamically import the Player component to avoid SSR issues
-// const Player = (() => import('@lottiefiles/react-lottie-player').then(mod => mod.Player), { ssr: false });
 
 export default function NotFound() {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true); // Update state after the component mounts on the client
+    setIsClient(true);
   }, []);
 
   if (!isClient) {
-    return null; // Return nothing until the client-side component is loaded
+    return null;
   }
 
   return (
