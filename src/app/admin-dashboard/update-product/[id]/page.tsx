@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useUpdateProduct } from "./api/route";
 import { useEffect, useState } from "react";
+export const dynamic = 'force-dynamic';
 type Inputs = {
     product_name: string;
     product_price: number | string;

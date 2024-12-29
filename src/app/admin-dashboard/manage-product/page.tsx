@@ -5,7 +5,7 @@ import ProductTable from '@/Components/Dashboard/ProductTable/ProductTable';
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
-
+export const dynamic = 'force-dynamic';
 const ManageProduct = () => {
     const [isClient, setIsClient] = useState(false);
     // const products = await getAdminProducts();

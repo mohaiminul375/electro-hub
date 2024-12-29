@@ -6,7 +6,7 @@ import Link from "next/link";
 import Swal from "sweetalert2";
 import Loading from "@/app/loading";
 import { useEffect, useState } from "react";
-
+export const dynamic = 'force-dynamic';
 const Page = () => {
     const [isClient, setIsClient] = useState(false);
     const { id } = useParams();
