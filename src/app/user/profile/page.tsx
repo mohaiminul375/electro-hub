@@ -4,7 +4,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import UpdateProfile from './UpdateProfile';
 import AddressBook from './AddressBook';
 // import 'react-tabs/style/react-tabs.css';
-
+export const dynamic = 'force-dynamic';
 const Page = () => {
     const [tabIndex, setTabIndex] = useState<number>(0);
     return (

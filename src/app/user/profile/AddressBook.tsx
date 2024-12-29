@@ -7,7 +7,7 @@ import { useSession } from 'next-auth/react';
 import { useAddressInfo } from './api/route';
 import Loading from '@/app/loading';
 import useAuth from '@/hook/useAuth';
-
+export const dynamic = 'force-dynamic';
 type Inputs = {
     email: string;
     division: string | [];

@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useUpdateUserInfo } from './api/route';
 import Loading from '@/app/loading';
 import useAuth from '@/hook/useAuth';
+export const dynamic = 'force-dynamic';
 type Inputs = {
     name?: string | undefined;
     email?: string | undefined;

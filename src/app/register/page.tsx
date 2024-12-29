@@ -10,6 +10,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { createUser } from "./api/route";
 import toast from 'react-hot-toast'
 import { useRouter } from "next/navigation";
+export const dynamic = 'force-dynamic';
 // import { AxiosError } from "axios";
 interface Inputs {
     name: string,
