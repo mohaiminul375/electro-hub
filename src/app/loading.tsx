@@ -2,7 +2,7 @@
 import { Controls, Player } from '@lottiefiles/react-lottie-player';
 import React from 'react';
 import spinner from '../../public/loading.json';
-
+export const dynamic = 'force-dynamic';
 export default function Loading() {
     return (
         <section className='flex items-center justify-center'>

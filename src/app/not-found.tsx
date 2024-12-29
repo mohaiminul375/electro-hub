@@ -1,12 +1,12 @@
 'use client'
 // File: pages/404.js or pages/_not-found.js
 import { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
+export const dynamic = 'force-dynamic';
 import errorAnimation from '../../public/404-error.json'; // Path to your 404 animation file
 import Link from 'next/link';
 
 // Dynamically import the Player component to avoid SSR issues
-const Player = dynamic(() => import('@lottiefiles/react-lottie-player').then(mod => mod.Player), { ssr: false });
+// const Player = (() => import('@lottiefiles/react-lottie-player').then(mod => mod.Player), { ssr: false });
 
 export default function NotFound() {
   const [isClient, setIsClient] = useState(false);
