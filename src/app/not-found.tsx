@@ -3,15 +3,18 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import errorAnimation from '../../public/404-error.json'; 
 import dynamic from 'next/dynamic';
+
 const Player = dynamic(() => import('@lottiefiles/react-lottie-player').then(mod => mod.Player), { ssr: false });
 
 export default function NotFound() {
   const [isClient, setIsClient] = useState(false);
 
+  // Set isClient to true after the component is mounted on the client side
   useEffect(() => {
-    setIsClient(true); 
+    setIsClient(true);
   }, []);
 
+  // If not on the client, return null (avoiding SSR issues)
   if (!isClient) {
     return null;
   }
