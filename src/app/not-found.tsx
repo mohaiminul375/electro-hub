@@ -1,7 +1,19 @@
 'use client'
 import Link from "next/link";
+import { useEffect, useState } from "react";
 export const dynamic = 'force-dynamic';
 export default function NotFound() {
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+      // Set isClient to true only on the client side
+      setIsClient(true);
+    }, []);
+
+    // Ensure that Player component and other client-side logic runs only on the client
+    if (!isClient) {
+      return null;
+    }
   return (
     <div>
       <h2>Not Found</h2>
