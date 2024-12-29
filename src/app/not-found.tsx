@@ -1,11 +1,11 @@
-'use client'
-// File: pages/404.js or pages/_not-found.js
+'use client';
 import { useEffect, useState } from 'react';
-export const dynamic = 'force-dynamic';
 import errorAnimation from '../../public/404-error.json'; // Path to your 404 animation file
 import Link from 'next/link';
 import { Player } from '@lottiefiles/react-lottie-player';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
 
 export default function NotFound() {
   const [isClient, setIsClient] = useState(false);
@@ -39,11 +39,4 @@ export default function NotFound() {
       </Link>
     </section>
   );
-}
-
-// For SSR/SSG: Ensure no SSR-related issues during build
-export async function getStaticProps() {
-  return {
-    props: {},
-  };
 }
