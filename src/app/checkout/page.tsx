@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 import useAuth from '../../hook/useAuth';
 import Loading from '../loading';
 import { useCreatePayment } from './api/route';
+export const dynamic = 'force-dynamic';
 // page start
 const Page = () => {
     const createPayment = useCreatePayment();

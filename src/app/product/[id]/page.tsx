@@ -6,6 +6,7 @@ import Loading from "@/app/loading";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 import { useAddToCart } from "@/app/cart/api/route";
+export const dynamic = 'force-dynamic';
 // Define the Details type
 
 

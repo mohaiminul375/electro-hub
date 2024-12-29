@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import { useState } from "react";
 import { useGetDetailsCategory } from "./api/route";
 import CategoryFilter from "@/Components/Filter/CategoryFilter";
-
+export const dynamic = 'force-dynamic';
 type CategoryParams = {
     category: string;
 };

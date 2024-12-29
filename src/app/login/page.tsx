@@ -10,6 +10,7 @@ import SocialLogin from '../../Components/Shared/SocialLogin';
 import { signIn } from 'next-auth/react';
 import toast from 'react-hot-toast';
 import { useRouter, useSearchParams } from 'next/navigation';
+export const dynamic = 'force-dynamic';
 type Inputs = {
     email: string,
     password: string,

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Input } from '@nextui-org/react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-
+export const dynamic = 'force-dynamic';
 interface CartItem {
     product_id: string;
     img: string;
