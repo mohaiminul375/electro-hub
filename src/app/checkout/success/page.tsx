@@ -1,5 +1,4 @@
-
-
+export const dynamic = 'force-dynamic';
 const Checkout = () => {
     return (
         <div>
