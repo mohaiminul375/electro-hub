@@ -4,7 +4,7 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useUpdateUserInfo } from './api/route';
 import Loading from '@/app/loading';
-import useAuth from '@/app/hook/useAuth';
+import useAuth from '@/hook/useAuth';
 type Inputs = {
     name?: string | undefined;
     email?: string | undefined;

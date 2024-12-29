@@ -14,7 +14,7 @@ export const middleware = async (req: NextRequest) => {
         const session = await getToken({ req }) as Session | null;
 
         // Extract the token from cookies
-        const token = cookies(req).get('next-auth.session-token');
+        const token = cookies(req).get('__Secure-next-auth.session-token');
 
         // Get the pathname from the request URL
         const pathName = req.nextUrl.pathname;

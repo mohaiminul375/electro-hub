@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useGetCartProduct } from '../cart/api/route';
 import { useSession } from 'next-auth/react';
-import useAuth from '../hook/useAuth';
+import useAuth from '../../hook/useAuth';
 import Loading from '../loading';
 import { useCreatePayment } from './api/route';
 // page start

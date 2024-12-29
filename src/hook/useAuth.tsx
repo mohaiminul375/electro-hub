@@ -1,3 +1,4 @@
+'use client'
 import { useSession } from 'next-auth/react';
 import React from 'react';
 import { useGetUserInfo } from './api/route';
@@ -7,7 +8,7 @@ const useAuth = () => {
     // get uuid from session
     const uuid = session?.user?.uuid || null;
     // get user info by uuid
-    const { data: user, isLoading } = useGetUserInfo(uuid);
+    const { data: user, isLoading } = useGetUserInfo(uuid as string);
 
     // loading
     if (isLoading) {

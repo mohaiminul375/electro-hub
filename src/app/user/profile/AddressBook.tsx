@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSession } from 'next-auth/react';
 import { useAddressInfo } from './api/route';
 import Loading from '@/app/loading';
-import useAuth from '@/app/hook/useAuth';
+import useAuth from '@/hook/useAuth';
 
 type Inputs = {
     email: string;
