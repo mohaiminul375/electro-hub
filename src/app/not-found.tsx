@@ -1,22 +1,22 @@
-'use client';
-import { useEffect, useState } from 'react';
-import errorAnimation from '../../public/404-error.json'; // Path to your 404 animation file
-import Link from 'next/link';
-import { Player } from '@lottiefiles/react-lottie-player';
+'use client'
 
-// Force dynamic rendering
-export const dynamic = 'force-dynamic';
+// File: pages/404.js or pages/_not-found.js
+import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import errorAnimation from '../../public/404-error.json'; // Path to your 404 animation file// Dynamically import the Player component to avoid SSR issues
+const Player = dynamic(() => import('@lottiefiles/react-lottie-player').then(mod => mod.Player), { ssr: false });
+
 
 export default function NotFound() {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    setIsClient(true); // Update state after the component mounts on the client
   }, []);
 
-  if (!isClient) {
-    return null;
-  }
+  // Avoid rendering until client-side JavaScript is loaded
+  if (!isClient) return null;
 
   return (
     <section className="flex flex-col items-center justify-center h-screen bg-gray-100 text-center">
@@ -39,4 +39,11 @@ export default function NotFound() {
       </Link>
     </section>
   );
+}
+
+// For SSR/SSG: Ensure no SSR-related issues during build
+export async function getStaticProps() {
+  return {
+    props: {},
+  };
 }
