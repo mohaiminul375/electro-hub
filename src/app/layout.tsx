@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 import Footer from "../Components/Shared/Footer";
 import Nav2 from "../Components/Shared/Navbar2";
 import BottomNavbar from "../Components/Shared/BottomNavbar";
+export const dynamic = 'force-dynamic';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import {
   QueryClient,
