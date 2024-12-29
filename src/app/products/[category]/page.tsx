@@ -1,10 +1,10 @@
 'use client'
-import ProductCard from "@/app/Components/Products/ProductCard";
+import ProductCard from "@/Components/Products/ProductCard";
 import Loading from "@/app/loading";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import { useGetDetailsCategory } from "./api/route";
-import CategoryFilter from "@/app/Components/Filter/CategoryFilter";
+import CategoryFilter from "@/Components/Filter/CategoryFilter";
 
 type CategoryParams = {
     category: string;

@@ -1,7 +1,7 @@
 import React from 'react'
-import ProductManagement from '../Components/Dashboard/ProductManagement'
-import OrderManagement from '../Components/Dashboard/OrderManagement'
-import UserNReview from '../Components/Dashboard/UserNReview'
+import ProductManagement from '../../Components/Dashboard/ProductManagement'
+import OrderManagement from '../../Components/Dashboard/OrderManagement'
+import UserNReview from '../../Components/Dashboard/UserNReview'
 
 
 export default function page() {

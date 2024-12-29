@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import Link from 'next/link';
 import { useForm, SubmitHandler } from "react-hook-form";
-import SocialLogin from '../Components/Shared/SocialLogin';
+import SocialLogin from '../../Components/Shared/SocialLogin';
 import { signIn } from 'next-auth/react';
 import toast from 'react-hot-toast';
 import { useRouter, useSearchParams } from 'next/navigation';

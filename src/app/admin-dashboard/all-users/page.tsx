@@ -1,10 +1,11 @@
 'use client';
 import { FaArrowLeft } from "react-icons/fa";
 import { useGetUsers } from "./api/route";
-import UserTable from "@/app/Components/Dashboard/UserTable/UserTable";
+import UserTable from "@/Components/Dashboard/UserTable/UserTable";
 import Link from "next/link";
 import Loading from "@/app/loading";
 import { useEffect, useState } from "react";
+export const dynamic = 'force-dynamic';
 
 export default function AllUsers() {
     const [isClient, setIsClient] = useState(false);
@@ -60,7 +61,7 @@ export default function AllUsers() {
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map((user, idx) => (
+                        {users?.map((user, idx) => (
                             <UserTable idx={idx} key={idx} user={user} />
                         ))}
                     </tbody>

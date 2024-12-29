@@ -1,6 +1,6 @@
 "use client";
-import ProductCard from '../Components/Products/ProductCard';
-import ProductFilter from '../Components/Filter/ProductFilter';
+import ProductCard from '../../Components/Products/ProductCard';
+import ProductFilter from '../../Components/Filter/ProductFilter';
 import { useGetProducts } from './api/route';
 import Loading from '../loading';
 import { useState } from 'react';
