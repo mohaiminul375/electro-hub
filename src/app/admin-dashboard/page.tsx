@@ -2,7 +2,7 @@ import React from 'react'
 import ProductManagement from '../../Components/Dashboard/ProductManagement'
 import OrderManagement from '../../Components/Dashboard/OrderManagement'
 import UserNReview from '../../Components/Dashboard/UserNReview'
-
+export const dynamic = 'force-dynamic';
 
 export default function page() {
     return (

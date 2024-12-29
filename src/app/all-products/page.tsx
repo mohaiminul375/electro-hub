@@ -4,7 +4,7 @@ import ProductFilter from '../../Components/Filter/ProductFilter';
 import { useGetProducts } from './api/route';
 import Loading from '../loading';
 import { useState } from 'react';
-
+export const dynamic = 'force-dynamic';
 
 const Page = () => {
     const [brand, setBrand] = useState<string>('')
