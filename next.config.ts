@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
- 
+    experimental: {
+        appDir: true, // Ensure this is true for using the App Router
+    },
     images: {
         remotePatterns: [
             {
