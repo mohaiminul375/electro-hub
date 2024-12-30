@@ -67,7 +67,6 @@ const categories = [
     { key: 'smart_phone', label: 'Smart-Phone' },
     { key: 'smart_watch', label: 'Smart_Watch' },
     { key: 'smart_tv', label: 'Smart_TV' },
-    // { key: 'Smart-Phone', label: 'Smart-Phone' },
 ]
 const brandOptions: BrandOptions = {
     laptop: ["Dell", "HP", "Asus", "Lenovo", "Walton", "not specified"],
@@ -100,7 +99,6 @@ const AddProduct = () => {
 
 
     // react hook form
-
     const onSubmit: SubmitHandler<Inputs> = async (product: Inputs) => {
         // console.log(product)
         // error handling for drop down menue

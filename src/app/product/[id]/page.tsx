@@ -17,7 +17,7 @@ const Page = () => {
     // const { uuid, email } = data;
     // const router = useRouter('')
     const { id } = useParams();
-    const { data: details, isLoading, isError, error } = GetProductDetails(id);
+    const { data: details, isLoading, isError, error } = GetProductDetails(id as string);
 
     if (isLoading) return <Loading />;
     if (isError)

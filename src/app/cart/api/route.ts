@@ -3,6 +3,7 @@ import axios from "axios"
 import toast from "react-hot-toast";
 
 interface CartTypes {
+    uuid: string;
     items: Array<{ product_id: string, img: string, product_name: string, color: string, brand: string, price: number, quantity: number }>;
     totalPrice: number;
     totalQuantity: number;

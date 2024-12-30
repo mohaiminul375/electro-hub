@@ -15,16 +15,7 @@ type Inputs = {
     user_info?: object;
     uuid: string;
 }
-// interface User {
-//     role?: string;
-//     image?: string;
-//     name?: string | undefined;
-//     email?: string | null;
-//     phone_number?: string;
-//     gender?: string;
-//     DOB?: string;
-//     uuid: string;
-// }
+
 type Gender = {
     key: string,
     label: string,

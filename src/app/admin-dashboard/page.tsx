@@ -4,7 +4,7 @@ import OrderManagement from '../../components/Dashboard/OrderManagement'
 import UserNReview from '../../components/Dashboard/UserNReview'
 export const dynamic = 'force-dynamic';
 
-export default function page() {
+export default function AdminDashboard() {
     return (
         <section className="mt-12 p-6 bg-gray-50 rounded-lg">
             <div className="text-center mb-10">
@@ -25,13 +25,13 @@ export default function page() {
 
                 {/* Order Management */}
                 <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-primary">
-             
+
                     <OrderManagement />
                 </div>
 
                 {/* User & Review Management */}
                 <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-primary">
-                  
+
                     <UserNReview />
                 </div>
             </div>

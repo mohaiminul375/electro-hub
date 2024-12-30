@@ -209,7 +209,7 @@ export default function Nav2() {
                                         idx === 2 ? "warning" : idx === navItems.length - 1 ? "danger" : "foreground"
                                     }
                                     href={path}
-                                    size="lg"
+
                                 >
                                     {title}
                                 </Link>

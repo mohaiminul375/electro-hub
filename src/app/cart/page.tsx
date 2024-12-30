@@ -21,7 +21,7 @@ interface CartItem {
 //     price: number;       // Price of the product
 // }
 
-
+// TODO: Typescript error
 interface ErrorData {
     message: string;
 }
@@ -30,7 +30,7 @@ const Page = () => {
     // const uuid = '9er494';
     const { data: session } = useSession();
     const uuid = session?.user?.uuid
-    const { data, isLoading, isError, error } = useGetCartProduct(uuid);
+    const { data, isLoading, isError, error } = useGetCartProduct(uuid as string);
     const updateQuantity = useUpdateQuantity();
     const [items, setItems] = useState<CartItem[]>([]);
     const [totalQuantity, setTotalQuantity] = useState<number>(0);

@@ -10,7 +10,7 @@ export const dynamic = 'force-dynamic';
 const Page = () => {
     const [isClient, setIsClient] = useState(false);
     const { id } = useParams();
-    const { data: details, isLoading, isError, error } = useGetProductDetails(id);
+    const { data: details, isLoading, isError, error } = useGetProductDetails(id as string);
     useEffect(() => {
         setIsClient(true);
     }, []);

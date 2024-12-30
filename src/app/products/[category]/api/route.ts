@@ -14,6 +14,7 @@ interface Product {
     category: string;
     item?: object;
 }
+// category page product filter
 export const useGetDetailsCategory = ({ category, priceSort, brand, color }: FilterProp) => {
     const { data, isLoading, isError, error } = useQuery<Product[]>({
         queryFn: async () => {

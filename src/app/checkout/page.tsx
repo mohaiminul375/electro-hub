@@ -16,7 +16,7 @@ const Page = () => {
     const user = useAuth();
     console.log(user, 'user before loading')
 
-    const { data: carts, isLoading, isError, error } = useGetCartProduct(uuid);
+    const { data: carts, isLoading, isError, error } = useGetCartProduct(uuid as string);
 
     if (!session) {
         return <p>Please log in to view your cart.</p>;

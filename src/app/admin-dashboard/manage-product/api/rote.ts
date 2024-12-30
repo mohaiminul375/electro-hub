@@ -21,7 +21,7 @@ export const GetAdminProducts = () => {
     })
     return { data, isLoading, isError, error }
 }
-
+// Delete Product(only admin)
 export const useDeleteProduct = () => {
     const queryClient = useQueryClient();
     return useMutation({
