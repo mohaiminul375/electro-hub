@@ -1,8 +1,6 @@
 "use client"
-import { Controls, Player } from "@lottiefiles/react-lottie-player";
 import { Divider, Input } from '@nextui-org/react';
-import authAnimation from "../../../public/auth.json";
-import SocialLogin from "../../Components/Shared/SocialLogin";
+import SocialLogin from "../../components/Shared/SocialLogin";
 import Link from "next/link";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -10,7 +8,9 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { createUser } from "./api/route";
 import toast from 'react-hot-toast'
 import { useRouter } from "next/navigation";
-export const dynamic = 'force-dynamic';
+import dynamic from 'next/dynamic';
+
+const LottiePlayer = dynamic(() => import('@lottiefiles/react-lottie-player').then((mod) => mod.Player), { ssr: false });
 // import { AxiosError } from "axios";
 interface Inputs {
     name: string,
@@ -65,14 +65,13 @@ export default function Page() {
         <section className='grid md:grid-cols-2 gap-5 mt-5 px-4 lg:px-8'>
             {/* Lottie animation */}
             <div className='hidden md:flex justify-center'>
-                <Player
-                    autoplay={true}
-                    loop={true}
-                    src={authAnimation}
+                <LottiePlayer
+                    autoplay
+                    loop
+                    src="/auth.json"
                     style={{ height: 'auto' }}
-                    className='w-full max-w-full'
+                    className="w-full max-w-full"
                 />
-                <Controls visible={true} buttons={['play', 'repeat', 'frame', 'debug']} />
             </div>
 
             {/* Register form */}

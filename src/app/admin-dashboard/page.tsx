@@ -1,7 +1,7 @@
 import React from 'react'
-import ProductManagement from '../../Components/Dashboard/ProductManagement'
-import OrderManagement from '../../Components/Dashboard/OrderManagement'
-import UserNReview from '../../Components/Dashboard/UserNReview'
+import ProductManagement from '../../components/Dashboard/ProductManagement'
+import OrderManagement from '../../components/Dashboard/OrderManagement'
+import UserNReview from '../../components/Dashboard/UserNReview'
 export const dynamic = 'force-dynamic';
 
 export default function page() {
