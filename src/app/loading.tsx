@@ -1,19 +1,16 @@
 'use client'
-import { Controls, Player } from '@lottiefiles/react-lottie-player';
-import React from 'react';
-import spinner from '../../public/loading.json';
-export const dynamic = 'force-dynamic';
+import dynamic from 'next/dynamic';
+const LottiePlayer = dynamic(() => import('@lottiefiles/react-lottie-player').then((mod) => mod.Player), { ssr: false });
 export default function Loading() {
     return (
         <section className='flex items-center justify-center'>
-            <Player
-                autoplay={true}
-                loop={true}
-                src={spinner}
+            <LottiePlayer
+                autoplay
+                loop
+                src="/loading.json"
                 style={{ height: 'auto' }}
-                className='w-full max-w-full'
+                className="w-full max-w-full"
             />
-            <Controls visible={true} buttons={['play', 'repeat', 'frame', 'debug']} />
         </section>
     )
 }
