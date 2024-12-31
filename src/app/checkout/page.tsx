@@ -51,12 +51,12 @@ const Page = () => {
             name: user?.name,
             email: user?.email,
             phone: user?.phone_number,
-            division: division,
+            divisyion: division,
             district: district,
             full_address: full_address,
             total_price: totalPrice,
         }
-        console.log(paymentInfo)
+
         await createPayment.mutateAsync(paymentInfo);
 
     }

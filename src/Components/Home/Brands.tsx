@@ -24,7 +24,7 @@ const Brands = () => {
                 <h2 className='text-3xl font-semibold'>Our Brands</h2>
             </div>
             {/* Logo */}
-            <div className='max-w-6xl mx-auto'>
+            <div className='max-w-6xl mx-auto mt-10'>
                 <Marquee gradient={false} speed={50}>
                     {images.map((img, index) => (
                         <div key={index} className="flex items-center justify-center mx-4">
