@@ -1,13 +1,12 @@
 'use client'
 import { useParams } from "next/navigation";
-import { useApproveOrder, useOrdersDetails } from "../api/route";
 import Loading from "@/app/loading";
 import Image from "next/image";
 import { useState } from "react";
-import Swal from "sweetalert2";
+import { useOrdersDetails } from "../../pending-orders/api/route";
 
 const Page = () => {
-    const approveOrder = useApproveOrder();
+    // const approveOrder = useApproveOrder();
     const [note, setNote] = useState<string>("");
     const { id } = useParams();
     const { data: order, isLoading, isError, error } = useOrdersDetails(id as string);
@@ -15,40 +14,40 @@ const Page = () => {
     // Handle error state
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
 
-    const handleApprove = async (order_id: string) => {
-        console.log('Order approved', order_id);
-        const newData = {
-            orderApproveAt: new Date().toLocaleString(),
-        }
-        if (note) {
-            newData.note = note
-        }
+    // const handleApprove = async (order_id: string) => {
+    //     console.log('Order approved', order_id);
+    //     const newData = {
+    //         orderApproveAt: new Date().toLocaleString(),
+    //     }
+    //     if (note) {
+    //         newData.note = note
+    //     }
 
 
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                await approveOrder.mutateAsync({ order_id, newData })
-            }
-        });
+    //     Swal.fire({
+    //         title: "Are you sure?",
+    //         text: "You won't be able to revert this!",
+    //         icon: "warning",
+    //         showCancelButton: true,
+    //         confirmButtonColor: "#3085d6",
+    //         cancelButtonColor: "#d33",
+    //         confirmButtonText: "Yes, delete it!"
+    //     }).then(async (result) => {
+    //         if (result.isConfirmed) {
+    //             await approveOrder.mutateAsync({ order_id, newData })
+    //         }
+    //     });
 
 
 
 
 
-    };
+    // };
 
-    const handleCancel = () => {
-        // Logic for canceling the order
-        console.log('Order canceled');
-    };
+    // const handleCancel = () => {
+    //     // Logic for canceling the order
+    //     console.log('Order canceled');
+    // };
 
 
 
@@ -75,6 +74,10 @@ const Page = () => {
                     <p className="text-gray-500">Payment Method: {order.payment_method}</p>
                     <p className="text-gray-500">Order Status: {order.order_status}</p>
                     <p className="text-gray-500">Order Created At: {order.orderCreatedAt}</p>
+                    <p className="text-gray-500">Order Approved At: {order.orderApproveAt}</p>
+                    {
+                        order?.note && <p className="text-primary mt-4">Note: {order.note}</p>
+                    }
                 </div>
                 <div className="mb-4">
                     <h3 className="font-semibold text-gray-600">Products</h3>
@@ -96,12 +99,12 @@ const Page = () => {
                 </div>
                 <div className="mt-6 flex flex-col sm:flex-row items-center gap-4">
                     <button
-                        onClick={() => handleApprove(order?.order_id)}
+                        // onClick={() => handleApprove(order?.order_id)}
                         className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-md transition">
-                        Approve
+                        Packed
                     </button>
                     <button
-                        onClick={handleCancel}
+                        // onClick={handleCancel}
                         className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-md transition">
                         Cancel
                     </button>
