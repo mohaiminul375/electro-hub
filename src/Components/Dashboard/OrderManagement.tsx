@@ -10,7 +10,7 @@ export default function OrderManagement() {
             </div>
             <div className="grid lg:grid-cols-5 gap-6 mt-8">
                 {/* All Orders Card */}
-                <Link href="/admin-dashboard/all-orders">
+                <Link href="/admin-dashboard/pending-orders">
                     <div className="group bg-secondary border border-accent rounded-lg shadow-md p-5 flex flex-col items-center space-y-4 transition-transform duration-300 hover:scale-105 hover:shadow-xl h-full hover:border-primary">
                         <Image
                             src="/assets/order-list.png"
@@ -20,13 +20,13 @@ export default function OrderManagement() {
                             className="group-hover:rotate-12 transition-transform duration-300"
                         />
                         <h2 className="text-lg font-semibold text-accent text-center group-hover:text-green-600">
-                            All Orders
+                            Pending Orders
                         </h2>
                     </div>
                 </Link>
 
                 {/* Manage Orders Card */}
-                <Link href="/admin-dashboard/manage-orders">
+                <Link href="/admin-dashboard/packing-orders">
                     <div className="group bg-secondary border border-accent rounded-lg shadow-md p-5 flex flex-col items-center space-y-4 transition-transform duration-300 hover:scale-105 hover:shadow-xl h-full hover:border-primary">
                         <Image
                             src="/assets/new-product.png"
@@ -36,13 +36,27 @@ export default function OrderManagement() {
                             className="group-hover:rotate-12 transition-transform duration-300"
                         />
                         <h2 className="text-lg font-semibold text-accent text-center group-hover:text-green-600">
-                            Manage Orders
+                            Package Orders
+                        </h2>
+                    </div>
+                </Link>
+                <Link href="/admin-dashboard/ship-orders">
+                    <div className="group bg-secondary border border-accent rounded-lg shadow-md p-5 flex flex-col items-center space-y-4 transition-transform duration-300 hover:scale-105 hover:shadow-xl h-full hover:border-primary">
+                        <Image
+                            src="/assets/new-product.png"
+                            alt="Manage Orders"
+                            height={50}
+                            width={50}
+                            className="group-hover:rotate-12 transition-transform duration-300"
+                        />
+                        <h2 className="text-lg font-semibold text-accent text-center group-hover:text-green-600">
+                            Shipping Orders
                         </h2>
                     </div>
                 </Link>
 
                 {/* Archived Orders Card */}
-                <Link href="/admin-dashboard/archived-orders">
+                <Link href="/admin-dashboard/all-orders">
                     <div className="group bg-secondary border border-accent rounded-lg shadow-md p-5 flex flex-col items-center space-y-4 transition-transform duration-300 hover:scale-105 hover:shadow-xl h-full hover:border-primary">
                         <Image
                             src="/assets/archive.png"
@@ -52,7 +66,7 @@ export default function OrderManagement() {
                             className="group-hover:rotate-12 transition-transform duration-300"
                         />
                         <h2 className="text-lg font-semibold text-accent text-center group-hover:text-green-600">
-                            Archived Orders
+                            All Orders
                         </h2>
                     </div>
                 </Link>
