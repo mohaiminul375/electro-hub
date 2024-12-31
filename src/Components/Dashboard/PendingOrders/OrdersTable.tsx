@@ -1,7 +1,26 @@
+import Link from "next/link";
 
+interface Order {
+    _id: string,
+    order_id: string;
+    orderCreatedAt: string;
+    customer_name: string;
+    customer_email: string;
+    customer_Phone: string;
+    address: object;
+    products: Array<[]>;
+    payment_method: string;
+    order_status: string;
+}
+interface TableProps {
+    idx: number;
+    order: Order
+}
 
-const OrdersTable = ({ order, idx }) => {
-    const { order_id,
+const OrdersTable = ({ order, idx }: TableProps) => {
+    const {
+        _id,
+        order_id,
         orderCreatedAt,
         customer_name,
         customer_email,
@@ -26,8 +45,8 @@ const OrdersTable = ({ order, idx }) => {
                 {customer_Phone}<br />
             </td>
             <td className="px-4 py-2">
-                {address.division}<br />
-                {address.district}<br />
+                {address?.division}<br />
+                {address?.district}<br />
                 {/* {address.full_address}<br /> */}
             </td>
             <td className="px-4 py-2">
@@ -40,7 +59,11 @@ const OrdersTable = ({ order, idx }) => {
                 {order_status}
             </td>
             <td className="px-4 py-2">
-                <button>See Details</button>
+                <button className="bg-primary p-2 rounded-md text-white">
+                    <Link href={`pending-orders/${_id}`}>
+                        See Details
+                    </Link>
+                </button>
             </td>
 
         </tr>
