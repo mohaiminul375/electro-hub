@@ -193,14 +193,24 @@ const Page = () => {
                     </div>
                 </div>
 
-                <div className="p-6 border-t border-gray-200 w-full">
-                    <Link
-                        href='/checkout'
-                        className=" py-3 text-white bg-primary rounded-md hover:bg-primary-dark transition-all">
-                        <button className='w-full'>
-                            Checkout
-                        </button>
-                    </Link>
+                <div
+                    className="p-6 border-t border-gray-200">
+                    {
+                        totalPrice == 0 ?
+                            <button 
+                            disabled
+                            className='bg-primary py-3 text-center w-full rounded-md text-white disabled:cursor-not-allowed'>
+
+                                checkout
+                            </button>
+                            : <Link href='/checkout'>
+                                <button className='bg-primary py-3 text-center w-full rounded-md text-white'>
+
+                                    checkout
+                                </button>
+                            </Link>
+                    }
+                
                 </div>
             </div>
         </section>

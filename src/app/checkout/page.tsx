@@ -48,13 +48,15 @@ const Page = () => {
     const handlePayment = async () => {
         console.log('payment')
         const paymentInfo = {
+            uuid: uuid,
             name: user?.name,
             email: user?.email,
             phone: user?.phone_number,
-            divisyion: division,
+            division: division,
             district: district,
             full_address: full_address,
             total_price: totalPrice,
+            items: items,
         }
 
         await createPayment.mutateAsync(paymentInfo);
