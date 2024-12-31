@@ -70,53 +70,53 @@ const Page = () => {
             case "laptop":
                 return (
                     <>
-                        <p>Processor: {specs.laptop_processor}</p>
-                        <p>RAM: {specs.laptop_ram}</p>
-                        <p>Storage: {specs.laptop_storage}</p>
-                        <p>Display: {specs.laptop_display}</p>
-                        <p>Battery: {specs.laptop_battery}</p>
-                        <p>Ports: {specs.laptop_ports}</p>
-                        <p className="font-semibold">Posted Date: {specs.posted_date}</p>
+                        <p className="text-base">Processor: {specs.laptop_processor}</p>
+                        <p className="text-base">RAM: {specs.laptop_ram}</p>
+                        <p className="text-base">Storage: {specs.laptop_storage}</p>
+                        <p className="text-base">Display: {specs.laptop_display}</p>
+                        <p className="text-base">Battery: {specs.laptop_battery}</p>
+                        <p className="text-base">Ports: {specs.laptop_ports}</p>
+                      
                     </>
                 );
             case "monitor":
                 return (
                     <>
-                        <p>Screen Size: {specs.monitor_screen}</p>
-                        <p>Resolution: {specs.monitor_resolution}</p>
-                        <p>Ports: {specs.monitor_ports}</p>
-                        <p className="font-semibold">Posted Date: {specs.posted_date}</p>
+                        <p className="text-base">Screen Size: {specs.monitor_screen}</p>
+                        <p className="text-base">Resolution: {specs.monitor_resolution}</p>
+                        <p className="text-base">Ports: {specs.monitor_ports}</p>
+                       
                     </>
                 );
             case "smart-phone":
                 return (
                     <>
-                        <p>Model: {specs.smart_phone_model}</p>
-                        <p>Storage: {specs.smart_phone_storage}</p>
-                        <p>RAM: {specs.smart_phone_ram}</p>
-                        <p>Battery: {specs.smart_phone_battery}</p>
-                        <p>Camera: {specs.smart_phone_camera}</p>
-                        <p className="font-semibold">Posted Date: {specs.posted_date}</p>
+                        <p className="text-base">Model: {specs.smart_phone_model}</p>
+                        <p className="text-base">Storage: {specs.smart_phone_storage}</p>
+                        <p className="text-base">RAM: {specs.smart_phone_ram}</p>
+                        <p className="text-base">Battery: {specs.smart_phone_battery}</p>
+                        <p className="text-base">Camera: {specs.smart_phone_camera}</p>
+                       
                     </>
                 );
             case "smart-watch":
                 return (
                     <>
-                        <p>Model: {specs.smart_watch_model}</p>
-                        <p>Battery: {specs.smart_watch_battery}</p>
-                        <p>Features: {specs.smart_watch_features}</p>
-                        <p className="font-semibold">Posted Date: {specs.posted_date}</p>
+                        <p className="text-base">Model: {specs.smart_watch_model}</p>
+                        <p className="text-base">Battery: {specs.smart_watch_battery}</p>
+                        <p className="text-base">Features: {specs.smart_watch_features}</p>
+                       
                     </>
                 );
             case "smart-tv":
                 return (
                     <>
-                        <p>Screen Size: {specs.smart_tv_screen}</p>
-                        <p>Resolution: {specs.smart_tv_resolution}</p>
-                        <p>RAM: {specs.smart_tv_ram}</p>
-                        <p>Features: {specs.smart_tv_features}</p>
-                        <p>Ports: {specs.smart_tv_ports}</p>
-                        <p className="font-semibold">Posted Date: {specs.posted_date}</p>
+                        <p className="text-base">Screen Size: {specs.smart_tv_screen}</p>
+                        <p className="text-base">Resolution: {specs.smart_tv_resolution}</p>
+                        <p className="text-medium">RAM: {specs.smart_tv_ram}</p>
+                        <p className="text-base">Features: {specs.smart_tv_features}</p>
+                        <p className="text-base">Ports: {specs.smart_tv_ports}</p>
+                        
                     </>
                 );
             default:
@@ -151,21 +151,21 @@ const Page = () => {
                     <p className="text-sm text-gray-700 mb-4">
                         <span className="font-medium">Product ID:</span> {_id}
                     </p>
-                    <h1 className="text-2xl font-bold text-accent mb-4">
+                    <h1 className="text-xl font-bold text-accent mb-4">
                         {product_name}
                     </h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                        <p>
+                        <p className="text-base">
                             <span className="font-medium text-accent">Price:</span>{" "}
                             <span className="text-green-600 font-medium">৳{product_price}</span>
                         </p>
-                        <p>
+                        <p className="text-base">
                             <span className="font-medium text-accent">Category:</span> {category}
                         </p>
-                        <p>
+                        <p className="text-base">
                             <span className="font-medium text-accent">Brand:</span> {brand}
                         </p>
-                        <p>
+                        <p className="text-base">
                             <span className="font-medium text-accent">Color:</span>{" "}
                             {color || "Not Specified"}
                         </p>
@@ -176,8 +176,8 @@ const Page = () => {
 
                     {/* Description */}
                     <div className="mb-4">
-                        <h3 className="text-lg font-semibold text-gray-800">Description:</h3>
-                        <p className="text-gray-700 italic">
+                        <h3 className="text-base font-semibold text-gray-800">Description:</h3>
+                        <p className="text-gray-700 italic text-base">
                             {specs.laptop_description ||
                                 specs.monitor_description ||
                                 specs.smart_phone_description ||

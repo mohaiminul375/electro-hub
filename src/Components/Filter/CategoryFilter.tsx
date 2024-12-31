@@ -42,7 +42,7 @@ const CategoryFilter = ({ setPriceSort, setBrand, setColor, category }: FilterPr
             <div className="space-y-6 sm:space-y-0 sm:flex sm:space-x-6 sm:justify-between">
                 {/* Sort by Price */}
                 <div className="flex flex-col sm:w-1/3">
-                    <label className="text-lg font-semibold sm:mr-4">Sort by Price</label>
+                    <label className="text-medium font-semibold sm:mr-4">Sort by Price</label>
                     <Select
                         label="Price Sorting"
                         onChange={(e) => setPriceSort(e.target.value)}
@@ -58,7 +58,7 @@ const CategoryFilter = ({ setPriceSort, setBrand, setColor, category }: FilterPr
 
                 {/* Sort by Brand */}
                 <div className="flex flex-col sm:w-1/3">
-                    <label className="text-lg font-semibold sm:mr-4">Sort by Brand</label>
+                    <label className="text-medium font-semibold sm:mr-4">Sort by Brand</label>
                     <Select
                         label="Select your brand"
                         onChange={(e) => setBrand(e.target.value)}
@@ -74,7 +74,7 @@ const CategoryFilter = ({ setPriceSort, setBrand, setColor, category }: FilterPr
 
                 {/* Sort by Color */}
                 <div className="flex flex-col sm:w-1/3">
-                    <label className="text-lg font-semibold sm:mr-4">Sort by Color</label>
+                    <label className="text-medium font-semibold sm:mr-4">Sort by Color</label>
                     <Select
                         label="Select your color"
                         onChange={(e) => setColor(e.target.value)}

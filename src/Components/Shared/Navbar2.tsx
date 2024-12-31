@@ -77,7 +77,7 @@ export default function Nav2() {
         <>
 
             <nav className="">
-                <div className="bg-primary text-center text-white font-semibold z-50 w-full fixed top-0 h-6 md:text-xl flex justify-center items-center py-5">
+                <div className="bg-primary text-center text-white font-semibold z-50 w-full fixed top-0 h-6 md:text-medium flex justify-center items-center py-5">
                     <p>*** Trial version --Development Mode***</p>
                 </div>
                 <Navbar
@@ -221,7 +221,7 @@ export default function Nav2() {
                 {/* Category section */}
                 <div
                     className={`${scrolling ? 'hidden' : 'flex'
-                        } hidden lg:flex justify-evenly items-center gap-8 mb-10 h-10 lg:text-lg font-semibold border-red-900 bg-accent mt-24 text-white w-full shadow-lg`}
+                        } hidden lg:flex justify-evenly items-center gap-8 mb-10 h-10 lg:text-medium font-semibold border-red-900 bg-accent mt-24 text-white w-full shadow-lg`}
                 >
                     {/* mt-20 */}
                     <Link className="text-white" href="/"><FaHome /></Link>

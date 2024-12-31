@@ -33,9 +33,9 @@ export default function ProductCard({ item }: ProductCardProps) {
 
             {/* Product Info */}
             <div className='mt-3'>
-                <h4 className='text-lg font-semibold text-accent mb-2'>{product_name}</h4>
+                <h4 className='text-medium font-semibold text-accent mb-2'>{product_name}</h4>
                 <p className='text-sm text-gray-600'>{category}</p>
-                <p className='text-lg font-bold text-accent mt-1'>
+                <p className='text-medium font-bold text-green-700 mt-1'>
                     ৳<span>{product_price}</span>
                 </p>
                 <p className='text-xs text-gray-500 mt-1'>--- Sold | Review</p>

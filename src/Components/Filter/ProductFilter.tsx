@@ -50,7 +50,7 @@ const ProductFilter = ({ setBrand, setColor, setPriceSort }: FilterProp) => {
             <div className="space-y-6 sm:space-y-0 sm:flex sm:space-x-6 sm:justify-between">
                 {/* Sort by Price */}
                 <div className="flex flex-col sm:w-1/3">
-                    <label className="text-lg font-semibold sm:mr-4">Sort by Price</label>
+                    <label className="text-medium font-semibold sm:mr-4">Sort by Price</label>
                     <Select
                         onChange={(e) => setPriceSort(e.target.value)}
                         label="Price Sorting" className="max-w-xs mt-2 sm:mt-0">
@@ -62,7 +62,7 @@ const ProductFilter = ({ setBrand, setColor, setPriceSort }: FilterProp) => {
 
                 {/* Sort by Brand */}
                 <div className="flex flex-col sm:w-1/3">
-                    <label className="text-lg font-semibold sm:mr-4">Sort by Brand</label>
+                    <label className="text-medium  font-semibold sm:mr-4">Sort by Brand</label>
                     <Select
                         onChange={(e) => setBrand(e.target.value)}
                         label="Select your brand" className="max-w-xs mt-2 sm:mt-0">
@@ -75,7 +75,7 @@ const ProductFilter = ({ setBrand, setColor, setPriceSort }: FilterProp) => {
                 {/* Sort by Color */}
                 <div className="flex flex-col sm:w-1/3">
                     <label
-                        className="text-lg font-semibold sm:mr-4">Sort by Color</label>
+                        className="text-medium  font-semibold sm:mr-4">Sort by Color</label>
                     <Select
                         onChange={(e) => setColor(e.target.value)}
                         label="Select your color" className="max-w-xs mt-2 sm:mt-0">
