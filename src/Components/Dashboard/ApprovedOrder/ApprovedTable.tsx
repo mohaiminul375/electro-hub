@@ -1,5 +1,9 @@
 import Link from "next/link";
-
+interface Address {
+    division: string;
+    district: string;
+    full_address: string;
+}
 interface Order {
     _id: string,
     order_id: string;
@@ -8,7 +12,7 @@ interface Order {
     customer_name: string;
     customer_email: string;
     customer_Phone: string;
-    address: object;
+    address: Address;
     products: Array<[]>;
     payment_method: string;
     order_status: string;

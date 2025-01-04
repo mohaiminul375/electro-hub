@@ -1,5 +1,9 @@
 import Link from "next/link";
-
+interface Address {
+    division: string;
+    district: string;
+    full_address: string;
+}
 interface Order {
     _id: string,
     order_id: string;
@@ -7,10 +11,11 @@ interface Order {
     customer_name: string;
     customer_email: string;
     customer_Phone: string;
-    address: object;
+    address: Address;
     products: Array<[]>;
     payment_method: string;
     order_status: string;
+    orderPackedAt: string;
 }
 interface TableProps {
     idx: number;
@@ -28,7 +33,7 @@ const PackedTable = ({ order, idx }: TableProps) => {
         customer_Phone,
         address,
         products,
-        payment_method,
+        // payment_method,
         order_status,
     } = order;
     const orderDate = new Date(orderCreatedAt).toLocaleString()

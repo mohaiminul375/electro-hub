@@ -5,7 +5,10 @@ import Loading from "@/app/loading";
 import Image from "next/image";
 import { useState } from "react";
 import Swal from "sweetalert2";
-
+interface OrderData {
+    orderApproveAt: string;
+    note?: string;
+}
 const Page = () => {
     const approveOrder = useApproveOrder();
     const [note, setNote] = useState<string>("");
@@ -17,7 +20,7 @@ const Page = () => {
 
     const handleApprove = async (order_id: string) => {
         console.log('Order approved', order_id);
-        const newData = {
+        const newData: OrderData = {
             orderApproveAt: new Date().toLocaleString(),
         }
         if (note) {
@@ -51,30 +54,25 @@ const Page = () => {
     };
 
 
-
-
-
-
-
     return (
         <section className="flex flex-col items-center justify-center px-4 py-8">
             <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6">
                 <h2 className="text-xl font-bold text-gray-700 mb-4">Order Details</h2>
                 <div className="mb-4">
                     <h3 className="font-semibold text-gray-600">Customer Information</h3>
-                    <p className="text-gray-500">Name: {order.customer_name}</p>
-                    <p className="text-gray-500">Email: {order.customer_email}</p>
-                    <p className="text-gray-500">Phone: {order.customer_Phone}</p>
-                    <p className="text-gray-500">Address: {order.address.full_address}, {order.address.district}, {order.address.division}</p>
+                    <p className="text-gray-500">Name: {order?.customer_name}</p>
+                    <p className="text-gray-500">Email: {order?.customer_email}</p>
+                    <p className="text-gray-500">Phone: {order?.customer_Phone}</p>
+                    <p className="text-gray-500">Address: {order?.address.full_address}, {order?.address?.district}, {order?.address.division}</p>
                 </div>
                 <div className="mb-4">
                     <h3 className="font-semibold text-gray-600">Order Information</h3>
-                    <p className="text-gray-500">Order ID: {order.order_id}</p>
-                    <p className="text-gray-500">Transaction ID: {order.transaction_id}</p>
-                    <p className="text-gray-500">Total Price: {order.total_price} BDT</p>
-                    <p className="text-gray-500">Payment Method: {order.payment_method}</p>
-                    <p className="text-gray-500">Order Status: {order.order_status}</p>
-                    <p className="text-gray-500">Order Created At: {order.orderCreatedAt}</p>
+                    <p className="text-gray-500">Order ID: {order?.order_id}</p>
+                    <p className="text-gray-500">Transaction ID: {order?.transaction_id}</p>
+                    <p className="text-gray-500">Total Price: {order?.total_price} BDT</p>
+                    <p className="text-gray-500">Payment Method: {order?.payment_method}</p>
+                    <p className="text-gray-500">Order Status: {order?.order_status}</p>
+                    <p className="text-gray-500">Order Created At: {order?.orderCreatedAt}</p>
                 </div>
                 <div className="mb-4">
                     <h3 className="font-semibold text-gray-600">Products</h3>
@@ -96,7 +94,7 @@ const Page = () => {
                 </div>
                 <div className="mt-6 flex flex-col sm:flex-row items-center gap-4">
                     <button
-                        onClick={() => handleApprove(order?.order_id)}
+                        onClick={() => handleApprove(order?.order_id as string)}
                         className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-md transition">
                         Approve
                     </button>
