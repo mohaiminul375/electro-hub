@@ -164,7 +164,10 @@ export default function Nav2() {
                                                     My Account
                                                 </Link>
                                             </DropdownItem>
-                                            <DropdownItem key="my-orders">My Orders</DropdownItem>
+                                            <DropdownItem key="my-orders"><Link href='/my-orders'>
+                                                My Orders
+                                            </Link>
+                                            </DropdownItem>
                                             <DropdownItem
                                                 onClick={() => signOut()}
                                                 key="logout" color="danger">

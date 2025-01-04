@@ -4,9 +4,11 @@ import Loading from "@/app/loading";
 import Image from "next/image";
 import { useState } from "react";
 import { useOrdersDetails } from "../../pending-orders/api/route";
+import Swal from "sweetalert2";
+import { usePackedOrder } from "../api/route";
 
 const Page = () => {
-    // const approveOrder = useApproveOrder();
+    const packedOrder = usePackedOrder();
     const [note, setNote] = useState<string>("");
     const { id } = useParams();
     const { data: order, isLoading, isError, error } = useOrdersDetails(id as string);
@@ -14,35 +16,30 @@ const Page = () => {
     // Handle error state
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
 
-    // const handleApprove = async (order_id: string) => {
-    //     console.log('Order approved', order_id);
-    //     const newData = {
-    //         orderApproveAt: new Date().toLocaleString(),
-    //     }
-    //     if (note) {
-    //         newData.note = note
-    //     }
+    const handlePacked = async (order_id: string) => {
+        console.log('Order approved', order_id);
+        const newData = {
+            orderPackedAt: new Date().toLocaleString(),
+        }
+        if (note) {
+            newData.note = note;
+        }
+        console.log(order_id, newData)
 
-
-    //     Swal.fire({
-    //         title: "Are you sure?",
-    //         text: "You won't be able to revert this!",
-    //         icon: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonColor: "#3085d6",
-    //         cancelButtonColor: "#d33",
-    //         confirmButtonText: "Yes, delete it!"
-    //     }).then(async (result) => {
-    //         if (result.isConfirmed) {
-    //             await approveOrder.mutateAsync({ order_id, newData })
-    //         }
-    //     });
-
-
-
-
-
-    // };
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await packedOrder.mutateAsync({ order_id, newData })
+            }
+        });
+    };
 
     // const handleCancel = () => {
     //     // Logic for canceling the order
@@ -99,7 +96,7 @@ const Page = () => {
                 </div>
                 <div className="mt-6 flex flex-col sm:flex-row items-center gap-4">
                     <button
-                        // onClick={() => handleApprove(order?.order_id)}
+                        onClick={() => handlePacked(order?.order_id)}
                         className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-md transition">
                         Packed
                     </button>

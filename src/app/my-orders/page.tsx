@@ -1,11 +1,12 @@
 'use client'
 import AllOrders from '@/components/MyOrders/AllOrders';
+import ToShip from '@/components/MyOrders/ToShip';
 import React, { useState } from 'react';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 const OrderTabs = () => {
-    const [tabIndex, setTabIndex] = useState(0);
+    const [tabIndex, setTabIndex] = useState(1);
 
     return (
         <section className="mt-20">
@@ -60,8 +61,7 @@ const OrderTabs = () => {
                 </TabPanel>
                 <TabPanel className="mt-6">
                     <div className="p-4 bg-gray-50 rounded-lg shadow">
-                        <h3 className="text-lg font-semibold mb-2">To Ship</h3>
-                        <p>Display orders that need to be shipped here...</p>
+                        <ToShip />
                     </div>
                 </TabPanel>
                 <TabPanel className="mt-6">
