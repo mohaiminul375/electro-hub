@@ -11,3 +11,14 @@ export const useGetPackedOrders = () => {
     })
     return { data, isLoading, isError, error }
 }
+// Get packed Products Details
+export const usePackedOrdersDetails = (id: string) => {
+    const { data, isLoading, isError, error } = useQuery({
+        queryFn: async () => {
+            const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/packed-orders/${id}`)
+            return data
+        },
+        queryKey: ['packed-orders-details']
+    })
+    return { data, isLoading, isError, error }
+}
