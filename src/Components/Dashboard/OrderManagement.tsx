@@ -43,7 +43,7 @@ export default function OrderManagement() {
                 <Link href="/admin-dashboard/ship-orders">
                     <div className="group bg-secondary border border-accent rounded-lg shadow-md p-5 flex flex-col items-center space-y-4 transition-transform duration-300 hover:scale-105 hover:shadow-xl h-full hover:border-primary">
                         <Image
-                            src="/assets/new-product.png"
+                            src="/assets/shipping.png"
                             alt="Manage Orders"
                             height={50}
                             width={50}
@@ -51,6 +51,34 @@ export default function OrderManagement() {
                         />
                         <h2 className="text-lg font-semibold text-accent text-center group-hover:text-green-600">
                             Shipping Orders
+                        </h2>
+                    </div>
+                </Link>
+                <Link href="/admin-dashboard/shipped-orders">
+                    <div className="group bg-secondary border border-accent rounded-lg shadow-md p-5 flex flex-col items-center space-y-4 transition-transform duration-300 hover:scale-105 hover:shadow-xl h-full hover:border-primary">
+                        <Image
+                            src="/assets/shipped.png"
+                            alt="Manage Orders"
+                            height={50}
+                            width={50}
+                            className="group-hover:rotate-12 transition-transform duration-300"
+                        />
+                        <h2 className="text-lg font-semibold text-accent text-center group-hover:text-green-600">
+                            Shipped
+                        </h2>
+                    </div>
+                </Link>
+                <Link href="/admin-dashboard/delivered-orders">
+                    <div className="group bg-secondary border border-accent rounded-lg shadow-md p-5 flex flex-col items-center space-y-4 transition-transform duration-300 hover:scale-105 hover:shadow-xl h-full hover:border-primary">
+                        <Image
+                            src="/assets/delivered.png"
+                            alt="Manage Orders"
+                            height={50}
+                            width={50}
+                            className="group-hover:rotate-12 transition-transform duration-300"
+                        />
+                        <h2 className="text-lg font-semibold text-accent text-center group-hover:text-green-600">
+                            Delivered
                         </h2>
                     </div>
                 </Link>
@@ -67,6 +95,20 @@ export default function OrderManagement() {
                         />
                         <h2 className="text-lg font-semibold text-accent text-center group-hover:text-green-600">
                             All Orders
+                        </h2>
+                    </div>
+                </Link>
+                <Link href="/admin-dashboard/canceled-orders">
+                    <div className="group bg-secondary border border-accent rounded-lg shadow-md p-5 flex flex-col items-center space-y-4 transition-transform duration-300 hover:scale-105 hover:shadow-xl h-full hover:border-primary">
+                        <Image
+                            src="/assets/cancel.png"
+                            alt="Archived Orders"
+                            height={50}
+                            width={50}
+                            className="group-hover:rotate-12 transition-transform duration-300"
+                        />
+                        <h2 className="text-lg font-semibold text-accent text-center group-hover:text-green-600">
+                            Cancel Orders
                         </h2>
                     </div>
                 </Link>
