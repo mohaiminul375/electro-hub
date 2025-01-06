@@ -12,20 +12,24 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 // Import required modules
-import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
+import { Navigation, Pagination, Mousewheel, Keyboard, Autoplay } from 'swiper/modules';
 import Link from 'next/link';
 
 export default function Banner() {
   return (
     <section className='h-screen'>
       <Swiper
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
         cssMode={true}
         loop={true}
         navigation={true}
         pagination={true}
         mousewheel={true}
         keyboard={true}
-        modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+        modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
         className="h-full object-cover rounded-lg"
       >
         {/* Slide 1 - Welcome/Intro */}
@@ -45,7 +49,7 @@ export default function Banner() {
               <p className="mt-4 text-lg md:text-xl drop-shadow-sm">
                 Your go-to platform for the best gadgets and accessories
               </p>
-              
+
               {/* <Slide triggerOnce={true} direction="up"> */}
               <div className="mt-6">
                 <Link
@@ -71,11 +75,13 @@ export default function Banner() {
             height: "100%"
           }}
         >
-          <div className="absolute inset-0 bg-black opacity-50 flex justify-center items-center text-white">
-            <div className="text-center">
-              <h2 className="text-3xl md:text-5xl font-bold">Check Out Our Latest Products</h2>
-              <p className="mt-4 text-lg md:text-xl">Explore a wide range of gadgets and accessories to suit your needs.</p>
-            </div>
+          <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center text-center text-white px-4 rounded-md">
+            <h1 className="text-3xl md:text-5xl font-extrabold leading-tight drop-shadow-md">
+              CheckOut Our latest Products
+            </h1>
+            <p className="mt-4 text-lg md:text-xl drop-shadow-sm">
+              Explore a wide range of gadgets and accessories to suite your needs.
+            </p>
           </div>
         </SwiperSlide>
 
@@ -84,7 +90,7 @@ export default function Banner() {
           className="relative bg-cover bg-center h-screen"
           style={{ backgroundImage: `url(${banner_3.src})` }}
         >
-         
+
         </SwiperSlide>
 
 
