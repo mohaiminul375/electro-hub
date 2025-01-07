@@ -1,8 +1,17 @@
+'use client'
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
+import { useGetShippedOrders } from "./api/route";
+import Loading from "@/app/loading";
+import ShippedTable from "@/components/Dashboard/ShippedOrders/ShippedTable";
 
 
 const Page = () => {
+    const { data: orders = [], isLoading, isError, error } = useGetShippedOrders();
+    if (isLoading) return <Loading />;
+    // Handle error state
+    if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
+    console.log(orders)
     return (
         <section>
             {/* Back Button */}
@@ -33,21 +42,21 @@ const Page = () => {
                                 <th className="px-4 py-2 text-left">Customer Info</th>
                                 <th className="px-4 py-2 text-left">Address</th>
                                 <th className="px-4 py-2 text-left">Products</th>
-                                <th className="px-4 py-2 text-left">Payment Info</th>
+                                <th className="px-4 py-2 text-left">Shipped At</th>
                                 <th className="px-4 py-2 text-left">Status</th>
                                 <th className="px-4 py-2 text-left">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {/* {
+                            {
                                 orders?.map((order, idx) => (
-                                    <AllOrdersTable
+                                    <ShippedTable
                                         idx={idx}
                                         key={idx}
                                         order={order}
                                     />
                                 ))
-                            } */}
+                            }
 
 
                         </tbody>
