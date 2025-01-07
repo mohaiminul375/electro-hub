@@ -4,10 +4,11 @@ import Loading from "@/app/loading";
 import Image from "next/image";
 import { useState } from "react";
 import Swal from "sweetalert2";
-import { usePackedOrdersDetails } from "../api/route";
+import { usePackedOrdersDetails, useShippedOrder } from "../api/route";
 // import { usePackedOrder } from "../api/route";
 
 const Page = () => {
+    const shippedOrder = useShippedOrder();
     // const packedOrder = usePackedOrder();
     const [note, setNote] = useState<string>("");
     const { id } = useParams();
@@ -34,6 +35,7 @@ const Page = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 // await packedOrder.mutateAsync({ order_id, newData })
+                await shippedOrder.mutateAsync({ order_id, newData })
             }
         });
     };

@@ -29,7 +29,7 @@ export default function OrderManagement() {
                 <Link href="/admin-dashboard/packing-orders">
                     <div className="group bg-secondary border border-accent rounded-lg shadow-md p-5 flex flex-col items-center space-y-4 transition-transform duration-300 hover:scale-105 hover:shadow-xl h-full hover:border-primary">
                         <Image
-                            src="/assets/new-product.png"
+                            src="/assets/package.png"
                             alt="Manage Orders"
                             height={50}
                             width={50}

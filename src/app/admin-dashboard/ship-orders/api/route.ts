@@ -1,5 +1,8 @@
-import { useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 interface Address {
     division: string;
     district: string;
@@ -46,6 +49,10 @@ interface PackedOrders {
     orderPackedAt: string;
     note?: string;
 }
+interface ShippedProps {
+    order_id: string,
+    newData: object;
+}
 // Use Get Packed Order
 export const useGetPackedOrders = () => {
     const { data, isLoading, isError, error } = useQuery<Orders[]>({
@@ -67,4 +74,34 @@ export const usePackedOrdersDetails = (id: string) => {
         queryKey: ['packed-orders-details']
     })
     return { data, isLoading, isError, error }
+}
+// Mark as shipped
+export const useShippedOrder = () => {
+    const router = useRouter()
+    const queryClient = useQueryClient()
+    return useMutation({
+        mutationFn: async ({ order_id, newData }: ShippedProps) => {
+            const { data } = await axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/shipped-orders/${order_id}`, newData)
+            return data;
+        },
+        mutationKey: ['shipped-order'],
+        onSuccess: (data) => {
+            console.log(data, 'onsuccess')
+            if (data.modifiedCount === 1) {
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+                queryClient.invalidateQueries({ queryKey: ['pending-orders'] })
+                router.push('/admin-dashboard/ship-orders')
+            }
+
+
+        },
+        onError: (error) => {
+            console.log(error);
+            toast.error('Failed to add product. Try again later.');
+        }
+    })
 }
