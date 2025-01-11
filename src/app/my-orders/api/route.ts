@@ -12,7 +12,7 @@ export const useAllProductsUser = (uuid: string) => {
     return { data, isLoading, error, isError }
 }
 // Use Get All Approved Products
-export const ToShipProductsUsers = (uuid: string) => {
+export const useToShipProductsUsers = (uuid: string) => {
     const { data, isLoading, error, isError } = useQuery({
         queryFn: async () => {
             const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/approved-orders/${uuid}`)
