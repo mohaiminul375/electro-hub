@@ -6,7 +6,7 @@ import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 const OrderTabs = () => {
-    const [tabIndex, setTabIndex] = useState(1);
+    const [tabIndex, setTabIndex] = useState(2);
 
     return (
         <section className="mt-20 px-4 sm:px-8">
