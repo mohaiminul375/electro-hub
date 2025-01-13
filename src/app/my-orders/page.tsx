@@ -1,5 +1,6 @@
 'use client'
 import AllOrders from '@/components/MyOrders/AllOrders';
+import ToReceived from '@/components/MyOrders/ToReceived';
 import ToShip from '@/components/MyOrders/ToShip';
 import React, { useState } from 'react';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
@@ -68,8 +69,7 @@ const OrderTabs = () => {
                 </TabPanel>
                 <TabPanel className="mt-6">
                     <div className="p-4 bg-gray-50 rounded-lg shadow">
-                        <h3 className="text-lg font-semibold mb-2">To Receive</h3>
-                        <p>Display orders to be received here...</p>
+                        <ToReceived />
                     </div>
                 </TabPanel>
                 <TabPanel className="mt-6">

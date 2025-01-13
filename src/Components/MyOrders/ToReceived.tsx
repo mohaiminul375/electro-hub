@@ -1,17 +1,17 @@
 'use client'
 import Loading from "@/app/loading";
-import { useToShipProductsUsers } from "@/app/my-orders/api/route";
+import { useToReceivedProductsUsers } from "@/app/my-orders/api/route";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
 const ToReceived = () => {
     const { data } = useSession();
     const uuid = data?.user?.uuid;
-    const { data: items = [], isLoading, isError, error } = useToShipProductsUsers(uuid as string);
+    const { data: items = [], isLoading, isError, error } = useToReceivedProductsUsers(uuid as string);
 
     if (isLoading) return <Loading />;
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
-console.log(items)
+    console.log(items)
     return (
         <section className="p-4">
             {items?.map((order) => (
