@@ -1,17 +1,17 @@
 'use client'
+import Loading from "@/app/loading";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
-import { usePendingOrders } from "./api/route";
-import Loading from "@/app/loading";
-import OrdersTable from "@/components/Dashboard/PendingOrders/OrdersTable";
+import { useGetDeliveredOrders } from "./api/route";
+import DeliveredTable from "@/components/Dashboard/DeliveredOrders/DeliveredTable";
 
-const PendingOrders = () => {
-    const { data: orders = [], isLoading, isError, error } = usePendingOrders();
+
+const DeliveredAdmin = () => {
+    const { data: orders = [], isLoading, isError, error } = useGetDeliveredOrders();
     // Handle loading state
     if (isLoading) return <Loading />;
     // Handle error state
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
-  
     return (
         <section>
             {/* filter and sorting */}
@@ -29,9 +29,9 @@ const PendingOrders = () => {
 
                 {/* Manage Product Header */}
                 <div className="mb-8 mt-4 text-center">
-                    <h3 className="text-3xl font-bold text-accent">All Pending Orders</h3>
+                    <h3 className="text-3xl font-bold text-accent">All Delivered Orders</h3>
                     <h4 className="text-md text-gray-700 mt-2">
-                        Here is All pending Orders
+                        Here is All Delivered Orders
                     </h4>
                 </div>
             </div>
@@ -46,7 +46,7 @@ const PendingOrders = () => {
                                 <th className="px-4 py-2 text-left">Customer Info</th>
                                 <th className="px-4 py-2 text-left">Address</th>
                                 <th className="px-4 py-2 text-left">Products</th>
-                                <th className="px-4 py-2 text-left">Payment Info</th>
+                                <th className="px-4 py-2 text-left">Delivered At</th>
                                 <th className="px-4 py-2 text-left">Status</th>
                                 <th className="px-4 py-2 text-left">Action</th>
                             </tr>
@@ -54,7 +54,7 @@ const PendingOrders = () => {
                         <tbody>
                             {
                                 orders?.map((order, idx) => (
-                                    <OrdersTable
+                                    <DeliveredTable
                                         idx={idx}
                                         key={idx}
                                         order={order}
@@ -71,4 +71,4 @@ const PendingOrders = () => {
     );
 };
 
-export default PendingOrders;
+export default DeliveredAdmin;
