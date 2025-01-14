@@ -1,5 +1,8 @@
-import { useQuery } from "@tanstack/react-query"
+'use client'
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import axios from "axios";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 interface Address {
     division: string;
     district: string;
@@ -32,6 +35,10 @@ interface Orders {
 //     price: string;
 
 // }
+interface DeliveredProps {
+    order_id: string;
+    newData: object;
+}
 
 export const useGetShippedOrders = () => {
     const { data, isLoading, isError, error } = useQuery<Orders[]>({
@@ -42,4 +49,29 @@ export const useGetShippedOrders = () => {
         queryKey: ['shipped-orders']
     })
     return { data, isLoading, isError, error }
+}
+// Marked as Delivered
+export const useMarkedDelivered = () => {
+    const queryClient = useQueryClient()
+    return useMutation({
+        mutationFn: async ({ order_id, newData }: DeliveredProps) => {
+            const { data } = await axios.put(`${process.env.NEXT_PUBLIC_SERVER_URL}/delivered/${order_id}`, newData)
+            return data;
+        },
+        mutationKey: ['marked-delivered'],
+        onSuccess: (data) => {
+            if (data.modifiedCount === 1) {
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+                queryClient.invalidateQueries({ queryKey: ['shipped-orders'] })
+            }
+        },
+        onError: (error) => {
+            console.log(error);
+            toast.error('Failed to Marked Delivered. Try again later.');
+        }
+    })
 }

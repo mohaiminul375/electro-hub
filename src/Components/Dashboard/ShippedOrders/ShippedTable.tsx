@@ -1,4 +1,6 @@
-import Link from "next/link";
+import { useMarkedDelivered } from "@/app/admin-dashboard/shipped-orders/api/route";
+import Swal from "sweetalert2";
+
 interface Address {
     division: string;
     district: string;
@@ -22,10 +24,13 @@ interface TableProps {
     idx: number;
     order: Order
 }
-
+interface OrderData {
+    orderDeliveredAt: string;
+}
 const ShippedTable = ({ order, idx }: TableProps) => {
+    const markedDelivered = useMarkedDelivered();
     const {
-        _id,
+        // _id,
         order_id,
         orderCreatedAt,
         orderShippedAt,
@@ -36,7 +41,28 @@ const ShippedTable = ({ order, idx }: TableProps) => {
         products,
         order_status,
     } = order;
-    const orderDate = new Date(orderCreatedAt).toLocaleString()
+    const orderDate = new Date(orderCreatedAt).toLocaleString();
+    // Marked delivered
+    const makeDelivered = (order_id: string) => {
+        const newData: OrderData = {
+            orderDeliveredAt: new Date().toLocaleString(),
+        }
+        console.log(order_id)
+        Swal.fire({
+            title: "Are you sure Marked Delivered?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Delivered it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                // await packedOrder.mutateAsync({ order_id, newData })
+                await markedDelivered.mutateAsync({ order_id, newData });
+            }
+        });
+    }
     return (
         <tr className="bg-white border-b hover:bg-gray-50">
             <td className="px-4 py-2">{idx + 1}</td>
@@ -68,10 +94,10 @@ const ShippedTable = ({ order, idx }: TableProps) => {
                 {order_status}
             </td>
             <td className="px-4 py-2">
-                <button className="bg-primary p-2 rounded-md text-white">
-                    <Link href={`packing-orders/${_id}`}>
-                        See Details
-                    </Link>
+                <button
+                    onClick={() => makeDelivered(order_id)}
+                    className="bg-primary text-xs p-2 rounded-md text-white">
+                    Marked as <br /> Delivered
                 </button>
             </td>
 
