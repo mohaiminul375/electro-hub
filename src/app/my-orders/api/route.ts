@@ -60,7 +60,19 @@ export const useToReceivedProductsUsers = (uuid: string) => {
             const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/to-received/${uuid}`)
             return data;
         },
-        queryKey: ['all-order-users']
+        queryKey: ['received-orders-user']
+    })
+    return { data, isLoading, error, isError }
+
+}
+// Use Get All Delivered Products
+export const useToDeliveredProductsUsers = (uuid: string) => {
+    const { data, isLoading, error, isError } = useQuery<Orders[]>({
+        queryFn: async () => {
+            const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/delivered/${uuid}`)
+            return data;
+        },
+        queryKey: ['delivered-orders-user']
     })
     return { data, isLoading, error, isError }
 

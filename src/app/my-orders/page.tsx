@@ -1,5 +1,6 @@
 'use client'
 import AllOrders from '@/components/MyOrders/AllOrders';
+import DeliveredUser from '@/components/MyOrders/DeliveredUser';
 import ToReceived from '@/components/MyOrders/ToReceived';
 import ToShip from '@/components/MyOrders/ToShip';
 import React, { useState } from 'react';
@@ -74,8 +75,7 @@ const OrderTabs = () => {
                 </TabPanel>
                 <TabPanel className="mt-6">
                     <div className="p-4 bg-gray-50 rounded-lg shadow">
-                        <h3 className="text-lg font-semibold mb-2">Delivered</h3>
-                        <p>Display delivered orders here...</p>
+                        <DeliveredUser />
                     </div>
                 </TabPanel>
                 <TabPanel className="mt-6">
