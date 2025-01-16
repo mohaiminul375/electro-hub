@@ -136,7 +136,7 @@ export default function Nav2() {
                             <Link href="/admin-dashboard">
                                 <MdAdminPanelSettings className="text-2xl md:text-3xl" />
                             </Link>
-                            <BiSupport className="text-2xl md:text-3xl" />
+                            <Link href='/support'> <BiSupport className="text-2xl md:text-3xl" /></Link>
                             <Link color="foreground" href="/cart">
                                 <FaCartPlus className="text-2xl md:text-3xl" />
                             </Link>

@@ -4,7 +4,7 @@ export default function Footer() {
     return (
         <footer className='bg-primary h-20 mt-36'>
             <div className='text-center text-accent'>
-                <h2>All right and reserve by @ Electro-Hub 2024</h2>
+                <h2>All right and reserve by @ Electro-Hub 2025</h2>
             </div>
         </footer>
     )

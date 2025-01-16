@@ -80,8 +80,7 @@ const OrderTabs = () => {
                 </TabPanel>
                 <TabPanel className="mt-6">
                     <div className="p-4 bg-gray-50 rounded-lg shadow">
-                        <h3 className="text-lg font-semibold mb-2">Canceled</h3>
-                        <p>Display canceled orders here...</p>
+                       Developer working on this page..
                     </div>
                 </TabPanel>
             </Tabs>
