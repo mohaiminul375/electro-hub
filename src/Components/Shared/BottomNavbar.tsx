@@ -1,27 +1,34 @@
 'use client'
 import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/react';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React from 'react';
 import { BiSupport } from 'react-icons/bi';
 import { FaCartPlus, FaUserCircle } from 'react-icons/fa';
-import { MdAdminPanelSettings, 
+import {
+    MdAdminPanelSettings,
     // MdArrowDropDownCircle 
 } from 'react-icons/md';
 
 const BottomNavbar = () => {
     const session = useSession();
+    // const isAdmin = session?.data?.user?.role === 'admin';
+    const user_email = session?.data?.user?.email;
     return (
         <nav className="md:hidden bg-accent fixed bottom-0 z-50 h-10 w-full">
             <div className="flex justify-between items-center text-white gap-5 px-10 h-full">
-                <BiSupport className="text-2xl md:text-3xl" />
-                <FaCartPlus className="text-2xl md:text-3xl" />
+                <Link href='/support'>
+                    <BiSupport className="text-2xl md:text-3xl" />
+                </Link>
+                <Link href='/cart'>
+                    <FaCartPlus className="text-2xl md:text-3xl" />
+                </Link>
                 <Link href="/admin-dashboard">
                     <MdAdminPanelSettings className="text-2xl md:text-3xl" />
                 </Link>
 
                 {
-                    !session?.data ?
+                    session?.data ?
                         <Dropdown placement="bottom-end">
                             <DropdownTrigger>
                                 <Avatar
@@ -38,7 +45,7 @@ const BottomNavbar = () => {
                                 <DropdownItem key="profile" className="h-14 gap-2">
                                     <p className="font-semibold">Signed in as</p>
                                     <p className="font-semibold">
-                                        {/* {user_email} */}
+                                        {user_email}
 
                                     </p>
                                 </DropdownItem>
@@ -47,9 +54,14 @@ const BottomNavbar = () => {
                                         My Account
                                     </Link>
                                 </DropdownItem>
-                                <DropdownItem key="my-orders">My Orders</DropdownItem>
+                                <DropdownItem key="my-orders">
+
+                                    <Link href='/my-orders'>
+                                        My Orders
+                                    </Link>
+                                </DropdownItem>
                                 <DropdownItem
-                                    // onClick={() => signOut()}
+                                    onClick={() => signOut()}
                                     key="logout" color="danger">
                                     Log Out
                                 </DropdownItem>

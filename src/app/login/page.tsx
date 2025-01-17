@@ -7,7 +7,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import SocialLogin from '../../components/Shared/SocialLogin';
 import { signIn } from 'next-auth/react';
 import toast from 'react-hot-toast';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
 
 const LottiePlayer = dynamic(() => import('@lottiefiles/react-lottie-player').then((mod) => mod.Player), { ssr: false });
@@ -19,7 +19,6 @@ type Inputs = {
 };
 
 function Page() {
-    const router = useRouter();
     const searchParams = useSearchParams();
     const path = searchParams.get("redirect");
     const [isVisible, setIsVisible] = useState(false);
@@ -40,12 +39,12 @@ function Page() {
                 callbackUrl: path ? path : '/',
             });
 
-            if (res?.status === 200) {
-                router.push('/');
-                toast.success('Login successfully');
-            } else {
-                toast.error('Invalid email or password');
-            }
+            // if (res?.status === 200) {
+            //     router.push('/');
+            //     toast.success('Login successfully');
+            // } else {
+            //     toast.error('Invalid email or password');
+            // }
         } catch (error) {
             console.error("Error during login:", error);
             toast.error('Something went wrong, please try again later');
