@@ -7,7 +7,7 @@ import { Headland_One } from "next/font/google"
 import AuthProvider from "@/services/AuthProvider";
 import { Toaster } from "react-hot-toast";
 import Footer from "../components/Shared/Footer";
-import Nav2 from "../components/Shared/Navbar2";
+import Nav from "../components/Shared/Navbar";
 import BottomNavbar from "../components/Shared/BottomNavbar";
 export const dynamic = 'force-dynamic';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
@@ -49,7 +49,7 @@ export default function RootLayout({
           <NextUIProvider>
             <AuthProvider>
 
-              <Nav2 />
+              <Nav />
               <main className=" bg-background">
                 <div className="min-h-[calc(100vh-145px)] md:max-w-7xl mx-auto">
                   {children}
