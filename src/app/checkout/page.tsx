@@ -19,9 +19,10 @@ const Page = () => {
     const { data: carts, isLoading, isError, error } = useGetCartProduct(uuid as string);
 
     if (!session) {
-        return <p>Please log in to view your cart.</p>;
+        return <p className='text-center text-2xl'>Please log in to view your cart.</p>;
     }
-    if (!user?.uuid || isLoading) {
+    // !user?.uuid ||
+    if (isLoading) {
         return <Loading></Loading>
     }
 
@@ -30,7 +31,16 @@ const Page = () => {
     }
 
     //destructure address
-    const { division, district, full_address } = user?.address;
+    const { division, district, full_address } = user?.address || {};
+    if (!user?.address) {
+        return <div className='flex justify-center items-center '>
+            <div className='bg-white md:w-96 p-7 border-2 shadow-2xl rounded-md border-primary'><h2 className='text-center text-lg text-primary'>Please confirm your address first</h2>
+                <div>
+                    <Link className='w-full bg-primary text-white p-2 block text-center rounded-md' href='/user/profile'>Update Profile</Link>
+                </div>
+            </div>
+        </div>
+    }
     // Filter the cart for the current user's UUID
     const userCart = carts?.find(cart => cart.uuid === uuid);
 
@@ -69,12 +79,14 @@ const Page = () => {
                 {/* User Info */}
                 <div className='bg-white rounded-md p-4'>
                     <h4>Name: {user?.name || 'Unknown'}</h4>
-                    <h6>
-                        Shipping Address:
-                        <span className='font-semibold'> Division:</span> <span>{division}</span>,
-                        <span className='font-semibold'> District:</span> <span>{district}</span>,
-                        <span className='font-semibold'> Address:</span> <span>{full_address}</span>
-                    </h6>
+                    {
+                        user?.address && <h6>
+                            Shipping Address:
+                            <span className='font-semibold'> Division:</span> <span>{division || 'not found'}</span>,
+                            <span className='font-semibold'> District:</span> <span>{district}</span>,
+                            <span className='font-semibold'> Address:</span> <span>{full_address}</span>
+                        </h6>
+                    }
                 </div>
 
                 {/* Cart Items */}
