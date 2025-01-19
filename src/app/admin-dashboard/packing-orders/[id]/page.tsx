@@ -67,7 +67,9 @@ const Page = () => {
                     <p className="text-gray-500">Total Price: {order?.total_price} BDT</p>
                     <p className="text-gray-500">Payment Method: {order?.payment_method}</p>
                     <p className="text-gray-500">Order Status: {order?.order_status}</p>
-                    <p className="text-gray-500">Order Created At: {order?.orderCreatedAt}</p>
+                    <p className="text-gray-500">Order Created At: {order?.orderCreatedAt
+                        ? new Date(order.orderCreatedAt).toLocaleDateString()
+                        : "Error"}</p>
                     <p className="text-gray-500">Order Approved At: {order?.orderApproveAt}</p>
                     {
                         order?.note && <p className="text-primary mt-4">Note: {order.note}</p>

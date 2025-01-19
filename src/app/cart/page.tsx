@@ -6,6 +6,7 @@ import { Input } from '@nextui-org/react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import Loading from '../loading';
+import { FaX } from 'react-icons/fa6';
 export const dynamic = 'force-dynamic';
 interface CartItem {
     product_id: string;
@@ -46,9 +47,9 @@ const Page = () => {
             setTotalPrice(totalPrice);
         }
     }, [data]);
-    if (!session) {
-        return <p className='text-center text-2xl'>Please log in to view your cart.</p>;
-    }
+        if (!session) {
+            return <p className='text-center text-2xl'>Please log in to view your cart.</p>;
+        }
     if (isLoading) {
         return <p><Loading /></p>;
     }
@@ -170,6 +171,9 @@ const Page = () => {
                                             +
                                         </button>
                                     </div>
+                                    <div className='ml-14'>
+                                        <FaX />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -219,6 +223,7 @@ const Page = () => {
                         }
 
                     </div>
+
                 </div>
             </section>
         </>
