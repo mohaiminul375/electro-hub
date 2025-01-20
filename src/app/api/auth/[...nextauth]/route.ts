@@ -47,6 +47,7 @@ declare module "next-auth" {
 }
 
 const authOptions: AuthOptions = {
+    secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
     session: {
         strategy: "jwt", // Or "database" if you're using a database
         maxAge: 3 * 24 * 60 * 60, // 3 days in seconds

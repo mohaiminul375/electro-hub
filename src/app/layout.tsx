@@ -48,10 +48,9 @@ export default function RootLayout({
         <QueryClientProvider client={queryClient}>
           <NextUIProvider>
             <AuthProvider>
-
               <Nav />
               <main className=" bg-background">
-                <div className="min-h-[calc(100vh-145px)] md:max-w-7xl mx-auto">
+                <div className="min-h-[calc(100vh-145px)] md:max-w-7xl mx-auto pt-20 md:pt-14">
                   {children}
                 </div>
               </main>

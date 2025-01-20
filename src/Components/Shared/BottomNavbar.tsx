@@ -55,7 +55,6 @@ const BottomNavbar = () => {
                                     </Link>
                                 </DropdownItem>
                                 <DropdownItem key="my-orders">
-
                                     <Link href='/my-orders'>
                                         My Orders
                                     </Link>

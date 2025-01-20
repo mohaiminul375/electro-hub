@@ -6,7 +6,7 @@ import ForYou from "../components/Home/ForYou";
 
 export default function Home() {
   return (
-    <section className="pt-0 ">
+    <section className="pt-0">
       <Banner />
       <div className="space-y-20 mt-20">
         <Brands />

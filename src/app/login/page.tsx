@@ -32,7 +32,7 @@ function Page() {
             const email = user_info.email;
             const password = user_info.password;
 
-            const res = await signIn('credentials', {
+            await signIn('credentials', {
                 email,
                 password,
                 redirect: true,
