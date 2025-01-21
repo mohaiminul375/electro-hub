@@ -47,9 +47,9 @@ const Page = () => {
             setTotalPrice(totalPrice);
         }
     }, [data]);
-        if (!session) {
-            return <p className='text-center text-2xl'>Please log in to view your cart.</p>;
-        }
+    if (!session) {
+        return <p className='text-center text-2xl'>Please log in to view your cart.</p>;
+    }
     if (isLoading) {
         return <p><Loading /></p>;
     }
@@ -110,10 +110,14 @@ const Page = () => {
                             key={item.product_id}
                             className="bg-white border-gray-200 shadow-md"
                         >
+                            <div className='md:hidden flex justify-end pt-5 pr-4'>
+                                <FaX />
+                            </div>
                             <div className="p-4">
-                                <div className="grid grid-cols-12 gap-4 items-center border-b border-gray-300 py-2 my-2">
+                                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center border-b border-gray-300 py-2 my-2">
+
                                     {/* Product Image */}
-                                    <div className="col-span-2">
+                                    <div className="md:col-span-2">
                                         <Image
                                             src={item.img}
                                             alt={item.product_name}
@@ -121,9 +125,10 @@ const Page = () => {
                                             width={64}
                                         />
                                     </div>
+                                    {/* Delete */}
 
                                     {/* Product Details */}
-                                    <div className="col-span-4">
+                                    <div className="md:col-span-4">
                                         <h5 className="text-base font-medium text-gray-900">
                                             {item.product_name}
                                         </h5>
@@ -132,14 +137,14 @@ const Page = () => {
                                     </div>
 
                                     {/* Price */}
-                                    <div className="col-span-2 text-center">
+                                    <div className="md:col-span-2  md:text-center">
                                         <p className="text-sm font-medium text-gray-900">
                                             ${item.price.toFixed(2)}
                                         </p>
                                     </div>
 
                                     {/* Quantity */}
-                                    <div className="col-span-2 flex justify-center items-center">
+                                    <div className="md:col-span-2 flex justify-center items-center">
                                         <button
                                             disabled={item.quantity === 1}
                                             onClick={() =>
@@ -171,7 +176,7 @@ const Page = () => {
                                             +
                                         </button>
                                     </div>
-                                    <div className='ml-14'>
+                                    <div className='ml-14 hidden md:flex'>
                                         <FaX />
                                     </div>
                                 </div>
