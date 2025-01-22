@@ -176,8 +176,8 @@ const Page = () => {
                                             +
                                         </button>
                                     </div>
-                                    <div className='ml-14 hidden md:flex'>
-                                        <FaX />
+                                    <div className='ml-14 hidden md:flex col-span-2'>
+                                        <FaX className='cursor-pointer' />
                                     </div>
                                 </div>
                             </div>

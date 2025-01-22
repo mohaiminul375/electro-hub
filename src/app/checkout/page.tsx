@@ -98,9 +98,9 @@ const Page = () => {
                             className="bg-white"
                         >
                             <div className="p-4">
-                                <div className="grid grid-cols-12 gap-4 items-center border-b border-gray-300 py-2 my-2">
+                                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center border-b border-gray-300 py-2 my-2">
                                     {/* Product Image */}
-                                    <div className="col-span-2">
+                                    <div className="md:col-span-2">
                                         <Image
                                             src={item.img}
                                             alt={item.product_name}
@@ -119,7 +119,7 @@ const Page = () => {
                                     </div>
 
                                     {/* Price */}
-                                    <div className="col-span-2 text-center">
+                                    <div className="col-span-2 text-left">
                                         <p className="text-sm font-medium text-gray-900">
                                             ${item.price.toFixed(2)}
                                         </p>
