@@ -81,11 +81,13 @@
 - Admin email: admin1@electro-hub.com
 - Admin password: admin@A1
 
-# Technology
+## Technologies Used
 
-- HTML, CSS, Next UI, Next.js, Typescript (Front-End)
-- Next Auth(Authentication)
-- Express.js, MongoDB.
+- **Frontend**: Next.js, Typescript, HTML, Tailwind CSS, Next Ui, Axios
+- **Backend**: Node.js, Express.js, MongoDB
+- **Authentication**: NextAuth
+- **Payment Gateway**: SSLCOMMERZ
+- **Hosting**: Vercel (frontend and backend both)
 
 # npm and Packages
 
