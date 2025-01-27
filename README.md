@@ -31,27 +31,50 @@
 
 ## Features
 
+## For Default User
+
 ### 1. Browse Products
+
 - Users can view all available products on the platform.
 - Products can be filtered by categories for easier navigation.
 
 ### 2. Add to Cart
+
 - Users can add products to their cart.
 - View and manage the cart before proceeding to checkout.
 
 ### 3. Secure Payment with SSLCOMMERZ
+
 - Users can place orders by making secure payments via SSLCOMMERZ.
 - Transactions are seamless and secure.
 
 ### 4. Order Tracking
+
 - Users can track the status of their orders after placing them.
 - Real-time updates on order progress.
 
 ### 5. Profile Management
+
 - Users can update their profile information, including name, email, and contact details.
 - Ensures a personalized shopping experience.
 
-- Admin
+## For Admins
+
+1. **Product Management**
+
+   - Admins can add, edit, and delete products from the platform.
+   - Admins can update product details such as title, description, price, and images.
+
+2. **Order Management**
+
+   - Admins can manage orders by processing and updating their status (e.g., pending, processed, shipped, delivered).
+   - Admins can view detailed order information, including the items purchased and shipping details.
+
+3. **User Management**
+   - Admins can view all registered users on the platform.
+   - Admins can view user profiles and their order histories.
+
+### **This website is under development, so more features are coming soon!**
 
 # Access Info
 
