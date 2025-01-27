@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Electro-Hub
 
-## Getting Started
+- A Full Stack E-Commerce Website
 
-First, run the development server:
+# Live_site: https://electro-hub-tau.vercel.app
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+# Run the Project Locally
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. **Clone the Repository**:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   ```sh
+     https://github.com/mohaiminul375/electro-hub
+     cd electro-hub
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Install Dependencies**:
 
-## Learn More
+   ```sh
+   npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. **Set Up Environment Variables**: Create a `.env.local` file in the root directory and add the necessary environment variables. (**Important!**)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Run the Application**:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```sh
+   npm run dev -- --host
+   ```
 
-## Deploy on Vercel
+5. **Access the Site**: Open your browser and go to http://localhost:3000.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 1. Browse Products
+- Users can view all available products on the platform.
+- Products can be filtered by categories for easier navigation.
+
+### 2. Add to Cart
+- Users can add products to their cart.
+- View and manage the cart before proceeding to checkout.
+
+### 3. Secure Payment with SSLCOMMERZ
+- Users can place orders by making secure payments via SSLCOMMERZ.
+- Transactions are seamless and secure.
+
+### 4. Order Tracking
+- Users can track the status of their orders after placing them.
+- Real-time updates on order progress.
+
+### 5. Profile Management
+- Users can update their profile information, including name, email, and contact details.
+- Ensures a personalized shopping experience.
+
+- Admin
+
+# Access Info
+
+- Admin email: admin1@electro-hub.com
+- Admin password: admin@A1
+
+# Technology
+
+- HTML, CSS, Next UI, Next.js, Typescript (Front-End)
+- Next Auth(Authentication)
+- Express.js, MongoDB.
+
+# npm and Packages
+
+- Next.js
+- Typescript
+- Next UI
+- Swiper slider
+- React hook form
+- tanstack query
+- lottie react
+- react hot toast
+- sweet alert 2
+- npm i react-confetti
+- axios
+
+# Server Side
+
+- https://github.com/mohaiminul375/electro-hub-server
