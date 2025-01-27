@@ -148,7 +148,7 @@ export default function Nav() {
                                                 color="primary"
                                                 name="Jason Hughes"
                                                 size="sm"
-                                                src="https://i.ibb.co.com/9W3MKLY/avatar.png"
+                                                src="https://i.ibb.co.com/RbY8vby/avatar.png"
                                             />
                                         </DropdownTrigger>
                                         <DropdownMenu aria-label="Profile Actions" variant="flat">

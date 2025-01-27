@@ -46,7 +46,7 @@ declare module "next-auth" {
     }
 }
 
-const authOptions: AuthOptions = {
+export const authOptions: AuthOptions = {
     secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
     session: {
         strategy: "jwt", // Or "database" if you're using a database
@@ -113,7 +113,7 @@ const authOptions: AuthOptions = {
                     token.phone_number = user.phone_number;
                     token.role = socialUser?.role;
                     token.address = user?.address;
-                    token.uuid = user.uuid;
+                    token.uuid = user.uuid || socialUser.uuid;
                 } else {
                     token.name = user.name;
                     token.gender = user.gender;

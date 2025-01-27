@@ -7,6 +7,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import { useAddProduct } from './api/route';
+import { useSession } from 'next-auth/react';
 type Inputs = {
     product_name: string;
     product_price: number | string;
@@ -52,6 +53,8 @@ type Inputs = {
     category: string;
     color: string;
     brand: string;
+    status: string;
+    addedBy: string;
 
 };
 type BrandOptions = {
@@ -77,6 +80,9 @@ const brandOptions: BrandOptions = {
 };
 // 
 const AddProduct = () => {
+    const session = useSession();
+    console.log(session)
+    const user_email = session?.data?.user?.email;
     const addProduct = useAddProduct();
     const { register,
         handleSubmit,
@@ -87,6 +93,7 @@ const AddProduct = () => {
     const [category, setCategory] = useState("");
     const [color, setColor] = useState('Select a color');
     const [brand, setBrand] = useState('');
+    const [status, setStatus] = useState('')
     const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
@@ -96,7 +103,6 @@ const AddProduct = () => {
     if (!isClient) {
         return null;
     }
-
 
     // react hook form
     const onSubmit: SubmitHandler<Inputs> = async (product: Inputs) => {
@@ -138,6 +144,8 @@ const AddProduct = () => {
         product.color = color;
         product.posted_date = new Date().toLocaleString();
         product.img = img_url;
+        product.status = status;
+        product.addedBy = user_email as string;
         console.log(product);
 
         try {
@@ -318,6 +326,23 @@ const AddProduct = () => {
                                     </div>
 
                                 </div>
+                                {/* stock */}
+                                <div className='grid md:grid-cols-2'>
+                                    <div className='flex flex-col'>
+                                        <label>Status<span className='text-red-600 font-bold'>*</span></label>
+                                        <Select
+                                            isRequired
+                                            onChange={(e) => setStatus(e.target.value)}
+                                            label="Select Status" className="w-full mt-2 sm:mt-0">
+                                            <SelectItem key='in_stock' value='In_Stock' >
+                                                In stock
+                                            </SelectItem>
+                                            <SelectItem key='out_of_stock' value='Out_of_Stock' >
+                                                Out of stock
+                                            </SelectItem>
+                                        </Select>
+                                    </div>
+                                </div>
                                 <div className='w-full'>
                                     <div>
                                         <label>Description<span className='text-red-600 font-bold'>*</span></label>
@@ -388,8 +413,24 @@ const AddProduct = () => {
                                             required
                                         />
                                     </div>
+                                    {/* stock */}
 
+                                    <div className='flex flex-col'>
+                                        <label>Status<span className='text-red-600 font-bold'>*</span></label>
+                                        <Select
+                                            isRequired
+                                            onChange={(e) => setStatus(e.target.value)}
+                                            label="Select Status" className="w-full mt-2 sm:mt-0">
+                                            <SelectItem key='in_stock' value='In_Stock' >
+                                                In stock
+                                            </SelectItem>
+                                            <SelectItem key='out_of_stock' value='Out_of_Stock' >
+                                                Out of stock
+                                            </SelectItem>
+                                        </Select>
+                                    </div>
                                 </div>
+
                                 <div className='w-full'>
                                     <div>
                                         <label>Description<span className='text-red-600 font-bold'>*</span></label>
@@ -480,7 +521,21 @@ const AddProduct = () => {
                                             required
                                         />
                                     </div>
-
+                                    {/* stock */}
+                                    <div className='flex flex-col'>
+                                        <label>Status<span className='text-red-600 font-bold'>*</span></label>
+                                        <Select
+                                            isRequired
+                                            onChange={(e) => setStatus(e.target.value)}
+                                            label="Select Status" className="w-full mt-2 sm:mt-0">
+                                            <SelectItem key='in_stock' value='In_Stock' >
+                                                In stock
+                                            </SelectItem>
+                                            <SelectItem key='out_of_stock' value='Out_of_Stock' >
+                                                Out of stock
+                                            </SelectItem>
+                                        </Select>
+                                    </div>
                                 </div>
                                 <div className='w-full'>
                                     <div>
@@ -554,6 +609,21 @@ const AddProduct = () => {
                                             required
                                         />
                                     </div>
+                                    {/* stock */}
+                                    <div className='flex flex-col'>
+                                        <label>Status<span className='text-red-600 font-bold'>*</span></label>
+                                        <Select
+                                            isRequired
+                                            onChange={(e) => setStatus(e.target.value)}
+                                            label="Select Status" className="w-full mt-2 sm:mt-0">
+                                            <SelectItem key='in_stock' value='In_Stock' >
+                                                In stock
+                                            </SelectItem>
+                                            <SelectItem key='out_of_stock' value='Out_of_Stock' >
+                                                Out of stock
+                                            </SelectItem>
+                                        </Select>
+                                    </div>
                                 </div>
                                 <div className='w-full'>
                                     <div>
@@ -622,7 +692,23 @@ const AddProduct = () => {
                                             />
                                         </div>
                                     </div>
-
+                                </div>
+                                {/* stock */}
+                                <div className='grid md:grid-cols-2'>
+                                    <div className='flex flex-col'>
+                                        <label>Status<span className='text-red-600 font-bold'>*</span></label>
+                                        <Select
+                                            isRequired
+                                            onChange={(e) => setStatus(e.target.value)}
+                                            label="Select Status" className="w-full mt-2 sm:mt-0">
+                                            <SelectItem key='in_stock' value='In_Stock' >
+                                                In stock
+                                            </SelectItem>
+                                            <SelectItem key='out_of_stock' value='Out_of_Stock' >
+                                                Out of stock
+                                            </SelectItem>
+                                        </Select>
+                                    </div>
                                 </div>
                                 <div className='w-full'>
                                     <div>

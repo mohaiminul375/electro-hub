@@ -1,16 +1,26 @@
-import React from 'react'
+'use client'
 import ProductManagement from '../../components/Dashboard/ProductManagement'
 import OrderManagement from '../../components/Dashboard/OrderManagement'
 import UserNReview from '../../components/Dashboard/UserNReview'
+import { useSession } from 'next-auth/react';
+import Loading from '../loading';
 export const dynamic = 'force-dynamic';
 
 export default function AdminDashboard() {
+    const session = useSession();
+    if (session?.status == 'loading') return <Loading />
+    console.log(session);
+    const userName = session?.data?.user?.name;
+    const isAdmin = session?.data?.user?.role === 'admin';
+    if (!isAdmin) {
+        return <p>Unauthorized Accesses.</p>
+    }
     return (
         <section className="mt-12 p-6 bg-gray-50 rounded-lg">
             <div className="text-center mb-10">
                 <h2 className="text-3xl font-bold text-accent">Admin Dashboard</h2>
                 <h3 className="text-xl font-semibold text-accent mt-2">
-                    Welcome, <span className="text-green-600">Mohaiminul Islam</span>
+                    Welcome, <span className="text-green-600">{userName}</span>
                 </h3>
                 <p className="text-gray-700 mt-1">Manage your tools effectively</p>
             </div>
