@@ -83,11 +83,11 @@
 
 ## Technologies Used
 
-- **Frontend**: Next.js, Typescript, HTML, Tailwind CSS, Next Ui, Axios
-- **Backend**: Node.js, Express.js, MongoDB
-- **Authentication**: NextAuth
-- **Payment Gateway**: SSLCOMMERZ
-- **Hosting**: Vercel (frontend and backend both)
+- **Frontend**: Next.js, Typescript, HTML, Tailwind CSS, Next UI.
+- **Backend**: Node.js, Express.js, MongoDB.
+- **Authentication**: NextAuth.
+- **Payment Gateway**: SSLCOMMERZ.
+- **Hosting**: Vercel (frontend and backend both).
 
 # npm and Packages
 
