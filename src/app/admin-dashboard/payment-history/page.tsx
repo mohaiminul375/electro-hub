@@ -69,6 +69,11 @@ const PaymentHistory = () => {
                         </tbody>
                     </table>
                 </div>
+                {
+                    payments?.length === 0 && <p className='text-red-700 text-center font-bold text-2xl mt-10'>
+                        No data found.
+                    </p>
+                }
             </div>
         </section>
     );

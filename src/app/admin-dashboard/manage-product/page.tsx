@@ -63,6 +63,7 @@ const ManageProduct = () => {
                             </tr>
                         </thead>
                         <tbody>
+
                             {
                                 products?.map((product, idx) => (
                                     <ProductTable
@@ -77,6 +78,11 @@ const ManageProduct = () => {
                         </tbody>
                     </table>
                 </div>
+                {
+                    products?.length === 0 && <p className='text-red-700 text-center font-bold text-2xl mt-10'>
+                        No Products added yet.
+                    </p>
+                }
             </div>
         </section>
     );

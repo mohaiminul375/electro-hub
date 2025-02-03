@@ -36,7 +36,7 @@ const Page = () => {
             <div>
                 {
                     products.length === 0 &&
-                    < h2 className='text-center text-xl text-red-700 font-semibold'>No Product Fount</h2>
+                    < h2 className='text-center text-xl text-red-700 font-semibold'>No Product Found</h2>
                 }
             </div>
             {/* Products */}

@@ -12,7 +12,7 @@ import {
 
 const BottomNavbar = () => {
     const session = useSession();
-    // const isAdmin = session?.data?.user?.role === 'admin';
+    const isAdmin = session?.data?.user?.role === 'admin';
     const user_email = session?.data?.user?.email;
     return (
         <nav className="md:hidden bg-accent fixed bottom-0 z-50 h-10 w-full">
@@ -23,9 +23,11 @@ const BottomNavbar = () => {
                 <Link href='/cart'>
                     <FaCartPlus className="text-2xl md:text-3xl" />
                 </Link>
-                <Link href="/admin-dashboard">
-                    <MdAdminPanelSettings className="text-2xl md:text-3xl" />
-                </Link>
+                {
+                    isAdmin && <Link href="/admin-dashboard">
+                        <MdAdminPanelSettings className="text-2xl md:text-3xl" />
+                    </Link>
+                }
 
                 {
                     session?.data ?

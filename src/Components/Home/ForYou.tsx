@@ -11,11 +11,18 @@ export default function ForYou() {
     return (
 
         <section className='mt-10'>
+
             <div>
                 <h2 className='text-3xl font-semibold'>For You</h2>
             </div>
             {/* Products */}
             <div className='mt-5'>
+                <div>
+                    {
+                        products.length === 0 &&
+                        < h2 className='text-center text-xl text-red-700 font-semibold'>No Product Found</h2>
+                    }
+                </div>
                 <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
                     {products?.map((item) => (
                         <ProductCard key={item._id} item={item} />

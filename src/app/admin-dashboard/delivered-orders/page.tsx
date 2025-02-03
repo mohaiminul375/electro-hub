@@ -66,6 +66,11 @@ const DeliveredAdmin = () => {
                         </tbody>
                     </table>
                 </div>
+                {
+                    orders?.length === 0 && <p className='text-red-700 text-center font-bold text-2xl mt-10'>
+                        No products have been delivered yet.
+                    </p>
+                }
             </div>
         </section>
     );

@@ -67,6 +67,11 @@ export default function AllUsers() {
                     </tbody>
                 </table>
             </div>
+            {
+                users?.length === 0 && <p className='text-red-700 text-center font-bold text-2xl mt-10'>
+                    No data found.
+                </p>
+            }
         </section>
     );
 }

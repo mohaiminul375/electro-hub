@@ -11,7 +11,7 @@ const PendingOrders = () => {
     if (isLoading) return <Loading />;
     // Handle error state
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
-  
+
     return (
         <section>
             {/* filter and sorting */}
@@ -66,6 +66,11 @@ const PendingOrders = () => {
                         </tbody>
                     </table>
                 </div>
+                {
+                    orders?.length === 0 && <p className='text-red-700 text-center font-bold text-2xl mt-10'>
+                        There are no pending orders right now.
+                    </p>
+                }
             </div>
         </section>
     );

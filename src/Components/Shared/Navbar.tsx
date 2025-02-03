@@ -47,7 +47,7 @@ export default function Nav() {
     // Get user session
     const session = useSession();
     console.log(session)
-    // const isAdmin = session?.data?.user?.role === 'admin';
+    const isAdmin = session?.data?.user?.role === 'admin';
     const user_email = session?.data?.user?.email;
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -130,9 +130,11 @@ export default function Nav() {
 
                         {/* hidden for sm device */}
                         <div className="hidden md:flex gap-5">
-                            <Link href="/admin-dashboard">
-                                <MdAdminPanelSettings className="text-2xl md:text-3xl" />
-                            </Link>
+                            {
+                                isAdmin && <Link href="/admin-dashboard">
+                                    <MdAdminPanelSettings className="text-2xl md:text-3xl" />
+                                </Link>
+                            }
                             <Link href='/support'> <BiSupport className="text-2xl md:text-3xl" /></Link>
                             <Link color="foreground" href="/cart">
                                 <FaCartPlus className="text-2xl md:text-3xl" />

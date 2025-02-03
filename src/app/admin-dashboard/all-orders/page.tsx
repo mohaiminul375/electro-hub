@@ -67,6 +67,15 @@ const Page = () => {
                         </tbody>
                     </table>
                 </div>
+                {
+                    orders?.length === 0 && <p className='text-red-700 text-center font-bold text-2xl mt-10'>
+                        {
+                            orders?.length === 0 && <p className='text-red-700 text-center font-bold text-2xl mt-10'>
+                                No orders have been created yet.
+                            </p>
+                        }
+                    </p>
+                }
             </div>
         </section>
     );
