@@ -88,7 +88,7 @@ const Page = () => {
                        
                     </>
                 );
-            case "smart-phone":
+            case "smart_phone":
                 return (
                     <>
                         <p className="text-base">Model: {specs.smart_phone_model}</p>
@@ -108,7 +108,7 @@ const Page = () => {
                        
                     </>
                 );
-            case "smart-tv":
+            case "smart_tv":
                 return (
                     <>
                         <p className="text-base">Screen Size: {specs.smart_tv_screen}</p>

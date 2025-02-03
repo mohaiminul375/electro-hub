@@ -67,6 +67,7 @@ const Page = () => {
                         <p>Battery: {specs.laptop_battery}</p>
                         <p>Ports: {specs.laptop_ports}</p>
                         <p className="font-semibold">Posted Date: {specs.posted_date}</p>
+                        <p className="font-semibold">Added by: {specs.addedBy}</p>
                     </>
                 );
             case "monitor":
@@ -76,9 +77,10 @@ const Page = () => {
                         <p>Resolution: {specs.monitor_resolution}</p>
                         <p>Ports: {specs.monitor_ports}</p>
                         <p className="font-semibold">Posted Date: {specs.posted_date}</p>
+                        <p className="font-semibold">Added by: {specs.addedBy}</p>
                     </>
                 );
-            case "smart-phone":
+            case "smart_phone":
                 return (
                     <>
                         <p>Model: {specs.smart_phone_model}</p>
@@ -87,18 +89,20 @@ const Page = () => {
                         <p>Battery: {specs.smart_phone_battery}</p>
                         <p>Camera: {specs.smart_phone_camera}</p>
                         <p className="font-semibold">Posted Date: {specs.posted_date}</p>
+                        <p className="font-semibold">Added by: {specs.addedBy}</p>
                     </>
                 );
-            case "smart-watch":
+            case "smart_watch":
                 return (
                     <>
                         <p>Model: {specs.smart_watch_model}</p>
                         <p>Battery: {specs.smart_watch_battery}</p>
                         <p>Features: {specs.smart_watch_features}</p>
                         <p className="font-semibold">Posted Date: {specs.posted_date}</p>
+                        <p className="font-semibold">Added by: {specs.addedBy}</p>
                     </>
                 );
-            case "smart-tv":
+            case "smart_tv":
                 return (
                     <>
                         <p>Screen Size: {specs.smart_tv_screen}</p>
@@ -107,6 +111,7 @@ const Page = () => {
                         <p>Features: {specs.smart_tv_features}</p>
                         <p>Ports: {specs.smart_tv_ports}</p>
                         <p className="font-semibold">Posted Date: {specs.posted_date}</p>
+                        <p className="font-semibold">Added by: {specs.addedBy}</p>
                     </>
                 );
             default:

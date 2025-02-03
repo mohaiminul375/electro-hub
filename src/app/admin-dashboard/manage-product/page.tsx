@@ -24,13 +24,13 @@ const ManageProduct = () => {
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
 
     return (
-        <section className='mt-10'>
+        <section className='mt-6'>
             {/* filter and sorting */}
             <div>
 
             </div>
             {/*Heading  */}
-            <div className="mt-6">
+            <div className="mt-0">
                 {/* Back Button */}
                 <div className="inline-block">
                     <Link
@@ -51,6 +51,9 @@ const ManageProduct = () => {
 
             {/* products listing */}
             <div>
+                <div className='mb-2'>
+                    <h2 className='text-xl font-bold'>Total Products: <span className='text-primary'>{products?.length}</span></h2>
+                </div>
                 <div className="overflow-x-auto">
                     <table className="min-w-full table-auto border-collapse">
                         <thead className="bg-primary text-white">
