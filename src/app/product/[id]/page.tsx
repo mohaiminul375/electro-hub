@@ -36,6 +36,7 @@ const Page = () => {
         category,
         brand,
         color,
+        status,
         ...specs
     } = details;
 
@@ -76,7 +77,7 @@ const Page = () => {
                         <p className="text-base">Display: {specs.laptop_display}</p>
                         <p className="text-base">Battery: {specs.laptop_battery}</p>
                         <p className="text-base">Ports: {specs.laptop_ports}</p>
-                      
+
                     </>
                 );
             case "monitor":
@@ -85,7 +86,7 @@ const Page = () => {
                         <p className="text-base">Screen Size: {specs.monitor_screen}</p>
                         <p className="text-base">Resolution: {specs.monitor_resolution}</p>
                         <p className="text-base">Ports: {specs.monitor_ports}</p>
-                       
+
                     </>
                 );
             case "smart_phone":
@@ -96,16 +97,16 @@ const Page = () => {
                         <p className="text-base">RAM: {specs.smart_phone_ram}</p>
                         <p className="text-base">Battery: {specs.smart_phone_battery}</p>
                         <p className="text-base">Camera: {specs.smart_phone_camera}</p>
-                       
+
                     </>
                 );
-            case "smart-watch":
+            case "smart_watch":
                 return (
                     <>
                         <p className="text-base">Model: {specs.smart_watch_model}</p>
                         <p className="text-base">Battery: {specs.smart_watch_battery}</p>
                         <p className="text-base">Features: {specs.smart_watch_features}</p>
-                       
+
                     </>
                 );
             case "smart_tv":
@@ -116,7 +117,7 @@ const Page = () => {
                         <p className="text-medium">RAM: {specs.smart_tv_ram}</p>
                         <p className="text-base">Features: {specs.smart_tv_features}</p>
                         <p className="text-base">Ports: {specs.smart_tv_ports}</p>
-                        
+
                     </>
                 );
             default:
@@ -187,22 +188,25 @@ const Page = () => {
                     </div>
 
                     {/* Actions */}
-                    <div className="flex justify-evenly gap-4 mt-2">
-                        <button
-                            onClick={() => handleAddToCart()}
-                            className="w-full bg-primary text-center text-white py-2 rounded-md">
-                            Add To Cart
-                        </button>
-                        {/* <Link href={`/edit/${_id}`} className="bg-primary w-full text-center py-2 text-white font-semibold rounded-md">
-                            Edit
-                        </Link>
-                        <button
-                            onClick={() => handleDeleteProduct(_id)}
-                            className="bg-primary w-full text-center py-2 text-white font-semibold rounded-md"
-                        >
-                            Delete
-                        </button> */}
-                    </div>
+
+                    {
+                        status === 'in_stock' && <div className="mt-2">
+                            <button
+                                onClick={() => handleAddToCart()}
+                                className="w-full bg-primary text-center text-white py-2 rounded-md">
+                                Add To Cart
+                            </button>
+                        </div>
+                    }
+                    {
+                        status === 'out_of_stock' && <div className="mt-2">
+                            <button
+                                disabled
+                                className="w-full bg-red-500 text-center text-white py-2 rounded-md disabled:cursor-not-allowed">
+                                Out of Stock
+                            </button>
+                        </div>
+                    }
                 </div>
             </div>
         </section>

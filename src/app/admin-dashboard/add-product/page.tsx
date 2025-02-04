@@ -76,7 +76,7 @@ const brandOptions: BrandOptions = {
     monitor: ["Samsung", "LG", "Acer", "Dell", "BenQ"],
     smart_phone: ["Samsung", "OnePlus", "Xiaomi", "Realme", "Google", "not specified"],
     smart_watch: ["Samsung", "Garmin", "Fitbit", "Amazfit", "not specified"],
-    smart_tv: ["Sony", "LG", "Samsung", "Vizio", "TCL", "not specified"],
+    smart_tv: ["Sony", "LG", "Walton", "Samsung", "Vizio", "TCL", "not specified"],
 };
 // 
 const AddProduct = () => {
