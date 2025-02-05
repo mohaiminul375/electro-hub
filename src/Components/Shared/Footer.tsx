@@ -69,8 +69,9 @@ export default function Footer() {
                 <div className="text-center md:text-left">
                     <p>Designed and Developed by</p>
                     <Link
-                    className='hover:underline hover:text-primary duration-300 transition-all'
-                    href='https://mohaiminul-dev.web.app'>Mohaiminul Islam</Link>
+                        target='_blank'
+                        className='hover:underline hover:text-primary duration-300 transition-all'
+                        href='https://mohaiminul-dev.web.app'>Mohaiminul Islam</Link>
                 </div>
                 {/* SSL Commerz */}
                 <div className="w-full md:w-auto">

@@ -38,7 +38,7 @@ const Page = () => {
             confirmButtonText: "Yes, delete it!",
         }).then(async (result) => {
             if (result.isConfirmed) {
-                // Implement delete logic
+                // Implement delete logic ToDo:
                 console.log(`Product ${id} deleted`);
             }
         });

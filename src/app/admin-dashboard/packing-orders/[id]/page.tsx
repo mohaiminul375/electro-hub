@@ -20,14 +20,12 @@ const Page = () => {
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
 
     const handlePacked = async (order_id: string) => {
-        console.log('Order approved', order_id);
         const newData: OrderData = {
             orderPackedAt: new Date().toLocaleString(),
         }
         if (note) {
             newData.note = note;
         }
-        console.log(order_id, newData)
 
         Swal.fire({
             title: "Are you sure?",

@@ -9,7 +9,6 @@ export const dynamic = 'force-dynamic';
 export default function AdminDashboard() {
     const session = useSession();
     if (session?.status == 'loading') return <Loading />
-    console.log(session);
     const userName = session?.data?.user?.name;
     const isAdmin = session?.data?.user?.role === 'admin';
     if (!isAdmin) {

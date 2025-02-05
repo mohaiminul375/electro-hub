@@ -60,12 +60,9 @@ const AddressBook = () => {
     const [selectedDivision, setSelectedDivision] = useState<string>();
     // React Hook Form
     const user = useAuth();
-    console.log(user, 'user before loading')
     if (!user?.uuid || status == 'loading') {
         return <Loading></Loading>
     }
-    // console.log('email in address')
-    // console.log(address_info, 'address info')
     const { division, district, full_address } = user?.address as Address || {};
 
 
@@ -82,9 +79,7 @@ const AddressBook = () => {
     const onSubmit: SubmitHandler<Inputs> = async (address_info: Inputs) => {
         address_info.uuid = user?.uuid;
         address_info.division = selectedDivision || '';
-        console.log(address_info, 'before server');
-        const res = await addressUpdate.mutateAsync(address_info);
-        console.log('address res', res);
+        await addressUpdate.mutateAsync(address_info);
     };
 
     return (

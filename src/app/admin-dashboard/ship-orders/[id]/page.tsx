@@ -18,11 +18,9 @@ const Page = () => {
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
 
     const handleShipped = async (order_id: string) => {
-        console.log('Order approved', order_id);
         const newData = {
             orderShippedAt: new Date().toLocaleString(),
         }
-        console.log(order_id, newData)
 
         Swal.fire({
             title: "Are you sure?",

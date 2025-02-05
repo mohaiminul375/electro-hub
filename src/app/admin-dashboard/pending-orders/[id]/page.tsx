@@ -19,15 +19,12 @@ const Page = () => {
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
 
     const handleApprove = async (order_id: string) => {
-        console.log('Order approved', order_id);
         const newData: OrderData = {
             orderApproveAt: new Date().toLocaleString(),
         }
         if (note) {
             newData.note = note
         }
-
-
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",

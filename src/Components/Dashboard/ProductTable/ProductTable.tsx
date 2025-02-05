@@ -20,7 +20,6 @@ const ProductTable = ({ product, idx }: ProductTableProps) => {
 
     // delete product
     const handleDeleteProduct = async (id: string) => {
-        console.log(id);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -32,7 +31,6 @@ const ProductTable = ({ product, idx }: ProductTableProps) => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const res = await deleteProduct.mutateAsync(id);
-                console.log(res)
                 if (res.deletedCount > 0) {
                     Swal.fire({
                         title: "Deleted!",

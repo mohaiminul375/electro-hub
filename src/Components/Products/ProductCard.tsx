@@ -15,7 +15,6 @@ interface ProductCardProps {
     item: Product;
 }
 export default function ProductCard({ item }: ProductCardProps) {
-    // console.log(item)
     const { _id, product_name, img, product_price, category }: Product = item;
     return (
 

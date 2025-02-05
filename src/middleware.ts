@@ -5,10 +5,8 @@ import { NextRequest, NextResponse } from "next/server";
 export const middleware = async (req: NextRequest) => {
     try {
         const session = await getToken({ req, secret: process.env.NEXT_PUBLIC_AUTH_SECRET })
-        console.log(session, 'session')
         // Extract the token from cookies
         const token = await cookies().get('__Secure-next-auth.session-token');
-        console.log(token, 'middleware token')
         // Get the pathname from the request URL
         const pathName = req.nextUrl.pathname;
 
@@ -20,7 +18,6 @@ export const middleware = async (req: NextRequest) => {
         if (!token) {
             return NextResponse.redirect(new URL(`/login?redirect=${pathName}`, req.nextUrl.origin));
         }
-        console.log(token)
         // Check if the route is an admin route and validate if the user is an admin
         const isAdmin = session?.role === 'admin';
         if (pathName.startsWith('/admin') && (!token || !isAdmin)) {

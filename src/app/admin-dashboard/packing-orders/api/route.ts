@@ -51,7 +51,6 @@ export const usePackedOrder = () => {
         },
         mutationKey: ['approve-orders'],
         onSuccess: (data) => {
-            console.log(data, 'onsuccess')
             if (data.modifiedCount === 1) {
                 Swal.fire({
                     title: "Deleted!",

@@ -81,7 +81,6 @@ const brandOptions: BrandOptions = {
 // 
 const AddProduct = () => {
     const session = useSession();
-    console.log(session)
     const user_email = session?.data?.user?.email;
     const addProduct = useAddProduct();
     const { register,
@@ -106,7 +105,6 @@ const AddProduct = () => {
 
     // react hook form
     const onSubmit: SubmitHandler<Inputs> = async (product: Inputs) => {
-        // console.log(product)
         // error handling for drop down menue
         if (!category) {
             return toast.error('please input a category')
@@ -120,8 +118,6 @@ const AddProduct = () => {
         }
         //    get img
         const img = { image: product.img[0] }
-        console.log(product)
-        console.log(img)
 
         // check img
         if (!product.img || product.img.length === 0) {
@@ -137,7 +133,6 @@ const AddProduct = () => {
         if (!img_url) {
             return toast.error('error form image server please try again or contact developer')
         }
-        console.log(img_url);
         product.product_price = parseFloat(product.product_price as string)
         product.category = category;
         product.brand = brand;
@@ -146,11 +141,9 @@ const AddProduct = () => {
         product.img = img_url;
         product.status = status;
         product.addedBy = user_email as string;
-        console.log(product);
 
         try {
             const response = await addProduct.mutateAsync(product);
-            console.log('Added:', response);
             if (response.insertedId) {
                 reset();
                 toast.success('Product added successfully');

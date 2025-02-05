@@ -8,6 +8,7 @@ export const useUpdateProduct = (id: string | string[]) => {
             return data;
         },
         mutationKey: ['update-product'],
+        // TODO: check needed
         onSuccess: (data) => {
             console.log(data, 'inside success');
         }

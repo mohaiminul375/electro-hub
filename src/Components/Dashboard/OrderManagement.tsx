@@ -1,8 +1,18 @@
+import { GetOrdersSummary } from "@/app/admin-dashboard/api/route";
 import Image from "next/image";
 import Link from "next/link";
 
 
 export default function OrderManagement() {
+    const { data: ordersSummary, isLoading, isError, error } = GetOrdersSummary();
+    if (isLoading) {
+        return
+    }
+    if (isError) return (
+        <p className="text-center text-red-700">
+            Error: {error && (typeof error === "string" ? error : error.message)}
+        </p>
+    );
     return (
         <div className='m'>
             <div>
@@ -20,7 +30,7 @@ export default function OrderManagement() {
                             className="group-hover:rotate-12 transition-transform duration-300"
                         />
                         <h2 className="text-lg font-semibold text-accent text-center group-hover:text-green-600">
-                            Pending Orders
+                            Pending Orders<span>({ordersSummary?.pendingOrdersCount})</span>
                         </h2>
                     </div>
                 </Link>
@@ -36,7 +46,7 @@ export default function OrderManagement() {
                             className="group-hover:rotate-12 transition-transform duration-300"
                         />
                         <h2 className="text-lg font-semibold text-accent text-center group-hover:text-green-600">
-                            Package Orders
+                            Package Orders<span>({ordersSummary?.approvedOrdersCount})</span>
                         </h2>
                     </div>
                 </Link>
@@ -50,7 +60,7 @@ export default function OrderManagement() {
                             className="group-hover:rotate-12 transition-transform duration-300"
                         />
                         <h2 className="text-lg font-semibold text-accent text-center group-hover:text-green-600">
-                            Shipping Orders
+                            Shipping Orders<span>({ordersSummary?.packedOrdersCount})</span>
                         </h2>
                     </div>
                 </Link>
@@ -64,7 +74,7 @@ export default function OrderManagement() {
                             className="group-hover:rotate-12 transition-transform duration-300"
                         />
                         <h2 className="text-lg font-semibold text-accent text-center group-hover:text-green-600">
-                            Shipped
+                            Shipped<span>({ordersSummary?.shippedOrdersCount})</span>
                         </h2>
                     </div>
                 </Link>

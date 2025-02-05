@@ -38,7 +38,6 @@ const UpdateProfile = () => {
     const updateInfo = useUpdateUserInfo();
     // get user from db
     const user = useAuth();
-    console.log(user, 'user before loading')
     if (!user?.uuid || status == 'loading') {
         return <Loading></Loading>
     }
@@ -49,7 +48,6 @@ const UpdateProfile = () => {
     const onSubmit: SubmitHandler<Inputs> = async (user_info: Inputs) => {
         user_info.uuid = uuid;
         await updateInfo.mutateAsync(user_info)
-        // console.log('response', res)
     }
     return (
         <section>

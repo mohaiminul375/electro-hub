@@ -16,7 +16,6 @@ const Page = () => {
             Error: {error && (typeof error === "string" ? error : error.message)}
         </p>
     );
-    console.log(orders)
     return (
         <section>
             {/* Back Button */}

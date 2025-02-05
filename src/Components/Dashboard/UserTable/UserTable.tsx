@@ -20,7 +20,6 @@ export default function UserTable({ user, idx }: UserTableProps) {
     const { _id, name, email, role } = user;
     // handle delete
     const handleDelete = async (id: string) => {
-        console.log(id);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -32,7 +31,6 @@ export default function UserTable({ user, idx }: UserTableProps) {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const res = await deleteUser.mutateAsync(id);
-                console.log(res)
                 if (res.deletedCount > 0) {
                     Swal.fire({
                         title: "Deleted!",

@@ -87,7 +87,6 @@ export const useShippedOrder = () => {
         },
         mutationKey: ['shipped-order'],
         onSuccess: (data) => {
-            console.log(data, 'onsuccess')
             if (data.modifiedCount === 1) {
                 Swal.fire({
                     title: "Deleted!",

@@ -13,7 +13,6 @@ export const dynamic = 'force-dynamic';
 const Page = () => {
     const addToCart = useAddToCart()
     const { data } = useSession();
-    console.log(data?.user)
     // const { uuid, email } = data;
     // const router = useRouter('')
     const { id } = useParams();
@@ -59,12 +58,8 @@ const Page = () => {
             color: color,
             img: img
         }
-        console.log(cartItem);
-        const res = await addToCart.mutateAsync(cartItem);
-        console.log(res)
-
+        await addToCart.mutateAsync(cartItem);
     }
-
 
     const renderSpecifications = () => {
         switch (category) {

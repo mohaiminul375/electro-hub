@@ -11,7 +11,6 @@ const ToShip = () => {
 
     if (isLoading) return <Loading />;
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
-console.log(items)
     return (
         <section className="p-4">
             {items?.map((order) => (

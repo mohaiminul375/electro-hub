@@ -28,11 +28,9 @@ export const useGetProducts = ({ brand, color, priceSort }: FilterProp) => {
             if (priceSort) params.append('sort', priceSort.toString());
 
             const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/all-products?${params.toString()}`;
-            console.log('Request URL:', url);  // Debug the final URL
 
             try {
                 const response = await axios.get(url);
-                console.log('inside tanstack', response.data)
                 return response.data;
             } catch (err) {
                 console.error('Error fetching products:', err);

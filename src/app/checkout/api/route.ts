@@ -7,7 +7,6 @@ export const useCreatePayment = () => {
             const { data } = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/create-payment`, paymentInfo)
             return data;
         }, onSuccess: (data) => {
-            console.log(data);
             if (data.paymentUrl) {
                 window.location.replace(data?.paymentUrl)
             }

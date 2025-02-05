@@ -11,7 +11,6 @@ const Page = () => {
     if (isLoading) return <Loading />;
     // Handle error state
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
-    console.log(orders)
     return (
         <section>
             {/* Back Button */}

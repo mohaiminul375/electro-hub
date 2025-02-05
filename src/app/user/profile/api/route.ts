@@ -19,7 +19,6 @@ export const useUpdateUserInfo = () => {
         },
         mutationKey: ['update_user_info'],
         onSuccess: (data) => {
-            console.log(data);
             if (data.result.acknowledged) {
                 toast.success('update info successfully')
             } else {
@@ -27,7 +26,6 @@ export const useUpdateUserInfo = () => {
             }
         },
         onError: (error: CustomError) => {
-            // console.log(error?.response?.data?.message)
             const errorMessage = error.response?.data?.message || error.message || "An unknown error occurred";
             toast.error(errorMessage);
 
@@ -42,7 +40,6 @@ export const useAddressInfo = () => {
         },
         mutationKey: ['update_address_info'],
         onSuccess: (data) => {
-            console.log(data);
             if (data.result.acknowledged) {
                 toast.success('update address successfully')
             } else {
@@ -50,7 +47,6 @@ export const useAddressInfo = () => {
             }
         },
         onError: (error: CustomError) => {
-            // console.log(error?.response?.data?.message)
             const errorMessage = error.response?.data?.message || error.message || "An unknown error occurred";
             toast.error(errorMessage);
 

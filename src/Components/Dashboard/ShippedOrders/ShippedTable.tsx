@@ -47,7 +47,6 @@ const ShippedTable = ({ order, idx }: TableProps) => {
         const newData: OrderData = {
             orderDeliveredAt: new Date().toLocaleString(),
         }
-        console.log(order_id)
         Swal.fire({
             title: "Are you sure Marked Delivered?",
             text: "You won't be able to revert this!",

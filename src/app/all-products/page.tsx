@@ -11,7 +11,7 @@ const Page = () => {
     const [brand, setBrand] = useState<string>('');
     const [color, setColor] = useState<string>('');
     const [priceSort, setPriceSort] = useState<string>('');
-    const [page, setPage] = useState<number>(1); // Added state for pagination
+    const [page, setPage] = useState<number>(1); 
 
     const { data: products = [], isLoading, isError, error } = useGetProducts({ color, brand, priceSort });
 
@@ -22,8 +22,8 @@ const Page = () => {
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
 
     const itemsPerPage = 12;
-    const totalPages = Math.ceil(products.length / itemsPerPage); // Total pages
-
+    const totalPages = Math.ceil(products.length / itemsPerPage);
+    
     // Get products for the current page
     const paginatedProducts = products.slice((page - 1) * itemsPerPage, page * itemsPerPage);
 

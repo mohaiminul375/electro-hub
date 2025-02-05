@@ -14,7 +14,6 @@ const Page = () => {
     const uuid = session?.user?.uuid;
 
     const user = useAuth();
-    console.log(user, 'user before loading')
 
     const { data: carts, isLoading, isError, error } = useGetCartProduct(uuid as string);
 
@@ -56,7 +55,6 @@ const Page = () => {
 
     // handle payment
     const handlePayment = async () => {
-        console.log('payment')
         const paymentInfo = {
             uuid: uuid,
             name: user?.name,

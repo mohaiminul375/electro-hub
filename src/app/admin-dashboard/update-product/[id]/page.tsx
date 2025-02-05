@@ -162,18 +162,13 @@ const Page = () => {
             if (!img_url) {
                 return toast.error('error form image server please try again or contact developer')
             }
-            console.log(img_url);
             update_info.img = img_url
         }
         update_info.img = img;
         update_info.product_price = parseFloat(update_info.product_price as string);
-        console.log(update_info);
-        const res = await update_product.mutateAsync(update_info);
-        console.log(res);
-
-
+        await update_product.mutateAsync(update_info);
     }
-    console.log(category, color)
+
     return (
         <section>
             <div className="mt-6">
