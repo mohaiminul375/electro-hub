@@ -8,6 +8,7 @@ interface TableItem {
     product_name: string;
     category: string;
     brand: string;
+    status: string;
 }
 
 interface ProductTableProps {
@@ -16,7 +17,7 @@ interface ProductTableProps {
 }
 const ProductTable = ({ product, idx }: ProductTableProps) => {
     const deleteProduct = useDeleteProduct();
-    const { _id, product_name, category, brand }: TableItem = product;
+    const { _id, product_name, category, brand, status }: TableItem = product;
 
     // delete product
     const handleDeleteProduct = async (id: string) => {
@@ -46,11 +47,14 @@ const ProductTable = ({ product, idx }: ProductTableProps) => {
 
     return (
         <tr className="bg-white border-b hover:bg-gray-50">
-            <td className="px-4 py-2">{idx + 1}</td>
+            <td className="px-4 py-2">{idx}</td>
             <td className="px-4 py-2">{product_name}</td>
             <td className="px-4 py-2">{category || "not found"}</td>
             <td className="px-4 py-2">
                 {brand || "not found"}
+            </td>
+            <td className="px-4 py-2">
+                {status || "not found"}
             </td>
             <td className="px-4 py-2 flex items-center gap-4">
                 {/* Edit Icon */}

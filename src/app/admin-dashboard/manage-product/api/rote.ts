@@ -8,6 +8,7 @@ interface Products {
     product_name: string;
     category: string;
     brand: string;
+    status: string;
 }
 
 //get admin products

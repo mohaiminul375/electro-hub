@@ -5,11 +5,12 @@ import ProductTable from '@/components/Dashboard/ProductTable/ProductTable';
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
+import { Pagination } from '@nextui-org/react';
 export const dynamic = 'force-dynamic';
 const ManageProduct = () => {
-    const [isClient, setIsClient] = useState(false);
-    // const products = await getAdminProducts();
-    const { data: products, isLoading, isError, error } = GetAdminProducts();
+    const [isClient, setIsClient] = useState<boolean>(false);
+    const [page, setPage] = useState<number>(1);
+    const { data: products = [], isLoading, isError, error } = GetAdminProducts();
 
     useEffect(() => {
         setIsClient(true);
@@ -22,6 +23,11 @@ const ManageProduct = () => {
     if (isLoading) return <Loading />;
     // Handle error state
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
+    const itemsPerPage = 15;
+    const totalPages = Math.ceil(products.length / itemsPerPage);
+
+    // Get products for the current page
+    const paginatedProducts = products.slice((page - 1) * itemsPerPage, page * itemsPerPage);
 
     return (
         <section className='mt-6'>
@@ -62,15 +68,16 @@ const ManageProduct = () => {
                                 <th className="px-4 py-2 text-left">Name</th>
                                 <th className="px-4 py-2 text-left">Category</th>
                                 <th className="px-4 py-2 text-left">Brand</th>
+                                <th className="px-4 py-2 text-left">Status</th>
                                 <th className="px-4 py-2 text-left">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
 
                             {
-                                products?.map((product, idx) => (
+                                paginatedProducts?.map((product, idx) => (
                                     <ProductTable
-                                        idx={idx}
+                                        idx={(page - 1) * itemsPerPage + idx + 1}
                                         key={idx}
                                         product={product}
                                     />
@@ -87,9 +94,21 @@ const ManageProduct = () => {
                     </p>
                 }
             </div>
+            {/* Pagination */}
+            <div className="mt-10 flex justify-center gap-5">
+                <Pagination
+                    loop
+                    showControls
+                    color="success"
+                    initialPage={1}
+                    total={totalPages}
+                    page={page}
+                    onChange={(newPage) => setPage(newPage)}
+                />
+            </div>
         </section>
     );
 };
 
 export default ManageProduct;
-// For SSR/SSG: Ensure no SSR-related issues during build
+

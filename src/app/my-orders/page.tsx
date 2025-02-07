@@ -8,7 +8,7 @@ import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 const OrderTabs = () => {
-    const [tabIndex, setTabIndex] = useState(2);
+    const [tabIndex, setTabIndex] = useState(0);
 
     return (
         <section className="mt-20 px-4 sm:px-8">
@@ -80,7 +80,7 @@ const OrderTabs = () => {
                 </TabPanel>
                 <TabPanel className="mt-6">
                     <div className="p-4 bg-gray-50 rounded-lg shadow">
-                       Developer working on this page..
+                        Developer working on this page..
                     </div>
                 </TabPanel>
             </Tabs>

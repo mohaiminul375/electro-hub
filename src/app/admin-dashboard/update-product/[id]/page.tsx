@@ -82,8 +82,8 @@ const brandOptions: BrandOptions = {
 };
 const Page = () => {
     const { id } = useParams();
-    const { data: details, isLoading, isError, error } = useGetProductDetails(id);
-    const update_product = useUpdateProduct(id);
+    const { data: details, isLoading, isError, error } = useGetProductDetails(id as string);
+    const update_product = useUpdateProduct(id as string);
     const { register,
         handleSubmit,
         // reset, 
