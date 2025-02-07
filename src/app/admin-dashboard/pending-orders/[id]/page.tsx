@@ -44,19 +44,14 @@ const Page = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, approved it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
                 await approveOrder.mutateAsync({ order_id, newData })
             }
         });
-
-
-
-
-
     };
-
+    // Order cancellation
     const handleCancel = (order_id: string) => {
         if (!note) {
             return toast.error('note is missing')

@@ -6,15 +6,28 @@ import { useState } from "react";
 import { useOrdersDetails } from "../../pending-orders/api/route";
 import Swal from "sweetalert2";
 import { usePackedOrder } from "../api/route";
+import toast from "react-hot-toast";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+import { AdminCancellation } from "@/components/Shared/adminCancellation";
 interface OrderData {
     orderPackedAt: string;
     note?: string;
 }
+interface CancelData {
+    orderCanceledAt: string;
+    cancelReason: string;
+    canceledBy: string;
+}
 const Page = () => {
+    const router = useRouter()
+    const session = useSession();
     const packedOrder = usePackedOrder();
     const [note, setNote] = useState<string>("");
     const { id } = useParams();
     const { data: order, isLoading, isError, error } = useOrdersDetails(id as string);
+    const adminCancellation = AdminCancellation();
+    const admin_email = session?.data?.user?.email;
     if (isLoading) return <Loading />;
     // Handle error state
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
@@ -34,7 +47,7 @@ const Page = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, Packed it!"
         }).then(async (result) => {
             if (result.isConfirmed) {
                 await packedOrder.mutateAsync({ order_id, newData })
@@ -42,10 +55,33 @@ const Page = () => {
         });
     };
 
-    // const handleCancel = () => {
-    //     // Logic for canceling the order
-    //     console.log('Order canceled');
-    // };
+    const handleCancel = (order_id: string) => {
+        if (!note) {
+            return toast.error('note is missing')
+        }
+        const newData: CancelData = {
+            orderCanceledAt: new Date().toLocaleString(),
+            cancelReason: note,
+            canceledBy: admin_email as string,
+        }
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Cancel it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const data = await adminCancellation.mutateAsync({ order_id, newData })
+                if (data.modifiedCount === 1) {
+                    router.push('/admin-dashboard/pending-orders')
+                }
+            }
+        });
+    };
 
     return (
         <section className="flex flex-col items-center justify-center px-4 py-8">
@@ -98,7 +134,7 @@ const Page = () => {
                         Packed
                     </button>
                     <button
-                        // onClick={handleCancel}
+                        onClick={() => handleCancel(order?.order_id as string)}
                         className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-md transition">
                         Cancel
                     </button>

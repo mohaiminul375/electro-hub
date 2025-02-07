@@ -89,8 +89,8 @@ export const useShippedOrder = () => {
         onSuccess: (data) => {
             if (data.modifiedCount === 1) {
                 Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
+                    title: "shipped!",
+                    text: "Order has been shipped",
                     icon: "success"
                 });
                 queryClient.invalidateQueries({ queryKey: ['pending-orders'] })

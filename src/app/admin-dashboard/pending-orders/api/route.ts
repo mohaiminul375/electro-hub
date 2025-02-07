@@ -86,8 +86,8 @@ export const useApproveOrder = () => {
         onSuccess: (data) => {
             if (data.modifiedCount === 1) {
                 Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
+                    title: "Approved!",
+                    text: "Order has been approved.",
                     icon: "success"
                 });
                 queryClient.invalidateQueries({ queryKey: ['pending-orders'] })

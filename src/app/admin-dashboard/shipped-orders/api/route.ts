@@ -62,8 +62,8 @@ export const useMarkedDelivered = () => {
         onSuccess: (data) => {
             if (data.modifiedCount === 1) {
                 Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
+                    title: "Delivered!",
+                    text: "Order has been delivered",
                     icon: "success"
                 });
                 queryClient.invalidateQueries({ queryKey: ['shipped-orders'] })

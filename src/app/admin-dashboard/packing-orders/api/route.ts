@@ -53,8 +53,8 @@ export const usePackedOrder = () => {
         onSuccess: (data) => {
             if (data.modifiedCount === 1) {
                 Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
+                    title: "Packed!",
+                    text: "Order has been packed.",
                     icon: "success"
                 });
                 queryClient.invalidateQueries({ queryKey: ['approved-orders'] })
