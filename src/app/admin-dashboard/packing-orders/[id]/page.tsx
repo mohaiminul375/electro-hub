@@ -7,7 +7,7 @@ import { useOrdersDetails } from "../../pending-orders/api/route";
 import Swal from "sweetalert2";
 import { usePackedOrder } from "../api/route";
 import toast from "react-hot-toast";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { AdminCancellation } from "@/components/Shared/adminCancellation";
 interface OrderData {

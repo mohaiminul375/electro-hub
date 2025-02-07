@@ -14,6 +14,8 @@ interface Order {
     address: Address;
     products: Array<[]>;
     payment_method: string;
+    canceledBy: string;
+    orderCanceledAt: string;
     order_status: string;
 }
 interface TableProps {
@@ -21,17 +23,18 @@ interface TableProps {
     order: Order
 }
 
-const AllOrdersTable = ({ order, idx }: TableProps) => {
+const CanceledTable = ({ order, idx }: TableProps) => {
     const {
         _id,
-        order_id,
         orderCreatedAt,
+        order_id,
+        orderCanceledAt,
         customer_name,
         customer_email,
         customer_Phone,
         address,
         products,
-        payment_method,
+        canceledBy,
         order_status,
     } = order;
     const orderDate = new Date(orderCreatedAt).toLocaleString()
@@ -42,6 +45,9 @@ const AllOrdersTable = ({ order, idx }: TableProps) => {
                 {order_id}<br />
                 {orderDate}<br />
 
+            </td>
+            <td>
+                {orderCanceledAt}
             </td>
             <td className="px-4 py-2">
                 {customer_name}<br />
@@ -57,44 +63,20 @@ const AllOrdersTable = ({ order, idx }: TableProps) => {
                 {products?.length}
             </td>
             <td className="px-4 py-2">
-                {payment_method}
-            </td>
-            <td className="px-4 py-2">
                 {order_status}
             </td>
             <td className="px-4 py-2">
-                {order_status == 'pending' &&
-                    <button className="bg-primary p-2 rounded-md text-white">
-                        <Link href={`pending-orders/${_id}`}>
-                            See Details
-                        </Link>
-                    </button>
-                }
-                {order_status == 'approved' &&
-                    <button className="bg-primary p-2 rounded-md text-white">
-                        <Link href={`packing-orders/${_id}`}>
-                            See Details
-                        </Link>
-                    </button>
-                }
-                {order_status == 'packed' &&
-                    <button className="bg-primary p-2 rounded-md text-white">
-                        <Link href={`ship-orders/${_id}`}>
-                            See Details
-                        </Link>
-                    </button>
-                }
-                {order_status == 'canceled' &&
-                    <button className="bg-primary p-2 rounded-md text-white">
-                        <Link href={`canceled-orders/${_id}`}>
-                            See Details
-                        </Link>
-                    </button>
-                }
+                {canceledBy}
             </td>
-
+            <td>
+                <button className="bg-primary p-2 rounded-md text-white">
+                    <Link href={`canceled-orders/${_id}`}>
+                        See Details
+                    </Link>
+                </button>
+            </td>
         </tr>
     );
 };
 
-export default AllOrdersTable;
+export default CanceledTable;

@@ -88,7 +88,7 @@ export default function OrderManagement() {
                             className="group-hover:rotate-12 transition-transform duration-300"
                         />
                         <h2 className="text-lg font-semibold text-accent text-center group-hover:text-green-600">
-                            Delivered
+                            Delivered<span>({ordersSummary?.deliveredOrdersCount})</span>
                         </h2>
                     </div>
                 </Link>
@@ -104,7 +104,7 @@ export default function OrderManagement() {
                             className="group-hover:rotate-12 transition-transform duration-300"
                         />
                         <h2 className="text-lg font-semibold text-accent text-center group-hover:text-green-600">
-                            All Orders
+                            All Orders<span>({ordersSummary?.allOrdersCount})</span>
                         </h2>
                     </div>
                 </Link>
@@ -118,7 +118,7 @@ export default function OrderManagement() {
                             className="group-hover:rotate-12 transition-transform duration-300"
                         />
                         <h2 className="text-lg font-semibold text-accent text-center group-hover:text-green-600">
-                            Cancel Orders
+                            Cancel Orders<span>({ordersSummary?.canceledOrdersCount})</span>
                         </h2>
                     </div>
                 </Link>
@@ -133,7 +133,7 @@ export default function OrderManagement() {
                             className="group-hover:rotate-12 transition-transform duration-300"
                         />
                         <h2 className="text-lg font-semibold text-accent text-center group-hover:text-green-600">
-                            Payment History
+                            Payment History<span>({ordersSummary?.paymentHistoryCount})</span>
                         </h2>
                     </div>
                 </Link>

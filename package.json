@@ -28,6 +28,7 @@
     "react-icons": "^5.3.0",
     "react-tabs": "^6.0.2",
     "react-use": "^17.6.0",
+    "react-whatsapp-widget": "^2.2.0",
     "sweetalert2": "^11.14.2",
     "swiper": "^11.1.15"
   },

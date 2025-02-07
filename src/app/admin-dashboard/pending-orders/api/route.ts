@@ -47,6 +47,8 @@ interface PendingOrders {
     products: Products[];
     orderApproveAt: string;
     note?: string;
+    orderPackedAt?: string;
+    orderShippedAt?: string;
 }
 interface ApproveProps {
     order_id: string,

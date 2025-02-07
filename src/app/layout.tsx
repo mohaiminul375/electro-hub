@@ -15,6 +15,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
+import SocialChat from "@/components/Shared/SocialChat";
 const queryClient = new QueryClient()
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -52,6 +53,7 @@ export default function RootLayout({
               <main className=" bg-background">
                 <div className="min-h-[calc(100vh-145px)] md:max-w-7xl mx-auto pt-20 md:pt-14">
                   {children}
+                  <SocialChat />
                 </div>
               </main>
               <BottomNavbar />
