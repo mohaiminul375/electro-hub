@@ -10,13 +10,13 @@ interface Payments {
     created_at: string;
     payment_method: string;
 }
-export const useGetPaymentHistory = () => {
+export const useGetPaymentHistory = (tranId: string) => {
     const { data, isLoading, isError, error } = useQuery<Payments[]>({
         queryFn: async () => {
-            const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-payments`)
+            const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-payments?tran_id=${tranId}`)
             return data;
         },
-        queryKey: ['all-payments']
+        queryKey: ['all-payments', tranId]
     })
     return { data, isLoading, isError, error }
 }

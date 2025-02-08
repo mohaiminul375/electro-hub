@@ -1,18 +1,25 @@
 'use client'
 
 import Link from "next/link";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft, FaSearch } from "react-icons/fa";
 import { useGetPaymentHistory } from "./api/route";
 import Loading from "@/app/loading";
 import PaymentHistoryTable from "@/components/Dashboard/Product-Update/Payment-History/PaymentHistoryTable";
+import { useState } from "react";
 
 
 const PaymentHistory = () => {
-    const { data: payments = [], isLoading, isError, error } = useGetPaymentHistory();
-    if (isLoading) {
-        return <Loading />
-    }
+    const [tranId, setTranId] = useState('');
+    const { data: payments = [], isLoading, isError, error } = useGetPaymentHistory(tranId);
+    // Handle error state
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
+    // search func by tran Id
+    const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const enteredOrderId = (e.currentTarget.tranId as HTMLInputElement).value;
+        setTranId(enteredOrderId);
+    };
+
     return (
         <section>
             {/* filter and sorting */}
@@ -41,6 +48,25 @@ const PaymentHistory = () => {
             </div>
             {/*  */}
             <div>
+                {/* Search */}
+                <div className="flex items-center justify-center h-10 mb-5">
+                    <form
+                        onSubmit={handleSearchSubmit}
+                        className="flex items-center bg-white text-gray-400 rounded-lg overflow-hidden shadow-md min-w-80 md:ml-6 lg:w-[500px] h-10">
+                        <input
+                            name="tranId"
+                            type="text"
+                            placeholder="Search by transaction Id"
+                            className="px-4 py-3 text-base bg-white text-gray-700 focus:outline-none focus:ring focus:ring-[#72BF44] w-full"
+                        />
+                        <button
+                            className="px-4 py-5 bg-primary text-white hover:bg-hoverPrimary duration-700 focus:outline-none focus:ring focus:ring-[#72BF44] flex items-center justify-center"
+                        >
+                            <FaSearch />
+                        </button>
+                    </form>
+                </div>
+                {/* Table */}
                 <div className="overflow-x-auto">
                     <table className="min-w-full table-auto border-collapse">
                         <thead className="bg-primary text-white">
@@ -68,11 +94,15 @@ const PaymentHistory = () => {
                         </tbody>
                     </table>
                 </div>
-                {
-                    payments?.length === 0 && <p className='text-red-700 text-center font-bold text-2xl mt-10'>
-                        No data found.
-                    </p>
-                }
+                <div>
+                    {isLoading ? (
+                        <Loading />
+                    ) : payments?.length === 0 ? (
+                        <p className="text-red-700 text-center font-bold text-2xl mt-10">
+                            {tranId ? "payment data not found." : "No data found."}
+                        </p>
+                    ) : null}
+                </div>
             </div>
         </section>
     );

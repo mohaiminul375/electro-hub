@@ -21,13 +21,13 @@ interface Orders {
     products: Array<[]>;
 }
 // Get all orders admin
-export const useGetAllOrdersAdmin = () => {
+export const useGetAllOrdersAdmin = (order_id: string) => {
     const { data, isLoading, isError, error } = useQuery<Orders[]>({
         queryFn: async () => {
-            const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-orders-admin`)
+            const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-orders-admin?order_id=${order_id}`)
             return data;
         },
-        queryKey: ['all-orders']
+        queryKey: ['all-orders', order_id]
 
     })
     return { data, isLoading, isError, error }
