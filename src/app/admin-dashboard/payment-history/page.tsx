@@ -22,10 +22,6 @@ const PaymentHistory = () => {
 
     return (
         <section>
-            {/* filter and sorting */}
-            <div>
-
-            </div>
             {/*Heading  */}
             <div className="mt-6">
                 {/* Back Button */}
