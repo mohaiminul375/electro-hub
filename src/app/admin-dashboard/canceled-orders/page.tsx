@@ -20,7 +20,7 @@ const Page = () => {
     return (
         <section>
             {/* filter and sorting */}
-            <div className="mt-6">
+            <div className="mt-2">
                 {/* Back Button */}
                 <div className="inline-block">
                     <Link
@@ -33,7 +33,7 @@ const Page = () => {
                 </div>
 
                 {/* Manage Product Header */}
-                <div className="mb-8 mt-4 text-center">
+                <div className="mb-4 mt-2 text-center">
                     <h3 className="text-3xl font-bold text-accent">All Approved Orders</h3>
                     <h4 className="text-md text-gray-700 mt-2">
                         From Here All orders will package and shipped

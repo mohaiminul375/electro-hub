@@ -38,5 +38,8 @@ export const config = {
     matcher: [
         '/admin-dashboard/:path*', // only for admin
         '/cart',
+        '/user/profile',
+        '/my-orders',
+        '/checkout/:path*'
     ],
 };

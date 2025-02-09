@@ -12,7 +12,7 @@ export default function Categories() {
     return (
         <section className='mt-10'>
             <div>
-                <h2 className='text-3xl font-semibold'>Categories</h2>
+                <h2 className='text-3xl font-semibold px-3 md:px-0'>Categories</h2>
             </div>
             {/* categories */}
 

@@ -10,7 +10,7 @@ import Footer from "../components/Shared/Footer";
 import Nav from "../components/Shared/Navbar";
 import BottomNavbar from "../components/Shared/BottomNavbar";
 export const dynamic = 'force-dynamic';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import {
   QueryClient,
   QueryClientProvider,
@@ -61,7 +61,7 @@ export default function RootLayout({
             </AuthProvider>
             <Toaster position="top-center" />
           </NextUIProvider>
-          <ReactQueryDevtools initialIsOpen={false} />
+          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         </QueryClientProvider>
       </body>
     </html>

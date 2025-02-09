@@ -14,7 +14,7 @@ import ssl_commerz from '../../../public/SSL-Commerz.jpg';
 
 export default function Footer() {
     return (
-        <footer className='bg-accent mt-36 text-white pt-16 pb-10 px-5 md:px-16'>
+        <footer className='bg-accent mt-36 text-white pt-16 pb-12 md:pb-10 px-5 md:px-16'>
             <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Logo and Social Links */}
                 <div>
@@ -34,13 +34,13 @@ export default function Footer() {
                     </div>
                     {/* Social Links */}
                     <div className='flex gap-3 mt-5'>
-                        <Link href='/'>
+                        <Link href='https://www.facebook.com'>
                             <Image src={facebook} alt='Facebook' height={30} width={30} />
                         </Link>
-                        <Link href='/'>
+                        <Link href='https://x.com'>
                             <Image src={twitter} alt='Twitter' height={30} width={30} />
                         </Link>
-                        <Link href='/'>
+                        <Link href='https://www.youtube.com'>
                             <Image src={youtube} alt='YouTube' height={30} width={30} />
                         </Link>
                     </div>
@@ -49,7 +49,7 @@ export default function Footer() {
                 {/* Navigation Links */}
                 <div className="flex flex-col gap-2">
                     <Link href='/'>About Us</Link>
-                    <Link href='/'>Support</Link>
+                    <Link href='/support'>Support</Link>
                     <Link href='/'>Warranty Policy</Link>
                     <Link href='/'>Terms and Conditions</Link>
                     <Link href='/'>Privacy Policy</Link>

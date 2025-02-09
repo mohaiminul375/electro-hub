@@ -52,12 +52,12 @@ const BottomNavbar = () => {
                                     </p>
                                 </DropdownItem>
                                 <DropdownItem key="my-account">
-                                    <Link href='/user/profile'>
+                                    <Link className='border border-primary rounded-md block' href='/user/profile'>
                                         My Account
                                     </Link>
                                 </DropdownItem>
                                 <DropdownItem key="my-orders">
-                                    <Link href='/my-orders'>
+                                    <Link className='border border-primary rounded-md block' href='/my-orders'>
                                         My Orders
                                     </Link>
                                 </DropdownItem>

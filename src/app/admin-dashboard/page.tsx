@@ -15,7 +15,7 @@ export default function AdminDashboard() {
         return <p>Unauthorized Accesses.</p>
     }
     return (
-        <section className="mt-12 p-6 bg-gray-50 rounded-lg">
+        <section className="mt-0 p-6 bg-gray-50 rounded-lg">
             <div className="text-center mb-10">
                 <h2 className="text-3xl font-bold text-accent">Admin Dashboard</h2>
                 <h3 className="text-xl font-semibold text-accent mt-2">

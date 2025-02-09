@@ -51,7 +51,7 @@ const AllOrders = () => {
                                 <p className="text-sm text-gray-500">Brand: {product.brand}</p>
                             </div>
 
-                            <div className="col-span-2 text-center">
+                            <div className="col-span-2 md:text-center">
                                 <p className="text-base font-medium text-gray-900">
                                     ${product.price}
                                 </p>
@@ -61,7 +61,7 @@ const AllOrders = () => {
                                 <p className="text-base text-gray-500">Quantity: {product.quantity}</p>
                             </div>
 
-                            <div className="col-span-2 text-center">
+                            <div className="col-span-2 md:text-center">
                                 <p className="text-base text-gray-500">Category: {product.category}</p>
                             </div>
                         </div>

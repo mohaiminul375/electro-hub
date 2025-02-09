@@ -39,9 +39,9 @@ const Page = () => {
     const paginatedProducts = products.slice((page - 1) * itemsPerPage, page * itemsPerPage);
     return (
         <section>
-            <div className="text-center bg-gradient-to-br from-primary to-accent text-white py-8 px-4 rounded-md shadow-md mb-8">
-                <h2 className="text-3xl font-bold mb-2">{displayCategory}</h2>
-                <p className="text-medium">Explore the best {category} we offer</p>
+            <div className="text-center bg-gradient-to-br from-primary to-accent text-white py-6 md:py-8 px-4 rounded-md shadow-md mb-8">
+                <h2 className="md:text-3xl text-xl font-bold mb-2">{displayCategory}</h2>
+                <p className="text-sm md:text-medium">Explore the best {category} we offer</p>
             </div>
             <div className="mb-6">
                 {/* <ProductFilter /> */}

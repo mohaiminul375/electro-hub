@@ -21,7 +21,7 @@ const Brands = () => {
     return (
         <div className='mt-10 '>
             <div>
-                <h2 className='text-3xl font-semibold'>Our Brands</h2>
+                <h2 className='text-3xl font-semibold px-3 md:px-0'>Our Brands</h2>
             </div>
             {/* Logo */}
             <div className='max-w-6xl mx-auto mt-10'>

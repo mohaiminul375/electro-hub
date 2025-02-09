@@ -13,7 +13,7 @@ export default function ForYou() {
         <section className='mt-10'>
 
             <div>
-                <h2 className='text-3xl font-semibold'>For You</h2>
+                <h2 className='text-3xl font-semibold px-3 md:px-0'>For You</h2>
             </div>
             {/* Products */}
             <div className='mt-5'>

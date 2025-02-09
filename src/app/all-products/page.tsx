@@ -31,9 +31,9 @@ const Page = () => {
     return (
         <section className="">
             {/* Heading */}
-            <div className="text-center bg-gradient-to-br from-primary to-accent text-white py-8 px-4 rounded-md shadow-md mb-6">
-                <h2 className="text-3xl font-bold mb-2">Endless Choices, One Place</h2>
-                <p className="text-medium">Find all products in one convenient location</p>
+            <div className="text-center bg-gradient-to-br from-primary to-accent text-white py-6 md:py-8 px-4 rounded-md shadow-md mb-6">
+                <h2 className="md:text-3xl text-xl font-bold mb-2">Endless Choices, One Place</h2>
+                <p className="text-sm md:text-medium">Find all products in one convenient location</p>
             </div>
 
             {/* Filter */}

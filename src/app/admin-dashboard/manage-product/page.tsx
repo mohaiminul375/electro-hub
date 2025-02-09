@@ -71,7 +71,7 @@ const ManageProduct = () => {
 
             </div>
             {/*Heading  */}
-            <div className="mt-0">
+            <div className="mt-2">
                 {/* Back Button */}
                 <div className="inline-block">
                     <Link

@@ -8,8 +8,7 @@ export const dynamic = 'force-dynamic';
 const Page = () => {
     const [tabIndex, setTabIndex] = useState<number>(0);
     return (
-        <section className='mt-20'>
-            <h2>Welocome to</h2>
+        <section className='mt-0'>
             <Tabs
                 selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}
                 className="rounded-lg bg-white">

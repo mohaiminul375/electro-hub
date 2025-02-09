@@ -32,7 +32,7 @@ const Page = () => {
     return (
         <section>
             {/* Back Button */}
-            <div className="mt-6 inline-block">
+            <div className="mt-2 inline-block">
                 <Link
                     href="/admin-dashboard"
                     className="flex items-center gap-3 rounded-lg bg-white border border-gray-400 text-lg px-4 py-2 text-accent hover:bg-gray-300 hover:border-gray-500 transition duration-200"
@@ -43,7 +43,7 @@ const Page = () => {
             </div>
 
             {/* Registered Users Header */}
-            <div className="mb-10 mt-4 text-center">
+            <div className="mb-4 mt-2 text-center">
                 <h3 className="text-3xl font-bold text-accent">All Orders</h3>
                 <h4 className="text-md text-gray-700 mt-2">
                     See All Orders and Details

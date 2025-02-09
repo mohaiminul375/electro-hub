@@ -159,7 +159,7 @@ const AddProduct = () => {
 
     return (
         <section>
-            <div className="mt-6">
+            <div className="mt-2">
                 {/* Back Button */}
                 <div className="inline-block">
                     <Link
@@ -172,7 +172,7 @@ const AddProduct = () => {
                 </div>
 
                 {/* Add Product Header */}
-                <div className="mb-8 mt-4 text-center">
+                <div className="mb-4 mt-2 text-center">
                     <h3 className="text-3xl font-bold text-accent">Add Product</h3>
                     <h4 className="text-md text-accent mt-2">Easily add a new product to your store.</h4>
                 </div>

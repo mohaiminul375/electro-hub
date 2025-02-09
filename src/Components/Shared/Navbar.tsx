@@ -145,11 +145,11 @@ export default function Nav() {
                                                 <p className="font-semibold">{user_email}</p>
                                             </DropdownItem>
                                             <DropdownItem key="my-account">
-                                                <Link href='/user/profile'>
+                                                <Link className='border border-primary rounded-md block' href='/user/profile'>
                                                     My Account
                                                 </Link>
                                             </DropdownItem>
-                                            <DropdownItem key="my-orders"><Link href='/my-orders'>
+                                            <DropdownItem key="my-orders"><Link className='border border-primary rounded-md block' href='/my-orders'>
                                                 My Orders
                                             </Link>
                                             </DropdownItem>
