@@ -12,6 +12,7 @@ import { FaCartPlus, FaHome, FaSearch, FaUserCircle } from "react-icons/fa";
 import { BiSupport } from "react-icons/bi";
 import { MdAdminPanelSettings } from "react-icons/md";
 import Link from "next/link";
+import NavSearch from "./NavSearch";
 // import path from "path";
 
 interface NavItems {
@@ -34,10 +35,6 @@ const navItems: NavItems[] = [
     {
         title: "Products",
         path: "/all-products",
-    }, {
-        title: 'Admin-dashboard',
-        path: '/admin-dashboard',
-        adminOnly: true,
     }
 
 ]
@@ -90,7 +87,9 @@ export default function Nav() {
                             className="lg:hidden"
                             aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
                         <NavbarBrand>
-                            <div className="flex gap-2 justify-start items-center mr-5 md:mr-0">
+                            <Link
+                                href='/'
+                                className="flex gap-2 justify-start items-center mr-5 md:mr-0 cursor-pointer">
                                 <Image
                                     src="/assets/logo.webp"
                                     alt="logo"
@@ -103,27 +102,14 @@ export default function Nav() {
                                 >
                                     Electro-Hub
                                 </h2>
-                            </div>
+                            </Link>
                         </NavbarBrand>
                     </NavbarContent>
 
 
                     {/* search bar */}
                     <NavbarContent className="hidden md:flex gap-4" justify="center">
-                        <div className="flex items-center justify-center h-10">
-                            <div className="flex items-center bg-white text-gray-400 rounded-lg overflow-hidden shadow-md min-w-80 md:ml-6 lg:w-[500px] h-10">
-                                <input
-                                    type="text"
-                                    placeholder="Search..."
-                                    className="px-4 py-3 text-base bg-white text-gray-700 focus:outline-none focus:ring focus:ring-[#72BF44] w-full"
-                                />
-                                <button
-                                    className="px-4 py-5 bg-primary text-white hover:bg-hoverPrimary duration-700 focus:outline-none focus:ring focus:ring-[#72BF44] flex items-center justify-center"
-                                >
-                                    <FaSearch />
-                                </button>
-                            </div>
-                        </div>
+                        <NavSearch />
                     </NavbarContent>
 
                     <NavbarContent as="div" justify="end" className="pr-5">
@@ -236,22 +222,12 @@ export default function Nav() {
                     <Link className="text-white" href="/products/smart_tv">Smart-Tv</Link>
                 </div>
                 {
-                    isSearchBoxVisible && <div
+                    isSearchBoxVisible &&
+                    <div
                         className={`
        md:hidden flex justify-center mb-10 h-14 lg:text-lg font-semibold border-red-900 bg-[#0E0E0E] mt-16 text-white w-full shadow-lg`}
                     >
-                        <div className="flex items-center bg-white text-gray-400 rounded-lg overflow-hidden shadow-md w-full mx-10 mt-2 h-10">
-                            <input
-                                type="text"
-                                placeholder="Search..."
-                                className="px-4 py-3 text-base bg-white text-gray-700 focus:outline-none focus:ring focus:ring-[#72BF44] w-full"
-                            />
-                            <button
-                                className="px-4 py-5 bg-primary text-white hover:bg-hoverPrimary duration-700 focus:outline-none focus:ring focus:ring-[#72BF44] flex items-center justify-center"
-                            >
-                                <FaSearch />
-                            </button>
-                        </div>
+                        <NavSearch />
                     </div>
                 }
             </nav>

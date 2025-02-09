@@ -5,25 +5,26 @@ import { useGetProducts } from './api/route';
 import Loading from '../loading';
 import { useState } from 'react';
 import { Pagination } from '@nextui-org/react';
+import { useSearchParams } from 'next/navigation';
 export const dynamic = 'force-dynamic';
 
 const Page = () => {
     const [brand, setBrand] = useState<string>('');
     const [color, setColor] = useState<string>('');
     const [priceSort, setPriceSort] = useState<string>('');
-    const [page, setPage] = useState<number>(1); 
+    const [page, setPage] = useState<number>(1);
+    // Handle search params
+    const searchParams = useSearchParams();
+    const searchName = searchParams.get('search');
 
-    const { data: products = [], isLoading, isError, error } = useGetProducts({ color, brand, priceSort });
-
-    // Handle loading state
-    if (isLoading) return <Loading />;
+    const { data: products = [], isLoading, isError, error } = useGetProducts({ color, brand, priceSort, searchName });
 
     // Handle error state
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
 
     const itemsPerPage = 12;
     const totalPages = Math.ceil(products.length / itemsPerPage);
-    
+
     // Get products for the current page
     const paginatedProducts = products.slice((page - 1) * itemsPerPage, page * itemsPerPage);
 
@@ -41,16 +42,17 @@ const Page = () => {
             </div>
 
             {/* No Product Found Message */}
-            {products.length === 0 && (
+            {!isLoading && products.length === 0 && (
                 <h2 className="text-center text-xl text-red-700 font-semibold">No Product Found</h2>
             )}
 
             {/* Products */}
-            <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
-                {paginatedProducts.map((item) => (
-                    <ProductCard key={item._id} item={item} />
-                ))}
-            </div>
+            {isLoading ? <Loading /> :
+                <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    {paginatedProducts.map((item) => (
+                        <ProductCard key={item._id} item={item} />
+                    ))}
+                </div>}
 
             {/* Pagination */}
             <div className="mt-10 flex justify-center gap-5">

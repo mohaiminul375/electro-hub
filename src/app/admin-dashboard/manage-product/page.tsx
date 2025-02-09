@@ -49,11 +49,8 @@ const ManageProduct = () => {
     const [status, setStatus] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [page, setPage] = useState<number>(1);
-    const { data: products = [], isLoading, isError, error } = GetAdminProducts();
-    console.log(category, brand, status, name)
+    const { data: products = [], isLoading, isError, error } = GetAdminProducts({ category, brand, status, name });
 
-    // Handle loading state
-    if (isLoading) return <Loading />;
     // Handle error state
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
     const itemsPerPage = 15;
@@ -102,7 +99,7 @@ const ManageProduct = () => {
                         <input
                             name="product_name"
                             type="text"
-                            placeholder="Search by transaction Id"
+                            placeholder="Search by product name"
                             className="px-4 py-3 text-base bg-white text-gray-700 focus:outline-none focus:ring focus:ring-[#72BF44] w-full"
                         />
                         <button className="px-4 py-5 bg-primary text-white hover:bg-hoverPrimary duration-700 focus:outline-none focus:ring focus:ring-[#72BF44] flex items-center justify-center">
@@ -180,11 +177,15 @@ const ManageProduct = () => {
                         </tbody>
                     </table>
                 </div>
-                {
-                    products?.length === 0 && <p className='text-red-700 text-center font-bold text-2xl mt-10'>
-                        No Products added yet.
-                    </p>
-                }
+                <div>
+                    {isLoading ? (
+                        <Loading />
+                    ) : products?.length === 0 && (
+                        <p className="text-red-700 text-center font-bold text-2xl mt-10">
+                            Products Not Found
+                        </p>
+                    )}
+                </div>
             </div>
             {/* Pagination */}
             <div className="mt-10 flex justify-center gap-5">

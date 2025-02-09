@@ -15,10 +15,11 @@ interface FilterProp {
     brand: string;
     color: string;
     priceSort: string;
+    searchName: string | null;
 }
 // ISSUE
 // Function to fetch all products
-export const useGetProducts = ({ brand, color, priceSort }: FilterProp) => {
+export const useGetProducts = ({ brand, color, priceSort, searchName }: FilterProp) => {
     const { data, isLoading, isError, error, refetch } = useQuery<Product[]>({
         queryFn: async () => {
             // Construct query parameters conditionally
@@ -26,6 +27,7 @@ export const useGetProducts = ({ brand, color, priceSort }: FilterProp) => {
             if (brand) params.append('brand', brand);
             if (color) params.append('color', color);
             if (priceSort) params.append('sort', priceSort.toString());
+            if (searchName) params.append('searchName', searchName);
 
             const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/all-products?${params.toString()}`;
 
@@ -37,7 +39,7 @@ export const useGetProducts = ({ brand, color, priceSort }: FilterProp) => {
                 throw err;
             }
         },
-        queryKey: ['all-products', { brand, color, priceSort }],
+        queryKey: ['all-products', { brand, color, priceSort, searchName }],
     });
 
     return { data, isLoading, isError, error, refetch };

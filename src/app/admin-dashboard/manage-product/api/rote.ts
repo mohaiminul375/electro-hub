@@ -10,15 +10,26 @@ interface Products {
     brand: string;
     status: string;
 }
-
+interface FilterProp {
+    brand: string;
+    category: string;
+    status: string;
+    name: string;
+}
 //get admin products
-export const GetAdminProducts = () => {
+export const GetAdminProducts = ({ category, brand, status, name }: FilterProp) => {
     const { data, isLoading, isError, error } = useQuery<Products[]>({
         queryFn: async () => {
-            const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-products-admin`)
-            return data
+            const params = new URLSearchParams();
+            if (brand) params.append('brand', brand);
+            if (category) params.append('category', category);
+            if (status) params.append('status', status);
+            if (name) params.append('product_name', name);
+
+            const { data } = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-products-admin?${params.toString()}`)
+            return data;
         },
-        queryKey: ['admin-products']
+        queryKey: ['admin-products', category, brand, status, name]
     })
     return { data, isLoading, isError, error }
 }

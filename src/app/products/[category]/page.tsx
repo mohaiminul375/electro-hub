@@ -30,11 +30,6 @@ const Page = () => {
     const displayCategory = categoryMap[category] || category;
     // get products by category
     const { data: products = [], isLoading, isError, error } = useGetDetailsCategory({ category, brand, color, priceSort })
-    if (isLoading) {
-        return <Loading />
-    }
-    // Handle loading state
-    if (isLoading) return <Loading />;
     // Handle error state
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
     const itemsPerPage = 12;
@@ -58,20 +53,17 @@ const Page = () => {
                 />
             </div>
             <div>
-                {
+                {!isLoading &&
                     products.length === 0 &&
                     < h2 className='text-center text-xl text-red-700 font-semibold'>No Product Found</h2>
                 }
             </div>
-            <div className='grid md:grid-cols-3 lg:grid-cols-4 gap-8'>
-                {
-                    paginatedProducts.map((item) => <ProductCard
-                        key={item._id}
-                        item={item}
-                    >
-                    </ProductCard>)
-                }
-            </div>
+            {isLoading ? <Loading /> :
+                <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    {paginatedProducts.map((item) => (
+                        <ProductCard key={item._id} item={item} />
+                    ))}
+                </div>}
             {/* Pagination */}
             <div className="mt-10 flex justify-center gap-5">
                 <Pagination

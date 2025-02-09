@@ -4,11 +4,19 @@ import { FaArrowLeft, FaSearch } from "react-icons/fa";
 import { useGetAllOrdersAdmin } from "./api/route";
 import Loading from "@/app/loading";
 import AllOrdersTable from "@/components/Dashboard/AllOrders/AllOrdersTable";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Page = () => {
+    const [isClient, setIsClient] = useState(false);
     const [orderId, setOrderId] = useState('');
     const { data: orders = [], isLoading, isError, error } = useGetAllOrdersAdmin(orderId);
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+        return null;
+    }
     // Handle error state
     if (isError) return (
         <p className="text-center text-red-700">
