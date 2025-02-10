@@ -65,7 +65,7 @@ export default function Footer() {
             </section>
 
             {/* Footer Bottom Section */}
-            <div className="mt-12 flex flex-col md:flex-col items-start justify-between gap-6">
+            <div className="mt-12 flex flex-col md:flex-col items-start justify-between">
                 <div className="text-center md:text-left">
                     <p>Designed and Developed by</p>
                     <Link
@@ -73,19 +73,21 @@ export default function Footer() {
                         className='hover:underline hover:text-primary duration-300 transition-all'
                         href='https://mohaiminul-dev.web.app'>Mohaiminul Islam</Link>
                 </div>
-                {/* SSL Commerz */}
-                <div className="w-full md:w-auto">
-                    <Image
-                        src={ssl_commerz}
-                        alt="SSL Commerz"
-                        layout="responsive"
-                        width={100}
-                        height={50}
-                        className="w-full max-w-xs md:max-w-full"
-                    />
-                </div>
+                <p className='text-sm mt-4'>Version: Trail Version | Last Update: 09-Feb-2025, 9.00 P.M (BDT)</p>
+
             </div>
 
+            {/* SSL Commerz */}
+            <div className="w-full md:w-auto mt-3">
+                <Image
+                    src={ssl_commerz}
+                    alt="SSL Commerz"
+                    layout="responsive"
+                    width={100}
+                    height={50}
+                    className="w-full max-w-xs md:max-w-full"
+                />
+            </div>
 
             {/* Footer Rights */}
             <div className='text-center text-white mt-8'>

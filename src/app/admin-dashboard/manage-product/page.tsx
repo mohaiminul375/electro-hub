@@ -66,10 +66,6 @@ const ManageProduct = () => {
     }
     return (
         <section className=''>
-            {/* filter and sorting */}
-            <div>
-
-            </div>
             {/*Heading  */}
             <div className="mt-2">
                 {/* Back Button */}

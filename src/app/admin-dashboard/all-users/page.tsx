@@ -30,7 +30,7 @@ export default function AllUsers() {
     return (
         <section>
             {/* Back Button */}
-            <div className="mt-6 inline-block">
+            <div className="inline-block">
                 <Link
                     href="/admin-dashboard"
                     className="flex items-center gap-3 rounded-lg bg-white border border-gray-400 text-lg px-4 py-2 text-accent hover:bg-gray-300 hover:border-gray-500 transition duration-200"
@@ -41,7 +41,7 @@ export default function AllUsers() {
             </div>
 
             {/* Registered Users Header */}
-            <div className="mb-10 mt-4 text-center">
+            <div className="mb-0 mt-0 text-center">
                 <h3 className="text-3xl font-bold text-accent">Registered Users</h3>
                 <h4 className="text-md text-gray-700 mt-2">
                     List of all registered users on the platform.
@@ -49,13 +49,16 @@ export default function AllUsers() {
             </div>
 
             {/* Table */}
+            <div className='my-5'>
+                <h2 className='text-xl font-bold'>Total Users: <span className='text-primary'>{users?.length}</span></h2>
+            </div>
             <div className="overflow-x-auto">
                 <table className="min-w-full table-auto border-collapse">
                     <thead className="bg-primary text-white">
                         <tr>
                             <th className="px-4 py-2 text-left">#</th>
-                            <th className="px-4 py-2 text-left">Name</th>
-                            <th className="px-4 py-2 text-left">Email</th>
+                            <th className="px-4 py-2 text-left">uuid</th>
+                            <th className="px-4 py-2 text-left">Name&Email</th>
                             <th className="px-4 py-2 text-left">Role</th>
                             <th className="px-4 py-2 text-left">Actions</th>
                         </tr>
