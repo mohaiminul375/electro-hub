@@ -73,7 +73,7 @@ export default function Footer() {
                         className='hover:underline hover:text-primary duration-300 transition-all'
                         href='https://mohaiminul-dev.web.app'>Mohaiminul Islam</Link>
                 </div>
-                <p className='text-sm mt-4'>Version: Trail Version | Last Update: 09-Feb-2025, 9.00 P.M (BDT)</p>
+                <p className='text-sm mt-4'>Version: Trail Version | Last Update: 11-Feb-2025, 5.30 P.M (BDT)</p>
 
             </div>
 

@@ -17,7 +17,7 @@ import Link from 'next/link';
 
 export default function Banner() {
   return (
-    <section className='h-screen'>
+    <section className='h-[400px] md:h-[500px]'>
       <Swiper
         autoplay={{
           delay: 3000,
@@ -36,7 +36,7 @@ export default function Banner() {
         <SwiperSlide
         >
           <SwiperSlide
-            className="relative bg-cover bg-center h-screen"
+            className="relative bg-cover bg-center h-[400px] md:h-[500px]"
             style={{
               backgroundImage: `url(${banner_1.src})`, width: "100%",
               height: "100%"
@@ -69,7 +69,7 @@ export default function Banner() {
 
         {/* Slide 2 - Demo Content */}
         <SwiperSlide
-          className="relative bg-cover bg-center h-screen"
+          className="relative bg-cover bg-center h-[400px] md:h-[500px]"
           style={{
             backgroundImage: `url(${banner_2.src})`, width: "100%",
             height: "100%"
@@ -87,7 +87,7 @@ export default function Banner() {
 
         {/* Slide 3 - Demo Content */}
         <SwiperSlide
-          className="relative bg-cover bg-center h-screen"
+          className="relative bg-cover bg-center h-[400px] md:h-[500px]"
           style={{ backgroundImage: `url(${banner_3.src})` }}
         >
 
