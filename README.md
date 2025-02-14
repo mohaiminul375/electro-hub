@@ -91,17 +91,20 @@
 
 # npm and Packages
 
-- Next.js
+- Next.js(15.1.3)
+- React(18.3.1)
 - Typescript
+- Next Auth
 - Next UI
 - Swiper slider
 - React hook form
 - tanstack query
+- axios
 - lottie react
 - react hot toast
 - sweet alert 2
-- npm i react-confetti
-- axios
+- react-confetti
+- react-whatsapp-widget
 
 # Server Side
 
