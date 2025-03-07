@@ -10,6 +10,7 @@ const sevillana = Sevillana({
 import facebook from '../../../public/social/facebook.png';
 import twitter from '../../../public/social/twitter.png';
 import youtube from '../../../public/social/youtube.png';
+import github from '../../../public/social/github.png';
 import ssl_commerz from '../../../public/SSL-Commerz.jpg';
 
 export default function Footer() {
@@ -34,14 +35,17 @@ export default function Footer() {
                     </div>
                     {/* Social Links */}
                     <div className='flex gap-3 mt-5'>
-                        <Link href='https://www.facebook.com'>
+                        <Link href='https://www.facebook.com' target='_blank'>
                             <Image src={facebook} alt='Facebook' height={30} width={30} />
                         </Link>
-                        <Link href='https://x.com'>
+                        <Link href='https://x.com' target='_blank'>
                             <Image src={twitter} alt='Twitter' height={30} width={30} />
                         </Link>
-                        <Link href='https://www.youtube.com'>
+                        <Link href='https://www.youtube.com' target='_blank'>
                             <Image src={youtube} alt='YouTube' height={30} width={30} />
+                        </Link>
+                        <Link href='https://github.com/mohaiminul375/electro-hub' target='_blank'>
+                            <Image className='rounded-full' src={github} alt='YouTube' height={30} width={30} />
                         </Link>
                     </div>
                 </div>
@@ -73,7 +77,7 @@ export default function Footer() {
                         className='hover:underline hover:text-primary duration-300 transition-all'
                         href='https://mohaiminul-dev.web.app'>Mohaiminul Islam</Link>
                 </div>
-                <p className='text-sm mt-4'>Version: Trail Version | Last Update: 11-Feb-2025, 5.30 P.M (BDT)</p>
+                <p className='text-sm mt-4'>Version: Trail Version | Last Update: 7-Mar-2025, 3.50 P.M (BDT)</p>
 
             </div>
 
