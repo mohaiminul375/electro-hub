@@ -16,12 +16,12 @@ const ToReceived = () => {
             {items?.map((order) => (
                 <div
                     key={order._id}
-                    className="bg-gray-50 border border-gray-300 rounded-lg shadow-md p-4 my-4"
+                    className="bg-gray-50 dark:bg-darkBackground border border-gray-300 rounded-lg shadow-md p-4 my-4"
                 >
                     <div className="flex flex-wrap justify-between items-center">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                        <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
                             Order ID: {order.order_id}<br />
-                            <span className="text-base font-light">Date: {new Date(order.orderCreatedAt).toLocaleString()}<br /></span>
+                            <span className="text-base font-light dark:text-white">Date: {new Date(order.orderCreatedAt).toLocaleString()}<br /></span>
                         </h3>
                         <h5 className="bg-primary p-2 rounded-full text-white text-xs">
                             {order.order_status}
@@ -43,25 +43,25 @@ const ToReceived = () => {
                             </div>
 
                             <div className="col-span-4">
-                                <h5 className="text-base font-medium text-gray-900">
+                                <h5 className="text-base font-medium text-gray-900 dark:text-white">
                                     {product.product_name}
                                 </h5>
-                                <p className="text-sm text-gray-500">Color: {product.color}</p>
-                                <p className="text-sm text-gray-500">Brand: {product.brand}</p>
+                                <p className="text-sm text-gray-500 dark:text-white">Color: {product.color}</p>
+                                <p className="text-sm text-gray-500 dark:text-white">Brand: {product.brand}</p>
                             </div>
 
                             <div className="col-span-2 text-center">
-                                <p className="text-base font-medium text-gray-900">
-                                    ${product.price}
+                                <p className="text-base font-medium text-primary">
+                                    ৳{product.price}
                                 </p>
                             </div>
 
                             <div className="col-span-2 text-center">
-                                <p className="text-base text-gray-500">Quantity: {product.quantity}</p>
+                                <p className="text-base text-gray-500 dark:text-white">Quantity: {product.quantity}</p>
                             </div>
 
                             <div className="col-span-2 text-center">
-                                <p className="text-base text-gray-500">Category: {product.category}</p>
+                                <p className="text-base text-gray-500 dark:text-white">Category: {product.category}</p>
                             </div>
                         </div>
                     ))}

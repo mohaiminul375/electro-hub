@@ -48,7 +48,7 @@ export default function RootLayout({
         className={` ${headland_one.className} antialiased bg-background dark:bg-darkBackground`}
       >
         <QueryClientProvider client={queryClient}>
-          <NextThemesProvider attribute="class" defaultTheme="light" enableSystem>
+          <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>
             <NextUIProvider>
               <AuthProvider>
                 <Nav />
