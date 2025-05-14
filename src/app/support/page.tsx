@@ -12,7 +12,7 @@ const Support = () => {
     if (!form.current) return;
     console.log(form.current)
     console.log(process.env.NEXT_PUBLIC_EMAIL_JS_SERVICE_ID)
-    emailjs.sendForm("service_pjee3on", "template_26i91xl", form.current, {
+    emailjs.sendForm("service_6a0pewc", "template_vzw1nxk", form.current, {
       publicKey: "Z0yHKQ7VzH6QrBIbN",
     })
       .then(
