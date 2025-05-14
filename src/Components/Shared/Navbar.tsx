@@ -93,7 +93,6 @@ export default function Nav() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [scrolling, setScrolling] = useState(false);
     const [isSearchBoxVisible, setIsSearchBoxVisible] = useState(false);
-
     // Handle scrolling to hide category menu
     useEffect(() => {
         let lastScrollY = window.scrollY; // Store last scroll position

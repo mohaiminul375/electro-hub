@@ -2,21 +2,38 @@
 export const dynamic = 'force-dynamic';
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import error from '../../public/error.jpg';
 
 const Error = () => {
     const router = useRouter();
 
     return (
-        <div className="flex flex-col justify-center items-center h-screen">
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                <h1 className="text-2xl font-bold text-red-500">Oops! Something went wrong.</h1>
-                <p className="text-gray-600 mt-2">We couldn&apos;t find the page&apos;looking for.</p>
+        <div className="flex flex-col-reverse md:flex-row items-center justify-center min-h-[calc(100vh-800px)] px-0 bg-white">
+            {/* Left: Text Section */}
+            <div className="w-full md:w-1/2 text-center md:text-left space-y-4">
+                <h1 className="text-6xl font-bold text-primary">Oops!</h1>
+                <h2 className="text-3xl font-semibold text-gray-800">404 - Page Not Found</h2>
+                <p className="text-gray-600">
+                    The page you are looking for doesn&apos;t exist or has been moved.
+                </p>
                 <button
                     onClick={() => router.push('/')}
-                    className="mt-4 px-4 py-2 bg-primary text-white rounded hover:rounded-2xl duration-300 transition-all"
+                    className="mt-4 inline-block bg-primary text-white px-6 py-2 rounded hover:bg-primary/90 transition"
                 >
-                    Back to Home
+                    Go Home
                 </button>
+            </div>
+
+            {/* Right: Image Section */}
+            <div className="w-full md:w-1/2 flex justify-center mb-6 md:mb-0">
+                <Image
+                    src={error}
+                    alt="Error illustration"
+                    width={500}
+                    height={500}
+                    className="object-contain max-h-[300px] md:max-h-[500px]"
+                />
             </div>
         </div>
     );

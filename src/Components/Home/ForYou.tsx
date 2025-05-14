@@ -2,6 +2,7 @@
 import Loading from "@/app/loading";
 import ProductCard from "../Products/ProductCard";
 import { useGetHomeProducts } from "./api/route"
+import Link from "next/link";
 
 export default function ForYou() {
     const { data: products = [], isLoading, isError, error } = useGetHomeProducts();
@@ -28,6 +29,11 @@ export default function ForYou() {
                         <ProductCard key={item._id} item={item} />
                     ))}
                 </div>
+            </div>
+            <div className="mt-5 flex justify-center">
+                <Link href='/all-products' className='px-4 bg-primary hover:bg-primary-dark mt-3 py-2 text-white font-medium rounded-md transition'>
+                    All Products
+                </Link>
             </div>
         </section>
     )

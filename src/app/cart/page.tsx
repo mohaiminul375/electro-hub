@@ -192,17 +192,17 @@ const Page = () => {
                         <hr className="border-t-2 border-primary mb-4" />
 
                         <div className="space-y-3">
-                            <p className="flex justify-between text-sm text-gray-700">
+                            <p className="flex justify-between text-sm text-gray-700 dark:text-white">
                                 <span>
                                     Subtotal (<span>{totalQuantity || 0}</span> items):
                                 </span>
                                 <span>${totalPrice || 0}</span>
                             </p>
-                            <p className="flex justify-between text-sm text-gray-700">
+                            <p className="flex justify-between text-sm text-gray-700 dark:text-white">
                                 <span>Shipping Fee:</span>
                                 <span>Free</span>
                             </p>
-                            <p className="flex justify-between text-sm text-gray-900 font-semibold">
+                            <p className="flex justify-between text-sm text-gray-900 dark:text-white     font-semibold">
                                 <span>Total:</span>
                                 <span>${totalPrice || 0}</span>
                             </p>
