@@ -18,7 +18,7 @@ export default function ProductCard({ item }: ProductCardProps) {
     const { _id, product_name, img, product_price, category }: Product = item;
     return (
 
-        <div className='group border border-gray-300 rounded-lg shadow-lg shadow-primary p-4 max-w-sm bg-white transition'>
+        <div className='group border border-gray-300 rounded-lg shadow-lg    p-4 max-w-sm bg-white dark:bg-darkCard transition'>
             {/* Product Image */}
             <figure className='mb-4 overflow-hidden rounded-md'>
                 <Image
@@ -32,12 +32,12 @@ export default function ProductCard({ item }: ProductCardProps) {
 
             {/* Product Info */}
             <div className='mt-3'>
-                <h4 className='text-medium font-semibold text-accent mb-2'>{product_name}</h4>
-                <p className='text-sm text-gray-600'>{category}</p>
+                <h4 className='text-medium font-semibold  mb-2'>{product_name}</h4>
+                <p className='text-sm text-gray-600 dark:text-white'>{category}</p>
                 <p className='text-medium font-bold text-green-700 mt-1'>
                     ৳<span>{product_price}</span>
                 </p>
-                <p className='text-xs text-gray-500 mt-1'>--- Sold | Review</p>
+                {/* <p className='text-xs text-gray-500 mt-1'>--- Sold | Review</p> */}
             </div>
 
             {/* Call-to-Action Button */}

@@ -16,6 +16,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import SocialChat from "@/components/Shared/SocialChat";
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 const queryClient = new QueryClient()
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -42,25 +43,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="">
       <body
-        className={` ${headland_one.className} antialiased bg-background`}
+        className={` ${headland_one.className} antialiased bg-background dark:bg-darkBackground`}
       >
         <QueryClientProvider client={queryClient}>
-          <NextUIProvider>
-            <AuthProvider>
-              <Nav />
-              <main className=" bg-background">
-                <div className="min-h-[calc(100vh-145px)] md:max-w-7xl mx-auto pt-20 md:pt-14">
-                  {children}
-                  <SocialChat />
-                </div>
-              </main>
-              <BottomNavbar />
-              <Footer />
-            </AuthProvider>
-            <Toaster position="top-center" />
-          </NextUIProvider>
+          <NextThemesProvider attribute="class" defaultTheme="light" enableSystem>
+            <NextUIProvider>
+              <AuthProvider>
+                <Nav />
+                <main className=" bg-background dark:bg-darkBackground">
+                  <div className="min-h-[calc(100vh-145px)] md:max-w-7xl mx-auto pt-20 md:pt-14">
+                    {children}
+                    <SocialChat />
+                  </div>
+                </main>
+                <BottomNavbar />
+                <Footer />
+              </AuthProvider>
+              <Toaster position="top-center" />
+            </NextUIProvider>
+          </NextThemesProvider>
           {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         </QueryClientProvider>
       </body>

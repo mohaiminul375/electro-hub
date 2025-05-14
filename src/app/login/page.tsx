@@ -66,12 +66,12 @@ function Page() {
 
             {/* Login form */}
             <div>
-                <div className="w-full max-w-[500px] mx-auto border-2 py-8 px-4 md:px-8 rounded-md shadow-2xl border-primary bg-[#F5F5F5]">
-                    <h2 className="text-center text-2xl md:text-3xl font-bold text-accent">LogIn</h2>
+                <div className="w-full max-w-[500px] mx-auto border-2 py-8 px-4 md:px-8 rounded-md shadow-2xl border-primary bg-[#F5F5F5] dark:bg-darkCard">
+                    <h2 className="text-center text-2xl md:text-3xl font-bold text-accent dark:text-white">LogIn</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         {/* Email input */}
                         <div className="mt-4">
-                            <label className="block mb-2 text-accent text-base">Enter Your Email</label>
+                            <label className="block mb-2 text-accent text-base dark:text-white">Enter Your Email</label>
                             <Input
                                 type="email"
                                 variant="flat"
@@ -90,7 +90,7 @@ function Page() {
 
                         {/* Password input */}
                         <div className="mt-4">
-                            <label className="block mb-2 text-accent">Enter Your Password</label>
+                            <label className="block mb-2 text-accent dark:text-white">Enter Your Password</label>
                             <Input
                                 fullWidth
                                 label="Password"
@@ -137,7 +137,7 @@ function Page() {
                         <div className="mt-5">
                             <p className="text-center text-base">
                                 New here?{' '}
-                                <Link className="text-accent hover:underline hover:text-primary duration-700" href="/register">
+                                <Link className="text-accent dark:text-white hover:underline hover:text-primary duration-700" href="/register">
                                     Register
                                 </Link>
                             </p>

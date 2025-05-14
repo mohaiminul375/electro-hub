@@ -46,7 +46,7 @@ const ProductTable = ({ product, idx }: ProductTableProps) => {
 
 
     return (
-        <tr className="bg-white border-b hover:bg-gray-50">
+        <tr className="bg-white dark:bg-darkCard     border-b hover:bg-gray-50">
             <td className="px-4 py-2">{idx}</td>
             <td className="px-4 py-2">{product_name}</td>
             <td className="px-4 py-2">{category || "not found"}</td>

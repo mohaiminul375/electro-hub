@@ -1,4 +1,4 @@
-  import { nextui } from '@nextui-org/react';
+import { nextui } from '@nextui-org/react';
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -24,6 +24,9 @@ const config: Config = {
         warning: "#FFC107",    // Yellow for warnings
         error: "#F44336",      // Red for errors
         info: "#2196F3",       // Blue for informational text
+        // Dark mode
+        darkBackground: "#121212",
+        darkCard: "#242424",
       },
     },
   },

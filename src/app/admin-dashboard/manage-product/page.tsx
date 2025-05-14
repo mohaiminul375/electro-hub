@@ -81,8 +81,8 @@ const ManageProduct = () => {
 
                 {/* Manage Product Header */}
                 <div className="mb-8 mt-2 text-center">
-                    <h3 className="text-3xl font-bold text-accent">Manage Products</h3>
-                    <h4 className="text-md text-gray-700 mt-2">Easily manage, edit, delete your products.</h4>
+                    <h3 className="text-3xl font-bold text-accent dark:text-white">Manage Products</h3>
+                    <h4 className="text-md text-gray-700 dark:text-white mt-2">Easily manage, edit, delete your products.</h4>
                 </div>
             </div>
             {/* Filtering and sorting */}
@@ -105,7 +105,7 @@ const ManageProduct = () => {
                 </div>
 
                 {/* Filters Section */}
-                <section className="py-6 px-4 bg-gray-50 rounded-md shadow-md">
+                <section className="py-6 px-4 bg-gray-50 dark:bg-darkCard rounded-md shadow-md">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {/* Sort by Category */}
                         <div className="flex flex-col">

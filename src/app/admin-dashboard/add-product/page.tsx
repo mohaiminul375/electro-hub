@@ -173,13 +173,13 @@ const AddProduct = () => {
 
                 {/* Add Product Header */}
                 <div className="mb-4 mt-2 text-center">
-                    <h3 className="text-3xl font-bold text-accent">Add Product</h3>
-                    <h4 className="text-md text-accent mt-2">Easily add a new product to your store.</h4>
+                    <h3 className="text-3xl font-bold text-accent dark:text-white">Add Product</h3>
+                    <h4 className="text-md text-accent mt-2 dark:text-white">Easily add a new product to your store.</h4>
                 </div>
             </div>
 
             {/* form */}
-            <div className='bg-white p-8 rounded-md shadow-2xl'>
+            <div className='bg-white dark:bg-darkCard p-8 rounded-md shadow-2xl'>
                 <form
                     onSubmit={handleSubmit(onSubmit)}
                     className='space-y-6'>
