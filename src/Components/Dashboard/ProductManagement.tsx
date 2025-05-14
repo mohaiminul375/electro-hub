@@ -6,7 +6,7 @@ export default function ProductManagement() {
     return (
         <div className=''>
             <div>
-                <h3 className='text-2xl font-bold text-accent'>Product Management</h3>
+                <h3 className='text-2xl font-bold text-accent dark:text-white'>Product Management</h3>
             </div>
             <div className="grid lg:grid-cols-5 gap-6 mt-8">
                 {/* Add Product Card */}

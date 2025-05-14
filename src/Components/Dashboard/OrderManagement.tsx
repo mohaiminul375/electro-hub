@@ -16,7 +16,7 @@ export default function OrderManagement() {
     return (
         <div className='m'>
             <div>
-                <h3 className='text-2xl font-bold text-accent'>Order & Payment Management</h3>
+                <h3 className='text-2xl font-bold text-accent dark:text-white'>Order & Payment Management</h3>
             </div>
             <div className="grid lg:grid-cols-5 gap-6 mt-8">
                 {/* All Orders Card */}

@@ -33,7 +33,7 @@ const Page = () => {
     const { division, district, full_address } = user?.address || {};
     if (!user?.address) {
         return <div className='flex justify-center items-center '>
-            <div className='bg-white md:w-96 p-7 border-2 shadow-2xl rounded-md border-primary'><h2 className='text-center text-lg text-primary'>Please confirm your address first</h2>
+            <div className='bg-white dark:bg-darkCard md:w-96 p-7 border-2 shadow-2xl rounded-md border-primary'><h2 className='text-center text-lg text-primary'>Please confirm your address first</h2>
                 <div>
                     <Link className='w-full bg-primary text-white p-2 block text-center rounded-md' href='/user/profile'>Update Profile</Link>
                 </div>
@@ -75,7 +75,7 @@ const Page = () => {
         <section className="grid grid-cols-1 md:grid-cols-12 gap-4">
             <div className='md:col-span-8'>
                 {/* User Info */}
-                <div className='bg-white rounded-md p-4'>
+                <div className='bg-white dark:bg-darkCard rounded-md p-4'>
                     <h4>Name: {user?.name || 'Unknown'}</h4>
                     {
                         user?.address && <h6>
@@ -88,12 +88,12 @@ const Page = () => {
                 </div>
 
                 {/* Cart Items */}
-                <div className='mt-3 bg-white rounded-md p-3'>
+                <div className='mt-3 bg-white dark:bg-darkCard rounded-md p-3'>
                     <h3 className='font-semibold'>Total Product: {totalQuantity}</h3>
                     {items.map((item) => (
                         <div
                             key={item.product_id}
-                            className="bg-white"
+                            className="bg-white dark:bg-darkBackground"
                         >
                             <div className="p-4">
                                 <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center border-b border-gray-300 py-2 my-2">
@@ -109,7 +109,7 @@ const Page = () => {
 
                                     {/* Product Details */}
                                     <div className="col-span-4">
-                                        <h5 className="text-base font-medium text-gray-900">
+                                        <h5 className="text-base font-medium text-gray-900 dark:text-white">
                                             {item.product_name}
                                         </h5>
                                         <p className="text-sm text-gray-500">Color: {item.color}</p>
@@ -118,7 +118,7 @@ const Page = () => {
 
                                     {/* Price */}
                                     <div className="col-span-2 text-left">
-                                        <p className="text-sm font-medium text-gray-900">
+                                        <p className="text-sm font-medium text-primary">
                                             ${item.price.toFixed(2)}
                                         </p>
                                     </div>
@@ -138,23 +138,23 @@ const Page = () => {
 
             {/* Order Summary */}
             <div className='md:col-span-4'>
-                <div className="bg-white border border-primary rounded-md shadow-lg">
+                <div className="bg-white dark:bg-darkCard border border-primary rounded-md shadow-lg">
                     <div className="p-6">
                         <h4 className="text-lg font-semibold text-primary mb-4">Order Summary</h4>
                         <hr className="border-t-2 border-primary mb-4" />
 
                         <div className="space-y-3">
-                            <p className="flex justify-between text-sm text-gray-700">
+                            <p className="flex justify-between text-sm text-gray-700 dark:text-white">
                                 <span>
                                     Subtotal (<span>{totalQuantity || 0}</span> items):
                                 </span>
                                 <span>${totalPrice.toFixed(2)}</span>
                             </p>
-                            <p className="flex justify-between text-sm text-gray-700">
+                            <p className="flex justify-between text-sm text-gray-700 dark:text-white">
                                 <span>Shipping Fee:</span>
                                 <span>Free</span>
                             </p>
-                            <p className="flex justify-between text-sm text-gray-900 font-semibold">
+                            <p className="flex justify-between text-sm text-gray-900 dark:text-primary font-semibold">
                                 <span>Total:</span>
                                 <span>${totalPrice.toFixed(2)}</span>
                             </p>

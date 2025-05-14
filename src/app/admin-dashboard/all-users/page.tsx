@@ -42,8 +42,8 @@ export default function AllUsers() {
 
             {/* Registered Users Header */}
             <div className="mb-0 mt-0 text-center">
-                <h3 className="text-3xl font-bold text-accent">Registered Users</h3>
-                <h4 className="text-md text-gray-700 mt-2">
+                <h3 className="text-3xl font-bold text-accent dark:text-white">Registered Users</h3>
+                <h4 className="text-md text-gray-700 dark:text-white mt-2">
                     List of all registered users on the platform.
                 </h4>
             </div>

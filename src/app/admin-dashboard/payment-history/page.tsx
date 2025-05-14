@@ -36,8 +36,8 @@ const PaymentHistory = () => {
                 </div>
                 {/* Payment History Header */}
                 <div className="mb-4 mt-2 text-center">
-                    <h3 className="text-3xl font-bold text-accent">Payment History</h3>
-                    <h4 className="text-md text-gray-700 mt-2">
+                    <h3 className="text-3xl font-bold text-accent dark:text-white">Payment History</h3>
+                    <h4 className="text-md text-gray-700 dark:text-white mt-2">
                         View and manage your complete transaction history, including successful and failed payments.
                     </h4>
                 </div>

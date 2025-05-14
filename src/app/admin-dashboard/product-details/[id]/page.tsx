@@ -123,8 +123,8 @@ const Page = () => {
         <section className="mt-10">
             {/* Heading */}
             <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-accent">Product Details</h2>
-                <p className="text-gray-700">
+                <h2 className="text-3xl font-bold text-accent dark:text-white">Product Details</h2>
+                <p className="text-gray-700 dark:text-white">
                     Comprehensive details about the selected product
                 </p>
             </div>
@@ -142,26 +142,26 @@ const Page = () => {
                 />
 
                 {/* Product Details */}
-                <div className="bg-gray-100 shadow-md rounded-lg p-6 max-w-3xl mx-auto border">
-                    <p className="text-sm text-gray-700 mb-4">
+                <div className="bg-gray-100 dark:bg-darkCard shadow-md rounded-lg p-6 max-w-3xl mx-auto border">
+                    <p className="text-sm text-gray-700 dark:text-white mb-4">
                         <span className="font-medium">Product ID:</span> {_id}
                     </p>
-                    <h1 className="text-2xl font-bold text-accent mb-4">
+                    <h1 className="text-2xl font-bold text-accent dark:text-white mb-4">
                         {product_name}
                     </h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         <p>
-                            <span className="font-medium text-accent">Price:</span>{" "}
+                            <span className="font-medium text-accent dark:text-white">Price:</span>{" "}
                             <span className="text-green-600 font-medium">৳{product_price}</span>
                         </p>
                         <p>
-                            <span className="font-medium text-accent">Category:</span> {category}
+                            <span className="font-medium text-accent dark:text-white">Category:</span> {category}
                         </p>
                         <p>
-                            <span className="font-medium text-accent">Brand:</span> {brand}
+                            <span className="font-medium text-accent dark:text-white">Brand:</span> {brand}
                         </p>
                         <p>
-                            <span className="font-medium text-accent">Color:</span>{" "}
+                            <span className="font-medium text-accent dark:text-white">Color:</span>{" "}
                             {color || "Not Specified"}
                         </p>
                     </div>
@@ -171,8 +171,8 @@ const Page = () => {
 
                     {/* Description */}
                     <div className="mb-4">
-                        <h3 className="text-lg font-semibold text-gray-800">Description:</h3>
-                        <p className="text-gray-700 italic">
+                        <h3 className="text-lg font-semibold text-gray-800 dark:text-white">Description:</h3>
+                        <p className="text-gray-700 dark:text-white italic">
                             {specs.laptop_description ||
                                 specs.monitor_description ||
                                 specs.smart_phone_description ||

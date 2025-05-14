@@ -24,7 +24,7 @@ const PaymentHistoryTable = ({ payment, idx }: TableProps) => {
         payment_method, } = payment;
     const date = new Date(created_at).toLocaleString();
     return (
-        <tr className="bg-white border-b hover:bg-gray-50">
+        <tr className="bg-white dark:bg-darkCard border-b hover:bg-gray-50">
             <td className="px-4 py-2">{idx + 1}</td>
             <td className="px-4 py-2">{transaction_id}</td>
             <td className="px-4 py-2">{customer_name}<br />{customer_email}</td>

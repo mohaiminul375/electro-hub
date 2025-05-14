@@ -37,7 +37,7 @@ const ApprovedTable = ({ order, idx }: TableProps) => {
     } = order;
     const orderDate = new Date(orderCreatedAt).toLocaleString()
     return (
-        <tr className="bg-white border-b hover:bg-gray-50">
+        <tr className="bg-white dark:bg-darkCard border-b hover:bg-gray-50">
             <td className="px-4 py-2">{idx + 1}</td>
             <td className="px-4 py-2">
                 {order_id}<br />

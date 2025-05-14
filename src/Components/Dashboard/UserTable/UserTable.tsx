@@ -76,7 +76,7 @@ export default function UserTable({ user, idx }: UserTableProps) {
         });
     }
     return (
-        <tr className="bg-white border-b hover:bg-gray-50">
+        <tr className="bg-white dark:bg-darkCard border-b hover:bg-gray-50">
             <td className="px-4 py-2">{idx + 1}</td>
             <td className="px-2 py-0">{uuid}</td>
             <td className="px-4 py-2"><span>{name}</span><br /><span>{email}</span></td>

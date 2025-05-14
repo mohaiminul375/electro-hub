@@ -29,9 +29,9 @@ const Page = () => {
 
                 {/* Manage Product Header */}
                 <div className="mb-4 mt-2 text-center">
-                    <h3 className="text-3xl font-bold text-accent">All
+                    <h3 className="text-3xl font-bold text-accent dark:text-white">All
                         Packed Orders</h3>
-                    <h4 className="text-md text-gray-700 mt-2">
+                    <h4 className="text-md text-gray-700 mt-2 dark:text-white">
                         From Here All orders will shipped to customer.
                     </h4>
                 </div>

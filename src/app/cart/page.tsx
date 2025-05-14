@@ -108,7 +108,7 @@ const Page = () => {
                     {items.map((item) => (
                         <div
                             key={item.product_id}
-                            className="bg-white border-gray-200 shadow-md"
+                            className="bg-white dark:bg-darkCard border-gray-200 shadow-md"
                         >
                             <div className='md:hidden flex justify-end pt-5 pr-4'>
                                 <FaX />
@@ -129,16 +129,16 @@ const Page = () => {
 
                                     {/* Product Details */}
                                     <div className="md:col-span-4">
-                                        <h5 className="text-base font-medium text-gray-900">
+                                        <h5 className="text-base font-medium text-gray-900 dark:text-white">
                                             {item.product_name}
                                         </h5>
-                                        <p className="text-sm text-gray-500">Color: {item.color}</p>
-                                        <p className="text-sm text-gray-500">Brand: {item.brand}</p>
+                                        <p className="text-sm text-gray-500 dark:text-white">Color: {item.color}</p>
+                                        <p className="text-sm text-gray-500 dark:text-white">Brand: {item.brand}</p>
                                     </div>
 
                                     {/* Price */}
                                     <div className="md:col-span-2  md:text-center">
-                                        <p className="text-sm font-medium text-gray-900">
+                                        <p className="text-sm font-medium text-primary">
                                             ${item.price.toFixed(2)}
                                         </p>
                                     </div>
@@ -153,7 +153,7 @@ const Page = () => {
                                                     productId: item.product_id,
                                                 })
                                             }
-                                            className="px-2 py-1 text-sm bg-gray-200 rounded-md disabled:cursor-not-allowed"
+                                            className="px-2 py-1 text-sm bg-gray-200 dark:text-black rounded-md disabled:cursor-not-allowed"
                                         >
                                             -
                                         </button>
@@ -171,7 +171,7 @@ const Page = () => {
                                                     productId: item.product_id,
                                                 })
                                             }
-                                            className="px-2 py-1 text-sm bg-gray-200 rounded-md"
+                                            className="px-2 py-1 text-sm dark:text-black bg-gray-200 rounded-md"
                                         >
                                             +
                                         </button>
@@ -186,7 +186,7 @@ const Page = () => {
                 </section>
 
                 {/* Order Summary Section */}
-                <div className="md:col-span-4 bg-white border border-primary rounded-md shadow-lg">
+                <div className="md:col-span-4 bg-white dark:bg-darkCard border border-primary rounded-md shadow-lg">
                     <div className="p-6">
                         <h4 className="text-lg font-semibold text-primary mb-4">Order Summary</h4>
                         <hr className="border-t-2 border-primary mb-4" />

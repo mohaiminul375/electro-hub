@@ -44,8 +44,8 @@ const Page = () => {
 
             {/* Registered Users Header */}
             <div className="mb-4 mt-2 text-center">
-                <h3 className="text-3xl font-bold text-accent">All Orders</h3>
-                <h4 className="text-md text-gray-700 mt-2">
+                <h3 className="text-3xl font-bold text-accent dark:text-white">All Orders</h3>
+                <h4 className="text-md text-gray-700 dark:text-white mt-2">
                     See All Orders and Details
                 </h4>
             </div>
