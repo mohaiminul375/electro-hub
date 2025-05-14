@@ -15,7 +15,7 @@ import ssl_commerz from '../../../public/SSL-Commerz.jpg';
 
 export default function Footer() {
     return (
-        <footer className='bg-accent mt-36 text-white pt-16 pb-12 md:pb-10 px-5 md:px-16'>
+        <footer className='bg-accent mt-36 text-white pt-10 pb-10 md:pb-10 px-5 md:px-16'>
             <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Logo and Social Links */}
                 <div>
@@ -69,7 +69,7 @@ export default function Footer() {
             </section>
 
             {/* Footer Bottom Section */}
-            <div className="mt-12 flex flex-col md:flex-col items-start justify-between">
+            <div className="mt-5 flex flex-col md:flex-col items-start justify-between">
                 <div className="text-center md:text-left">
                     <p>Designed and Developed by</p>
                     <Link
@@ -77,7 +77,7 @@ export default function Footer() {
                         className='hover:underline hover:text-primary duration-300 transition-all'
                         href='https://mohaiminul-dev.web.app'>Mohaiminul Islam</Link>
                 </div>
-                <p className='text-sm mt-4'>Version: Trail Version | Last Update: 7-Mar-2025, 3.50 P.M (BDT)</p>
+                <p className='text-sm mt-4'>Version: Trail Version | Last Update: 15-May-2025, 3.50 P.M (BDT)</p>
 
             </div>
 
@@ -87,14 +87,14 @@ export default function Footer() {
                     src={ssl_commerz}
                     alt="SSL Commerz"
                     layout="responsive"
-                    width={100}
+                    width={50}
                     height={50}
-                    className="w-full max-w-xs md:max-w-full"
+                    className="w-full max-w-xs md:max-w-full rounded-md"
                 />
             </div>
 
             {/* Footer Rights */}
-            <div className='text-center text-white mt-8'>
+            <div className='text-center text-white mt-5'>
                 <h2>&copy; 2025 All rights reserved by Electro-Hub</h2>
             </div>
         </footer>

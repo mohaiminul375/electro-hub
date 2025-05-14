@@ -53,7 +53,7 @@ export default function RootLayout({
               <AuthProvider>
                 <Nav />
                 <main className=" bg-background dark:bg-darkBackground">
-                  <div className="min-h-[calc(100vh-145px)] md:max-w-7xl mx-auto pt-20 md:pt-14">
+                  <div className="min-h-[calc(100vh-712px)] md:max-w-7xl mx-auto pt-20 md:pt-14">
                     {children}
                     <SocialChat />
                   </div>

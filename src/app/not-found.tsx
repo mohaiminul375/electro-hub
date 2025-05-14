@@ -9,8 +9,7 @@ const Error = () => {
     const router = useRouter();
 
     return (
-        <div className="flex flex-col-reverse md:flex-row items-center justify-center min-h-[calc(100vh-800px)] px-0 bg-white">
-            {/* Left: Text Section */}
+        <div className="flex flex-col-reverse md:flex-row items-center justify-center px-4 rounded-md bg-white">
             <div className="w-full md:w-1/2 text-center md:text-left space-y-4">
                 <h1 className="text-6xl font-bold text-primary">Oops!</h1>
                 <h2 className="text-3xl font-semibold text-gray-800">404 - Page Not Found</h2>
@@ -24,15 +23,13 @@ const Error = () => {
                     Go Home
                 </button>
             </div>
-
-            {/* Right: Image Section */}
             <div className="w-full md:w-1/2 flex justify-center mb-6 md:mb-0">
                 <Image
                     src={error}
                     alt="Error illustration"
                     width={500}
-                    height={500}
-                    className="object-contain max-h-[300px] md:max-h-[500px]"
+                    height={300}
+                    className="object-contain max-h-[200px] md:max-h-[500px] rounded-md"
                 />
             </div>
         </div>
