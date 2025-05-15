@@ -129,6 +129,7 @@ export default function Nav() {
                             className="lg:hidden"
                             aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
                         <NavbarBrand>
+                  
                             <Link
                                 href='/'
                                 className="flex gap-2 justify-start items-center mr-5 md:mr-0 cursor-pointer">
@@ -228,6 +229,7 @@ export default function Nav() {
                             </button>
                         </div> */}
                         </div>
+                        
                     </NavbarContent>
 
                     {/* Menu for small devices */}
@@ -273,6 +275,9 @@ export default function Nav() {
                         <NavSearch />
                     </div>
                 }
+                  <div className="bg-black text-center">
+                        <p className="text-white text-xl">***Website under Maintenance may some features are unavailable.***</p>
+                    </div>
             </nav>
         </>
     );
