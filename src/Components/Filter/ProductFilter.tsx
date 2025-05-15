@@ -46,7 +46,7 @@ const ProductFilter = ({ setBrand, setColor, setPriceSort }: FilterProp) => {
 
     // filter
     return (
-        <section className="py-6 px-4 bg-gray-50 rounded-md shadow-md">
+        <section className="py-6 px-4 bg-gray-50 dark:bg-darkCard rounded-md shadow-md">
             <div className="space-y-6 sm:space-y-0 sm:flex sm:space-x-6 sm:justify-between">
                 {/* Sort by Price */}
                 <div className="flex flex-col sm:w-1/3">

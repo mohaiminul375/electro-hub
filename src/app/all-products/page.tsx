@@ -48,7 +48,7 @@ const Page = () => {
 
             {/* Products */}
             {isLoading ? <Loading /> :
-                <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <div className="md:grid md:grid-cols-3 lg:grid-cols-4 gap-8 flex flex-col items-center justify-center">
                     {paginatedProducts.map((item) => (
                         <ProductCard key={item._id} item={item} />
                     ))}
