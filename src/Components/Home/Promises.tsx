@@ -13,7 +13,6 @@ const Promises = () => {
             </div>
             {/* Promises container */}
             <div className="md:grid md:grid-cols-3 lg:grid-cols-4 gap-6 flex flex-col items-center mt-5">
-
                 <div className="flex items-center p-3 border border-gray-200 rounded-lg shadow-sm bg-white dark:bg-darkCard mt-5 transition-transform duration-300 ease-in-out hover:scale-110 group lg:w-auto w-72 md:w-64 h-full">
                     <div className="mr-4">
                         <Image className="transform transition-transform duration-500 group-hover:rotate-[360deg]" height={100} width={100} src={delivery} alt="Fast Delivery Icon" />

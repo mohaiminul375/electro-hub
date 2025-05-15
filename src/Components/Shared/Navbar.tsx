@@ -35,9 +35,33 @@ const navItems: NavItems[] = [
         path: "/",
     },
     {
-        title: "Products",
+        title: "all-products",
         path: "/all-products",
-    }
+    },
+    {
+        title: "Smart-Phone",
+        path: "/products/smart_phone",
+    },
+    {
+        title: "Smart-Watch",
+        path: "/products/smart_watch",
+    },
+    {
+        title: "Laptop",
+        path: "/products/laptop",
+    },
+    {
+        title: "Monitor",
+        path: "/products/monitor",
+    },
+    {
+        title: "Accessories",
+        path: "/products/accessories",
+    },
+    {
+        title: "Smart-tv",
+        path: "/products/smart_tv",
+    },
 
 ]
 // Theme Toggle
