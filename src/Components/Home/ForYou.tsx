@@ -24,7 +24,7 @@ export default function ForYou() {
                         < h2 className='text-center text-xl text-red-700 font-semibold'>No Product Found</h2>
                     }
                 </div>
-                <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <div className="md:grid md:grid-cols-3 lg:grid-cols-4 gap-8 flex flex-col items-center justify-center">
                     {products?.map((item) => (
                         <ProductCard key={item._id} item={item} />
                     ))}

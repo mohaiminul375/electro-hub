@@ -40,7 +40,7 @@ const navItems: NavItems[] = [
     }
 
 ]
-
+// Theme Toggle
 const ThemeSwitch = (props: object) => {
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
@@ -283,7 +283,7 @@ export default function Nav() {
     );
 
 }
-
+// Theme Toggle Button
 export const MoonIcon = (props: object) => {
     return (
         <svg
@@ -291,8 +291,8 @@ export const MoonIcon = (props: object) => {
             focusable="false"
             height="1em"
             role="presentation"
-            viewBox="0 0 24 24"
-            width="1em"
+            viewBox="0 0 25 25"
+            width="4em"
             {...props}
         >
             <path
@@ -311,7 +311,7 @@ export const SunIcon = (props: object) => {
             height="1em"
             role="presentation"
             viewBox="0 0 24 24"
-            width="1em"
+            width="4em"
             {...props}
         >
             <g fill="currentColor">

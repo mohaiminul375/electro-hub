@@ -1,37 +1,37 @@
 # Electro-Hub
 
-- A Full Stack E-Commerce Website
+- A Full Stack E-Commerce Gadget Website
 
-# Live_site: https://electro-hub-tau.vercel.app
+## 🌐 Live Site: https://electro-hub-tau.vercel.app
 
-# Run the Project Locally
+#  🔧 Run the Project Locally
 
-1. **Clone the Repository**:
+1️⃣ **Clone the Repository**:
 
    ```sh
      https://github.com/mohaiminul375/electro-hub
      cd electro-hub
    ```
 
-2. **Install Dependencies**:
+2️⃣ **Install Dependencies**:
 
    ```sh
    npm install
    ```
 
-3. **Set Up Environment Variables**: Create a `.env.local` file in the root directory and add the necessary environment variables. (**Important!**)
+4️⃣ **Set Up Environment Variables**: Create a `.env.local` file in the root directory and add the necessary environment variables. (**Important!**)
 
-4. **Run the Application**:
+5️⃣  **Run the Application**:
 
    ```sh
    npm run dev -- --host
    ```
 
-5. **Access the Site**: Open your browser and go to http://localhost:3000.
+6️⃣ **Access the Site**: Open your browser and go to http://localhost:3000.
 
-## Features
+## 🚀 Features
 
-## For Default User
+## 👤 For Default User
 
 ### 1. Browse Products
 
@@ -58,7 +58,7 @@
 - Users can update their profile information, including name, email, and contact details.
 - Ensures a personalized shopping experience.
 
-## For Admins
+## 👑 For Admins
 
 1. **Product Management**
 
@@ -72,16 +72,16 @@
 
 3. **User Management**
    - Admins can view all registered users on the platform.
-   - Admins can view user profiles and their order histories.
+   <!-- - Admins can view user profiles and their order histories. -->
 
-### **This website is under development, so more features are coming soon!**
+<!-- ### **This website is under development, so more features are coming soon!** -->
 
-# Access Info
+# 🔐 Access Info
 
 - Admin email: admin1@electro-hub.com
 - Admin password: admin@A1
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 - **Frontend**: Next.js, Typescript, HTML, Tailwind CSS, Next UI.
 - **Backend**: Node.js, Express.js, MongoDB.
@@ -89,7 +89,7 @@
 - **Payment Gateway**: SSLCOMMERZ.
 - **Hosting**: Vercel (frontend and backend both).
 
-# npm and Packages
+# 🛠️ npm and Packages
 
 - Next.js(15.1.3)
 - React(18.3.1)
@@ -105,7 +105,8 @@
 - sweet alert 2
 - react-confetti
 - react-whatsapp-widget
+- Eamil.Js
 
-# Server Side
+# 🖥️ Server Side
 
 - https://github.com/mohaiminul375/electro-hub-server

@@ -18,7 +18,7 @@ export default function ProductCard({ item }: ProductCardProps) {
     const { _id, product_name, img, product_price, category }: Product = item;
     return (
 
-        <div className='group border border-gray-300 rounded-lg shadow-lg    p-4 max-w-sm bg-white dark:bg-darkCard transition'>
+        <div className='group border border-gray-300 rounded-lg shadow-lg h-full p-4 max-w-sm bg-white dark:bg-darkCard transition w-80  md:w-auto'>
             {/* Product Image */}
             <figure className='mb-4 overflow-hidden rounded-md'>
                 <Image
