@@ -299,9 +299,9 @@ export default function Nav() {
                         <NavSearch />
                     </div>
                 }
-                  <div className="bg-black text-center">
+                  {/* <div className="bg-black text-center">
                         <p className="text-white text-xl">***Website under Maintenance may some features are unavailable.***</p>
-                    </div>
+                    </div> */}
             </nav>
         </>
     );
