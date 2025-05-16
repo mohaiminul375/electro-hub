@@ -14,6 +14,9 @@ const PendingOrders = () => {
 
     return (
         <section>
+            <head>
+                <title>Electro-Hub | Pending Orders</title>
+            </head>
             {/* filter and sorting */}
             <div className="mt-2">
                 {/* Back Button */}

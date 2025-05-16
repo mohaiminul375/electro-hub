@@ -35,6 +35,9 @@ const Support = () => {
   };
   return (
     <section className="flex flex-col md:flex-row p-4 md:p-8 gap-6">
+      <head>
+        <title>Electro-Hub | Support</title>
+      </head>
       {/* Left Side - Image */}
       <div className="md:w-1/2 w-full  mb-4 md:mb-0">
         <Image className="w-full h-full  rounded-lg" src={support} alt="support_icon" />

@@ -16,6 +16,9 @@ const DeliveredAdmin = () => {
         <section>
             {/* filter and sorting */}
             <div className="mt-2">
+                <head>
+                    <title>Electro-Hub | Delivered Orders</title>
+                </head>
                 {/* Back Button */}
                 <div className="inline-block">
                     <Link

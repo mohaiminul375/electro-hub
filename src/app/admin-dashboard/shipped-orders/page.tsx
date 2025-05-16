@@ -13,6 +13,9 @@ const Page = () => {
     if (isError) return <p className="text-center text-red-700">Error: {error && (typeof error === "string" ? error : error.message)}</p>;
     return (
         <section>
+            <head>
+                <title>Electro-Hub | Shipped Order Details</title>
+            </head>
             {/* Back Button */}
             <div className="mt-2 inline-block">
                 <Link

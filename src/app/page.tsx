@@ -8,9 +8,12 @@ import Promises from "../components/Home/Promises";
 export default function Home() {
   return (
     <section className="pt-0">
+      <head>
+        <title>Electro-Hub | Home</title>
+      </head>
       <Banner />
       <div className="space-y-20 mt-20">
-        <Promises/>
+        <Promises />
         <Brands />
         <ForYou />
         <Categories />

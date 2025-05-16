@@ -29,6 +29,9 @@ export default function AllUsers() {
 
     return (
         <section>
+              <head>
+                <title>Electro-Hub | All Users</title>
+            </head>
             {/* Back Button */}
             <div className="inline-block">
                 <Link

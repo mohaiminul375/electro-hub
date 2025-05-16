@@ -63,6 +63,9 @@ export default function Page() {
 
     return (
         <section className='grid md:grid-cols-2 gap-5 mt-5 px-4 lg:px-8'>
+             <head>
+        <title>Electro-Hub | Register</title>
+      </head>
             {/* Lottie animation */}
             <div className='hidden md:flex justify-center'>
                 <LottiePlayer

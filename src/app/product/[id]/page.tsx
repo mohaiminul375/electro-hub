@@ -122,6 +122,9 @@ const Page = () => {
 
     return (
         <section className="mt-10">
+            <head>
+                <title>Electro-Hub | Products</title>
+            </head>
             {/* Heading */}
             <div className="text-center mb-8">
                 <h2 className="text-3xl font-bold text-accent dark:text-white">Product Details</h2>

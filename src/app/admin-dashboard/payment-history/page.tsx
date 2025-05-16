@@ -22,6 +22,9 @@ const PaymentHistory = () => {
 
     return (
         <section>
+            <head>
+                <title>Electro-Hub | Payment History</title>
+            </head>
             {/*Heading  */}
             <div className="mt-2">
                 {/* Back Button */}

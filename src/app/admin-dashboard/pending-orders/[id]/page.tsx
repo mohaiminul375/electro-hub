@@ -83,6 +83,9 @@ const Page = () => {
 
     return (
         <section className="flex flex-col items-center justify-center px-4 py-8">
+            <head>
+                <title>Electro-Hub | Pending Orders Details</title>
+            </head>
             <div className="w-full max-w-4xl bg-white dark:bg-darkCard shadow-md rounded-lg p-6">
                 <h2 className="text-xl font-bold text-gray-700 dark:text-white mb-4">Order Details</h2>
                 <div className="mb-4">

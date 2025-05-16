@@ -66,6 +66,9 @@ const ManageProduct = () => {
     }
     return (
         <section className=''>
+            <head>
+                <title>Electro-Hub | Manage Products</title>
+            </head>
             {/*Heading  */}
             <div className="mt-2">
                 {/* Back Button */}

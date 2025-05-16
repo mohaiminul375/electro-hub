@@ -73,6 +73,9 @@ const Page = () => {
 
     return (
         <section className="grid grid-cols-1 md:grid-cols-12 gap-4">
+            <head>
+                <title>Electro-Hub | CheckOut</title>
+            </head>
             <div className='md:col-span-8'>
                 {/* User Info */}
                 <div className='bg-white dark:bg-darkCard rounded-md p-4'>

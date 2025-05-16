@@ -12,6 +12,9 @@ const OrderTabs = () => {
 
     return (
         <section className="mt-20 px-4 sm:px-8">
+            <head>
+                <title>Electro-Hub | My Orders</title>
+            </head>
             <h2 className="text-2xl font-bold text-center mb-6">Manage Orders</h2>
             <Tabs
                 selectedIndex={tabIndex}

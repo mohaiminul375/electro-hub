@@ -9,6 +9,9 @@ const Page = () => {
     const [tabIndex, setTabIndex] = useState<number>(0);
     return (
         <section className='mt-0'>
+            <head>
+                <title>Electro-Hub | User Information</title>
+            </head>
             <Tabs
                 selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}
                 className="rounded-lg bg-white dark:bg-darkCard">

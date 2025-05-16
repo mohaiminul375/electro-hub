@@ -99,6 +99,9 @@ const Page = () => {
 
     return (
         <>
+            <head>
+                <title>Electro-Hub | Cart</title>
+            </head>
             <div className='text-xl'>
                 {items?.length == 0 && <p>No Product added yet.</p>}
             </div>

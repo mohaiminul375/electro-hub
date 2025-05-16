@@ -171,6 +171,9 @@ const Page = () => {
 
     return (
         <section>
+            <head>
+                <title>Electro-Hub | Update Product</title>
+            </head>
             <div className="mt-6">
                 {/* Back Button */}
                 <div className="inline-block">

@@ -16,6 +16,9 @@ export default function AdminDashboard() {
     }
     return (
         <section className="mt-0 p-6 bg-gray-50 dark:bg-darkCard rounded-lg">
+            <head>
+                <title>Electro-Hub | Admin Dashboard</title>
+            </head>
             <div className="text-center mb-10">
                 <h2 className="text-3xl font-bold text-accent dark:text-white">Admin Dashboard</h2>
                 <h3 className="text-xl font-semibold text-accent mt-2 dark:text-white">

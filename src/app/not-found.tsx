@@ -10,6 +10,9 @@ const Error = () => {
 
     return (
         <div className="flex flex-col-reverse md:flex-row items-center justify-center px-4 rounded-md bg-white">
+            <head>
+                <title>Electro-Hub | Error Page</title>
+            </head>
             <div className="w-full md:w-1/2 text-center md:text-left space-y-4">
                 <h1 className="text-6xl font-bold text-primary">Oops!</h1>
                 <h2 className="text-3xl font-semibold text-gray-800">404 - Page Not Found</h2>

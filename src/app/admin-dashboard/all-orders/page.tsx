@@ -31,6 +31,9 @@ const Page = () => {
     };
     return (
         <section>
+            <head>
+                <title>Electro-Hub | All Products</title>
+            </head>
             {/* Back Button */}
             <div className="mt-2 inline-block">
                 <Link

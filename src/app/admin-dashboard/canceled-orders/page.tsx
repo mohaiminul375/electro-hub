@@ -19,6 +19,9 @@ const Page = () => {
     );
     return (
         <section>
+            <head>
+                <title>Electro-Hub | Canceled Orders</title>
+            </head>
             {/* filter and sorting */}
             <div className="mt-2">
                 {/* Back Button */}

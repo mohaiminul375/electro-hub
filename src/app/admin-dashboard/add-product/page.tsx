@@ -159,6 +159,9 @@ const AddProduct = () => {
 
     return (
         <section>
+            <head>
+                <title>Electro-Hub | Add Products</title>
+            </head>
             <div className="mt-2">
                 {/* Back Button */}
                 <div className="inline-block">
