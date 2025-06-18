@@ -4,6 +4,7 @@ import support from '../../../public/support.jpg'
 import emailjs from "@emailjs/browser";
 import toast from 'react-hot-toast';
 import { useRef } from 'react';
+import Link from 'next/link';
 const Support = () => {
   console.log(process.env.NEXT_PUBLIC_EMAIL_JS_SERVICE_ID)
   const form = useRef<HTMLFormElement>(null);
@@ -96,6 +97,7 @@ const Support = () => {
         </form>
         <div className="mt-6 text-center">
           <p className="text-sm mb-2">Or message us on WhatsApp</p>
+          <Link href='/zappy' className="text-sm mb-2">Or message us on WhatsApp</Link>
         </div>
       </div>
     </section>
