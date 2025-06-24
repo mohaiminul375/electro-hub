@@ -1,7 +1,7 @@
 'use client'
 import Loading from '@/app/loading';
 import { GetAdminProducts } from './api/rote';
-import ProductTable from '@/components/Dashboard/ProductTable/ProductTable';
+import ProductTable from '@/Components/Dashboard/ProductTable/ProductTable';
 import Link from 'next/link';
 import { FaArrowLeft, FaSearch } from 'react-icons/fa';
 import { useState } from 'react';

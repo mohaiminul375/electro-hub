@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import { usePendingOrders } from "./api/route";
 import Loading from "@/app/loading";
-import OrdersTable from "@/components/Dashboard/PendingOrders/OrdersTable";
+import OrdersTable from "@/Components/Dashboard/PendingOrders/OrdersTable";
 
 const PendingOrders = () => {
     const { data: orders = [], isLoading, isError, error } = usePendingOrders();

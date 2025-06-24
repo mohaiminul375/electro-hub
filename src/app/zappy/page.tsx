@@ -1,12 +1,12 @@
 'use client'
-import BotpressChat from '@/Components/BotpressChat'
+// import BotpressChat from '@/Components/BotpressChat'
 import dynamic from 'next/dynamic'
 // Lazy-load and disable SSR
-// const BotpressChat = dynamic(() => import('@/components/BotpressChat'), {
-//     ssr: false,
-// })
+const BotpressChat = dynamic(() => import('@/Components/BotpressChat'), {
+    ssr: false,
+})
 
-export default function Home() {
+export default function Zappy() {
     return (
         <main>
             <h1>Welcome to Electro Hub</h1>

@@ -3,7 +3,7 @@ import Loading from "@/app/loading";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import { useGetApprovedOrders } from "./api/route";
-import ApprovedTable from "@/components/Dashboard/ApprovedOrder/ApprovedTable";
+import ApprovedTable from "@/Components/Dashboard/ApprovedOrder/ApprovedTable";
 
 const Page = () => {
     const { data: orders = [], isLoading, isError, error } = useGetApprovedOrders();

@@ -1,8 +1,8 @@
 'use client'
-import AllOrders from '@/components/MyOrders/AllOrders';
-import DeliveredUser from '@/components/MyOrders/DeliveredUser';
-import ToReceived from '@/components/MyOrders/ToReceived';
-import ToShip from '@/components/MyOrders/ToShip';
+import AllOrders from '@/Components/MyOrders/AllOrders';
+import DeliveredUser from '@/Components/MyOrders/DeliveredUser';
+import ToReceived from '@/Components/MyOrders/ToReceived';
+import ToShip from '@/Components/MyOrders/ToShip';
 import React, { useState } from 'react';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';

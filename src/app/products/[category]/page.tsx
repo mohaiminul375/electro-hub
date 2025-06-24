@@ -1,10 +1,10 @@
 'use client'
-import ProductCard from "@/components/Products/ProductCard";
+import ProductCard from "@/Components/Products/ProductCard";
 import Loading from "@/app/loading";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import { useGetDetailsCategory } from "./api/route";
-import CategoryFilter from "@/components/Filter/CategoryFilter";
+import CategoryFilter from "@/Components/Filter/CategoryFilter";
 import { Pagination } from "@nextui-org/react";
 export const dynamic = 'force-dynamic';
 type CategoryParams = {

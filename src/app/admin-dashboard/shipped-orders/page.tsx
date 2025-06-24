@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import { useGetShippedOrders } from "./api/route";
 import Loading from "@/app/loading";
-import ShippedTable from "@/components/Dashboard/ShippedOrders/ShippedTable";
+import ShippedTable from "@/Components/Dashboard/ShippedOrders/ShippedTable";
 
 
 const Page = () => {

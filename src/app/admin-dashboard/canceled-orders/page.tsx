@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import { AllCanceledOrdersAdmin } from "./api/route";
 import Loading from "@/app/loading";
-import CanceledTable from "@/components/Dashboard/CanceledTable/CanceledTable";
+import CanceledTable from "@/Components/Dashboard/CanceledTable/CanceledTable";
 
 
 const Page = () => {

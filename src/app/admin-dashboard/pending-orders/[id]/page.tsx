@@ -7,7 +7,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { useSession } from "next-auth/react";
-import { AdminCancellation } from "@/components/Shared/adminCancellation";
+import { AdminCancellation } from "@/Components/Shared/adminCancellation";
 interface OrderData {
     orderApproveAt: string;
     note?: string;

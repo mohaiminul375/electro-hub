@@ -1,7 +1,7 @@
 'use client';
 import { FaArrowLeft } from "react-icons/fa";
 import { useGetUsers } from "./api/route";
-import UserTable from "@/components/Dashboard/UserTable/UserTable";
+import UserTable from "@/Components/Dashboard/UserTable/UserTable";
 import Link from "next/link";
 import Loading from "@/app/loading";
 import { useEffect, useState } from "react";

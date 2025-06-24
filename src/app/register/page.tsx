@@ -1,6 +1,6 @@
 "use client"
 import { Divider, Input } from '@nextui-org/react';
-import SocialLogin from "../../components/Shared/SocialLogin";
+import SocialLogin from "../../Components/Shared/SocialLogin";
 import Link from "next/link";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";

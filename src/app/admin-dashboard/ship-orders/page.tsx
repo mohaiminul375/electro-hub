@@ -3,7 +3,7 @@ import Loading from "@/app/loading";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import { useGetPackedOrders } from "./api/route";
-import PackedTable from "@/components/Dashboard/PackedOrders/PackedTable";
+import PackedTable from "@/Components/Dashboard/PackedOrders/PackedTable";
 
 
 const Page = () => {

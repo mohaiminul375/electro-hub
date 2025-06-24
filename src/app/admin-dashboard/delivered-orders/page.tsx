@@ -3,7 +3,7 @@ import Loading from "@/app/loading";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import { useGetDeliveredOrders } from "./api/route";
-import DeliveredTable from "@/components/Dashboard/DeliveredOrders/DeliveredTable";
+import DeliveredTable from "@/Components/Dashboard/DeliveredOrders/DeliveredTable";
 
 
 const DeliveredAdmin = () => {

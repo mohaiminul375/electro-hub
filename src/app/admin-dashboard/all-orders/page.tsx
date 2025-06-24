@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaArrowLeft, FaSearch } from "react-icons/fa";
 import { useGetAllOrdersAdmin } from "./api/route";
 import Loading from "@/app/loading";
-import AllOrdersTable from "@/components/Dashboard/AllOrders/AllOrdersTable";
+import AllOrdersTable from "@/Components/Dashboard/AllOrders/AllOrdersTable";
 import { useEffect, useState } from "react";
 
 const Page = () => {

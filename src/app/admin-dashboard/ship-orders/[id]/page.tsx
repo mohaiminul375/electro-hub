@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { usePackedOrdersDetails, useShippedOrder } from "../api/route";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { AdminCancellation } from "@/components/Shared/adminCancellation";
+import { AdminCancellation } from "@/Components/Shared/adminCancellation";
 import toast from "react-hot-toast";
 interface CancelData {
     orderCanceledAt: string;

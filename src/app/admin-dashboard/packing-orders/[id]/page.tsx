@@ -9,7 +9,7 @@ import { usePackedOrder } from "../api/route";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { AdminCancellation } from "@/components/Shared/adminCancellation";
+import { AdminCancellation } from "@/Components/Shared/adminCancellation";
 interface OrderData {
     orderPackedAt: string;
     note?: string;

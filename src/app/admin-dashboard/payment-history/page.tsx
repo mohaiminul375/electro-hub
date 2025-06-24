@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FaArrowLeft, FaSearch } from "react-icons/fa";
 import { useGetPaymentHistory } from "./api/route";
 import Loading from "@/app/loading";
-import PaymentHistoryTable from "@/components/Dashboard/Product-Update/Payment-History/PaymentHistoryTable";
+import PaymentHistoryTable from "@/Components/Dashboard/Product-Update/Payment-History/PaymentHistoryTable";
 import { useState } from "react";
 
 

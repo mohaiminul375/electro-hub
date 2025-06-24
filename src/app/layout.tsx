@@ -6,16 +6,16 @@ import { NextUIProvider } from "@nextui-org/react";
 import { Headland_One } from "next/font/google"
 import AuthProvider from "@/services/AuthProvider";
 import { Toaster } from "react-hot-toast";
-import Footer from "../components/Shared/Footer";
-import Nav from "../components/Shared/Navbar";
-import BottomNavbar from "../components/Shared/BottomNavbar";
+import Footer from "../Components/Shared/Footer";
+import Nav from "../Components/Shared/Navbar";
+import BottomNavbar from "../Components/Shared/BottomNavbar";
 export const dynamic = 'force-dynamic';
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
-import SocialChat from "@/components/Shared/SocialChat";
+import SocialChat from "@/Components/Shared/SocialChat";
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 const queryClient = new QueryClient()
 // const geistSans = localFont({
