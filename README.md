@@ -58,6 +58,10 @@
 - Users can update their profile information, including name, email, and contact details.
 - Ensures a personalized shopping experience.
 
+### 6. Chat with AI
+
+- User can basic chat with AI bot live (chat base)
+
 ## 👑 For Admins
 
 1. **Product Management**
@@ -106,6 +110,7 @@
 - react-confetti
 - react-whatsapp-widget
 - Eamil.Js
+- Chatbase
 
 # 🖥️ Server Side
 

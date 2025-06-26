@@ -26,7 +26,7 @@ const Support = () => {
             },
           });
           console.log("SUCCESS!");
-          form.current.reset();
+          form?.current?.reset();
         },
         (error) => {
           console.log("FAILED...", error.text);
@@ -96,7 +96,7 @@ const Support = () => {
           </button>
         </form>
         <div className="mt-6 text-center">
-          <p className="text-sm mb-2">Or message us on WhatsApp</p>
+          <p className="text-sm mb-2">Or Live Chat With AI Agent Zappy</p>
           <Link href='/zappy' className="text-sm mb-2">Or message us on WhatsApp</Link>
         </div>
       </div>

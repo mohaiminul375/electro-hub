@@ -16,6 +16,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import SocialChat from "@/Components/Shared/SocialChat";
+import Zappy from "@/Components/Zappy/Zappy";
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 const queryClient = new QueryClient()
 // const geistSans = localFont({
@@ -56,6 +57,7 @@ export default function RootLayout({
                   <div className="min-h-[calc(100vh-712px)] md:max-w-7xl mx-auto pt-20 md:pt-14">
                     {children}
                     <SocialChat />
+                    <Zappy />
                   </div>
                 </main>
                 <BottomNavbar />
