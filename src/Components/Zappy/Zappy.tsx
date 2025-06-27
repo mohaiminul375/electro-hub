@@ -19,18 +19,7 @@ const ChatbaseSupport = () => {
             {/* Chatbox */}
             {isOpen && (
                 <div
-                    style={{
-                        position: 'fixed',
-                        bottom: '190px',
-                        right: '20px',
-                        width: '350px',
-                        height: '500px',
-                        boxShadow: '0 0 10px rgba(0,0,0,0.3)',
-                        zIndex: 9999,
-                        background: '#fff',
-                        borderRadius: '10px',
-                        overflow: 'hidden',
-                    }}
+                    className="fixed bottom-[190px] mx-2 md:right-5 w-[350px] h-[500px] shadow-md z-[9999] bg-white rounded-[10px] overflow-hidden"
                 >
                     <iframe
                         src="https://www.chatbase.co/chatbot-iframe/I9B48X7ROqfmkzw7giwfI"
